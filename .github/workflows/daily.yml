@@ -3,9 +3,15 @@ name: GreenLight daily
 on:
   schedule:
     # 00:30 UTC Tue–Sat ≈ 20:30 ET Mon–Fri (after the US close).
-    # During EDT this is 20:30 the previous day. Good enough for a daily job.
     - cron: '30 0 * * 2-6'
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: 'daily (append today) or seed (rebuild ~2y history from scratch)'
+        type: choice
+        required: true
+        default: 'daily'
+        options: ['daily', 'seed']
 
 permissions:
   contents: write   # so the job can commit refreshed data/*.json back to the repo
@@ -13,7 +19,7 @@ permissions:
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
@@ -27,12 +33,22 @@ jobs:
         run: pip install -r python/requirements.txt
 
       - name: Run daily engine
+        if: github.event.inputs.mode != 'seed'
         env:
           SUPABASE_URL:              ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           ANTHROPIC_API_KEY:         ${{ secrets.ANTHROPIC_API_KEY }}
         working-directory: python
         run: python run_daily.py
+
+      - name: Seed history (rebuild ~2y backtest)
+        if: github.event.inputs.mode == 'seed'
+        env:
+          SUPABASE_URL:              ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          ANTHROPIC_API_KEY:         ${{ secrets.ANTHROPIC_API_KEY }}
+        working-directory: python
+        run: python seed_history.py
 
       - name: Commit refreshed data/
         run: |
@@ -42,6 +58,7 @@ jobs:
           if git diff --cached --quiet; then
             echo "No data changes."
           else
-            git commit -m "data: daily refresh $(date -u +%Y-%m-%d)"
+            mode="${{ github.event.inputs.mode || 'daily' }}"
+            git commit -m "data: $mode refresh $(date -u +%Y-%m-%d)"
             git push
           fi
