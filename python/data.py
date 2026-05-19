@@ -2,18 +2,17 @@
 
 Source priority (highest to lowest):
 
-  1. Stooq, direct HTTPS CSV endpoint.
-     stooq.com/q/d/l/?s=spy.us&i=d returns daily OHLCV as plain CSV
-     with no API key and no anti-bot filtering. This is the most
-     reliable source from data-center IP space (GitHub Actions, AWS).
-  2. yfinance via curl_cffi Chrome impersonation.
-     Defeats Yahoo's TLS-fingerprint filter most of the time, but Yahoo
-     still throttles or blocks intermittently.
-  3. Stooq via pandas_datareader (different code path; sometimes works
-     when the direct CSV path is briefly unavailable).
-  4. Stale REAL cache. Preferred over fresh synthetic — yesterday's
+  1. yfinance via curl_cffi Chrome impersonation.
+     The browser-fingerprint session defeats Yahoo's TLS filter on
+     data-center IPs (GitHub Actions / AWS / GCP). Verified working
+     against Yahoo as of May 2026.
+  2. Stooq via pandas_datareader.
+     Free Stooq CSV endpoint now requires an API key, but the
+     pandas_datareader path still works through a separate route.
+     Kept as a backup in case Yahoo starts blocking again.
+  3. Stale REAL cache. Preferred over fresh synthetic — yesterday's
      real prices are more useful than today's fabricated ones.
-  5. Deterministic synthetic GBM. Last resort, clearly tagged.
+  4. Deterministic synthetic GBM. Last resort, clearly tagged.
 
 Every step logs to stderr so the GitHub Actions log shows exactly what
 happened per ticker.
@@ -253,30 +252,24 @@ def load_ticker(ticker: str, force_refresh: bool = False) -> pd.DataFrame:
             _log(f"{ticker}: fresh real cache ({age_days}d old)")
             return cached
 
-    # 2. Stooq direct CSV — most reliable from GH Actions / data-center IPs.
-    fresh = _try_stooq_direct(ticker)
-    if fresh is not None and not fresh.empty:
-        _write_cache(ticker, fresh)
-        return fresh
-
-    # 3. yfinance (curl_cffi)
+    # 2. yfinance via curl_cffi Chrome impersonation — primary live source.
     fresh = _try_yfinance(ticker)
     if fresh is not None and not fresh.empty:
         _write_cache(ticker, fresh)
         return fresh
 
-    # 4. Stooq via pandas_datareader (different code path; rarely helps but cheap to try).
+    # 3. Stooq via pandas_datareader — fallback if Yahoo blocks.
     fresh = _try_stooq(ticker)
     if fresh is not None and not fresh.empty:
         _write_cache(ticker, fresh)
         return fresh
 
-    # 5. Stale REAL cache beats synthetic — keep the dashboard honest.
+    # 4. Stale REAL cache beats synthetic — keep the dashboard honest.
     if cache_is_real:
         _log(f"{ticker}: using stale real cache (live sources unreachable)")
         return cached
 
-    # 6. Synthetic fallback (clearly marked).
+    # 5. Synthetic fallback (clearly marked).
     _log(f"{ticker}: ALL REAL SOURCES FAILED — falling through to synthetic")
     syn = _synthetic(ticker)
     _write_cache(ticker, syn)
