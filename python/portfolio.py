@@ -1,38 +1,34 @@
-"""Paper-trading book.
+"""Paper-trading book — V2: SPY-anchored with alpha sleeves.
 
-The portfolio is the source of truth for cash, open positions, and the
-trade log. It is intentionally side-effect-light: ``open_trade`` and
-``close_trade`` mutate state, ``mark_to_market`` is a pure read.
+The book is *always* invested. Default state is 100% SPY. When the
+pitcher emits a high-conviction pick, ``pick_weight_per_position`` of
+NAV is swapped out of SPY into the pick. When the pick exits (stop /
+target / max hold / signal decay / relative-DD override), SPY is
+bought back to restore the target SPY weight.
 
-State is serialized to JSON in ``data/portfolio_state.json`` between
-runs so the engine has memory of its open positions, peak NAV, and
-the day's realized PnL.
+The point is to track SPY closely and only deviate when there's a
+defensible reason — that's how the mandate of "SPY + 10% with max −5%
+relative drawdown" is met.
 """
 from __future__ import annotations
 from dataclasses import dataclass, field, asdict
 from typing import Dict, List, Optional
 from datetime import date, datetime
-import json
-import math
-import uuid
+import json, math, uuid
 from pathlib import Path
 
-from config import DATA_DIR, RISK
+from config import DATA_DIR, MANDATE, BENCHMARK
 
 
-def _today() -> str:
-    return date.today().isoformat()
-
-
-def _now() -> str:
-    return datetime.utcnow().isoformat(timespec="seconds") + "Z"
+def _today() -> str: return date.today().isoformat()
+def _now() -> str:   return datetime.utcnow().isoformat(timespec="seconds") + "Z"
 
 
 @dataclass
 class Position:
     symbol: str
-    side: str                  # "long"
-    quantity: int
+    side: str
+    quantity: float
     entry_price: float
     entry_time: str
     stop_price: float
@@ -40,16 +36,12 @@ class Position:
     max_hold_days: int
     strategy_id: str
     thesis: str
-    # mutable
     last_price: float = 0.0
     age_days: int = 0
+    is_core: bool = False  # True for the SPY baseline; False for alpha picks
 
-    def notional(self) -> float:
-        return self.quantity * self.last_price
-
-    def unrealized_pnl(self) -> float:
-        return (self.last_price - self.entry_price) * self.quantity
-
+    def notional(self) -> float: return self.quantity * self.last_price
+    def unrealized_pnl(self) -> float: return (self.last_price - self.entry_price) * self.quantity
     def to_dict(self) -> dict:
         d = asdict(self)
         d["unrealized_pnl"] = self.unrealized_pnl()
@@ -62,7 +54,7 @@ class Trade:
     trade_id: str
     symbol: str
     side: str
-    quantity: int
+    quantity: float
     entry_time: str
     entry_price: float
     exit_time: Optional[str]
@@ -72,24 +64,26 @@ class Trade:
     reasoning: str
     exit_reason: Optional[str]
     holding_days: int
+    # Alpha attribution: SPY return over the same window. Lets us see whether
+    # the pick actually beat the benchmark it was replacing.
+    spy_return_over_hold: Optional[float] = None
+    alpha_vs_spy: Optional[float] = None
 
-    def to_dict(self) -> dict:
-        return asdict(self)
+    def to_dict(self) -> dict: return asdict(self)
 
 
 @dataclass
 class Portfolio:
-    cash: float = RISK.starting_capital
+    cash: float = MANDATE.starting_capital
     realized_pnl: float = 0.0
-    peak_nav: float = RISK.starting_capital
+    peak_relative_outperformance: float = 0.0
     positions: Dict[str, Position] = field(default_factory=dict)
     trades: List[Trade] = field(default_factory=list)
     inception: str = field(default_factory=_today)
 
-    # ---- persistence ----------------------------------------------------
+    # ---- persistence ---------------------------------------------------
     @classmethod
-    def path(cls) -> Path:
-        return DATA_DIR / "portfolio_state.json"
+    def path(cls) -> Path: return DATA_DIR / "portfolio_state.json"
 
     @classmethod
     def load(cls) -> "Portfolio":
@@ -99,32 +93,34 @@ class Portfolio:
         raw = json.loads(p.read_text())
         port = cls(
             cash=raw["cash"],
-            realized_pnl=raw["realized_pnl"],
-            peak_nav=raw["peak_nav"],
+            realized_pnl=raw.get("realized_pnl", 0.0),
+            peak_relative_outperformance=raw.get("peak_relative_outperformance", 0.0),
             inception=raw.get("inception", _today()),
         )
         port.positions = {
-            sym: Position(**p) for sym, p in raw.get("positions", {}).items()
+            sym: Position(**{k: v for k, v in p.items() if k in Position.__dataclass_fields__})
+            for sym, p in raw.get("positions", {}).items()
         }
-        port.trades = [Trade(**t) for t in raw.get("trades", [])]
+        port.trades = [
+            Trade(**{k: v for k, v in t.items() if k in Trade.__dataclass_fields__})
+            for t in raw.get("trades", [])
+        ]
         return port
 
     def save(self) -> None:
         out = {
             "cash": self.cash,
             "realized_pnl": self.realized_pnl,
-            "peak_nav": self.peak_nav,
+            "peak_relative_outperformance": self.peak_relative_outperformance,
             "inception": self.inception,
             "positions": {s: p.to_dict() for s, p in self.positions.items()},
             "trades": [t.to_dict() for t in self.trades],
         }
-        # strip computed fields from positions for round-tripping
         for s, p in out["positions"].items():
-            p.pop("unrealized_pnl", None)
-            p.pop("notional", None)
+            p.pop("unrealized_pnl", None); p.pop("notional", None)
         self.path().write_text(json.dumps(out, indent=2, default=str))
 
-    # ---- valuation ------------------------------------------------------
+    # ---- valuation -----------------------------------------------------
     def mark_to_market(self, prices: Dict[str, float]) -> None:
         for sym, pos in self.positions.items():
             if sym in prices and not math.isnan(prices[sym]):
@@ -133,21 +129,97 @@ class Portfolio:
     def nav(self) -> float:
         return self.cash + sum(p.notional() for p in self.positions.values())
 
-    def unrealized_pnl(self) -> float:
-        return sum(p.unrealized_pnl() for p in self.positions.values())
+    def core_notional(self) -> float:
+        core = self.positions.get(BENCHMARK)
+        return core.notional() if core else 0.0
 
-    # ---- trade lifecycle ------------------------------------------------
-    def open_trade(
-        self, *, symbol: str, quantity: int, entry_price: float,
-        stop_distance: float, target_distance: float,
-        max_hold_days: int, strategy_id: str, thesis: str,
+    def picks(self) -> List[Position]:
+        return [p for s, p in self.positions.items() if s != BENCHMARK]
+
+    # ---- SPY core --------------------------------------------------
+    def rebalance_to_core(self, spy_price: float) -> None:
+        """Make sure 100% of available NAV is in SPY when no picks active.
+
+        Called at portfolio inception and whenever a pick exits.
+        """
+        if spy_price <= 0: return
+        # If we're already long SPY, top up; otherwise create the core.
+        nav = self.nav()
+        target_spy_weight = self._target_spy_weight()
+        target_spy_notional = target_spy_weight * nav
+        existing_notional = self.core_notional()
+        diff = target_spy_notional - existing_notional
+        if abs(diff) < MANDATE.min_dollar_position:
+            return
+        if diff > 0:
+            # Buy more SPY
+            shares_to_buy = diff / spy_price
+            if shares_to_buy * spy_price <= self.cash + 1e-6:
+                if BENCHMARK in self.positions:
+                    pos = self.positions[BENCHMARK]
+                    new_qty = pos.quantity + shares_to_buy
+                    # Weight-average the entry price
+                    pos.entry_price = (
+                        (pos.entry_price * pos.quantity + spy_price * shares_to_buy) / new_qty
+                    )
+                    pos.quantity = new_qty
+                    pos.last_price = spy_price
+                else:
+                    self.positions[BENCHMARK] = Position(
+                        symbol=BENCHMARK, side="long",
+                        quantity=shares_to_buy, entry_price=spy_price,
+                        entry_time=_now(),
+                        stop_price=0.0, target_price=0.0, max_hold_days=10_000,
+                        strategy_id="spy_core_baseline",
+                        thesis="SPY baseline — always held except when relative DD forces exit.",
+                        last_price=spy_price, age_days=0, is_core=True,
+                    )
+                self.cash -= shares_to_buy * spy_price
+        else:
+            # Sell some SPY back to free cash for picks
+            shares_to_sell = -diff / spy_price
+            pos = self.positions.get(BENCHMARK)
+            if pos is not None:
+                shares_to_sell = min(shares_to_sell, pos.quantity)
+                pos.quantity -= shares_to_sell
+                self.cash += shares_to_sell * spy_price
+
+    def _target_spy_weight(self) -> float:
+        active_picks = len([p for p in self.positions.values() if not p.is_core])
+        return max(MANDATE.spy_core_min_weight,
+                   1.0 - active_picks * MANDATE.pick_weight_per_position)
+
+    # ---- pick lifecycle ------------------------------------------------
+    def open_pick(
+        self, *, symbol: str, entry_price: float, stop_distance: float,
+        target_distance: float, max_hold_days: int, strategy_id: str,
+        thesis: str, spy_price_at_entry: float,
     ) -> Optional[Position]:
-        if symbol in self.positions:
+        if symbol in self.positions or symbol == BENCHMARK:
             return None
-        notional = quantity * entry_price
-        if notional > self.cash + 1e-6:
+        if entry_price <= 0:
             return None
-        self.cash -= notional
+        nav = self.nav()
+        pick_notional = MANDATE.pick_weight_per_position * nav
+        if pick_notional < MANDATE.min_dollar_position:
+            return None
+        # Free up cash by selling SPY shares equal to pick notional
+        spy_pos = self.positions.get(BENCHMARK)
+        if spy_pos is None or spy_pos.notional() < pick_notional:
+            return None
+        spy_shares_to_sell = pick_notional / spy_price_at_entry
+        if spy_shares_to_sell > spy_pos.quantity:
+            return None
+        spy_pos.quantity -= spy_shares_to_sell
+        self.cash += spy_shares_to_sell * spy_price_at_entry
+        # Buy the pick
+        quantity = pick_notional / entry_price
+        if quantity * entry_price > self.cash + 1e-6:
+            # roll back the SPY sale and bail
+            spy_pos.quantity += spy_shares_to_sell
+            self.cash -= spy_shares_to_sell * spy_price_at_entry
+            return None
+        self.cash -= quantity * entry_price
         pos = Position(
             symbol=symbol, side="long", quantity=quantity,
             entry_price=entry_price, entry_time=_now(),
@@ -155,18 +227,39 @@ class Portfolio:
             target_price=entry_price + target_distance,
             max_hold_days=max_hold_days,
             strategy_id=strategy_id, thesis=thesis,
-            last_price=entry_price, age_days=0,
+            last_price=entry_price, age_days=0, is_core=False,
         )
+        # Stash SPY entry price for alpha attribution
+        pos.thesis = pos.thesis + f" (SPY@entry=${spy_price_at_entry:.2f})"
         self.positions[symbol] = pos
         return pos
 
-    def close_trade(self, symbol: str, exit_price: float, reason: str) -> Optional[Trade]:
+    def close_pick(
+        self, symbol: str, exit_price: float, reason: str,
+        spy_price_at_exit: float,
+    ) -> Optional[Trade]:
         pos = self.positions.pop(symbol, None)
-        if pos is None:
+        if pos is None or pos.is_core:
             return None
-        self.cash += pos.quantity * exit_price
+        proceeds = pos.quantity * exit_price
+        self.cash += proceeds
         pnl = (exit_price - pos.entry_price) * pos.quantity
+
+        # Alpha attribution
+        # Parse SPY@entry from the thesis (set in open_pick)
+        spy_entry = None
+        try:
+            import re
+            m = re.search(r"SPY@entry=\$([\d\.]+)", pos.thesis)
+            if m: spy_entry = float(m.group(1))
+        except Exception: pass
+        spy_ret = None; alpha = None
+        if spy_entry and spy_price_at_exit > 0:
+            pick_ret = exit_price / pos.entry_price - 1.0
+            spy_ret = spy_price_at_exit / spy_entry - 1.0
+            alpha = pick_ret - spy_ret
         self.realized_pnl += pnl
+
         trade = Trade(
             trade_id=str(uuid.uuid4())[:8],
             symbol=symbol, side=pos.side, quantity=pos.quantity,
@@ -174,6 +267,7 @@ class Portfolio:
             exit_time=_now(), exit_price=exit_price, pnl=pnl,
             strategy_id=pos.strategy_id, reasoning=pos.thesis,
             exit_reason=reason, holding_days=pos.age_days,
+            spy_return_over_hold=spy_ret, alpha_vs_spy=alpha,
         )
         self.trades.append(trade)
         return trade
@@ -181,39 +275,65 @@ class Portfolio:
     # ---- daily housekeeping --------------------------------------------
     def age_positions(self) -> None:
         for pos in self.positions.values():
-            pos.age_days += 1
+            if not pos.is_core:
+                pos.age_days += 1
 
-    def apply_stops_and_targets(self, ohlc: Dict[str, dict]) -> List[Trade]:
-        """Close positions whose intraday range hit stop / target / max hold.
+    def _pick_spy_entry(self, pos: Position) -> Optional[float]:
+        """Extract the SPY price at the time this pick was opened.
 
-        ``ohlc`` maps symbol -> {high, low, close}. We assume worst-case
-        stop fill at the stop price (no slippage modeling in V1).
+        It's stashed at the tail of the thesis string by open_pick().
+        Returns None if we can't recover it.
+        """
+        import re
+        m = re.search(r"SPY@entry=\$([\d\.]+)", pos.thesis)
+        return float(m.group(1)) if m else None
+
+    def apply_exits(
+        self, ohlc: Dict[str, dict],
+        *, rank_lookup: Dict[str, dict],
+        decay_z: float,
+        spy_price: float,
+    ) -> List[Trade]:
+        """Close picks via stop / target / max-hold / signal-decay / per-pick rel stop.
+
+        Stops fill at stop_price (conservative). Targets at target_price.
+        Max-hold and signal-decay exits fill at today's close. The per-pick
+        relative stop fires when a pick has been alive at least
+        ``pick_relative_stop_grace_days`` and is trailing SPY by more than
+        ``pick_relative_stop_pct`` since entry — keeps any single pick
+        from dragging the book past the portfolio-wide cap.
         """
         closed: List[Trade] = []
         for symbol in list(self.positions.keys()):
             pos = self.positions[symbol]
+            if pos.is_core or symbol == BENCHMARK:
+                continue
             bar = ohlc.get(symbol)
             if not bar:
                 continue
             low, high, close = bar["low"], bar["high"], bar["close"]
-            # Stop first (conservative)
             if low <= pos.stop_price:
-                t = self.close_trade(symbol, pos.stop_price, "stop")
+                t = self.close_pick(symbol, pos.stop_price, "stop", spy_price)
                 if t: closed.append(t); continue
             if high >= pos.target_price:
-                t = self.close_trade(symbol, pos.target_price, "target")
+                t = self.close_pick(symbol, pos.target_price, "target", spy_price)
                 if t: closed.append(t); continue
             if pos.age_days >= pos.max_hold_days:
-                t = self.close_trade(symbol, close, "max_hold")
+                t = self.close_pick(symbol, close, "max_hold", spy_price)
                 if t: closed.append(t); continue
+            # Signal-decay exit
+            r = rank_lookup.get(symbol)
+            if r is not None and r.get("composite", 0.0) < decay_z:
+                t = self.close_pick(symbol, close, "signal_decay", spy_price)
+                if t: closed.append(t); continue
+            # Per-pick relative stop — only after the grace period
+            if pos.age_days >= MANDATE.pick_relative_stop_grace_days and spy_price > 0:
+                spy_entry = self._pick_spy_entry(pos)
+                if spy_entry and spy_entry > 0:
+                    pick_ret = close / pos.entry_price - 1.0
+                    spy_ret = spy_price / spy_entry - 1.0
+                    rel_pick = pick_ret - spy_ret
+                    if rel_pick <= -MANDATE.pick_relative_stop_pct:
+                        t = self.close_pick(symbol, close, "rel_stop", spy_price)
+                        if t: closed.append(t); continue
         return closed
-
-    def update_peak(self) -> None:
-        nav = self.nav()
-        if nav > self.peak_nav:
-            self.peak_nav = nav
-
-    # ---- views ---------------------------------------------------------
-    def open_position_exposure(self, symbol: str) -> float:
-        pos = self.positions.get(symbol)
-        return pos.notional() if pos else 0.0

@@ -1,25 +1,24 @@
-"""Daily orchestrator.
+"""Daily orchestrator — V2 SPY-anchored.
 
-Run by GitHub Actions after 8pm ET on weekdays, or locally via:
+Run by GitHub Actions after the US close, or locally via:
 
     python run_daily.py
 
-Loads portfolio state, refreshes data, applies stops/targets, opens new
-trades that survive the risk caps, appends today's snapshot, generates
-an EOD review, and mirrors everything to Supabase (or JSON if Supabase
-env is not set).
+Loads portfolio state, refreshes data, marks positions to market,
+applies pick exits (stop / target / max-hold / signal decay /
+relative-DD breach), opens new picks where conviction allows,
+rebalances residual cash back into SPY, snapshots, and writes JSON.
 """
 from __future__ import annotations
-import json
+import json, math
 from datetime import date
-import math
 import pandas as pd
 
-from config import ACTIVE_IDS, RISK, WATCHLIST, BENCHMARK
+from config import ACTIVE_IDS, MANDATE, WATCHLIST, BENCHMARK
 from data import load_universe, data_feed_health
 from signals import enrich, market_regime
-from strategies import fire_all, manifests_for
-from risk import size_position, account_status
+from strategies import fire_all, manifests_for, REGISTRY
+from risk import compute_relative_status, account_status
 from portfolio import Portfolio
 from news import sentiment_for_universe
 from llm_review import review
@@ -28,42 +27,62 @@ from db import write_json, read_json, upsert, replace_table, supabase_enabled
 
 def main():
     port = Portfolio.load()
-    prev_equity = port.nav() or RISK.starting_capital
+    prev_equity = port.nav() or MANDATE.starting_capital
 
     frames = load_universe()
     health = data_feed_health(frames)
     enriched = {sym: enrich(df) for sym, df in frames.items()}
 
-    # --- news/sentiment (graceful failure) -----------------------------
     try:
-        sent, headlines = sentiment_for_universe(WATCHLIST)
+        sent_pair = sentiment_for_universe(WATCHLIST)
+        sent = sent_pair[0] if isinstance(sent_pair, tuple) else sent_pair
     except Exception:
-        sent, headlines = ({s: 0.0 for s in WATCHLIST}, {s: [] for s in WATCHLIST})
+        sent = {s: 0.0 for s in WATCHLIST}
 
-    # --- mark to market on latest close -------------------------------
+    # Mark to market on latest close
     close_prices, bars = {}, {}
     for sym, df in frames.items():
-        if df.empty:
-            continue
+        if df.empty: continue
         row = df.iloc[-1]
         close_prices[sym] = float(row["close"])
         bars[sym] = {"open": float(row["open"]), "high": float(row["high"]),
                      "low": float(row["low"]), "close": float(row["close"])}
     port.mark_to_market(close_prices)
+    spy_close = close_prices.get(BENCHMARK, 0.0)
 
-    # --- apply stops, targets, max-hold on today's bar -----------------
-    closed_today = port.apply_stops_and_targets(bars)
+    # If we have no SPY core yet (cold start after seed migration), establish one.
+    if BENCHMARK not in port.positions and spy_close > 0:
+        port.rebalance_to_core(spy_close)
 
-    # --- regime + signals --------------------------------------------
+    # Compute current pitcher ranks for exit-decay + new entries
+    rank_lookup = {}
+    decay_z = 0.5
+    pitcher_manifest = None
+    for sid in ACTIVE_IDS:
+        m = REGISTRY.get(sid, {}).get("manifest", {})
+        if m.get("id") == "stock_pitcher_v2":
+            pitcher_manifest = m
+            decay_z = m["params"].get("decay_zscore_exit", 0.5)
+            try:
+                from strategies.stock_pitcher_v2 import compute_ranks
+                rank_lookup = compute_ranks(enriched, m["params"])
+            except Exception as e:
+                print(f"rank computation failed: {e}")
+            break
+
+    # Apply exits
+    closed_today = port.apply_exits(bars, rank_lookup=rank_lookup,
+                                     decay_z=decay_z, spy_price=spy_close)
+
+    # Regime + signals
     regime = market_regime(frames[BENCHMARK])
     signals = fire_all(enriched, regime=regime, sentiment=sent,
                        active_ids=ACTIVE_IDS, universe=enriched)
 
-    # Persist tomorrow's candidate pitches for the dashboard's
-    # "Pitches for tomorrow" panel.
+    # Pitches output (for the dashboard's "Pitches for tomorrow")
     pitches = []
     for sig in signals:
-        if sig.strategy_id == "stock_pitcher_v1":
+        if sig.strategy_id == "stock_pitcher_v2":
             pitches.append({
                 "symbol": sig.symbol,
                 "strategy_id": sig.strategy_id,
@@ -75,52 +94,84 @@ def main():
                 **sig.extras,
             })
 
-    # --- entry decisions (only if data feed is healthy & light != red/black)
-    status_pre = account_status(
-        nav=port.nav(), day_pnl=port.nav() - prev_equity,
-        peak_nav=port.peak_nav,
+    # Pre-check relative status BEFORE adding new picks
+    nav_now = port.nav()
+    bench_eq_now = MANDATE.starting_capital  # gets filled below from snapshots history if available
+    snapshots_history = read_json("snapshots", default=[])
+    if snapshots_history:
+        last = snapshots_history[-1]
+        if last.get("benchmark_equity"):
+            # Re-derive today's benchmark equity by scaling yesterday's by SPY's daily ret
+            try:
+                spy_df = frames[BENCHMARK]
+                spy_yesterday = float(spy_df["close"].iloc[-2])
+                bench_eq_now = float(last["benchmark_equity"]) * (spy_close / spy_yesterday)
+            except Exception:
+                bench_eq_now = last["benchmark_equity"]
+    status_pre = compute_relative_status(
+        equity=nav_now, benchmark_equity=bench_eq_now,
+        starting_capital=MANDATE.starting_capital,
+        peak_relative_outperformance=port.peak_relative_outperformance,
         data_feed_ok=health.get("ok", False),
         synthetic_data=health.get("synthetic", False),
     )
 
+    # Open new picks unless red / black
     rejections = []
-    if status_pre["light"] in ("green", "yellow"):
-        for sig in signals:
-            if sig.symbol in port.positions:
-                continue
-            if len(port.positions) >= RISK.max_open_positions:
-                rejections.append({"signal": sig.to_dict(), "reason": "max_open_positions"})
-                break
-            entry_price = close_prices.get(sig.symbol)
-            if entry_price is None or math.isnan(entry_price):
-                continue
-            nav = port.nav()
-            sz = size_position(
-                entry_price=entry_price, stop_distance=sig.stop_distance,
-                nav=nav, cash=port.cash,
-                open_positions=len(port.positions),
-                existing_symbol_exposure=port.open_position_exposure(sig.symbol),
-            )
-            if not sz.took:
-                rejections.append({"signal": sig.to_dict(), "reason": sz.reason})
-                continue
-            port.open_trade(
-                symbol=sig.symbol, quantity=sz.shares, entry_price=entry_price,
-                stop_distance=sig.stop_distance, target_distance=sig.target_distance,
-                max_hold_days=sig.max_hold_days, strategy_id=sig.strategy_id,
-                thesis=sig.rationale,
-            )
-    else:
-        # Trading paused — record why
-        for sig in signals:
-            rejections.append({"signal": sig.to_dict(),
-                               "reason": f"system light={status_pre['light']}"})
+    max_picks = MANDATE.max_picks_open
+    if status_pre.light == "yellow":
+        max_picks = min(max_picks, 1)
+    if status_pre.light in ("red", "black"):
+        max_picks = 0
+    if status_pre.light == "red":
+        # Force close any remaining picks
+        for sym in list(port.positions.keys()):
+            pos = port.positions[sym]
+            if pos.is_core or sym == BENCHMARK: continue
+            price = close_prices.get(sym)
+            if price:
+                t = port.close_pick(sym, price, "relative_dd_breach", spy_close)
+                if t: closed_today.append(t)
+
+    open_picks_count = len([p for p in port.positions.values() if not p.is_core])
+    for sig in signals:
+        if sig.symbol == BENCHMARK or sig.symbol in port.positions:
+            continue
+        if open_picks_count >= max_picks:
+            rejections.append({"signal": sig.to_dict(), "reason": "max_picks"})
+            break
+        entry_price = close_prices.get(sig.symbol)
+        if entry_price is None or math.isnan(entry_price):
+            continue
+        opened = port.open_pick(
+            symbol=sig.symbol, entry_price=entry_price,
+            stop_distance=sig.stop_distance, target_distance=sig.target_distance,
+            max_hold_days=sig.max_hold_days, strategy_id=sig.strategy_id,
+            thesis=sig.rationale, spy_price_at_entry=spy_close,
+        )
+        if opened:
+            open_picks_count += 1
+        else:
+            rejections.append({"signal": sig.to_dict(), "reason": "open_pick refused"})
+
+    # Top up SPY core with any residual cash
+    if spy_close > 0:
+        port.rebalance_to_core(spy_close)
 
     port.age_positions()
-    port.update_peak()
     equity = port.nav()
 
-    # --- snapshot ------------------------------------------------------
+    # Final relative status now that today's PnL is settled
+    status = compute_relative_status(
+        equity=equity, benchmark_equity=bench_eq_now,
+        starting_capital=MANDATE.starting_capital,
+        peak_relative_outperformance=port.peak_relative_outperformance,
+        data_feed_ok=health.get("ok", False),
+        synthetic_data=health.get("synthetic", False),
+    )
+    port.peak_relative_outperformance = status.peak_relative_pnl_pct
+
+    # Snapshot
     today = date.today().isoformat()
     snap = {
         "date": today,
@@ -128,123 +179,123 @@ def main():
         "cash": round(port.cash, 2),
         "market_value": round(equity - port.cash, 2),
         "daily_pnl": round(equity - prev_equity, 2),
-        "cumulative_pnl": round(equity - RISK.starting_capital, 2),
-        "drawdown": round(max(0.0, 1 - equity / port.peak_nav), 4),
+        "cumulative_pnl": round(equity - MANDATE.starting_capital, 2),
+        "drawdown": round(max(0.0, 1 - equity / MANDATE.starting_capital), 4),
+        "benchmark_equity": round(bench_eq_now, 2),
+        "portfolio_return": round(status.portfolio_return, 4),
+        "benchmark_return": round(status.benchmark_return, 4),
+        "alpha": round(status.relative_pnl_pct, 4),
+        "relative_drawdown": round(status.relative_drawdown_pct, 4),
+        "spy_core_weight": round(port.core_notional() / equity, 4) if equity > 0 else 0.0,
+        "n_picks_open": len([p for p in port.positions.values() if not p.is_core]),
     }
-    snapshots = read_json("snapshots", default=[])
-    # If today already present (re-run), replace it
-    snapshots = [s for s in snapshots if s.get("date") != today] + [snap]
+    snapshots = [s for s in snapshots_history if s.get("date") != today] + [snap]
     write_json("snapshots", snapshots)
 
-    # --- trades & positions -------------------------------------------
     all_trades = read_json("trades", default=[])
     all_trades.extend([t.to_dict() for t in closed_today])
     write_json("trades", all_trades)
-    write_json("positions", [p.to_dict() for p in port.positions.values()])
+    write_json("positions", [p.to_dict() for p in port.positions.values() if not p.is_core])
 
-    # --- final status, includes today's pnl ---------------------------
-    status = account_status(
-        nav=equity, day_pnl=snap["daily_pnl"], peak_nav=port.peak_nav,
-        data_feed_ok=health.get("ok", False),
-        synthetic_data=health.get("synthetic", False),
-    )
-
-    # --- recompute metrics over the live history ----------------------
     metrics = _live_metrics(snapshots, all_trades)
     write_json("metrics", metrics)
+    write_json("pitches", pitches)
+    write_json("strategy_manifests", manifests_for(ACTIVE_IDS))
 
-    # --- AI review ----------------------------------------------------
     rev = review({
         "today_snapshot": snap,
         "trades_today": [t.to_dict() for t in closed_today],
         "metrics": metrics,
-        "status": status,
+        "status": {
+            "light": status.light, "reason": status.reason,
+            "relative_pnl_pct": status.relative_pnl_pct,
+            "relative_drawdown_pct": status.relative_drawdown_pct,
+        },
         "regime": regime,
-        "sentiment": sent,
         "rejected_signals": rejections,
+        "mandate": {
+            "target_alpha_pct": MANDATE.target_alpha_pct,
+            "max_relative_drawdown_pct": MANDATE.max_relative_drawdown_pct,
+        },
     })
     reviews = read_json("ai_reviews", default=[])
     reviews = [r for r in reviews if r.get("review_date") != today] + [rev]
     write_json("ai_reviews", reviews)
 
     write_json("system_status", {
-        **status, "as_of": today, "data": health,
-        "regime": regime,
+        "light": status.light, "reason": status.reason,
+        "portfolio_return": status.portfolio_return,
+        "benchmark_return": status.benchmark_return,
+        "relative_pnl_pct": status.relative_pnl_pct,
+        "relative_drawdown_pct": status.relative_drawdown_pct,
+        "peak_relative_pnl_pct": status.peak_relative_pnl_pct,
+        "as_of": today, "data": health, "regime": regime,
     })
 
-    # Pitches + active strategy manifests for the dashboard
-    write_json("pitches", pitches)
-    write_json("strategy_manifests", manifests_for(ACTIVE_IDS))
-
-    # --- decision log entry (for the AI Decision Log panel) -----------
-    log = read_json("decision_log", default=[])
-    log.append({
-        "ts": today,
-        "regime": regime,
-        "signals_fired": len(signals),
-        "trades_opened": [s for s in close_prices if s in port.positions and port.positions[s].age_days == 0],
-        "trades_closed_today": [t.to_dict() for t in closed_today],
-        "rejected_signals": rejections[:10],
-        "light": status["light"],
-        "light_reason": status["reason"],
-    })
-    # Trim to last 60 days
-    write_json("decision_log", log[-60:])
-
-    # --- persist portfolio state for next run ------------------------
     port.save()
 
-    # --- mirror to Supabase ------------------------------------------
     if supabase_enabled():
         upsert("portfolio_snapshots",
                [{**s, "id": s["date"]} for s in snapshots[-30:]],
                on_conflict="id")
         upsert("trades", [t.to_dict() for t in closed_today], on_conflict="trade_id")
         replace_table("positions",
-                      [{**p.to_dict(), "id": p.symbol} for p in port.positions.values()],
+                      [{**p.to_dict(), "id": p.symbol} for p in port.positions.values() if not p.is_core],
                       pk="id")
         upsert("ai_reviews", [rev], on_conflict="review_date")
 
     print(json.dumps({
-        "date": today, "equity": equity, "light": status["light"],
-        "signals": len(signals), "closed_today": len(closed_today),
-        "open_positions": list(port.positions.keys()),
+        "date": today, "equity": equity,
+        "benchmark_equity": bench_eq_now,
+        "alpha_pct": round(status.relative_pnl_pct * 100, 3),
+        "light": status.light, "signals": len(signals),
+        "closed_today": len(closed_today),
+        "open_picks": [p.symbol for p in port.positions.values() if not p.is_core],
     }, indent=2, default=str))
 
 
 def _live_metrics(snapshots, trades):
-    """Same shape as backtest metrics; computed from live snapshots."""
     import numpy as np
-    if not snapshots:
-        return {}
+    if not snapshots: return {}
     eq = pd.Series([s["equity"] for s in snapshots])
+    bench = pd.Series([s.get("benchmark_equity", s["equity"]) for s in snapshots])
     rets = eq.pct_change().dropna()
+    bench_rets = bench.pct_change().dropna()
     ann = 252
     sharpe = float(rets.mean() / rets.std() * np.sqrt(ann)) if rets.std() > 0 else 0.0
-    downside = rets[rets < 0]
-    sortino = float(rets.mean() / downside.std() * np.sqrt(ann)) if len(downside) > 1 and downside.std() > 0 else 0.0
-    max_dd = max((s.get("drawdown", 0) for s in snapshots), default=0.0)
+    bench_sharpe = float(bench_rets.mean() / bench_rets.std() * np.sqrt(ann)) if bench_rets.std() > 0 else 0.0
+    excess = rets - bench_rets
+    info_ratio = float(excess.mean() / excess.std() * np.sqrt(ann)) if excess.std() > 0 else 0.0
+    max_rel_dd = max((s.get("relative_drawdown", 0) for s in snapshots), default=0.0)
     pnls = [t["pnl"] for t in trades if t.get("exit_price") is not None]
     wins = [p for p in pnls if p > 0]
     losses = [p for p in pnls if p < 0]
     win_rate = (len(wins) / len(pnls)) if pnls else 0.0
-    profit_factor = (sum(wins) / abs(sum(losses))) if losses else (None if not wins else None)
+    pf = (sum(wins) / abs(sum(losses))) if losses else (None if not wins else None)
+    alphas = [t.get("alpha_vs_spy") for t in trades if t.get("alpha_vs_spy") is not None]
+    avg_pick_alpha = float(np.mean(alphas)) if alphas else 0.0
     n_years = max(len(snapshots) / 252, 1e-6)
-    total_return = float(eq.iloc[-1] / RISK.starting_capital - 1.0)
-    cagr = float((eq.iloc[-1] / RISK.starting_capital) ** (1 / n_years) - 1.0)
+    total_return = float(eq.iloc[-1] / MANDATE.starting_capital - 1.0)
+    bench_total = float(bench.iloc[-1] / MANDATE.starting_capital - 1.0)
+    cagr = float((eq.iloc[-1] / MANDATE.starting_capital) ** (1 / n_years) - 1.0)
     return {
         "total_return": round(total_return, 4),
         "cagr": round(cagr, 4),
+        "benchmark_total_return": round(bench_total, 4),
+        "alpha_total": round(total_return - bench_total, 4),
         "sharpe": round(sharpe, 3),
-        "sortino": round(sortino, 3),
-        "max_drawdown": round(float(max_dd), 4),
+        "benchmark_sharpe": round(bench_sharpe, 3),
+        "info_ratio": round(info_ratio, 3),
+        "max_relative_drawdown": round(float(max_rel_dd), 4),
         "win_rate": round(win_rate, 3),
-        "profit_factor": round(profit_factor, 3) if profit_factor else None,
+        "profit_factor": round(pf, 3) if pf else None,
         "n_trades": len(pnls),
         "avg_win": round(float(np.mean(wins)), 2) if wins else 0.0,
         "avg_loss": round(float(np.mean(losses)), 2) if losses else 0.0,
         "largest_loss": round(float(min(pnls)), 2) if pnls else 0.0,
-        "vol_annualized": round(float(rets.std() * np.sqrt(ann)), 4) if len(rets) else 0.0,
+        "avg_pick_alpha": round(avg_pick_alpha, 4),
+        "target_alpha_pct": MANDATE.target_alpha_pct,
+        "max_relative_drawdown_pct": MANDATE.max_relative_drawdown_pct,
     }
 
 

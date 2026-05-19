@@ -1,17 +1,20 @@
-"""Seed the dashboard with ~2 years of backtest history.
+"""Seed the dashboard with ~2 years of backtest history (V2 SPY-anchored).
 
-Run once before the first deploy. Writes:
-- data/snapshots.json
-- data/trades.json
-- data/positions.json
-- data/strategy_versions.json
-- data/portfolio_state.json (so run_daily.py picks up where this leaves off)
+Run once before each strategy change. Writes:
+
+  - data/snapshots.json       portfolio + benchmark equity per day
+  - data/trades.json          closed pick trades with alpha attribution
+  - data/positions.json       any currently open picks at the seed cutoff
+  - data/strategy_versions.json + data/strategy_manifests.json
+  - data/metrics.json         portfolio + benchmark + alpha aggregates
+  - data/portfolio_state.json so run_daily picks up here
+  - data/ai_reviews.json      one seed-level review
 """
 from __future__ import annotations
 import json
 from datetime import date
 
-from config import ACTIVE_IDS, RISK, WATCHLIST, BACKTEST_DAYS
+from config import ACTIVE_IDS, MANDATE, WATCHLIST, BACKTEST_DAYS
 from data import load_universe, data_feed_health
 from backtest import run_backtest
 from strategies import manifests_for
@@ -26,13 +29,16 @@ def main():
     health = data_feed_health(frames)
     print(f"Data feed: {health}")
 
-    print(f"Running backtest over last {BACKTEST_DAYS} trading days...")
+    print(f"Running V2 backtest over last {BACKTEST_DAYS} trading days...")
     bt = run_backtest(frames, days=BACKTEST_DAYS)
     metrics = bt["metrics"]
-    print(f"  Trades: {metrics['n_trades']}  Sharpe: {metrics['sharpe']}  "
-          f"WinRate: {metrics['win_rate']}  MaxDD: {metrics['max_drawdown']}")
+    print(f"  Trades: {metrics['n_trades']}  Portfolio: "
+          f"{metrics['total_return']*100:+.2f}%  Benchmark: "
+          f"{metrics['benchmark_total_return']*100:+.2f}%  Alpha: "
+          f"{metrics['alpha_total']*100:+.2f}%  MaxRelDD: "
+          f"{metrics['max_relative_drawdown']*100:.2f}%")
 
-    # --- write JSON ----------------------------------------------------
+    # JSON outputs
     write_json("snapshots", bt["snapshots"])
     write_json("trades", bt["trades"])
     write_json("positions", bt["open_positions"])
@@ -50,55 +56,59 @@ def main():
         } for m in manifests
     ])
     write_json("strategy_manifests", manifests)
-    write_json("pitches", [])  # populated by run_daily on each run
     write_json("metrics", metrics)
     write_json("risk_config", {
-        "starting_capital": RISK.starting_capital,
-        "max_risk_per_trade_pct": RISK.max_risk_per_trade_pct,
-        "max_daily_loss_pct": RISK.max_daily_loss_pct,
-        "max_drawdown_pct": RISK.max_drawdown_pct,
-        "max_open_positions": RISK.max_open_positions,
-        "max_single_position_pct": RISK.max_single_position_pct,
+        "starting_capital": MANDATE.starting_capital,
+        "target_alpha_pct": MANDATE.target_alpha_pct,
+        "max_relative_drawdown_pct": MANDATE.max_relative_drawdown_pct,
+        "max_picks_open": MANDATE.max_picks_open,
+        "pick_weight_per_position": MANDATE.pick_weight_per_position,
+        "spy_core_min_weight": MANDATE.spy_core_min_weight,
+        "benchmark": MANDATE.benchmark,
     })
+    write_json("pitches", [])
 
-    # Persist the live state so run_daily continues from here
+    # Persist live state
     from portfolio import Portfolio, Position, Trade
     port = Portfolio()
     state = bt["portfolio_state"]
     port.cash = state["cash"]
-    port.realized_pnl = state["realized_pnl"]
-    port.peak_nav = state["peak_nav"]
-    port.positions = {sym: Position(**{k: v for k, v in p.items()
-                                       if k in Position.__dataclass_fields__})
-                      for sym, p in state["positions"].items()}
-    port.trades = [Trade(**{k: v for k, v in t.items()
-                            if k in Trade.__dataclass_fields__})
-                   for t in state["trades"]]
+    port.realized_pnl = state.get("realized_pnl", 0.0)
+    port.peak_relative_outperformance = state.get("peak_relative_outperformance", 0.0)
+    port.positions = {
+        sym: Position(**{k: v for k, v in p.items() if k in Position.__dataclass_fields__})
+        for sym, p in state["positions"].items()
+    }
+    port.trades = [
+        Trade(**{k: v for k, v in t.items() if k in Trade.__dataclass_fields__})
+        for t in state["trades"]
+    ]
     port.save()
 
-    # --- seed an initial AI review row ---------------------------------
+    # Seed review
     last_snap = bt["snapshots"][-1] if bt["snapshots"] else {}
     status = account_status(
-        nav=last_snap.get("equity", RISK.starting_capital),
+        nav=last_snap.get("equity", MANDATE.starting_capital),
         day_pnl=last_snap.get("daily_pnl", 0.0),
-        peak_nav=port.peak_nav,
+        peak_nav=MANDATE.starting_capital,  # legacy field, unused by V2 light
         data_feed_ok=health.get("ok", False),
         synthetic_data=health.get("synthetic", False),
+        benchmark_equity=last_snap.get("benchmark_equity", MANDATE.starting_capital),
+        peak_relative_outperformance=port.peak_relative_outperformance,
     )
     rev = review({
         "today_snapshot": last_snap,
         "trades_today": bt["trades"][-3:],
         "metrics": metrics,
         "status": status,
+        "mandate": {
+            "target_alpha_pct": MANDATE.target_alpha_pct,
+            "max_relative_drawdown_pct": MANDATE.max_relative_drawdown_pct,
+        },
     })
     write_json("ai_reviews", [rev])
-    write_json("system_status", {
-        **status,
-        "as_of": last_snap.get("date"),
-        "data": health,
-    })
+    write_json("system_status", {**status, "as_of": last_snap.get("date"), "data": health})
 
-    # --- mirror to Supabase if configured ------------------------------
     if supabase_enabled():
         print("Mirroring to Supabase…")
         upsert("portfolio_snapshots",

@@ -1,8 +1,12 @@
 """Central config for GreenLight Trader.
 
-Everything that the system treats as a tunable knob lives here so that
-risk caps, the watchlist, and the active strategy versions are obvious
-and auditable in one place.
+V2 mandate: enhanced-index relative to SPY.
+  - Target return:        SPY + 10% over 2 years (≈ +5% / year alpha)
+  - Max relative drawdown: trailing SPY by no more than 5%
+
+The book holds SPY as a baseline and substitutes portions with
+high-conviction pitcher picks. The risk gate enforces the relative
+drawdown cap, not an absolute one — SPY is the floor, not cash.
 """
 from __future__ import annotations
 from dataclasses import dataclass, asdict
@@ -19,37 +23,60 @@ CACHE_DIR.mkdir(parents=True, exist_ok=True)
 WATCHLIST = ["SPY", "QQQ", "AAPL", "MSFT", "NVDA", "TSLA", "META", "AMZN"]
 BENCHMARK = "SPY"
 
-# --- Account-level risk caps (V1, $1,000 book) --------------------------
+# --- Relative mandate (V2) ---------------------------------------------
 @dataclass(frozen=True)
-class RiskCaps:
+class Mandate:
     starting_capital: float = 1_000.0
-    max_risk_per_trade_pct: float = 0.01      # 1.0%
-    max_daily_loss_pct: float = 0.02          # 2.0%
-    max_drawdown_pct: float = 0.10            # 10.0% — hard stop
-    max_open_positions: int = 3
-    max_single_position_pct: float = 0.35     # 35% NAV per name
-    min_dollar_position: float = 50.0         # don't bother with <$50 trades
+    benchmark: str = "SPY"
 
-RISK = RiskCaps()
+    # Performance mandate
+    target_alpha_pct: float = 0.10           # SPY + 10% over the test window
+    max_relative_drawdown_pct: float = 0.05  # trail SPY by no more than 5%
 
-# --- Active strategies --------------------------------------------------
-# Strategy logic lives in the python/strategies/ package and is auto-discovered.
-# To swap or add a strategy: drop a new file into strategies/, give it a unique
-# MANIFEST.id, and list the id here. Nothing else needs to change.
+    # Risk caps (now relative, with SPY as baseline)
+    max_picks_open: int = 2                  # at most 2 picks held simultaneously
+    pick_weight_per_position: float = 0.20   # each pick is 20% of NAV (was 25%)
+    min_pick_weight_per_position: float = 0.10
+    spy_core_min_weight: float = 0.60        # never below 60% SPY when picks active
+
+    # Pick selection
+    pick_conviction_min: float = 1.0         # composite z >= 1.0 to be considered
+    pick_max_hold_days: int = 30
+    pick_signal_decay_z: float = 0.5         # exit pick if its z falls below this
+
+    # Per-pick relative stop: each pick must beat SPY on its own.
+    # If pick trails SPY by `pick_relative_stop_pct` after `pick_relative_stop_grace_days`,
+    # force exit. Keeps individual picks from dragging the book.
+    pick_relative_stop_pct: float = 0.02      # 2% trailing-vs-SPY tolerance per pick
+    pick_relative_stop_grace_days: int = 1    # grace period — 1 day to ignore entry noise
+
+    # Portfolio-wide gate thresholds, as fractions of max_relative_drawdown_pct
+    yellow_gate_fraction: float = 0.4   # yellow when relative DD ≥ 0.4 × 5% = 2.0%
+    red_gate_fraction: float = 0.8      # red    when relative DD ≥ 0.8 × 5% = 4.0%
+
+    # Misc
+    min_dollar_position: float = 25.0
+
+MANDATE = Mandate()
+
+# Legacy alias — older modules still reference `RISK`. New code uses MANDATE.
+RISK = MANDATE
+
+# --- Active strategies -------------------------------------------------
+# The two rule-based strategies (momentum_breakout_v1, mean_reversion_v1)
+# and the first-gen pitcher are kept in-tree for audit, but disabled in V2.
+# v2 of the pitcher is the sole alpha source over the SPY core.
 ACTIVE_IDS = [
-    "momentum_breakout_v1",
-    "mean_reversion_v1",
-    "stock_pitcher_v1",
+    "stock_pitcher_v2",
 ]
 
 # --- Backtest defaults --------------------------------------------------
 BACKTEST_DAYS = 504  # ~2 trading years
 
-# --- Supabase / LLM env -------------------------------------------------
-# These are read from env at runtime; nothing secret lives in this file.
+# --- Supabase / LLM env ------------------------------------------------
 SUPABASE_URL_ENV = "SUPABASE_URL"
 SUPABASE_KEY_ENV = "SUPABASE_SERVICE_ROLE_KEY"
 ANTHROPIC_KEY_ENV = "ANTHROPIC_API_KEY"
 
 def risk_as_dict() -> dict:
-    return asdict(RISK)
+    return asdict(MANDATE)
