@@ -1,0 +1,47 @@
+name: GreenLight daily
+
+on:
+  schedule:
+    # 00:30 UTC Tue–Sat ≈ 20:30 ET Mon–Fri (after the US close).
+    # During EDT this is 20:30 the previous day. Good enough for a daily job.
+    - cron: '30 0 * * 2-6'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write   # so the job can commit refreshed data/*.json back to the repo
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: pip
+          cache-dependency-path: python/requirements.txt
+
+      - name: Install deps
+        run: pip install -r python/requirements.txt
+
+      - name: Run daily engine
+        env:
+          SUPABASE_URL:              ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          ANTHROPIC_API_KEY:         ${{ secrets.ANTHROPIC_API_KEY }}
+        working-directory: python
+        run: python run_daily.py
+
+      - name: Commit refreshed data/
+        run: |
+          git config user.name "greenlight-bot"
+          git config user.email "greenlight-bot@users.noreply.github.com"
+          git add data/
+          if git diff --cached --quiet; then
+            echo "No data changes."
+          else
+            git commit -m "data: daily refresh $(date -u +%Y-%m-%d)"
+            git push
+          fi

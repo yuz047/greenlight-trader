@@ -1,0 +1,15 @@
+{
+  "light": "green",
+  "reason": "Risk within limits. (data: synthetic fallback)",
+  "daily_loss_pct": 0.0,
+  "drawdown_pct": 0.04762460677499325,
+  "peak_nav": 1101.9550166086046,
+  "as_of": "2026-05-18",
+  "data": {
+    "ok": true,
+    "stale_tickers": 0,
+    "synthetic": true,
+    "as_of": "2026-05-18"
+  },
+  "regime": "distressed"
+}

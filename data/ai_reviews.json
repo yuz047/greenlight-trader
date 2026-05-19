@@ -1,0 +1,12 @@
+[
+  {
+    "summary": "Equity ended at $1,049.47 (daily PnL $+0.00, drawdown 4.76%). No trades closed today. Backtest Sharpe 0.45, win rate 53.8%, max DD 4.8%.",
+    "mistakes": [],
+    "proposed_changes": [],
+    "next_day_plan": "Run the standard pre-market scan, recompute regime, refresh signals. Honor the same risk caps.",
+    "light": "green",
+    "light_reason": "Risk within limits. (data: synthetic fallback)",
+    "source": "template",
+    "review_date": "2026-05-18"
+  }
+]

@@ -1,0 +1,14 @@
+{
+  "total_return": 0.0495,
+  "cagr": 0.0244,
+  "sharpe": 0.453,
+  "sortino": 0.506,
+  "max_drawdown": 0.0476,
+  "win_rate": 0.538,
+  "profit_factor": 1.147,
+  "n_trades": 91,
+  "avg_win": 7.9,
+  "avg_loss": -8.04,
+  "largest_loss": -10.79,
+  "vol_annualized": 0.057
+}

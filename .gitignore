@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+*.egg-info/
+
+# Node / Next.js
+node_modules/
+.next/
+out/
+*.log
+
+# Data cache (CSV) — keep the JSON outputs so the dashboard can render offline
+data/cache/
+
+# Engine state — this is local-only (the canonical record is in data/*.json)
+data/portfolio_state.json
+
+# Deprecated / scratch files
+python/strategies_old.py
+*.bak
+*.swp
+
+# Personal notes that should never be in a public repo
+DEPLOY.md
+SETUP.md
+NOTES*.md
+TODO*.md
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.Rhistory
+.ipynb_checkpoints/
+
+# Env
+.env
+.env.local
+.env.*.local

@@ -1,0 +1,22 @@
+[
+  {
+    "ts": "2026-05-18",
+    "regime": "distressed",
+    "signals_fired": 0,
+    "trades_opened": [],
+    "trades_closed_today": [],
+    "rejected_signals": [],
+    "light": "green",
+    "light_reason": "Risk within limits. (data: synthetic fallback)"
+  },
+  {
+    "ts": "2026-05-18",
+    "regime": "distressed",
+    "signals_fired": 0,
+    "trades_opened": [],
+    "trades_closed_today": [],
+    "rejected_signals": [],
+    "light": "green",
+    "light_reason": "Risk within limits. (data: synthetic fallback)"
+  }
+]
