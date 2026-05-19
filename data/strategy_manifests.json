@@ -1,60 +1,27 @@
 [
   {
-    "id": "momentum_breakout_v1",
-    "version": "1.0",
-    "kind": "signal",
-    "params": {
-      "breakout_window": 20,
-      "volume_mult": 1.5,
-      "atr_window": 14,
-      "stop_atr": 1.0,
-      "target_atr": 2.0,
-      "max_hold_days": 5
-    },
-    "rules": "Close > 20d high; volume > 1.5x 20d avg vol; SPY 50d > 200d; news sentiment >= 0. Stop=1 ATR, target=2 ATR, max hold 5 days.",
-    "status": "active",
-    "module": "momentum_breakout_v1"
-  },
-  {
-    "id": "mean_reversion_v1",
-    "version": "1.0",
-    "kind": "signal",
-    "params": {
-      "rsi_window": 14,
-      "rsi_threshold": 30.0,
-      "sma_window": 50,
-      "max_dist_to_sma": 0.02,
-      "atr_window": 14,
-      "stop_atr": 1.0,
-      "target_atr": 1.0,
-      "max_hold_days": 3
-    },
-    "rules": "RSI(14) < 30; within 2% of 50d SMA; SPY not in deep drawdown. Stop=1 ATR, target=1 ATR, max hold 3 days.",
-    "status": "active",
-    "module": "mean_reversion_v1"
-  },
-  {
-    "id": "stock_pitcher_v1",
-    "version": "1.0",
+    "id": "stock_pitcher_v2",
+    "version": "2.0",
     "kind": "ranker",
     "params": {
       "trend_window": 60,
       "rs_window": 63,
       "mom_window": 20,
-      "min_zscore": 0.6,
-      "min_quality": 0.25,
-      "min_relative_strength": -0.05,
+      "min_zscore": 1.0,
+      "min_quality": 0.3,
+      "min_relative_strength": 0.0,
       "atr_window": 14,
-      "stop_mult": 1.5,
-      "target_horizon_days": 5,
-      "target_min_atr": 1.0,
-      "target_max_atr": 4.0,
-      "max_hold_days": 10,
+      "stop_mult": 2.0,
+      "target_horizon_days": 20,
+      "target_min_atr": 2.0,
+      "target_max_atr": 6.0,
+      "max_hold_days": 30,
+      "decay_zscore_exit": 0.5,
       "benchmark": "SPY",
-      "max_picks": 3
+      "max_picks": 2
     },
-    "rules": "Universe-wide rank on 4 z-scored factors: 60d trend t-stat, R^2 quality, 63d relative strength vs SPY, and 20d return / 20d vol. Pick top names with composite z > 0.6 AND quality > 0.25 AND RS > -5%. Stop = 1.5 ATR. Target = projected slope * 5 days, clipped to [1, 4] ATR. Max hold 10d.",
+    "rules": "Universe-wide composite rank: 60d trend t-stat, R^2 quality, 63d RS vs SPY, 20d return / 20d vol. Take top 2 names with composite z >= 1.0 AND R^2 >= 0.3 AND RS >= SPY. Stop = 2 ATR. Target = projected 20d move, clipped to [2, 6] ATR. Max hold 30d; early exit when composite z falls below 0.5.",
     "status": "active",
-    "module": "stock_pitcher_v1"
+    "module": "stock_pitcher_v2"
   }
 ]
