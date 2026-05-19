@@ -1,19 +1,22 @@
 """Market data layer.
 
-Primary source: yfinance, called through a curl_cffi browser-impersonation
-session so it survives Yahoo's anti-bot filtering on data-center IPs
-(GitHub Actions, AWS, GCP all share this problem).
+Source priority (highest to lowest):
 
-Secondary source: Stooq via pandas_datareader. Stooq serves the same daily
-OHLCV from a different infrastructure that doesn't throttle data centers.
-Ticker conventions match (SPY → "SPY.US").
+  1. Stooq, direct HTTPS CSV endpoint.
+     stooq.com/q/d/l/?s=spy.us&i=d returns daily OHLCV as plain CSV
+     with no API key and no anti-bot filtering. This is the most
+     reliable source from data-center IP space (GitHub Actions, AWS).
+  2. yfinance via curl_cffi Chrome impersonation.
+     Defeats Yahoo's TLS-fingerprint filter most of the time, but Yahoo
+     still throttles or blocks intermittently.
+  3. Stooq via pandas_datareader (different code path; sometimes works
+     when the direct CSV path is briefly unavailable).
+  4. Stale REAL cache. Preferred over fresh synthetic — yesterday's
+     real prices are more useful than today's fabricated ones.
+  5. Deterministic synthetic GBM. Last resort, clearly tagged.
 
-Last resort: a deterministic synthetic GBM. Every row in a synthetic
-frame carries ``synthetic=True`` so it can never silently mix with real
-data and the dashboard's traffic light surfaces it explicitly.
-
-We log every step (success, failure, fallback) to stderr so the GitHub
-Actions log shows exactly what happened on each ticker.
+Every step logs to stderr so the GitHub Actions log shows exactly what
+happened per ticker.
 """
 from __future__ import annotations
 import os
@@ -26,9 +29,20 @@ import numpy as np
 import pandas as pd
 
 from config import CACHE_DIR, WATCHLIST
+import io
+import requests
 
 _MAX_AGE_DAYS = 1  # refresh cache once a day
 _STOOQ_SUFFIX = ".US"
+_STOOQ_URL = "https://stooq.com/q/d/l/?s={sym}&i=d"
+_BROWSER_HEADERS = {
+    "User-Agent": (
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 "
+        "(KHTML, like Gecko) Version/17.0 Safari/605.1.15"
+    ),
+    "Accept": "text/csv,application/csv,text/plain,*/*",
+    "Accept-Language": "en-US,en;q=0.9",
+}
 
 
 def _log(msg: str) -> None:
@@ -54,7 +68,50 @@ def _write_cache(ticker: str, df: pd.DataFrame) -> None:
 
 
 # --------------------------------------------------------------------- #
-# Primary: yfinance with curl_cffi Chrome impersonation
+# Primary: Stooq direct CSV (no library, no API key, very reliable)
+# --------------------------------------------------------------------- #
+def _try_stooq_direct(ticker: str) -> pd.DataFrame | None:
+    sym = (ticker + _STOOQ_SUFFIX).lower()  # SPY -> spy.us
+    url = _STOOQ_URL.format(sym=sym)
+    for attempt in range(3):
+        try:
+            r = requests.get(url, headers=_BROWSER_HEADERS, timeout=15)
+            if r.status_code != 200:
+                _log(f"stooq-direct {sym} attempt {attempt+1}/3: HTTP {r.status_code}")
+                time.sleep(1.0 * (attempt + 1))
+                continue
+            text = r.text.strip()
+            if not text or text.startswith("<") or "Date,Open" not in text.split("\n", 1)[0]:
+                _log(f"stooq-direct {sym} attempt {attempt+1}/3: unexpected body "
+                     f"({text[:60]!r})")
+                time.sleep(1.0 * (attempt + 1))
+                continue
+            df = pd.read_csv(io.StringIO(text))
+            if df.empty:
+                _log(f"stooq-direct {sym}: empty CSV")
+                return None
+            df.columns = [c.strip().lower() for c in df.columns]
+            if "date" not in df.columns:
+                _log(f"stooq-direct {sym}: no Date column")
+                return None
+            df["date"] = pd.to_datetime(df["date"])
+            df = df.set_index("date").sort_index()
+            keep = [c for c in ("open", "high", "low", "close", "volume") if c in df.columns]
+            df = df[keep]
+            if "volume" not in df.columns:
+                df["volume"] = 0
+            df = df.astype({"open": float, "high": float, "low": float, "close": float, "volume": float})
+            df["synthetic"] = False
+            _log(f"stooq-direct {sym}: {len(df)} rows, last {df.index[-1].date()}")
+            return df
+        except Exception as e:
+            _log(f"stooq-direct {sym} attempt {attempt+1}/3 raised: {e}")
+            time.sleep(1.0 * (attempt + 1))
+    return None
+
+
+# --------------------------------------------------------------------- #
+# Secondary: yfinance with curl_cffi Chrome impersonation
 # --------------------------------------------------------------------- #
 def _yfinance_session():
     """Return a curl_cffi session if available, otherwise None.
@@ -196,24 +253,31 @@ def load_ticker(ticker: str, force_refresh: bool = False) -> pd.DataFrame:
             _log(f"{ticker}: fresh real cache ({age_days}d old)")
             return cached
 
-    # 2. yfinance (curl_cffi)
+    # 2. Stooq direct CSV — most reliable from GH Actions / data-center IPs.
+    fresh = _try_stooq_direct(ticker)
+    if fresh is not None and not fresh.empty:
+        _write_cache(ticker, fresh)
+        return fresh
+
+    # 3. yfinance (curl_cffi)
     fresh = _try_yfinance(ticker)
     if fresh is not None and not fresh.empty:
         _write_cache(ticker, fresh)
         return fresh
 
-    # 3. Stooq
+    # 4. Stooq via pandas_datareader (different code path; rarely helps but cheap to try).
     fresh = _try_stooq(ticker)
     if fresh is not None and not fresh.empty:
         _write_cache(ticker, fresh)
         return fresh
 
-    # 4. Stale REAL cache beats synthetic — keep the dashboard honest.
+    # 5. Stale REAL cache beats synthetic — keep the dashboard honest.
     if cache_is_real:
         _log(f"{ticker}: using stale real cache (live sources unreachable)")
         return cached
 
-    # 5. Synthetic fallback (clearly marked).
+    # 6. Synthetic fallback (clearly marked).
+    _log(f"{ticker}: ALL REAL SOURCES FAILED — falling through to synthetic")
     syn = _synthetic(ticker)
     _write_cache(ticker, syn)
     return syn
