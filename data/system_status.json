@@ -1,20 +1,18 @@
 {
-  "light": "yellow",
-  "reason": "Relative drawdown 3.79% past yellow gate (2.0%) \u2014 alpha sleeve down to one pick.",
-  "portfolio_return": 0.48096000000000005,
-  "benchmark_return": 0.4519500000000001,
-  "relative_pnl_pct": 0.02900999999999998,
-  "relative_drawdown_pct": 0.03790641751903534,
-  "peak_relative_pnl_pct": 0.06691641751903532,
-  "daily_loss_pct": 2.0256720166915374e-05,
-  "drawdown_pct": 0.0,
-  "peak_nav": 1000.0,
-  "as_of": "2026-05-18",
+  "light": "red",
+  "reason": "Relative drawdown 44.23% past red gate (4.0%) \u2014 closing all picks, holding 100% SPY.",
+  "portfolio_return": 0.0,
+  "benchmark_return": 0.44227876521995224,
+  "relative_pnl_pct": -0.44227876521995224,
+  "relative_drawdown_pct": 0.44227876521995224,
+  "peak_relative_pnl_pct": 0.0,
+  "as_of": "2026-05-20",
   "data": {
     "ok": true,
     "stale_tickers": 0,
     "synthetic": false,
     "synthetic_tickers": [],
-    "as_of": "2026-05-18"
-  }
+    "as_of": "2026-05-19"
+  },
+  "regime": "risk_on"
 }
