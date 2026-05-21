@@ -1,11 +1,11 @@
 {
-  "light": "green",
-  "reason": "Above target \u2014 beating SPY by +248.43%.",
-  "portfolio_return": 2.941329766051706,
-  "benchmark_return": 0.4570619689235027,
-  "relative_pnl_pct": 2.4842677971282034,
-  "relative_drawdown_pct": 0.0,
-  "peak_relative_pnl_pct": 2.4842677971282034,
+  "light": "red",
+  "reason": "Relative drawdown 40.76% past red gate (4.0%) \u2014 holding cash until the next clean daily run rebuilds the SPY core.",
+  "portfolio_return": 0.04947484225888932,
+  "benchmark_return": 0.45706,
+  "relative_pnl_pct": -0.4075851577411107,
+  "relative_drawdown_pct": 0.4075851577411107,
+  "peak_relative_pnl_pct": 0.0,
   "as_of": "2026-05-21",
   "data": {
     "ok": true,
