@@ -42,10 +42,14 @@ def main():
     prev_equity = port.nav() or MANDATE.starting_capital
     history_compatible = _history_matches_live_book(continuity_snapshots, prev_equity)
     if not history_compatible:
-        continuity_snapshots = []
+        raise RuntimeError(
+            "Persisted snapshot history is incompatible with data/portfolio_state.json. "
+            "Refusing to reset or truncate dashboard history; run seed_history.py to rebuild it."
+        )
 
     frames = load_universe()
     health = data_feed_health(frames)
+    data_safe_for_trading = health.get("ok", False) and not health.get("synthetic", False)
     enriched = {sym: enrich(df) for sym, df in frames.items()}
 
     try:
@@ -66,7 +70,7 @@ def main():
     spy_close = close_prices.get(BENCHMARK, 0.0)
 
     # If we have no SPY core yet (cold start after seed migration), establish one.
-    if BENCHMARK not in port.positions and spy_close > 0:
+    if data_safe_for_trading and BENCHMARK not in port.positions and spy_close > 0:
         port.rebalance_to_core(spy_close)
 
     # Compute current pitcher ranks for exit-decay + new entries
@@ -86,8 +90,10 @@ def main():
             break
 
     # Apply exits
-    closed_today = port.apply_exits(bars, rank_lookup=rank_lookup,
-                                     decay_z=decay_z, spy_price=spy_close)
+    closed_today = []
+    if data_safe_for_trading:
+        closed_today = port.apply_exits(bars, rank_lookup=rank_lookup,
+                                        decay_z=decay_z, spy_price=spy_close)
 
     # Regime + signals
     regime = market_regime(frames[BENCHMARK])
@@ -139,7 +145,7 @@ def main():
     max_picks = MANDATE.max_picks_open
     if status_pre.light == "yellow":
         max_picks = min(max_picks, 1)
-    if status_pre.light in ("red", "black"):
+    if status_pre.light in ("red", "black") or not data_safe_for_trading:
         max_picks = 0
     if status_pre.light == "red":
         # Force close any remaining picks
@@ -173,7 +179,7 @@ def main():
             rejections.append({"signal": sig.to_dict(), "reason": "open_pick refused"})
 
     # Top up SPY core with any residual cash
-    if spy_close > 0:
+    if data_safe_for_trading and spy_close > 0:
         port.rebalance_to_core(spy_close)
 
     port.age_positions()
@@ -206,8 +212,7 @@ def main():
         "spy_core_weight": round(port.core_notional() / equity, 4) if equity > 0 else 0.0,
         "n_picks_open": len([p for p in port.positions.values() if not p.is_core]),
     }
-    snapshot_base = snapshots_history if history_compatible else []
-    snapshots = [s for s in snapshot_base if s.get("date") != today] + [snap]
+    snapshots = [s for s in snapshots_history if s.get("date") != today] + [snap]
     write_json("snapshots", snapshots)
 
     all_trades = read_json("trades", default=[])
@@ -342,8 +347,10 @@ def _history_matches_live_book(snapshots, live_equity: float) -> bool:
         return False
 
     equity_gap = abs(equity - live_equity) / live_equity
-    benchmark_gap = abs(benchmark - equity) / live_equity
-    return equity_gap <= 0.10 and benchmark_gap <= 0.10
+    # The benchmark is allowed to diverge from strategy equity; that is the
+    # point of plotting SPY independently. Compatibility only checks that the
+    # persisted strategy equity lines up with the saved live paper book.
+    return equity_gap <= 0.10
 
 
 if __name__ == "__main__":

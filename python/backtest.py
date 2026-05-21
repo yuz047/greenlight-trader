@@ -57,11 +57,16 @@ def _bar(df: pd.DataFrame, dt) -> dict | None:
 def run_backtest(
     frames: Dict[str, pd.DataFrame],
     days: int = BACKTEST_DAYS,
+    start_date: str | None = None,
     sentiment_provider=None,
 ) -> dict:
     enriched = {sym: enrich(df) for sym, df in frames.items()}
     spy = frames[BENCHMARK]
     timeline = spy.index[-days:]
+    if start_date is not None:
+        timeline = timeline[timeline >= pd.Timestamp(start_date)]
+    if len(timeline) == 0:
+        raise RuntimeError(f"No benchmark bars available for backtest start_date={start_date!r}")
 
     port = Portfolio()
     snapshots: List[Snapshot] = []

@@ -1,52 +1,11 @@
 [
   {
-    "summary": "Equity ended at $1,480.96 (daily PnL $-0.03, drawdown 0.00%). 3 trade(s) closed today: 0 winning, 3 losing. Backtest Sharpe 1.22, win rate 30.8%, max DD 1.6%.",
+    "summary": "Equity ended at $1,043.76 (daily PnL $+0.00, drawdown 0.00%). 1 trade(s) closed today: 0 winning, 1 losing. Backtest Sharpe 0.93, win rate 30.8%, max DD 0.0%.",
     "mistakes": [],
-    "proposed_changes": [
-      {
-        "strategy": "momentum_breakout_v1",
-        "change": "tighten volume_mult from 1.5 to 2.0",
-        "reason": "low win rate suggests too many false breakouts",
-        "status": "needs backtest approval"
-      }
-    ],
-    "next_day_plan": "Run the standard pre-market scan, recompute regime, refresh signals. Honor the same risk caps.",
-    "light": "yellow",
-    "light_reason": "Relative drawdown 3.79% past yellow gate (2.0%) \u2014 alpha sleeve down to one pick.",
-    "source": "template",
-    "review_date": "2026-05-19"
-  },
-  {
-    "summary": "Equity ended at $1,000.00 (daily PnL $+0.00, drawdown 0.00%). No trades closed today. Backtest Sharpe 0.16, win rate 30.8%, max DD 0.0%.",
-    "mistakes": [],
-    "proposed_changes": [
-      {
-        "strategy": "momentum_breakout_v1",
-        "change": "tighten volume_mult from 1.5 to 2.0",
-        "reason": "low win rate suggests too many false breakouts",
-        "status": "needs backtest approval"
-      }
-    ],
+    "proposed_changes": [],
     "next_day_plan": "Run the standard pre-market scan, recompute regime, refresh signals. Honor the same risk caps.",
     "light": "red",
-    "light_reason": "Relative drawdown 44.23% past red gate (4.0%) \u2014 closing all picks, holding 100% SPY.",
-    "source": "template",
-    "review_date": "2026-05-20"
-  },
-  {
-    "summary": "Equity ended at $1,049.47 (daily PnL $+0.00, drawdown 0.00%). No trades closed today. Backtest Sharpe 1.03, win rate 30.8%, max DD 0.0%.",
-    "mistakes": [],
-    "proposed_changes": [
-      {
-        "strategy": "momentum_breakout_v1",
-        "change": "tighten volume_mult from 1.5 to 2.0",
-        "reason": "low win rate suggests too many false breakouts",
-        "status": "needs backtest approval"
-      }
-    ],
-    "next_day_plan": "Run the standard pre-market scan, recompute regime, refresh signals. Honor the same risk caps.",
-    "light": "green",
-    "light_reason": "On track \u2014 beating SPY by +0.00%.",
+    "light_reason": "Relative drawdown 23.71% past red gate (4.0%) \u2014 closing all picks, holding 100% SPY.",
     "source": "template",
     "review_date": "2026-05-21"
   }

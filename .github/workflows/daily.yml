@@ -69,6 +69,10 @@ jobs:
         working-directory: python
         run: python seed_history.py
 
+      - name: Validate dashboard data
+        working-directory: python
+        run: python validate_dashboard.py
+
       - name: Commit refreshed data/
         run: |
           git config user.name "greenlight-bot"

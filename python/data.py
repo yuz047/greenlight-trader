@@ -6,13 +6,15 @@ Source priority (highest to lowest):
      The browser-fingerprint session defeats Yahoo's TLS filter on
      data-center IPs (GitHub Actions / AWS / GCP). Verified working
      against Yahoo as of May 2026.
-  2. Stooq via pandas_datareader.
+  2. Stooq direct CSV.
+     A simple no-key CSV endpoint used before any optional library fallback.
+  3. Stooq via pandas_datareader.
      Free Stooq CSV endpoint now requires an API key, but the
      pandas_datareader path still works through a separate route.
      Kept as a backup in case Yahoo starts blocking again.
-  3. Stale REAL cache. Preferred over fresh synthetic — yesterday's
+  4. Stale REAL cache. Preferred over fresh synthetic — yesterday's
      real prices are more useful than today's fabricated ones.
-  4. Deterministic synthetic GBM. Last resort, clearly tagged.
+  5. Deterministic synthetic GBM. Last resort, clearly tagged.
 
 Every step logs to stderr so the GitHub Actions log shows exactly what
 happened per ticker.
@@ -232,7 +234,8 @@ def _synthetic(ticker: str, days: int = 750) -> pd.DataFrame:
 def load_ticker(ticker: str, force_refresh: bool = False) -> pd.DataFrame:
     """Return OHLCV for ``ticker`` as a daily DataFrame.
 
-    Priority: fresh cache > yfinance (with curl_cffi) > Stooq > stale cache > synthetic.
+    Priority: fresh real cache > yfinance > Stooq direct > Stooq reader >
+    stale real cache > synthetic.
 
     The "stale cache" tier matters: if both live sources fail today but we
     have yesterday's REAL data on disk, returning it (still marked
@@ -258,22 +261,26 @@ def load_ticker(ticker: str, force_refresh: bool = False) -> pd.DataFrame:
         _write_cache(ticker, fresh)
         return fresh
 
-    # 3. Stooq via pandas_datareader — fallback if Yahoo blocks.
+    # 3. Stooq direct CSV — fallback if Yahoo blocks.
+    fresh = _try_stooq_direct(ticker)
+    if fresh is not None and not fresh.empty:
+        _write_cache(ticker, fresh)
+        return fresh
+
+    # 4. Stooq via pandas_datareader — optional secondary route.
     fresh = _try_stooq(ticker)
     if fresh is not None and not fresh.empty:
         _write_cache(ticker, fresh)
         return fresh
 
-    # 4. Stale REAL cache beats synthetic — keep the dashboard honest.
+    # 5. Stale REAL cache beats synthetic — keep the dashboard honest.
     if cache_is_real:
         _log(f"{ticker}: using stale real cache (live sources unreachable)")
         return cached
 
-    # 5. Synthetic fallback (clearly marked).
+    # 6. Synthetic fallback (clearly marked, never cached).
     _log(f"{ticker}: ALL REAL SOURCES FAILED — falling through to synthetic")
-    syn = _synthetic(ticker)
-    _write_cache(ticker, syn)
-    return syn
+    return _synthetic(ticker)
 
 
 def load_universe(tickers=None, force_refresh: bool = False) -> Dict[str, pd.DataFrame]:
