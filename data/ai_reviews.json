@@ -34,7 +34,7 @@
     "review_date": "2026-05-20"
   },
   {
-    "summary": "Equity ended at $1,049.47 (daily PnL $+0.00, drawdown 0.00%). No trades closed today. Backtest Sharpe 0.24, win rate 30.8%, max DD 0.0%.",
+    "summary": "Equity ended at $1,049.47 (daily PnL $+0.00, drawdown 0.00%). No trades closed today. Backtest Sharpe 0.00, win rate 30.8%, max DD 0.0%.",
     "mistakes": [],
     "proposed_changes": [
       {
@@ -45,8 +45,8 @@
       }
     ],
     "next_day_plan": "Run the standard pre-market scan, recompute regime, refresh signals. Honor the same risk caps.",
-    "light": "red",
-    "light_reason": "Relative drawdown 40.76% past red gate (4.0%) \u2014 closing all picks, holding 100% SPY.",
+    "light": "green",
+    "light_reason": "On track \u2014 beating SPY by +0.00%.",
     "source": "template",
     "review_date": "2026-05-21"
   }
