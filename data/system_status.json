@@ -1,10 +1,10 @@
 {
   "light": "green",
-  "reason": "Above target \u2014 beating SPY by +10.34%.",
-  "portfolio_return": 0.3850784572350363,
-  "benchmark_return": 0.2817196112790499,
-  "relative_pnl_pct": 0.10335884595598643,
-  "relative_drawdown_pct": 0.008417370114788048,
+  "reason": "Above target \u2014 beating SPY by +10.33%.",
+  "portfolio_return": 0.3858081822020747,
+  "benchmark_return": 0.2825178718155499,
+  "relative_pnl_pct": 0.10329031038652481,
+  "relative_drawdown_pct": 0.008485905684249673,
   "peak_relative_pnl_pct": 0.11177621607077448,
   "as_of": "2026-05-21",
   "data": {

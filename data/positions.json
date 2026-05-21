@@ -10,12 +10,12 @@
     "max_hold_days": 10000,
     "strategy_id": "adaptive_tech_semis_v1",
     "thesis": "Target allocation weight 25.00%.",
-    "last_price": 708.7999877929688,
+    "last_price": 709.8699951171875,
     "age_days": 0,
     "is_core": true,
     "target_weight": 0.25,
-    "unrealized_pnl": -1.9554908830547908,
-    "notional": 1732.5913297937545
+    "unrealized_pnl": 0.6600359858575108,
+    "notional": 1735.2068566626667
   },
   {
     "symbol": "SMH",
@@ -28,11 +28,11 @@
     "max_hold_days": 10000,
     "strategy_id": "adaptive_tech_semis_v1",
     "thesis": "Target allocation weight 20.00%.",
-    "last_price": 561.4945068359375,
+    "last_price": 561.2100219726562,
     "age_days": 0,
     "is_core": true,
     "target_weight": 0.2,
-    "unrealized_pnl": -12.794765959839001,
-    "notional": 1374.8426905816086
+    "unrealized_pnl": -13.49133899858044,
+    "notional": 1374.1461175428672
   }
 ]
