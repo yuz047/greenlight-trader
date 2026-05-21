@@ -23,6 +23,7 @@ export default function EquityChart({
   const data = snapshots.map((s) => ({
     date: s.date,
     equity: s.equity,
+    benchmark: s.benchmark_equity,
     drawdown: -(s.drawdown * 100),
   }));
 
@@ -33,7 +34,7 @@ export default function EquityChart({
           <div className="eyebrow">Equity curve</div>
           <h2 className="mt-2">Performance since inception</h2>
         </div>
-        <span className="tag">benchmark · $1,000</span>
+        <span className="tag">benchmark · ${startingCapital.toLocaleString()}</span>
       </div>
 
       <div style={{ width: "100%", height: 230 }}>
@@ -54,6 +55,7 @@ export default function EquityChart({
               formatter={(v: number) => fmtUsd(v)}
             />
             <ReferenceLine y={startingCapital} stroke="#767a82" strokeDasharray="4 4" />
+            <Line type="monotone" dataKey="benchmark" stroke="#767a82" dot={false} strokeWidth={1.5} strokeDasharray="5 4" />
             <Line type="monotone" dataKey="equity" stroke="#1f3a5f" dot={false} strokeWidth={2} />
           </LineChart>
         </ResponsiveContainer>

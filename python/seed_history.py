@@ -21,6 +21,8 @@ from strategies import manifests_for
 from db import write_json, upsert, replace_table, supabase_enabled
 from llm_review import review
 from risk import account_status
+from signals import market_regime
+from config import BENCHMARK
 
 
 DASHBOARD_START_DATE = "2025-01-01"
@@ -30,6 +32,7 @@ def main():
     print(f"Loading universe: {WATCHLIST}")
     frames = load_universe()
     health = data_feed_health(frames)
+    regime = market_regime(frames[BENCHMARK])
     print(f"Data feed: {health}")
 
     print(f"Running V2 backtest from dashboard baseline {DASHBOARD_START_DATE}...")
@@ -114,7 +117,12 @@ def main():
         },
     })
     write_json("ai_reviews", [rev])
-    write_json("system_status", {**status, "as_of": last_snap.get("date"), "data": health})
+    write_json("system_status", {
+        **status,
+        "as_of": last_snap.get("date"),
+        "data": health,
+        "regime": regime,
+    })
 
     if supabase_enabled():
         print("Mirroring to Supabase…")

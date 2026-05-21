@@ -39,6 +39,7 @@ class Position:
     last_price: float = 0.0
     age_days: int = 0
     is_core: bool = False  # True for the SPY baseline; False for alpha picks
+    target_weight: float = 0.0
 
     def notional(self) -> float: return self.quantity * self.last_price
     def unrealized_pnl(self) -> float: return (self.last_price - self.entry_price) * self.quantity
@@ -136,6 +137,93 @@ class Portfolio:
     def picks(self) -> List[Position]:
         return [p for s, p in self.positions.items() if s != BENCHMARK]
 
+    def rebalance_to_targets(
+        self,
+        targets: Dict[str, float],
+        prices: Dict[str, float],
+        *,
+        strategy_id: str,
+        thesis: str,
+    ) -> None:
+        """Rebalance the book to explicit target weights.
+
+        ``CASH`` is allowed as a pseudo-symbol. All other targets need a
+        current price. This path is used by allocation strategies that should
+        hold sleeves persistently instead of opening short-lived picks.
+        """
+        clean = {
+            sym: max(0.0, float(weight))
+            for sym, weight in targets.items()
+            if sym != "CASH" and weight > 0 and prices.get(sym, 0.0) > 0
+        }
+        cash_weight = max(0.0, float(targets.get("CASH", 0.0)))
+        total_weight = sum(clean.values()) + cash_weight
+        if total_weight > 1.0:
+            scale = 1.0 / total_weight
+            clean = {sym: weight * scale for sym, weight in clean.items()}
+            cash_weight *= scale
+
+        nav = self.nav()
+        target_notional = {sym: weight * nav for sym, weight in clean.items()}
+
+        # Sell removed or overweight positions first.
+        for sym in list(self.positions.keys()):
+            pos = self.positions[sym]
+            price = prices.get(sym, pos.last_price)
+            if price <= 0:
+                continue
+            pos.last_price = price
+            desired = target_notional.get(sym, 0.0)
+            current = pos.notional()
+            if current <= desired + MANDATE.min_dollar_position:
+                continue
+            sell_notional = current - desired
+            shares_to_sell = min(pos.quantity, sell_notional / price)
+            pos.quantity -= shares_to_sell
+            self.cash += shares_to_sell * price
+            if pos.quantity * price < MANDATE.min_dollar_position:
+                self.cash += pos.quantity * price
+                self.positions.pop(sym, None)
+
+        # Buy underweight targets with available cash.
+        for sym, desired in target_notional.items():
+            price = prices.get(sym, 0.0)
+            if price <= 0:
+                continue
+            current = self.positions[sym].notional() if sym in self.positions else 0.0
+            buy_notional = desired - current
+            if buy_notional < MANDATE.min_dollar_position:
+                continue
+            buy_notional = min(buy_notional, self.cash)
+            if buy_notional < MANDATE.min_dollar_position:
+                continue
+            shares_to_buy = buy_notional / price
+            if sym in self.positions:
+                pos = self.positions[sym]
+                new_qty = pos.quantity + shares_to_buy
+                pos.entry_price = (
+                    (pos.entry_price * pos.quantity + price * shares_to_buy) / new_qty
+                )
+                pos.quantity = new_qty
+                pos.last_price = price
+                pos.target_weight = clean[sym]
+                pos.is_core = True
+            else:
+                self.positions[sym] = Position(
+                    symbol=sym, side="long", quantity=shares_to_buy,
+                    entry_price=price, entry_time=_now(),
+                    stop_price=0.0, target_price=0.0, max_hold_days=10_000,
+                    strategy_id=strategy_id, thesis=thesis,
+                    last_price=price, age_days=0, is_core=True,
+                    target_weight=clean[sym],
+                )
+            self.cash -= buy_notional
+
+        for sym, weight in clean.items():
+            if sym in self.positions:
+                self.positions[sym].target_weight = weight
+                self.positions[sym].is_core = True
+
     # ---- SPY core --------------------------------------------------
     def rebalance_to_core(self, spy_price: float) -> None:
         """Make sure 100% of available NAV is in SPY when no picks active.
@@ -185,22 +273,27 @@ class Portfolio:
                 self.cash += shares_to_sell * spy_price
 
     def _target_spy_weight(self) -> float:
-        active_picks = len([p for p in self.positions.values() if not p.is_core])
-        return max(MANDATE.spy_core_min_weight,
-                   1.0 - active_picks * MANDATE.pick_weight_per_position)
+        active_pick_weight = sum(
+            p.target_weight if p.target_weight > 0 else MANDATE.pick_weight_per_position
+            for p in self.positions.values()
+            if not p.is_core
+        )
+        return max(MANDATE.spy_core_min_weight, 1.0 - active_pick_weight)
 
     # ---- pick lifecycle ------------------------------------------------
     def open_pick(
         self, *, symbol: str, entry_price: float, stop_distance: float,
         target_distance: float, max_hold_days: int, strategy_id: str,
-        thesis: str, spy_price_at_entry: float,
+        thesis: str, spy_price_at_entry: float, target_weight: Optional[float] = None,
     ) -> Optional[Position]:
         if symbol in self.positions or symbol == BENCHMARK:
             return None
         if entry_price <= 0:
             return None
         nav = self.nav()
-        pick_notional = MANDATE.pick_weight_per_position * nav
+        weight = target_weight if target_weight is not None else MANDATE.pick_weight_per_position
+        weight = max(MANDATE.min_pick_weight_per_position, float(weight))
+        pick_notional = weight * nav
         if pick_notional < MANDATE.min_dollar_position:
             return None
         # Free up cash by selling SPY shares equal to pick notional
@@ -228,6 +321,7 @@ class Portfolio:
             max_hold_days=max_hold_days,
             strategy_id=strategy_id, thesis=thesis,
             last_price=entry_price, age_days=0, is_core=False,
+            target_weight=weight,
         )
         # Stash SPY entry price for alpha attribution
         pos.thesis = pos.thesis + f" (SPY@entry=${spy_price_at_entry:.2f})"

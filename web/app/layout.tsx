@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "GreenLight Trader — Sirius Zhang",
-  description: "AI-powered $1,000 paper-trading research dashboard.",
+  description: "Adaptive $5,000 paper-trading allocation dashboard.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

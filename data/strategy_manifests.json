@@ -1,27 +1,62 @@
 [
   {
-    "id": "stock_pitcher_v2",
-    "version": "2.0",
-    "kind": "ranker",
+    "id": "adaptive_tech_semis_v1",
+    "version": "1.0",
+    "kind": "allocator",
     "params": {
-      "trend_window": 60,
+      "benchmark": "SPY",
+      "vol_symbol": "^VIX",
+      "safety_symbol": "SHY",
+      "growth_universe": [
+        "QQQ",
+        "SMH",
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "TSM",
+        "GOOGL",
+        "MSFT",
+        "AMZN",
+        "META",
+        "AAPL",
+        "TSLA"
+      ],
+      "semis": [
+        "SMH",
+        "NVDA",
+        "AVGO",
+        "AMD",
+        "TSM"
+      ],
+      "etfs": [
+        "QQQ",
+        "SMH"
+      ],
+      "max_picks": 4,
+      "stock_weight": 0.1,
+      "etf_weight": 0.2,
+      "fear_etf_weight": 0.3,
+      "safety_weight": 0.45,
+      "min_score": 0.2,
+      "fear_vix": 20.0,
+      "calm_vix": 16.0,
+      "stress_vix": 28.0,
+      "spy_stress_drawdown": 0.12,
+      "hard_spy_drawdown": 0.18,
+      "max_entry_extension_sma50": 1.2,
+      "max_entry_rsi": 78.0,
+      "sell_extension_sma50": 1.28,
+      "sell_rsi": 82.0,
+      "trend_break_sma50": 0.95,
       "rs_window": 63,
       "mom_window": 20,
-      "min_zscore": 1.0,
-      "min_quality": 0.3,
-      "min_relative_strength": 0.0,
-      "atr_window": 14,
-      "stop_mult": 2.0,
-      "target_horizon_days": 20,
-      "target_min_atr": 2.0,
-      "target_max_atr": 6.0,
-      "max_hold_days": 30,
-      "decay_zscore_exit": 0.5,
-      "benchmark": "SPY",
-      "max_picks": 2
+      "decay_zscore_exit": 0.0,
+      "stop_atr": 4.0,
+      "target_atr": 12.0,
+      "max_hold_days": 160
     },
-    "rules": "Universe-wide composite rank: 60d trend t-stat, R^2 quality, 63d RS vs SPY, 20d return / 20d vol. Take top 2 names with composite z >= 1.0 AND R^2 >= 0.3 AND RS >= SPY. Stop = 2 ATR. Target = projected 20d move, clipped to [2, 6] ATR. Max hold 30d; early exit when composite z falls below 0.5.",
+    "rules": "Hold SPY as ballast. In normal/fear regimes, rank QQQ, SMH, and major tech/semiconductor stocks by relative strength, trend, momentum, and buyable pullback quality. Avoid new entries when RSI or price/50dma is too extended. Exit holdings that become overextended or break trend. When SPY drawdown/VIX indicate stress, prefer a larger SHY safety sleeve.",
     "status": "active",
-    "module": "stock_pitcher_v2"
+    "module": "adaptive_tech_semis_v1"
   }
 ]

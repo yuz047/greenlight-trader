@@ -30,7 +30,7 @@ Your job is to:
 
 Always respond as compact JSON with keys:
 summary, mistakes, proposed_changes, next_day_plan, light, light_reason.
-Be conservative. The book is $1,000 — capital preservation comes first."""
+Be conservative. Capital preservation comes first."""
 
 
 def _template(payload: dict) -> dict:
@@ -58,7 +58,7 @@ def _template(payload: dict) -> dict:
         bits.append("No trades closed today.")
     bits.append(
         f"Backtest Sharpe {metrics.get('sharpe', 0):.2f}, "
-        f"win rate {metrics.get('win_rate', 0)*100:.1f}%, "
+        f"alpha {metrics.get('alpha_total', 0)*100:+.1f}% vs SPY, "
         f"max DD {metrics.get('max_drawdown', 0)*100:.1f}%."
     )
 
@@ -78,11 +78,11 @@ def _template(payload: dict) -> dict:
             "reason": "low win rate suggests too many false breakouts",
             "status": "needs backtest approval",
         })
-    if metrics.get("max_drawdown", 0) > 0.08:
+    if metrics.get("max_relative_drawdown", 0) > metrics.get("max_relative_drawdown_pct", 1):
         proposed.append({
             "strategy": "account-level",
-            "change": "reduce max_risk_per_trade_pct from 1.0% to 0.75%",
-            "reason": "drawdown approaching 10% hard stop",
+            "change": "raise safety/cash target or reduce QQQ/SMH boost weight",
+            "reason": "relative drawdown exceeded the mandate cap",
             "status": "needs backtest approval",
         })
 
@@ -91,8 +91,8 @@ def _template(payload: dict) -> dict:
         "mistakes": mistakes,
         "proposed_changes": proposed,
         "next_day_plan": (
-            "Run the standard pre-market scan, recompute regime, refresh signals. "
-            "Honor the same risk caps."
+            "Refresh OHLCV/VIX, recompute target weights, and rebalance only if "
+            "the adaptive allocation rules call for it."
         ),
         "light": light,
         "light_reason": light_reason,

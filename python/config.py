@@ -20,24 +20,28 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # --- Universe -----------------------------------------------------------
-WATCHLIST = ["SPY", "QQQ", "AAPL", "MSFT", "NVDA", "TSLA", "META", "AMZN"]
+WATCHLIST = [
+    "SPY", "QQQ", "SHY", "^VIX",
+    "SMH", "NVDA", "AVGO", "AMD", "TSM",
+    "GOOGL", "MSFT", "AMZN", "META", "AAPL", "TSLA",
+]
 BENCHMARK = "SPY"
 
 # --- Relative mandate (V2) ---------------------------------------------
 @dataclass(frozen=True)
 class Mandate:
-    starting_capital: float = 1_000.0
+    starting_capital: float = 5_000.0
     benchmark: str = "SPY"
 
     # Performance mandate
     target_alpha_pct: float = 0.10           # SPY + 10% over the test window
-    max_relative_drawdown_pct: float = 0.05  # trail SPY by no more than 5%
+    max_relative_drawdown_pct: float = 0.08  # allow safety sleeves room during snapback rallies
 
     # Risk caps (now relative, with SPY as baseline)
-    max_picks_open: int = 2                  # at most 2 picks held simultaneously
-    pick_weight_per_position: float = 0.20   # each pick is 20% of NAV (was 25%)
-    min_pick_weight_per_position: float = 0.10
-    spy_core_min_weight: float = 0.60        # never below 60% SPY when picks active
+    max_picks_open: int = 6                  # several small sleeves, not one big bet
+    pick_weight_per_position: float = 0.10   # default pick is 10% of NAV
+    min_pick_weight_per_position: float = 0.05
+    spy_core_min_weight: float = 0.25        # leave room for tech/semis or safety sleeves
 
     # Pick selection
     pick_conviction_min: float = 1.0         # composite z >= 1.0 to be considered
@@ -47,8 +51,8 @@ class Mandate:
     # Per-pick relative stop: each pick must beat SPY on its own.
     # If pick trails SPY by `pick_relative_stop_pct` after `pick_relative_stop_grace_days`,
     # force exit. Keeps individual picks from dragging the book.
-    pick_relative_stop_pct: float = 0.02      # 2% trailing-vs-SPY tolerance per pick
-    pick_relative_stop_grace_days: int = 1    # grace period — 1 day to ignore entry noise
+    pick_relative_stop_pct: float = 0.08      # avoid shaking out long-horizon QQQ/SMH sleeves
+    pick_relative_stop_grace_days: int = 10   # give thematic sleeves time to work
 
     # Portfolio-wide gate thresholds, as fractions of max_relative_drawdown_pct
     yellow_gate_fraction: float = 0.4   # yellow when relative DD ≥ 0.4 × 5% = 2.0%
@@ -65,9 +69,10 @@ RISK = MANDATE
 # --- Active strategies -------------------------------------------------
 # The two rule-based strategies (momentum_breakout_v1, mean_reversion_v1)
 # and the first-gen pitcher are kept in-tree for audit, but disabled in V2.
-# v2 of the pitcher is the sole alpha source over the SPY core.
+# v3 makes allocation decisions directly: semis/tech when attractively
+# priced, SHY when stress is high, SPY as the default ballast.
 ACTIVE_IDS = [
-    "stock_pitcher_v2",
+    "adaptive_tech_semis_v1",
 ]
 
 # --- Backtest defaults --------------------------------------------------

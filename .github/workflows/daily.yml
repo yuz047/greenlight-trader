@@ -6,6 +6,8 @@ on:
     paths:
       - '.github/workflows/daily.yml'
       - 'python/**'
+      - 'web/**'
+      - 'data/*.json'
       - 'data/portfolio_state.json'
   schedule:
     # 00:30 UTC Tue–Sat ≈ 20:30 ET Mon–Fri (after the US close).

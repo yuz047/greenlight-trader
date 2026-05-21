@@ -17,6 +17,13 @@ export type Snapshot = {
   daily_pnl: number;
   cumulative_pnl: number;
   drawdown: number;
+  benchmark_equity?: number;
+  portfolio_return?: number;
+  benchmark_return?: number;
+  alpha?: number;
+  relative_drawdown?: number;
+  spy_core_weight?: number;
+  n_picks_open?: number;
 };
 
 export type Trade = {
@@ -49,6 +56,8 @@ export type Position = {
   thesis: string;
   unrealized_pnl: number;
   notional: number;
+  target_weight?: number;
+  is_core?: boolean;
 };
 
 export type StrategyVersion = {

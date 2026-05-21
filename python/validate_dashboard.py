@@ -11,11 +11,11 @@ from pathlib import Path
 
 import pandas as pd
 
-from config import DATA_DIR, CACHE_DIR
+from config import DATA_DIR, CACHE_DIR, MANDATE
 
 
 START_DATE = "2025-01-01"
-STARTING_CAPITAL = 1_000.0
+STARTING_CAPITAL = MANDATE.starting_capital
 MIN_SNAPSHOT_ROWS = 250
 FULL_YEAR_WINDOW = 252
 
@@ -52,9 +52,9 @@ def validate_snapshots() -> None:
     if first.get("date") != START_DATE:
         _fail(f"first snapshot date is {first.get('date')}, expected {START_DATE}")
     if round(float(first.get("equity", 0.0)), 2) != STARTING_CAPITAL:
-        _fail("first strategy equity is not $1,000")
+        _fail(f"first strategy equity is not ${STARTING_CAPITAL:,.0f}")
     if round(float(first.get("benchmark_equity", 0.0)), 2) != STARTING_CAPITAL:
-        _fail("first benchmark equity is not $1,000")
+        _fail(f"first benchmark equity is not ${STARTING_CAPITAL:,.0f}")
 
     differences = [
         abs(float(s["equity"]) - float(s.get("benchmark_equity", s["equity"])))

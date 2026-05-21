@@ -28,7 +28,7 @@ export default function PortfolioOverview({
   const items = [
     { k: "Equity",         v: "$" + fmt(last.equity),         sub: `inception $${fmt(startingCapital, 0)}` },
     { k: "Cash",           v: "$" + fmt(last.cash),           sub: "available" },
-    { k: "Market value",   v: "$" + fmt(last.market_value),   sub: "open positions" },
+    { k: "Market value",   v: "$" + fmt(last.market_value),   sub: "target sleeves" },
     { k: "Daily PnL",
       v: (last.daily_pnl >= 0 ? "+" : "") + "$" + fmt(last.daily_pnl),
       sub: `${dailyPct >= 0 ? "+" : ""}${fmt(dailyPct, 2)}%`,
@@ -41,6 +41,13 @@ export default function PortfolioOverview({
       v: fmt(last.drawdown * 100, 2) + "%",
       sub: "from peak",
       cls: last.drawdown > 0 ? "num-neg" : "" },
+    { k: "Alpha vs SPY",
+      v: `${(last.alpha ?? 0) >= 0 ? "+" : ""}${fmt((last.alpha ?? 0) * 100, 2)}%`,
+      sub: `SPY ${fmt((last.benchmark_return ?? 0) * 100, 2)}%`,
+      cls: pcls(last.alpha ?? 0) },
+    { k: "SPY weight",
+      v: fmt((last.spy_core_weight ?? 0) * 100, 1) + "%",
+      sub: `${last.n_picks_open ?? 0} non-SPY sleeve${(last.n_picks_open ?? 0) === 1 ? "" : "s"}` },
   ];
 
   return (
@@ -48,7 +55,7 @@ export default function PortfolioOverview({
       <div className="panel-head">
         <div>
           <div className="eyebrow">Portfolio overview</div>
-          <h2 className="mt-2">$1,000 paper portfolio</h2>
+          <h2 className="mt-2">${fmt(startingCapital, 0)} adaptive allocation book</h2>
         </div>
         <span className="tag">as of {last.date}</span>
       </div>

@@ -12,22 +12,22 @@ export default function RiskDashboard({
   const items = [
     { k: "Sharpe (ann.)",  v: fmt(metrics.sharpe as number, 2) },
     { k: "Sortino (ann.)", v: fmt(metrics.sortino as number, 2) },
+    { k: "Alpha total",    v: fmt((metrics.alpha_total as number) * 100, 2) + "%" },
+    { k: "Info ratio",     v: fmt(metrics.info_ratio as number, 2) },
     { k: "Max drawdown",   v: fmt((metrics.max_drawdown as number) * 100, 2) + "%" },
+    { k: "Max rel. DD",    v: fmt((metrics.max_relative_drawdown as number) * 100, 2) + "%" },
     { k: "Vol (ann.)",     v: fmt((metrics.vol_annualized as number) * 100, 2) + "%" },
-    { k: "Win rate",       v: fmt((metrics.win_rate as number) * 100, 1) + "%" },
-    { k: "Profit factor",  v: metrics.profit_factor == null ? "—" : fmt(metrics.profit_factor as number, 2) },
-    { k: "Avg win",        v: "$" + fmt(metrics.avg_win as number) },
-    { k: "Avg loss",       v: "$" + fmt(metrics.avg_loss as number) },
-    { k: "Largest loss",   v: "$" + fmt(metrics.largest_loss as number) },
-    { k: "# Trades",       v: String(metrics.n_trades ?? "—") },
+    { k: "Benchmark",      v: fmt((metrics.benchmark_total_return as number) * 100, 2) + "%" },
+    { k: "# Trades",       v: String(metrics.n_trades ?? 0) },
   ];
 
   const caps = [
-    { k: "Risk / trade",        v: fmt(riskConfig.max_risk_per_trade_pct * 100, 2) + "%" },
-    { k: "Daily loss cap",      v: fmt(riskConfig.max_daily_loss_pct * 100, 2) + "%" },
-    { k: "Max drawdown cap",    v: fmt(riskConfig.max_drawdown_pct * 100, 2) + "%" },
-    { k: "Max open positions",  v: String(riskConfig.max_open_positions ?? "—") },
-    { k: "Max single position", v: fmt(riskConfig.max_single_position_pct * 100, 0) + "%" },
+    { k: "Starting capital",    v: "$" + fmt(riskConfig.starting_capital, 0) },
+    { k: "Target alpha",        v: fmt(riskConfig.target_alpha_pct * 100, 1) + "%" },
+    { k: "Max relative DD",     v: fmt(riskConfig.max_relative_drawdown_pct * 100, 1) + "%" },
+    { k: "Max sleeves",         v: String(riskConfig.max_picks_open ?? "—") },
+    { k: "Default sleeve",      v: fmt(riskConfig.pick_weight_per_position * 100, 1) + "%" },
+    { k: "Min SPY ballast",     v: fmt(riskConfig.spy_core_min_weight * 100, 0) + "%" },
   ];
 
   return (

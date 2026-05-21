@@ -16,6 +16,7 @@ from __future__ import annotations
 from dataclasses import dataclass, asdict
 from typing import Dict, List
 import math
+import importlib
 import pandas as pd
 import numpy as np
 
@@ -68,6 +69,20 @@ def run_backtest(
     if len(timeline) == 0:
         raise RuntimeError(f"No benchmark bars available for backtest start_date={start_date!r}")
 
+    for sid in ACTIVE_IDS:
+        entry = REGISTRY.get(sid, {})
+        module_name = entry.get("module")
+        if not module_name:
+            continue
+        try:
+            mod = importlib.import_module(f"strategies.{module_name}")
+        except Exception:
+            continue
+        if hasattr(mod, "target_weights"):
+            return _run_target_allocation_backtest(
+                frames, enriched, timeline, mod, entry.get("manifest", {}),
+            )
+
     port = Portfolio()
     snapshots: List[Snapshot] = []
     prev_equity = port.nav()
@@ -111,24 +126,22 @@ def run_backtest(
         # 2. Recompute ranks once per day for exit / entry decisions
         regime = market_regime(spy.loc[:dt])
         sym_enriched_to_date = {s: e.loc[:dt] for s, e in enriched.items()}
-        # Pull the pitcher v2 manifest's exit-z threshold
+        # Pull the active strategy's exit threshold and rank lookup.
         decay_z = 0.5
+        rank_lookup = {}
         for sid in ACTIVE_IDS:
-            m = REGISTRY.get(sid, {}).get("manifest", {})
+            entry = REGISTRY.get(sid, {})
+            m = entry.get("manifest", {})
             if "decay_zscore_exit" in m.get("params", {}):
                 decay_z = m["params"]["decay_zscore_exit"]
-                break
-        # Compute current pitcher ranks for exit-decay decisions
-        rank_lookup = {}
-        try:
-            from strategies.stock_pitcher_v2 import compute_ranks
-            for sid in ACTIVE_IDS:
-                m = REGISTRY.get(sid, {}).get("manifest", {})
-                if m.get("id") == "stock_pitcher_v2":
-                    rank_lookup = compute_ranks(sym_enriched_to_date, m["params"])
-                    break
-        except Exception:
-            pass
+            module_name = entry.get("module")
+            if module_name:
+                try:
+                    mod = importlib.import_module(f"strategies.{module_name}")
+                    if hasattr(mod, "compute_ranks"):
+                        rank_lookup.update(mod.compute_ranks(sym_enriched_to_date, m["params"]))
+                except Exception:
+                    pass
 
         # 3. Exits
         port.apply_exits(bars, rank_lookup=rank_lookup,
@@ -188,6 +201,7 @@ def run_backtest(
                 stop_distance=sig.stop_distance, target_distance=sig.target_distance,
                 max_hold_days=sig.max_hold_days, strategy_id=sig.strategy_id,
                 thesis=sig.rationale, spy_price_at_entry=spy_for_swap,
+                target_weight=sig.extras.get("target_weight"),
             )
 
         # 7. Rebalance leftover cash into SPY core
@@ -241,6 +255,116 @@ def run_backtest(
             "inception": port.inception,
             "positions": {s: p.to_dict() for s, p in port.positions.items()},
             "trades": [t.to_dict() for t in port.trades],
+        },
+        "metrics": metrics,
+    }
+
+
+def _run_target_allocation_backtest(
+    frames: Dict[str, pd.DataFrame],
+    enriched: Dict[str, pd.DataFrame],
+    timeline,
+    module,
+    manifest: dict,
+) -> dict:
+    snapshots: List[Snapshot] = []
+    starting_cap = MANDATE.starting_capital
+    equity = starting_cap
+    benchmark_equity = starting_cap
+    prev_equity = starting_cap
+    prev_dt = None
+    prev_targets = {BENCHMARK: 1.0}
+    peak_rel = 0.0
+
+    for dt in timeline:
+        if prev_dt is not None:
+            day_ret = 0.0
+            for sym, weight in prev_targets.items():
+                if sym == "CASH" or weight <= 0:
+                    continue
+                df = frames.get(sym)
+                if df is None or prev_dt not in df.index or dt not in df.index:
+                    continue
+                prev_close = float(df.loc[prev_dt, "close"])
+                close = float(df.loc[dt, "close"])
+                if prev_close > 0:
+                    day_ret += weight * (close / prev_close - 1.0)
+            equity *= 1.0 + day_ret
+
+            spy_prev = float(frames[BENCHMARK].loc[prev_dt, "close"])
+            spy_close = float(frames[BENCHMARK].loc[dt, "close"])
+            benchmark_equity *= spy_close / spy_prev
+
+        rs = compute_relative_status(
+            equity=equity, benchmark_equity=benchmark_equity,
+            starting_capital=starting_cap,
+            peak_relative_outperformance=peak_rel,
+            data_feed_ok=True, synthetic_data=False,
+        )
+        peak_rel = rs.peak_relative_pnl_pct
+        snap = Snapshot(
+            date=str(dt.date()),
+            equity=round(equity, 2),
+            cash=round(equity * prev_targets.get("CASH", 0.0), 2),
+            market_value=round(equity * (1.0 - prev_targets.get("CASH", 0.0)), 2),
+            daily_pnl=round(equity - prev_equity, 2),
+            cumulative_pnl=round(equity - starting_cap, 2),
+            drawdown=round(max(0.0, 1 - equity / max(starting_cap, equity)), 4),
+            benchmark_equity=round(benchmark_equity, 2),
+            portfolio_return=round(rs.portfolio_return, 4),
+            benchmark_return=round(rs.benchmark_return, 4),
+            alpha=round(rs.relative_pnl_pct, 4),
+            relative_drawdown=round(rs.relative_drawdown_pct, 4),
+            spy_core_weight=round(prev_targets.get(BENCHMARK, 0.0), 4),
+            n_picks_open=len([s for s, w in prev_targets.items() if s not in (BENCHMARK, "CASH") and w > 0]),
+        )
+        snapshots.append(snap)
+
+        universe_to_date = {s: e.loc[:dt] for s, e in enriched.items()}
+        targets = module.target_weights(universe_to_date, manifest.get("params", {}))
+        total = sum(max(0.0, float(w)) for w in targets.values())
+        if total > 1.0:
+            targets = {s: float(w) / total for s, w in targets.items()}
+        elif total < 1.0:
+            targets["CASH"] = targets.get("CASH", 0.0) + (1.0 - total)
+        prev_targets = targets
+        prev_dt = dt
+        prev_equity = equity
+
+    metrics = _compute_metrics(snapshots, [], starting_cap)
+    last_targets = prev_targets
+    last_prices = {
+        sym: float(frames[sym].loc[timeline[-1], "close"])
+        for sym in last_targets
+        if sym != "CASH" and sym in frames and timeline[-1] in frames[sym].index
+    }
+    open_positions = []
+    for sym, weight in last_targets.items():
+        if sym == "CASH" or weight <= 0 or sym not in last_prices:
+            continue
+        price = last_prices[sym]
+        qty = equity * weight / price
+        open_positions.append({
+            "symbol": sym, "side": "long", "quantity": qty,
+            "entry_price": price, "entry_time": str(timeline[-1]),
+            "stop_price": 0.0, "target_price": 0.0, "max_hold_days": 10_000,
+            "strategy_id": manifest.get("id", "allocation"),
+            "thesis": f"Target allocation weight {weight:.2%}.",
+            "last_price": price, "age_days": 0, "is_core": True,
+            "target_weight": weight, "unrealized_pnl": 0.0,
+            "notional": equity * weight,
+        })
+    return {
+        "snapshots": [s.to_dict() for s in snapshots],
+        "trades": [],
+        "open_positions": [p for p in open_positions if p["symbol"] != BENCHMARK],
+        "portfolio_state": {
+            "cash": equity * last_targets.get("CASH", 0.0),
+            "realized_pnl": 0.0,
+            "peak_relative_outperformance": peak_rel,
+            "inception": str(timeline[0].date()),
+            "positions": {p["symbol"]: p for p in open_positions},
+            "trades": [],
         },
         "metrics": metrics,
     }

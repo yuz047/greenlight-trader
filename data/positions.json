@@ -1,1 +1,38 @@
-[]
+[
+  {
+    "symbol": "QQQ",
+    "side": "long",
+    "quantity": 2.4444009024162425,
+    "entry_price": 709.5999755859375,
+    "entry_time": "2026-05-21 00:00:00",
+    "stop_price": 0.0,
+    "target_price": 0.0,
+    "max_hold_days": 10000,
+    "strategy_id": "adaptive_tech_semis_v1",
+    "thesis": "Target allocation weight 25.00%.",
+    "last_price": 709.5999755859375,
+    "age_days": 0,
+    "is_core": true,
+    "target_weight": 0.25,
+    "unrealized_pnl": 0.0,
+    "notional": 1734.5468206768094
+  },
+  {
+    "symbol": "SMH",
+    "side": "long",
+    "quantity": 2.448541657742918,
+    "entry_price": 566.719970703125,
+    "entry_time": "2026-05-21 00:00:00",
+    "stop_price": 0.0,
+    "target_price": 0.0,
+    "max_hold_days": 10000,
+    "strategy_id": "adaptive_tech_semis_v1",
+    "thesis": "Target allocation weight 20.00%.",
+    "last_price": 566.719970703125,
+    "age_days": 0,
+    "is_core": true,
+    "target_weight": 0.2,
+    "unrealized_pnl": 0.0,
+    "notional": 1387.6374565414476
+  }
+]

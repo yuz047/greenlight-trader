@@ -22,11 +22,12 @@ export default function BacktestDashboard({ strategies }: { strategies: Strategy
             const r = s.backtest_result || {};
             const rows = [
               ["Total return", fmt(((r.total_return as number) ?? 0) * 100, 2) + "%"],
+              ["Benchmark",    fmt(((r.benchmark_total_return as number) ?? 0) * 100, 2) + "%"],
+              ["Alpha",        fmt(((r.alpha_total as number) ?? 0) * 100, 2) + "%"],
               ["CAGR",         fmt(((r.cagr as number) ?? 0) * 100, 2) + "%"],
               ["Sharpe",       fmt(r.sharpe as number, 2)],
               ["Max DD",       fmt(((r.max_drawdown as number) ?? 0) * 100, 2) + "%"],
-              ["Win rate",     fmt(((r.win_rate as number) ?? 0) * 100, 1) + "%"],
-              ["# trades",     String(r.n_trades ?? "—")],
+              ["Max rel DD",   fmt(((r.max_relative_drawdown as number) ?? 0) * 100, 2) + "%"],
             ];
             return (
               <article

@@ -12,6 +12,7 @@ rebalances residual cash back into SPY, snapshots, and writes JSON.
 from __future__ import annotations
 import json, math
 from datetime import date
+import importlib
 import pandas as pd
 
 from config import ACTIVE_IDS, MANDATE, WATCHLIST, BENCHMARK
@@ -68,51 +69,86 @@ def main():
                      "low": float(row["low"]), "close": float(row["close"])}
     port.mark_to_market(close_prices)
     spy_close = close_prices.get(BENCHMARK, 0.0)
+    regime = market_regime(frames[BENCHMARK])
 
-    # If we have no SPY core yet (cold start after seed migration), establish one.
-    if data_safe_for_trading and BENCHMARK not in port.positions and spy_close > 0:
+    allocation_targets = {}
+    allocation_strategy_id = None
+    for sid in ACTIVE_IDS:
+        entry = REGISTRY.get(sid, {})
+        module_name = entry.get("module")
+        if not module_name:
+            continue
+        try:
+            mod = importlib.import_module(f"strategies.{module_name}")
+            if hasattr(mod, "target_weights"):
+                allocation_targets = mod.target_weights(enriched, entry.get("manifest", {}).get("params", {}))
+                allocation_strategy_id = sid
+                break
+        except Exception as e:
+            print(f"target allocation failed: {e}")
+
+    if allocation_targets and data_safe_for_trading:
+        port.rebalance_to_targets(
+            allocation_targets, close_prices,
+            strategy_id=allocation_strategy_id or "allocation",
+            thesis=f"Target allocation for {regime}: {allocation_targets}",
+        )
+    elif data_safe_for_trading and BENCHMARK not in port.positions and spy_close > 0:
         port.rebalance_to_core(spy_close)
 
-    # Compute current pitcher ranks for exit-decay + new entries
+    # Compute current strategy ranks for exit-decay + new entries.
     rank_lookup = {}
     decay_z = 0.5
-    pitcher_manifest = None
-    for sid in ACTIVE_IDS:
-        m = REGISTRY.get(sid, {}).get("manifest", {})
-        if m.get("id") == "stock_pitcher_v2":
-            pitcher_manifest = m
-            decay_z = m["params"].get("decay_zscore_exit", 0.5)
-            try:
-                from strategies.stock_pitcher_v2 import compute_ranks
-                rank_lookup = compute_ranks(enriched, m["params"])
-            except Exception as e:
-                print(f"rank computation failed: {e}")
-            break
+    if not allocation_targets:
+        for sid in ACTIVE_IDS:
+            entry = REGISTRY.get(sid, {})
+            m = entry.get("manifest", {})
+            decay_z = m.get("params", {}).get("decay_zscore_exit", decay_z)
+            module_name = entry.get("module")
+            if module_name:
+                try:
+                    mod = importlib.import_module(f"strategies.{module_name}")
+                    if hasattr(mod, "compute_ranks"):
+                        rank_lookup.update(mod.compute_ranks(enriched, m["params"]))
+                except Exception as e:
+                    print(f"rank computation failed: {e}")
 
     # Apply exits
     closed_today = []
-    if data_safe_for_trading:
+    if data_safe_for_trading and not allocation_targets:
         closed_today = port.apply_exits(bars, rank_lookup=rank_lookup,
                                         decay_z=decay_z, spy_price=spy_close)
 
     # Regime + signals
-    regime = market_regime(frames[BENCHMARK])
-    signals = fire_all(enriched, regime=regime, sentiment=sent,
-                       active_ids=ACTIVE_IDS, universe=enriched)
+    signals = [] if allocation_targets else fire_all(
+        enriched, regime=regime, sentiment=sent,
+        active_ids=ACTIVE_IDS, universe=enriched,
+    )
 
     # Pitches output (for the dashboard's "Pitches for tomorrow")
     pitches = []
     for sig in signals:
-        if sig.strategy_id == "stock_pitcher_v2":
+        pitches.append({
+            "symbol": sig.symbol,
+            "strategy_id": sig.strategy_id,
+            "rationale": sig.rationale,
+            "stop_distance": round(sig.stop_distance, 2),
+            "target_distance": round(sig.target_distance, 2),
+            "max_hold_days": sig.max_hold_days,
+            "score": round(sig.score, 3),
+            **sig.extras,
+        })
+    if allocation_targets:
+        for sym, weight in allocation_targets.items():
             pitches.append({
-                "symbol": sig.symbol,
-                "strategy_id": sig.strategy_id,
-                "rationale": sig.rationale,
-                "stop_distance": round(sig.stop_distance, 2),
-                "target_distance": round(sig.target_distance, 2),
-                "max_hold_days": sig.max_hold_days,
-                "score": round(sig.score, 3),
-                **sig.extras,
+                "symbol": sym,
+                "strategy_id": allocation_strategy_id,
+                "rationale": f"Target allocation weight {weight*100:.1f}% in {regime}.",
+                "stop_distance": 0,
+                "target_distance": 0,
+                "max_hold_days": 0,
+                "score": round(weight, 3),
+                "target_weight": weight,
             })
 
     # Pre-check relative status BEFORE adding new picks
@@ -145,9 +181,9 @@ def main():
     max_picks = MANDATE.max_picks_open
     if status_pre.light == "yellow":
         max_picks = min(max_picks, 1)
-    if status_pre.light in ("red", "black") or not data_safe_for_trading:
+    if status_pre.light in ("red", "black") or not data_safe_for_trading or allocation_targets:
         max_picks = 0
-    if status_pre.light == "red":
+    if status_pre.light == "red" and not allocation_targets:
         # Force close any remaining picks
         for sym in list(port.positions.keys()):
             pos = port.positions[sym]
@@ -172,6 +208,7 @@ def main():
             stop_distance=sig.stop_distance, target_distance=sig.target_distance,
             max_hold_days=sig.max_hold_days, strategy_id=sig.strategy_id,
             thesis=sig.rationale, spy_price_at_entry=spy_close,
+            target_weight=sig.extras.get("target_weight"),
         )
         if opened:
             open_picks_count += 1
@@ -179,7 +216,7 @@ def main():
             rejections.append({"signal": sig.to_dict(), "reason": "open_pick refused"})
 
     # Top up SPY core with any residual cash
-    if data_safe_for_trading and spy_close > 0:
+    if data_safe_for_trading and spy_close > 0 and not allocation_targets:
         port.rebalance_to_core(spy_close)
 
     port.age_positions()
@@ -210,7 +247,7 @@ def main():
         "alpha": round(status.relative_pnl_pct, 4),
         "relative_drawdown": round(status.relative_drawdown_pct, 4),
         "spy_core_weight": round(port.core_notional() / equity, 4) if equity > 0 else 0.0,
-        "n_picks_open": len([p for p in port.positions.values() if not p.is_core]),
+        "n_picks_open": len([p for s, p in port.positions.items() if s != BENCHMARK]),
     }
     snapshots = [s for s in snapshots_history if s.get("date") != today] + [snap]
     write_json("snapshots", snapshots)
@@ -218,7 +255,7 @@ def main():
     all_trades = read_json("trades", default=[])
     all_trades.extend([t.to_dict() for t in closed_today])
     write_json("trades", all_trades)
-    write_json("positions", [p.to_dict() for p in port.positions.values() if not p.is_core])
+    write_json("positions", [p.to_dict() for s, p in port.positions.items() if s != BENCHMARK])
 
     metrics = _live_metrics(snapshots, all_trades)
     write_json("metrics", metrics)
@@ -263,7 +300,7 @@ def main():
                on_conflict="id")
         upsert("trades", [t.to_dict() for t in closed_today], on_conflict="trade_id")
         replace_table("positions",
-                      [{**p.to_dict(), "id": p.symbol} for p in port.positions.values() if not p.is_core],
+                      [{**p.to_dict(), "id": p.symbol} for s, p in port.positions.items() if s != BENCHMARK],
                       pk="id")
         upsert("ai_reviews", [rev], on_conflict="review_date")
 
@@ -273,7 +310,7 @@ def main():
         "alpha_pct": round(status.relative_pnl_pct * 100, 3),
         "light": status.light, "signals": len(signals),
         "closed_today": len(closed_today),
-        "open_picks": [p.symbol for p in port.positions.values() if not p.is_core],
+        "open_picks": [p.symbol for s, p in port.positions.items() if s != BENCHMARK],
     }, indent=2, default=str))
 
 

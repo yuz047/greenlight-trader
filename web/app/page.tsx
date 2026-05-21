@@ -18,24 +18,24 @@ export default async function Home() {
     <main>
       <section className="container">
         <div className="page-head">
-          <div className="eyebrow">GreenLight Trader · paper-trading lab</div>
+          <div className="eyebrow">GreenLight Trader · adaptive allocation lab</div>
           <h1>
-            A $1,000 controlled-risk portfolio,
+            A ${startingCapital.toLocaleString()} paper portfolio,
             <br />
-            run by an AI trader with the discipline turned up.
+            rotating through SPY, tech, semis, safety, and cash.
           </h1>
           <p className="lede">
-            GreenLight Trader is an end-of-day research system. The engine ingests free OHLCV
-            and headline sentiment, generates rule-based candidates, filters them through a
-            strict risk gate, and writes a human-readable EOD review every weekday after the
-            US close. Capital preservation first — this is research, not investment advice.
+            GreenLight Trader is an end-of-day research system. The engine ingests OHLCV,
+            VIX, and trend data, then sets target weights across SPY, QQQ, SMH, selective
+            tech/semiconductor sleeves, SHY, and cash. It avoids stretched entries, keeps
+            single-stock bets small, and gets more defensive during major drops.
           </p>
           <div className="mt-5 flex flex-wrap gap-2">
             <span className="pill">paper trading</span>
-            <span className="pill">$1,000 book</span>
-            <span className="pill">2 strategies</span>
-            <span className="pill">1% risk per trade</span>
-            <span className="pill">10% drawdown stop</span>
+            <span className="pill">${startingCapital.toLocaleString()} book</span>
+            <span className="pill">adaptive tech/semis</span>
+            <span className="pill">VIX stress gate</span>
+            <span className="pill">cash reserve</span>
             <span className="pill">via {d.source}</span>
           </div>
         </div>
