@@ -1,1 +1,42 @@
-[]
+[
+  {
+    "symbol": "SPY",
+    "strategy_id": "adaptive_tech_semis_v1",
+    "rationale": "Target allocation weight 40.0% in risk_on.",
+    "stop_distance": 0,
+    "target_distance": 0,
+    "max_hold_days": 0,
+    "score": 0.4,
+    "target_weight": 0.4
+  },
+  {
+    "symbol": "QQQ",
+    "strategy_id": "adaptive_tech_semis_v1",
+    "rationale": "Target allocation weight 25.0% in risk_on.",
+    "stop_distance": 0,
+    "target_distance": 0,
+    "max_hold_days": 0,
+    "score": 0.25,
+    "target_weight": 0.25
+  },
+  {
+    "symbol": "SMH",
+    "strategy_id": "adaptive_tech_semis_v1",
+    "rationale": "Target allocation weight 20.0% in risk_on.",
+    "stop_distance": 0,
+    "target_distance": 0,
+    "max_hold_days": 0,
+    "score": 0.2,
+    "target_weight": 0.2
+  },
+  {
+    "symbol": "CASH",
+    "strategy_id": "adaptive_tech_semis_v1",
+    "rationale": "Target allocation weight 15.0% in risk_on.",
+    "stop_distance": 0,
+    "target_distance": 0,
+    "max_hold_days": 0,
+    "score": 0.15,
+    "target_weight": 0.14999999999999986
+  }
+]
