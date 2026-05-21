@@ -1,9 +1,25 @@
 {
-  "cash": 1049.4748422588893,
+  "cash": 0.0,
   "realized_pnl": 49.474842258889396,
   "peak_relative_outperformance": 0.0,
   "inception": "2026-05-18",
-  "positions": {},
+  "positions": {
+    "SPY": {
+      "symbol": "SPY",
+      "side": "long",
+      "quantity": 1.4158176624065961,
+      "entry_price": 741.25,
+      "entry_time": "2026-05-21T12:48:39Z",
+      "stop_price": 0.0,
+      "target_price": 0.0,
+      "max_hold_days": 10000,
+      "strategy_id": "spy_core_baseline",
+      "thesis": "SPY baseline \u2014 always held except when relative DD forces exit.",
+      "last_price": 741.25,
+      "age_days": 0,
+      "is_core": true
+    }
+  },
   "trades": [
     {
       "trade_id": "b5af2621",
