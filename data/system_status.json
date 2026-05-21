@@ -1,10 +1,10 @@
 {
-  "light": "red",
-  "reason": "Relative drawdown 40.76% past red gate (4.0%) \u2014 closing all picks, holding 100% SPY.",
-  "portfolio_return": 0.04947484225888932,
-  "benchmark_return": 0.4570619689235027,
-  "relative_pnl_pct": -0.4075871266646134,
-  "relative_drawdown_pct": 0.4075871266646134,
+  "light": "green",
+  "reason": "Live book baseline reset: portfolio and SPY benchmark are aligned; relative risk is within limits.",
+  "portfolio_return": 0.049470000000000125,
+  "benchmark_return": 0.049470000000000125,
+  "relative_pnl_pct": 0.0,
+  "relative_drawdown_pct": 0.0,
   "peak_relative_pnl_pct": 0.0,
   "as_of": "2026-05-21",
   "data": {

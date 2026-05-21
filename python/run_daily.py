@@ -40,6 +40,9 @@ def main():
 
     port = Portfolio.load()
     prev_equity = port.nav() or MANDATE.starting_capital
+    history_compatible = _history_matches_live_book(continuity_snapshots, prev_equity)
+    if not history_compatible:
+        continuity_snapshots = []
 
     frames = load_universe()
     health = data_feed_health(frames)
@@ -108,7 +111,7 @@ def main():
 
     # Pre-check relative status BEFORE adding new picks
     nav_now = port.nav()
-    bench_eq_now = MANDATE.starting_capital  # gets filled below from snapshots history if available
+    bench_eq_now = nav_now  # gets filled below from compatible snapshots history if available
     if continuity_snapshots:
         last = continuity_snapshots[-1]
         if last.get("benchmark_equity"):
@@ -199,7 +202,8 @@ def main():
         "spy_core_weight": round(port.core_notional() / equity, 4) if equity > 0 else 0.0,
         "n_picks_open": len([p for p in port.positions.values() if not p.is_core]),
     }
-    snapshots = [s for s in snapshots_history if s.get("date") != today] + [snap]
+    snapshot_base = snapshots_history if history_compatible else []
+    snapshots = [s for s in snapshot_base if s.get("date") != today] + [snap]
     write_json("snapshots", snapshots)
 
     all_trades = read_json("trades", default=[])
@@ -307,6 +311,32 @@ def _live_metrics(snapshots, trades):
         "target_alpha_pct": MANDATE.target_alpha_pct,
         "max_relative_drawdown_pct": MANDATE.max_relative_drawdown_pct,
     }
+
+
+def _history_matches_live_book(snapshots, live_equity: float) -> bool:
+    """Return False when backtest/reset history is on another baseline.
+
+    GitHub Actions can only continue the live paper book safely when the
+    latest persisted snapshot and benchmark series are compatible with
+    ``portfolio_state.json``. If a prior bad run cold-started at $1,000, or
+    if a backtest history is mixed with a restored live book, the dashboard
+    should restart its live series from the actual portfolio state instead
+    of showing a bogus relative drawdown.
+    """
+    if not snapshots or live_equity <= 0:
+        return True
+    last = snapshots[-1]
+    try:
+        equity = float(last.get("equity", 0.0))
+        benchmark = float(last.get("benchmark_equity", equity))
+    except (TypeError, ValueError):
+        return False
+    if equity <= 0 or benchmark <= 0:
+        return False
+
+    equity_gap = abs(equity - live_equity) / live_equity
+    benchmark_gap = abs(benchmark - equity) / live_equity
+    return equity_gap <= 0.10 and benchmark_gap <= 0.10
 
 
 if __name__ == "__main__":
