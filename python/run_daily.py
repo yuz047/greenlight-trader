@@ -288,10 +288,13 @@ def _live_metrics(snapshots, trades):
     pf = (sum(wins) / abs(sum(losses))) if losses else (None if not wins else None)
     alphas = [t.get("alpha_vs_spy") for t in trades if t.get("alpha_vs_spy") is not None]
     avg_pick_alpha = float(np.mean(alphas)) if alphas else 0.0
-    n_years = max(len(snapshots) / 252, 1e-6)
     total_return = float(eq.iloc[-1] / MANDATE.starting_capital - 1.0)
     bench_total = float(bench.iloc[-1] / MANDATE.starting_capital - 1.0)
-    cagr = float((eq.iloc[-1] / MANDATE.starting_capital) ** (1 / n_years) - 1.0)
+    n_years = len(snapshots) / 252
+    cagr = (
+        float((eq.iloc[-1] / MANDATE.starting_capital) ** (1 / n_years) - 1.0)
+        if n_years >= 0.25 else 0.0
+    )
     return {
         "total_return": round(total_return, 4),
         "cagr": round(cagr, 4),
