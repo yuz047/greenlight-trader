@@ -1,1 +1,19 @@
-[]
+[
+  {
+    "symbol": "AMZN",
+    "side": "long",
+    "quantity": 2.974476148683909,
+    "entry_price": 265.010009765625,
+    "entry_time": "2026-05-21T12:46:39Z",
+    "stop_price": 251.39941835417224,
+    "target_price": 296.954591707665,
+    "max_hold_days": 30,
+    "strategy_id": "stock_pitcher_v2",
+    "thesis": "Rank #1 composite z=+1.08 (trend z=+1.54, R\u00b2=0.81, RS vs SPY=+20.8%). Projected 20d move $+31.94; stop $13.61, target $31.94. Replacing 25% SPY core with this pick. (SPY@entry=$741.25)",
+    "last_price": 265.010009765625,
+    "age_days": 1,
+    "is_core": false,
+    "unrealized_pnl": 0.0,
+    "notional": 788.2659532103413
+  }
+]

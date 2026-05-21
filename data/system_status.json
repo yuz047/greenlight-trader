@@ -1,27 +1,18 @@
 {
-  "light": "red",
-  "reason": "Relative drawdown 42.86% past red gate (4.0%) \u2014 closing all picks, holding 100% SPY. (data: synthetic fallback)",
-  "portfolio_return": 0.04947484225888865,
-  "benchmark_return": 0.47805804244406613,
-  "relative_pnl_pct": -0.4285832001851775,
-  "relative_drawdown_pct": 0.4285832001851775,
-  "peak_relative_pnl_pct": 0.0,
+  "light": "green",
+  "reason": "Above target \u2014 beating SPY by +248.43%.",
+  "portfolio_return": 2.941329766051706,
+  "benchmark_return": 0.4570619689235027,
+  "relative_pnl_pct": 2.4842677971282034,
+  "relative_drawdown_pct": 0.0,
+  "peak_relative_pnl_pct": 2.4842677971282034,
   "as_of": "2026-05-21",
   "data": {
     "ok": true,
     "stale_tickers": 0,
-    "synthetic": true,
-    "synthetic_tickers": [
-      "SPY",
-      "QQQ",
-      "AAPL",
-      "MSFT",
-      "NVDA",
-      "TSLA",
-      "META",
-      "AMZN"
-    ],
-    "as_of": "2026-05-21"
+    "synthetic": false,
+    "synthetic_tickers": [],
+    "as_of": "2026-05-20"
   },
-  "regime": "distressed"
+  "regime": "risk_on"
 }
