@@ -1,7 +1,7 @@
 {
   "cash": 2.842170943040401e-14,
   "realized_pnl": 49.474842258889396,
-  "peak_relative_outperformance": 0.0,
+  "peak_relative_outperformance": 4.842258889192763e-06,
   "inception": "2026-05-18",
   "positions": {
     "SPY": {
@@ -31,7 +31,7 @@
       "strategy_id": "stock_pitcher_v2",
       "thesis": "Rank #1 composite z=+1.08 (trend z=+1.54, R\u00b2=0.81, RS vs SPY=+20.8%). Projected 20d move $+31.94; stop $13.61, target $31.94. Replacing 25% SPY core with this pick. (SPY@entry=$741.25)",
       "last_price": 265.010009765625,
-      "age_days": 2,
+      "age_days": 3,
       "is_core": false
     }
   },

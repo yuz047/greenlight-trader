@@ -5542,7 +5542,7 @@
     "market_value": 1049.47,
     "daily_pnl": 0.0,
     "cumulative_pnl": 49.47,
-    "drawdown": 0.0023,
+    "drawdown": 0.0,
     "benchmark_equity": 1049.47,
     "portfolio_return": 0.0495,
     "benchmark_return": 0.0495,

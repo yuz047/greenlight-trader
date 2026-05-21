@@ -34,7 +34,7 @@
     "review_date": "2026-05-20"
   },
   {
-    "summary": "Equity ended at $1,049.47 (daily PnL $+0.00, drawdown 0.00%). No trades closed today. Backtest Sharpe 0.00, win rate 30.8%, max DD 0.0%.",
+    "summary": "Equity ended at $1,049.47 (daily PnL $+0.00, drawdown 0.00%). No trades closed today. Backtest Sharpe 1.03, win rate 30.8%, max DD 0.0%.",
     "mistakes": [],
     "proposed_changes": [
       {
