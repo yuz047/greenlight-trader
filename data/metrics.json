@@ -1,10 +1,10 @@
 {
   "total_return": 0.0495,
-  "cagr": 0.0,
+  "cagr": 0.0357,
   "benchmark_total_return": 0.0495,
   "alpha_total": 0.0,
-  "sharpe": 0.0,
-  "benchmark_sharpe": 0.0,
+  "sharpe": 1.027,
+  "benchmark_sharpe": 1.027,
   "info_ratio": 0.0,
   "max_relative_drawdown": 0.0,
   "win_rate": 0.308,

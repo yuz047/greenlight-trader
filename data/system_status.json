@@ -1,8 +1,8 @@
 {
   "light": "green",
-  "reason": "On track \u2014 beating SPY by +0.00%.",
-  "portfolio_return": 0.04947484225888932,
-  "benchmark_return": 0.04947484225888932,
+  "reason": "On track \u2014 live portfolio and SPY benchmark are aligned from the 2025-01-01 baseline.",
+  "portfolio_return": 0.049470000000000125,
+  "benchmark_return": 0.049470000000000125,
   "relative_pnl_pct": 0.0,
   "relative_drawdown_pct": 0.0,
   "peak_relative_pnl_pct": 0.0,

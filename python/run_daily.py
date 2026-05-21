@@ -118,8 +118,12 @@ def main():
             # Re-derive today's benchmark equity by scaling yesterday's by SPY's daily ret
             try:
                 spy_df = frames[BENCHMARK]
-                spy_yesterday = float(spy_df["close"].iloc[-2])
-                bench_eq_now = float(last["benchmark_equity"]) * (spy_close / spy_yesterday)
+                latest_data_date = spy_df.index[-1].date().isoformat()
+                if last.get("date") == latest_data_date:
+                    bench_eq_now = float(last["benchmark_equity"])
+                else:
+                    spy_yesterday = float(spy_df["close"].iloc[-2])
+                    bench_eq_now = float(last["benchmark_equity"]) * (spy_close / spy_yesterday)
             except Exception:
                 bench_eq_now = last["benchmark_equity"]
     status_pre = compute_relative_status(
