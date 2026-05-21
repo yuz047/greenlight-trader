@@ -1,18 +1,18 @@
 {
   "light": "red",
-  "reason": "Relative drawdown 44.23% past red gate (4.0%) \u2014 closing all picks, holding 100% SPY.",
+  "reason": "Relative drawdown 45.71% past red gate (4.0%) \u2014 closing all picks, holding 100% SPY.",
   "portfolio_return": 0.0,
-  "benchmark_return": 0.44227876521995224,
-  "relative_pnl_pct": -0.44227876521995224,
-  "relative_drawdown_pct": 0.44227876521995224,
+  "benchmark_return": 0.4570619689235027,
+  "relative_pnl_pct": -0.4570619689235027,
+  "relative_drawdown_pct": 0.4570619689235027,
   "peak_relative_pnl_pct": 0.0,
-  "as_of": "2026-05-20",
+  "as_of": "2026-05-21",
   "data": {
     "ok": true,
     "stale_tickers": 0,
     "synthetic": false,
     "synthetic_tickers": [],
-    "as_of": "2026-05-19"
+    "as_of": "2026-05-20"
   },
   "regime": "risk_on"
 }
