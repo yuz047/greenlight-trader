@@ -1,6 +1,12 @@
 name: GreenLight daily
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/daily.yml'
+      - 'python/**'
+      - 'data/portfolio_state.json'
   schedule:
     # 00:30 UTC Tue–Sat ≈ 20:30 ET Mon–Fri (after the US close).
     - cron: '30 0 * * 2-6'
@@ -16,6 +22,10 @@ on:
 permissions:
   contents: write   # so the job can commit refreshed data/*.json back to the repo
 
+concurrency:
+  group: greenlight-daily-${{ github.event.repository.default_branch }}
+  cancel-in-progress: false
+
 env:
   # GitHub is forcing JS actions to Node 24 on 2026-06-02; opt in now so the
   # warning goes away and we never run into a surprise upgrade.
@@ -27,6 +37,10 @@ jobs:
     timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Rerun jobs should continue from the latest persisted paper-book
+          # state, not replay the original workflow SHA.
+          ref: ${{ github.event.repository.default_branch }}
 
       - uses: actions/setup-python@v5
         with:

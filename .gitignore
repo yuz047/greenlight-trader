@@ -14,9 +14,6 @@ out/
 # Data cache (CSV) — keep the JSON outputs so the dashboard can render offline
 data/cache/
 
-# Engine state — this is local-only (the canonical record is in data/*.json)
-data/portfolio_state.json
-
 # Deprecated / scratch files
 python/strategies_old.py
 *.bak

@@ -26,6 +26,18 @@ from db import write_json, read_json, upsert, replace_table, supabase_enabled
 
 
 def main():
+    today = date.today().isoformat()
+    snapshots_history = read_json("snapshots", default=[])
+    if snapshots_history and not Portfolio.path().exists():
+        raise RuntimeError(
+            "Missing data/portfolio_state.json while snapshots already exist. "
+            "Refusing to cold-start the paper book at $1,000; run seed mode or "
+            "restore/commit the portfolio state file first."
+        )
+    continuity_snapshots = [
+        s for s in snapshots_history if s.get("date") != today
+    ]
+
     port = Portfolio.load()
     prev_equity = port.nav() or MANDATE.starting_capital
 
@@ -97,9 +109,8 @@ def main():
     # Pre-check relative status BEFORE adding new picks
     nav_now = port.nav()
     bench_eq_now = MANDATE.starting_capital  # gets filled below from snapshots history if available
-    snapshots_history = read_json("snapshots", default=[])
-    if snapshots_history:
-        last = snapshots_history[-1]
+    if continuity_snapshots:
+        last = continuity_snapshots[-1]
         if last.get("benchmark_equity"):
             # Re-derive today's benchmark equity by scaling yesterday's by SPY's daily ret
             try:
@@ -172,7 +183,6 @@ def main():
     port.peak_relative_outperformance = status.peak_relative_pnl_pct
 
     # Snapshot
-    today = date.today().isoformat()
     snap = {
         "date": today,
         "equity": round(equity, 2),

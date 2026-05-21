@@ -189,6 +189,11 @@ differ only in entry timing: the backtest opens on the next day's open;
 the live job opens on today's close because the cron runs after the
 session.
 
+`data/portfolio_state.json` is intentionally persisted with the other
+JSON outputs. The scheduled GitHub Action starts from a fresh checkout,
+so this file is required to continue the paper book instead of
+cold-starting the account back at `$1,000`.
+
 ---
 
 ## Run it yourself
