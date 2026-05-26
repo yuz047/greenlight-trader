@@ -5598,5 +5598,21 @@
     "relative_drawdown": 0.0,
     "spy_core_weight": 0.4,
     "n_picks_open": 2
+  },
+  {
+    "date": "2026-05-26",
+    "equity": 7009.41,
+    "cash": 1040.73,
+    "market_value": 5968.69,
+    "daily_pnl": 0.0,
+    "cumulative_pnl": 2009.41,
+    "drawdown": 0.0,
+    "benchmark_equity": 6437.8,
+    "portfolio_return": 0.4019,
+    "benchmark_return": 0.2876,
+    "alpha": 0.1143,
+    "relative_drawdown": 0.005,
+    "spy_core_weight": 0.4,
+    "n_picks_open": 2
   }
 ]
