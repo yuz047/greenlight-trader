@@ -1,21 +1,21 @@
 {
-  "cash": 1040.7280924060847,
+  "cash": 1063.8587248921742,
   "realized_pnl": 0.0,
-  "peak_relative_outperformance": 0.11936492830025847,
+  "peak_relative_outperformance": 0.13691794376100774,
   "inception": "2026-05-21",
   "positions": {
     "SPY": {
       "symbol": "SPY",
       "side": "long",
-      "quantity": 3.759974757367669,
-      "entry_price": 738.1099853515625,
+      "quantity": 3.7956218249494564,
+      "entry_price": 738.2271932567309,
       "entry_time": "2026-05-21 00:00:00",
       "stop_price": 0.0,
       "target_price": 0.0,
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 40.00%.",
-      "last_price": 745.6400146484375,
+      "last_price": 750.5900268554688,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.4
@@ -31,7 +31,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 25.00%.",
-      "last_price": 717.5399780273438,
+      "last_price": 730.280029296875,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.25
@@ -39,7 +39,7 @@
     "SMH": {
       "symbol": "SMH",
       "side": "long",
-      "quantity": 2.448541657742918,
+      "quantity": 2.365692212952658,
       "entry_price": 566.719970703125,
       "entry_time": "2026-05-21 00:00:00",
       "stop_price": 0.0,
@@ -47,7 +47,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 20.00%.",
-      "last_price": 576.3200073242188,
+      "last_price": 602.1400146484375,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.2

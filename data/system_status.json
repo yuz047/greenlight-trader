@@ -1,18 +1,18 @@
 {
   "light": "green",
-  "reason": "Above target \u2014 beating SPY by +11.43%.",
-  "portfolio_return": 0.4018829283002585,
-  "benchmark_return": 0.28756028924544585,
-  "relative_pnl_pct": 0.11432263905481266,
-  "relative_drawdown_pct": 0.005042289245445808,
-  "peak_relative_pnl_pct": 0.11936492830025847,
-  "as_of": "2026-05-26",
+  "reason": "Above target \u2014 beating SPY by +13.69%.",
+  "portfolio_return": 0.4244779437610078,
+  "benchmark_return": 0.28756000000000004,
+  "relative_pnl_pct": 0.13691794376100774,
+  "relative_drawdown_pct": 0.0,
+  "peak_relative_pnl_pct": 0.13691794376100774,
+  "as_of": "2026-05-27",
   "data": {
     "ok": true,
     "stale_tickers": 0,
     "synthetic": false,
     "synthetic_tickers": [],
-    "as_of": "2026-05-25"
+    "as_of": "2026-05-26"
   },
   "regime": "risk_on"
 }
