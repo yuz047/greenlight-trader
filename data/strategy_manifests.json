@@ -106,6 +106,7 @@
       "sell_extension_sma50": 1.28,
       "sell_rsi": 82.0,
       "trend_break_sma50": 0.95,
+      "healthy_forecast_min": 0.05,
       "rs_window": 63,
       "mom_window": 20,
       "decay_zscore_exit": 0.0,
@@ -113,7 +114,7 @@
       "target_atr": 12.0,
       "max_hold_days": 160
     },
-    "rules": "Hold SPY as ballast. In normal/fear regimes, rank QQQ, SMH, and major tech/semiconductor stocks by relative strength, trend, momentum, and buyable pullback quality. Avoid new entries when RSI or price/50dma is too extended. Exit holdings that become overextended or break trend. When SPY drawdown/VIX indicate stress, prefer a larger SHY safety sleeve.",
+    "rules": "Hold SPY as ballast. In normal/fear regimes, rank QQQ, SMH, and major tech/semiconductor stocks by a multi-technical opportunity list: trend, breakout quality, buyable pullbacks, volume confirmation, forecast upside, valuation health, and quality. Avoid new entries when RSI or price/50dma is too extended. Exit holdings that become overextended or break trend. When SPY drawdown/VIX indicate stress, prefer a larger SHY safety sleeve.",
     "status": "active",
     "module": "adaptive_tech_semis_v1"
   }

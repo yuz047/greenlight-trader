@@ -10,12 +10,12 @@
     "max_hold_days": 10000,
     "strategy_id": "adaptive_tech_semis_v1",
     "thesis": "Target allocation weight 25.00%.",
-    "last_price": 729.4500122070312,
+    "last_price": 729.780029296875,
     "age_days": 0,
     "is_core": true,
     "target_weight": 0.25,
-    "unrealized_pnl": 48.521447429597025,
-    "notional": 1783.0682681064063
+    "unrealized_pnl": 49.32814150182387,
+    "notional": 1783.8749621786333
   },
   {
     "symbol": "SMH",
@@ -28,12 +28,12 @@
     "max_hold_days": 10000,
     "strategy_id": "adaptive_tech_semis_v1",
     "thesis": "Target allocation weight 20.00%.",
-    "last_price": 595.5,
+    "last_price": 596.4099731445312,
     "age_days": 0,
     "is_core": true,
     "target_weight": 0.2,
-    "unrealized_pnl": 68.58725930351564,
-    "notional": 1419.1685662974103
+    "unrealized_pnl": 70.75586599183396,
+    "notional": 1421.3371729857286
   },
   {
     "symbol": "MPWR",
@@ -46,11 +46,11 @@
     "max_hold_days": 10000,
     "strategy_id": "adaptive_tech_semis_v1",
     "thesis": "Target allocation for risk_on: {'SPY': 0.4, 'QQQ': 0.25, 'SMH': 0.2, 'CASH': 0.049999999999999975, 'MPWR': 0.1}",
-    "last_price": 1620.1700439453125,
+    "last_price": 1622.5849609375,
     "age_days": 0,
     "is_core": true,
     "target_weight": 0.1,
-    "unrealized_pnl": -1.0576984790638622,
-    "notional": 709.6108880138005
+    "unrealized_pnl": 0.0,
+    "notional": 710.6685864928643
   }
 ]

@@ -50,6 +50,7 @@ MANIFEST = {
         "sell_extension_sma50": 1.28,
         "sell_rsi": 82.0,
         "trend_break_sma50": 0.95,
+        "healthy_forecast_min": 0.05,
         "rs_window": 63,
         "mom_window": 20,
         "decay_zscore_exit": 0.0,
@@ -59,9 +60,10 @@ MANIFEST = {
     },
     "rules": (
         "Hold SPY as ballast. In normal/fear regimes, rank QQQ, SMH, and major "
-        "tech/semiconductor stocks by relative strength, trend, momentum, and "
-        "buyable pullback quality. Avoid new entries when RSI or price/50dma is "
-        "too extended. Exit holdings that become overextended or break trend. "
+        "tech/semiconductor stocks by a multi-technical opportunity list: trend, "
+        "breakout quality, buyable pullbacks, volume confirmation, forecast upside, "
+        "valuation health, and quality. Avoid new entries when RSI or price/50dma "
+        "is too extended. Exit holdings that become overextended or break trend. "
         "When SPY drawdown/VIX indicate stress, prefer a larger SHY safety sleeve."
     ),
     "status": "active",
@@ -159,12 +161,32 @@ def compute_ranks(universe: Dict[str, pd.DataFrame], params: dict) -> Dict[str, 
         pullback = close / high20 - 1.0 if high20 > 0 else 0.0
         research = df.attrs.get("candidate_research", {}) or {}
         market_reward = float(research.get("market_reward_score") or 0.0)
+        technical_score = float(research.get("technical_score") or market_reward)
+        breakout_score = float(research.get("breakout_score") or 0.0)
+        pullback_score = float(research.get("pullback_score") or 0.0)
+        volume_score = float(research.get("volume_score") or 0.0)
         forecast_health = float(research.get("forecast_health_score") or 0.0)
         valuation_health = float(research.get("valuation_health_score") or 0.0)
         quality_health = float(research.get("quality_health_score") or 0.0)
-        massive_bonus = 0.18 * market_reward + 0.12 * forecast_health + 0.10 * quality_health + 0.08 * valuation_health
+        consensus_upside = float(research.get("consensus_upside") or 0.0)
+        setup = str(research.get("setup") or "trend")
+        healthy_prediction = bool(research.get("healthy_prediction"))
+        research_bonus = (
+            0.32 * technical_score
+            + 0.12 * breakout_score
+            + 0.10 * pullback_score
+            + 0.06 * volume_score
+            + 0.16 * forecast_health
+            + 0.08 * max(-1.0, min(1.0, consensus_upside / 0.25))
+            + 0.10 * quality_health
+            + 0.08 * valuation_health
+        )
+        if healthy_prediction:
+            research_bonus += 0.08
+        if forecast_health < -0.20 and consensus_upside < 0:
+            research_bonus -= 0.18
         if research.get("valuation_red_flag"):
-            massive_bonus -= 0.18
+            research_bonus -= 0.22
         overbought = (
             extension >= params["sell_extension_sma50"]
             or rsi14 >= params["sell_rsi"]
@@ -190,10 +212,10 @@ def compute_ranks(universe: Dict[str, pd.DataFrame], params: dict) -> Dict[str, 
             )
             stress_penalty = 0.45 if ctx["stress"] and sym not in params["etfs"] else 0.0
             score = (
-                1.8 * rel
-                + 0.9 * mom
-                + 0.7 * trend
-                + massive_bonus
+                1.25 * rel
+                + 0.55 * mom
+                + 0.55 * trend
+                + research_bonus
                 + semi_bonus
                 + etf_bonus
                 + fear_pullback_bonus
@@ -216,9 +238,16 @@ def compute_ranks(universe: Dict[str, pd.DataFrame], params: dict) -> Dict[str, 
             "atr14": float(atr14) if np.isfinite(atr14) else 0.0,
             "target_weight": _target_weight(sym, params, ctx),
             "market_reward_score": market_reward,
+            "technical_score": technical_score,
+            "breakout_score": breakout_score,
+            "pullback_score": pullback_score,
+            "volume_score": volume_score,
             "forecast_health_score": forecast_health,
+            "consensus_upside": consensus_upside,
             "valuation_health_score": valuation_health,
             "quality_health_score": quality_health,
+            "setup": setup,
+            "healthy_prediction": healthy_prediction,
             "massive_source": research.get("source"),
             **ctx,
         }))
@@ -284,9 +313,11 @@ def run(
         side="long",
         rationale=(
             f"Rank #{info['rank']} adaptive tech/semis score={info['composite']:+.2f}; "
+            f"setup={info['setup']}, tech={info['technical_score']:+.2f}, "
             f"RS63={info['relative_strength']*100:+.1f}%, mom20={info['momentum_20d']*100:+.1f}%, "
             f"price/50dma={info['extension_sma50']:.2f}, RSI={info['rsi14']:.1f}, "
-            f"forecast={info['forecast_health_score']:+.2f}, valuation={info['valuation_health_score']:+.2f}, "
+            f"forecast={info['forecast_health_score']:+.2f}, upside={info['consensus_upside']*100:+.1f}%, "
+            f"valuation={info['valuation_health_score']:+.2f}, "
             f"VIX={info['vix']:.1f}. Target weight {info['target_weight']*100:.0f}%."
         ),
         stop_distance=float(stop_distance),
@@ -302,9 +333,13 @@ def run(
             "extension_sma50": round(info["extension_sma50"], 3),
             "rsi14": round(info["rsi14"], 1),
             "market_reward_score": round(info["market_reward_score"], 3),
+            "technical_score": round(info["technical_score"], 3),
+            "setup": info["setup"],
             "forecast_health_score": round(info["forecast_health_score"], 3),
+            "consensus_upside": round(info["consensus_upside"], 4),
             "valuation_health_score": round(info["valuation_health_score"], 3),
             "quality_health_score": round(info["quality_health_score"], 3),
+            "healthy_prediction": info["healthy_prediction"],
             "massive_source": info.get("massive_source"),
             "vix": round(info["vix"], 2) if np.isfinite(info["vix"]) else None,
             "regime_role": "growth",

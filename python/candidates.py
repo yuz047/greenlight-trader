@@ -125,6 +125,15 @@ def _ret(close: pd.Series, window: int) -> float | None:
     return end / start - 1.0
 
 
+def _rolling_percentile(series: pd.Series, value: float | None, window: int = 252) -> float | None:
+    if value is None or not math.isfinite(value):
+        return None
+    sample = series.dropna().tail(window)
+    if sample.empty:
+        return None
+    return float((sample <= value).mean())
+
+
 def _technical_research(symbol: str, df: pd.DataFrame, spy: pd.DataFrame | None) -> dict:
     close = df["close"] if "close" in df else pd.Series(dtype=float)
     volume = df["volume"] if "volume" in df else pd.Series(dtype=float)
@@ -136,17 +145,64 @@ def _technical_research(symbol: str, df: pd.DataFrame, spy: pd.DataFrame | None)
     avg_vol = volume.tail(20).mean() if len(volume) >= 20 else None
     vol_ratio = _num(volume.iloc[-1] / avg_vol if avg_vol and avg_vol > 0 else None, 1.0)
     sma50 = _num(df["sma50"].iloc[-1] if "sma50" in df and len(df) else None)
+    sma200 = _num(df["sma200"].iloc[-1] if "sma200" in df and len(df) else None)
+    rsi14 = _num(df["rsi14"].iloc[-1] if "rsi14" in df and len(df) else None)
+    atr14 = _num(df["atr14"].iloc[-1] if "atr14" in df and len(df) else None)
     extension = price / sma50 if price and sma50 and sma50 > 0 else None
+    trend_vs_200 = price / sma200 - 1.0 if price and sma200 and sma200 > 0 else None
+    high20 = _num(df["high20"].iloc[-1] if "high20" in df and len(df) else None)
+    high63 = _num(close.tail(63).max() if len(close) >= 63 else None)
+    pullback_20d = price / high20 - 1.0 if price and high20 and high20 > 0 else None
+    pullback_63d = price / high63 - 1.0 if price and high63 and high63 > 0 else None
+    atr_pct = atr14 / price if atr14 and price and price > 0 else None
+    ret_series = close.pct_change()
+    vol20 = _num(ret_series.tail(20).std())
+    vol_pctile = _rolling_percentile(ret_series.rolling(20).std(), vol20)
 
     rel63 = (ret63 or 0.0) - (spy_ret63 or 0.0)
-    reward = (
-        0.35 * _clip(rel63 / 0.18, -1, 1)
-        + 0.30 * _clip((ret126 or 0.0) / 0.30, -1, 1)
-        + 0.20 * _clip((ret20 or 0.0) / 0.12, -1, 1)
-        + 0.15 * _clip((vol_ratio or 1.0) - 1.0, -1, 1)
+
+    trend_score = (
+        0.45 * _clip((trend_vs_200 or 0.0) / 0.35, -1, 1)
+        + 0.35 * _clip(rel63 / 0.20, -1, 1)
+        + 0.20 * _clip((ret126 or 0.0) / 0.45, -1, 1)
     )
-    if extension and extension > 1.22:
-        reward -= 0.25
+    breakout_score = (
+        0.40 * _clip((ret20 or 0.0) / 0.16, -1, 1)
+        + 0.30 * _clip((vol_ratio or 1.0) - 1.0, -1, 1)
+        + 0.30 * _clip((pullback_20d or 0.0) / 0.02 + 1.0, 0, 1)
+    )
+    pullback_score = (
+        0.45 * _clip(rel63 / 0.20, -1, 1)
+        + 0.35 * (1.0 if pullback_63d is not None and -0.14 <= pullback_63d <= -0.025 else 0.0)
+        + 0.20 * _clip((50.0 - abs((rsi14 or 50.0) - 50.0)) / 50.0, 0, 1)
+    )
+    volume_score = _clip((vol_ratio or 1.0) - 1.0, -1, 1)
+    risk_score = (
+        -0.30 if extension and extension > 1.22 else 0.0
+    ) + (
+        -0.25 if rsi14 and rsi14 > 78 else 0.0
+    ) + (
+        -0.20 if vol_pctile and vol_pctile > 0.90 else 0.0
+    )
+    if breakout_score >= pullback_score and breakout_score >= 0.35:
+        setup = "breakout"
+        setup_score = breakout_score
+    elif pullback_score >= 0.30:
+        setup = "pullback"
+        setup_score = pullback_score
+    else:
+        setup = "trend"
+        setup_score = trend_score
+    technical_score = _clip(
+        0.42 * trend_score
+        + 0.24 * breakout_score
+        + 0.18 * pullback_score
+        + 0.10 * volume_score
+        + 0.06 * setup_score
+        + risk_score,
+        -1,
+        1,
+    )
 
     return {
         "symbol": symbol,
@@ -157,17 +213,43 @@ def _technical_research(symbol: str, df: pd.DataFrame, spy: pd.DataFrame | None)
         "relative_strength_63d": rel63,
         "volume_ratio_20d": vol_ratio,
         "extension_sma50": extension,
-        "market_reward_score": round(_clip(reward, -1, 1), 4),
+        "trend_vs_200d": trend_vs_200,
+        "rsi14": rsi14,
+        "atr_pct": atr_pct,
+        "pullback_20d": pullback_20d,
+        "pullback_63d": pullback_63d,
+        "trend_score": round(_clip(trend_score, -1, 1), 4),
+        "breakout_score": round(_clip(breakout_score, -1, 1), 4),
+        "pullback_score": round(_clip(pullback_score, -1, 1), 4),
+        "volume_score": round(volume_score, 4),
+        "technical_score": round(technical_score, 4),
+        "market_reward_score": round(technical_score, 4),
+        "setup": setup,
         "source": "local",
     }
 
 
+def _pick(row: dict, *keys):
+    for key in keys:
+        value = row
+        ok = True
+        for part in key.split("."):
+            if isinstance(value, dict) and part in value:
+                value = value[part]
+            else:
+                ok = False
+                break
+        if ok and value is not None:
+            return value
+    return None
+
+
 def _score_ratios(row: dict) -> dict:
-    pe = _num(row.get("price_to_earnings"))
-    ps = _num(row.get("price_to_sales"))
-    fcf = _num(row.get("free_cash_flow"))
-    roe = _num(row.get("return_on_equity"))
-    debt = _num(row.get("debt_to_equity"))
+    pe = _num(_pick(row, "price_to_earnings", "valuation.price_to_earnings", "ratios.price_to_earnings", "pe_ratio"))
+    ps = _num(_pick(row, "price_to_sales", "valuation.price_to_sales", "ratios.price_to_sales", "ps_ratio"))
+    fcf = _num(_pick(row, "free_cash_flow", "cash_flow.free_cash_flow", "cash_flow_statement.free_cash_flow"))
+    roe = _num(_pick(row, "return_on_equity", "profitability.return_on_equity", "ratios.return_on_equity", "roe"))
+    debt = _num(_pick(row, "debt_to_equity", "leverage.debt_to_equity", "ratios.debt_to_equity"))
 
     valuation = 0.0
     if pe is not None:
@@ -200,7 +282,7 @@ def _score_ratios(row: dict) -> dict:
 
 
 def _score_consensus(row: dict, price: float | None) -> dict:
-    target = _num(row.get("consensus_price_target"))
+    target = _num(_pick(row, "consensus_price_target", "price_target.consensus", "avg_price_target"))
     buy = int(row.get("buy_ratings") or 0) + int(row.get("strong_buy_ratings") or 0)
     hold = int(row.get("hold_ratings") or 0)
     sell = int(row.get("sell_ratings") or 0) + int(row.get("strong_sell_ratings") or 0)
@@ -225,6 +307,45 @@ def _score_consensus(row: dict, price: float | None) -> dict:
     }
 
 
+def _yfinance_fallback(symbol: str, price: float | None) -> dict:
+    """Fill forecast/valuation fields when Massive partner data is absent.
+
+    This keeps the dashboard informative locally. Massive remains the preferred
+    source when the API key and paid datasets are available.
+    """
+    try:
+        import yfinance as yf
+        info = yf.Ticker(symbol).get_info()
+    except Exception as exc:
+        _log(f"yfinance fundamentals {symbol}: {exc}")
+        return {}
+    target = _num(info.get("targetMeanPrice"))
+    upside = target / price - 1.0 if target and price and price > 0 else None
+    recommendation = _num(info.get("recommendationMean"))
+    buy_score = None
+    if recommendation is not None:
+        # Yahoo scale is generally 1 strong buy to 5 sell.
+        buy_score = _clip((3.0 - recommendation) / 2.0, -1, 1)
+    forecast = 0.0
+    if upside is not None:
+        forecast += 0.65 * _clip(upside / 0.25, -1, 1)
+    if buy_score is not None:
+        forecast += 0.25 * buy_score
+    out = {
+        "consensus_price_target": target,
+        "consensus_upside": upside,
+        "forecast_health_score": round(_clip(forecast, -1, 1), 4),
+        "price_to_earnings": _num(info.get("forwardPE") or info.get("trailingPE")),
+        "price_to_sales": _num(info.get("priceToSalesTrailing12Months")),
+        "return_on_equity": _num(info.get("returnOnEquity")),
+        "debt_to_equity": _num(info.get("debtToEquity")),
+    }
+    ratio_scores = _score_ratios(out)
+    out.update({k: v for k, v in ratio_scores.items() if v is not None})
+    out["source"] = "yfinance+local"
+    return out
+
+
 def build_candidate_research(enriched: Dict[str, pd.DataFrame], limit: int = 40) -> list[dict]:
     """Build and return the daily opportunity list."""
     spy = enriched.get("SPY")
@@ -245,17 +366,39 @@ def build_candidate_research(enriched: Dict[str, pd.DataFrame], limit: int = 40)
         candidate_symbols = [r["symbol"] for r in rows[:limit]]
         for i, sym in enumerate(candidate_symbols, start=1):
             ratios = client.ratios(sym)
+            rows_by_symbol = next(r for r in rows if r["symbol"] == sym)
             if ratios:
-                rows_by_symbol = next(r for r in rows if r["symbol"] == sym)
                 rows_by_symbol.update(_score_ratios(ratios))
                 rows_by_symbol["source"] = "massive"
             consensus = client.consensus(sym)
             if consensus:
-                rows_by_symbol = next(r for r in rows if r["symbol"] == sym)
                 rows_by_symbol.update(_score_consensus(consensus, rows_by_symbol.get("price")))
                 rows_by_symbol["source"] = "massive+benzinga"
             if i % 8 == 0:
                 time.sleep(0.25)
+
+    fallback_symbols = [
+        r["symbol"] for r in rows
+        if r.get("forecast_health_score") is None
+        or r.get("consensus_price_target") is None
+        or r.get("price_to_earnings") is None
+    ][: min(limit, 24)]
+    for i, sym in enumerate(fallback_symbols, start=1):
+        row = next(r for r in rows if r["symbol"] == sym)
+        fallback = _yfinance_fallback(sym, row.get("price"))
+        if fallback:
+            filled_from_fallback = False
+            for key, value in fallback.items():
+                if key == "source" or value is None:
+                    continue
+                if row.get(key) in (None, 0.0):
+                    row[key] = value
+                    filled_from_fallback = True
+            if filled_from_fallback:
+                source = str(row.get("source") or "local")
+                row["source"] = "yfinance+local" if source == "local" else f"{source}+yfinance"
+        if i % 8 == 0:
+            time.sleep(0.25)
 
     for row in rows:
         row.setdefault("valuation_health_score", 0.0)
@@ -263,14 +406,15 @@ def build_candidate_research(enriched: Dict[str, pd.DataFrame], limit: int = 40)
         row.setdefault("forecast_health_score", 0.0)
         row.setdefault("valuation_red_flag", False)
         row["opportunity_score"] = round(
-            0.46 * row.get("market_reward_score", 0.0)
-            + 0.22 * row.get("forecast_health_score", 0.0)
-            + 0.18 * row.get("quality_health_score", 0.0)
-            + 0.14 * row.get("valuation_health_score", 0.0),
+            0.34 * row.get("technical_score", row.get("market_reward_score", 0.0))
+            + 0.22 * row.get("market_reward_score", 0.0)
+            + 0.20 * row.get("forecast_health_score", 0.0)
+            + 0.14 * row.get("quality_health_score", 0.0)
+            + 0.10 * row.get("valuation_health_score", 0.0),
             4,
         )
         row["healthy_prediction"] = (
-            row.get("forecast_health_score", 0.0) >= 0.15
+            row.get("forecast_health_score", 0.0) >= 0.05
             and row.get("valuation_health_score", 0.0) >= -0.25
             and not row.get("valuation_red_flag", False)
         )
