@@ -5620,7 +5620,7 @@
     "equity": 7102.62,
     "cash": 369.06,
     "market_value": 6733.56,
-    "daily_pnl": -4.07,
+    "daily_pnl": 0.0,
     "cumulative_pnl": 2102.62,
     "drawdown": 0.0,
     "benchmark_equity": 6436.68,
