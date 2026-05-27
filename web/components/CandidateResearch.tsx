@@ -11,6 +11,13 @@ const pct = (n?: number | null, d = 1) =>
 const cls = (n?: number | null) =>
   n == null || !Number.isFinite(n) || n === 0 ? "" : n > 0 ? "num-pos" : "num-neg";
 
+const status = (c: CandidateResearch) => {
+  const labels = [];
+  if (c.healthy_prediction) labels.push("healthy");
+  if (c.must_review) labels.push("watch");
+  return labels.length ? labels : ["review"];
+};
+
 export default function CandidateResearchPanel({ candidates }: { candidates: CandidateResearch[] }) {
   const choices = candidates;
   return (
@@ -33,6 +40,7 @@ export default function CandidateResearchPanel({ candidates }: { candidates: Can
               <tr>
                 <th>Rank</th>
                 <th>Symbol</th>
+                <th>Status</th>
                 <th>Setup</th>
                 <th className="text-right">Score</th>
                 <th className="text-right">Tech</th>
@@ -41,17 +49,17 @@ export default function CandidateResearchPanel({ candidates }: { candidates: Can
                 <th className="text-right">Upside</th>
                 <th className="text-right">Forecast</th>
                 <th className="text-right">P/E</th>
-                <th>Source</th>
               </tr>
             </thead>
             <tbody>
               {choices.map((c) => (
                 <tr key={`${c.rank}-${c.symbol}`}>
                   <td><span className="tag">#{c.rank}</span></td>
-                  <td className="symbol">
-                    {c.symbol}
-                    {c.healthy_prediction ? <span className="pill green ml-2">healthy</span> : null}
-                    {c.must_review ? <span className="pill ml-2">watch</span> : null}
+                  <td className="symbol">{c.symbol}</td>
+                  <td>
+                    {status(c).map((label) => (
+                      <span key={label} className={`pill ml-2 ${label === "healthy" ? "green" : ""}`}>{label}</span>
+                    ))}
                   </td>
                   <td><span className="tag">{c.setup || "trend"}</span></td>
                   <td className={`right ${cls(c.opportunity_score)}`}>{fmt(c.opportunity_score, 2)}</td>
@@ -63,7 +71,6 @@ export default function CandidateResearchPanel({ candidates }: { candidates: Can
                   <td className={`right ${cls(c.consensus_upside)}`}>{pct(c.consensus_upside)}</td>
                   <td className={`right ${cls(c.forecast_health_score)}`}>{fmt(c.forecast_health_score, 2)}</td>
                   <td className="right">{fmt(c.price_to_earnings, 1)}</td>
-                  <td><span className="tag tag-accent">{c.source || "local"}</span></td>
                 </tr>
               ))}
             </tbody>

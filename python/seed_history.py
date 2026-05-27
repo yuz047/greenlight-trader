@@ -17,6 +17,7 @@ from datetime import date
 from config import ACTIVE_IDS, MANDATE, WATCHLIST, BACKTEST_DAYS
 from data import load_universe, data_feed_health
 from backtest import run_backtest
+from candidates import discover_symbols
 from strategies import manifests_for
 from db import write_json, upsert, replace_table, supabase_enabled
 from llm_review import review
@@ -29,8 +30,9 @@ DASHBOARD_START_DATE = "2025-01-01"
 
 
 def main():
-    print(f"Loading universe: {WATCHLIST}")
-    frames = load_universe()
+    symbols = discover_symbols()
+    print(f"Loading universe: {symbols}")
+    frames = load_universe(symbols)
     health = data_feed_health(frames)
     regime = market_regime(frames[BENCHMARK])
     print(f"Data feed: {health}")

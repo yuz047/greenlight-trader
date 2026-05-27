@@ -1,8 +1,8 @@
 # GreenLight Trader
 
 A small AI-supervised paper-trading research system.
-It runs a $1,000 controlled-risk portfolio, generates next-day trade
-candidates from a multi-factor stock pitcher and two rule-based overlays,
+It runs a $5,000 controlled-risk portfolio, generates daily allocation
+choices from a broad tech, semiconductor, mega-cap, and discovery universe,
 gates every trade through a strict risk engine, and writes a human-readable
 end-of-day review.
 

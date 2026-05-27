@@ -1,51 +1,11 @@
 [
   {
-    "summary": "Equity ended at $6,929.04 (daily PnL $+3.65, drawdown 0.00%). No trades closed today. Backtest Sharpe 1.58, alpha +10.3% vs SPY, max DD 0.0%.",
+    "summary": "Equity ended at $8,482.95 (daily PnL $-29.26, drawdown 0.00%). No trades closed today. Backtest Sharpe 2.01, alpha +39.4% vs SPY, max DD 13.6%.",
     "mistakes": [],
     "proposed_changes": [],
     "next_day_plan": "Refresh OHLCV/VIX, recompute target weights, and rebalance only if the adaptive allocation rules call for it.",
     "light": "green",
-    "light_reason": "Above target \u2014 beating SPY by +10.33%.",
-    "source": "template",
-    "review_date": "2026-05-21"
-  },
-  {
-    "summary": "Equity ended at $6,970.36 (daily PnL $+41.32, drawdown 0.00%). No trades closed today. Backtest Sharpe 1.61, alpha +11.2% vs SPY, max DD 0.0%.",
-    "mistakes": [],
-    "proposed_changes": [],
-    "next_day_plan": "Refresh OHLCV/VIX, recompute target weights, and rebalance only if the adaptive allocation rules call for it.",
-    "light": "green",
-    "light_reason": "Above target \u2014 beating SPY by +11.16%.",
-    "source": "template",
-    "review_date": "2026-05-22"
-  },
-  {
-    "summary": "Equity ended at $7,009.41 (daily PnL $+39.05, drawdown 0.00%). No trades closed today. Backtest Sharpe 1.63, alpha +11.9% vs SPY, max DD 0.0%.",
-    "mistakes": [],
-    "proposed_changes": [],
-    "next_day_plan": "Refresh OHLCV/VIX, recompute target weights, and rebalance only if the adaptive allocation rules call for it.",
-    "light": "green",
-    "light_reason": "Above target \u2014 beating SPY by +11.94%.",
-    "source": "template",
-    "review_date": "2026-05-23"
-  },
-  {
-    "summary": "Equity ended at $7,009.41 (daily PnL $+0.00, drawdown 0.00%). No trades closed today. Backtest Sharpe 1.63, alpha +11.4% vs SPY, max DD 0.0%.",
-    "mistakes": [],
-    "proposed_changes": [],
-    "next_day_plan": "Refresh OHLCV/VIX, recompute target weights, and rebalance only if the adaptive allocation rules call for it.",
-    "light": "green",
-    "light_reason": "Above target \u2014 beating SPY by +11.43%.",
-    "source": "template",
-    "review_date": "2026-05-26"
-  },
-  {
-    "summary": "Equity ended at $7,102.62 (daily PnL $+0.00, drawdown 0.00%). No trades closed today. Backtest Sharpe 1.68, alpha +13.3% vs SPY, max DD 0.0%.",
-    "mistakes": [],
-    "proposed_changes": [],
-    "next_day_plan": "Refresh OHLCV/VIX, recompute target weights, and rebalance only if the adaptive allocation rules call for it.",
-    "light": "green",
-    "light_reason": "Above target \u2014 beating SPY by +13.32%.",
+    "light_reason": "Above target \u2014 beating SPY by +39.43%.",
     "source": "template",
     "review_date": "2026-05-27"
   }
