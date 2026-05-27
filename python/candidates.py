@@ -13,9 +13,11 @@ from local OHLCV so the allocator is not limited to Mag7.
 from __future__ import annotations
 
 import math
+import json
 import os
 import sys
 import time
+from pathlib import Path
 from typing import Dict, Iterable, List
 
 import pandas as pd
@@ -24,6 +26,7 @@ import requests
 from config import (
     CORE_UNIVERSE,
     DISCOVERY_UNIVERSE,
+    MEGA_CAP_UNIVERSE,
     MASSIVE_BASE_URL_ENV,
     MASSIVE_KEY_ENV,
     POLYGON_KEY_ENV,
@@ -31,8 +34,68 @@ from config import (
 )
 
 
+SHARED_MASSIVE_ENV = Path(__file__).resolve().parents[3] / "high-risk-symbols" / ".env.massive"
+SHARED_HIGH_RISK_SYMBOLS = Path(__file__).resolve().parents[3] / "high-risk-symbols" / "data" / "symbols.json"
+_HIGH_RISK_CACHE: dict[str, dict] | None = None
+
+
 def _log(msg: str) -> None:
     print(f"[candidates] {msg}", file=sys.stderr, flush=True)
+
+
+def _load_shared_massive_env() -> None:
+    """Reuse the high-risk-symbols Massive env file without copying secrets."""
+    if os.environ.get(MASSIVE_KEY_ENV) or os.environ.get(POLYGON_KEY_ENV):
+        return
+    if not SHARED_MASSIVE_ENV.exists():
+        return
+    try:
+        for line in SHARED_MASSIVE_ENV.read_text().splitlines():
+            text = line.strip()
+            if not text or text.startswith("#") or "=" not in text:
+                continue
+            key, value = text.split("=", 1)
+            key = key.strip()
+            value = value.strip().strip("\"'")
+            if key in {MASSIVE_KEY_ENV, POLYGON_KEY_ENV, MASSIVE_BASE_URL_ENV} and value:
+                os.environ.setdefault(key, value)
+        if os.environ.get(MASSIVE_KEY_ENV) or os.environ.get(POLYGON_KEY_ENV):
+            _log(f"loaded Massive credentials from shared env: {SHARED_MASSIVE_ENV}")
+    except OSError as exc:
+        _log(f"could not read shared Massive env {SHARED_MASSIVE_ENV}: {exc}")
+
+
+def _high_risk_cache() -> dict[str, dict]:
+    global _HIGH_RISK_CACHE
+    if _HIGH_RISK_CACHE is not None:
+        return _HIGH_RISK_CACHE
+    try:
+        rows = json.loads(SHARED_HIGH_RISK_SYMBOLS.read_text()) if SHARED_HIGH_RISK_SYMBOLS.exists() else []
+    except (OSError, json.JSONDecodeError):
+        rows = []
+    _HIGH_RISK_CACHE = {str(row.get("symbol", "")).upper(): row for row in rows if row.get("symbol")}
+    return _HIGH_RISK_CACHE
+
+
+def _tradable_massive_discovery(sym: str) -> bool:
+    """Filter Massive movers through the high-risk-symbols database.
+
+    The high-risk project keeps the broad security master. GreenLight should use
+    that feed for discovery, but avoid warrants/rights and pump-risk microcaps as
+    buy candidates.
+    """
+    if not sym or not sym.isalpha() or len(sym) > 5:
+        return False
+    row = _high_risk_cache().get(sym)
+    if not row:
+        return False
+    flags = row.get("flags") or {}
+    if row.get("rule_high_risk") or row.get("pca_high_risk") or int(row.get("hit_count") or 0) >= 3:
+        return False
+    if bool(flags.get("mcap_below")) and bool(flags.get("price_below")):
+        return False
+    mcap_musd = _num(row.get("mcap_musd"))
+    return mcap_musd is None or mcap_musd >= 500.0
 
 
 def _num(value, default=None):
@@ -53,22 +116,38 @@ def _clip(value: float | None, lo: float, hi: float, default: float = 0.0) -> fl
 
 class MassiveClient:
     def __init__(self) -> None:
+        _load_shared_massive_env()
         self.api_key = os.environ.get(MASSIVE_KEY_ENV) or os.environ.get(POLYGON_KEY_ENV)
         self.base_url = os.environ.get(MASSIVE_BASE_URL_ENV, "https://api.massive.com").rstrip("/")
         self.session = requests.Session()
+        self.disabled_products: set[str] = set()
 
     @property
     def enabled(self) -> bool:
         return bool(self.api_key)
 
+    def _product(self, path: str) -> str | None:
+        if path.startswith("/stocks/financials/"):
+            return "financials"
+        if path.startswith("/benzinga/"):
+            return "benzinga"
+        return None
+
     def get(self, path: str, params: dict | None = None) -> dict | None:
         if not self.api_key:
+            return None
+        product = self._product(path)
+        if product and product in self.disabled_products:
             return None
         params = dict(params or {})
         params["apiKey"] = self.api_key
         try:
             resp = self.session.get(f"{self.base_url}{path}", params=params, timeout=15)
             if resp.status_code >= 400:
+                if resp.status_code == 403 and "NOT_AUTHORIZED" in resp.text and product:
+                    self.disabled_products.add(product)
+                    _log(f"Massive {product} endpoint not entitled; skipping for this run")
+                    return None
                 _log(f"Massive {path}: HTTP {resp.status_code} {resp.text[:120]}")
                 return None
             return resp.json()
@@ -102,13 +181,15 @@ class MassiveClient:
 
 def discover_symbols() -> list[str]:
     """Return the broad daily universe, with Massive movers added when available."""
-    symbols = set(CORE_UNIVERSE + DISCOVERY_UNIVERSE)
+    symbols = set(CORE_UNIVERSE + MEGA_CAP_UNIVERSE + DISCOVERY_UNIVERSE)
     client = MassiveClient()
     if client.enabled:
         for row in client.top_gainers()[:20]:
             sym = row.get("ticker") or row.get("T") or row.get("symbol")
-            if sym and isinstance(sym, str) and sym.isalpha() and len(sym) <= 5:
-                symbols.add(sym.upper())
+            if sym and isinstance(sym, str):
+                sym = sym.upper()
+                if _tradable_massive_discovery(sym):
+                    symbols.add(sym)
         _log(f"Massive discovery enabled; tracking {len(symbols)} symbols")
     else:
         _log("Massive discovery disabled; set MASSIVE_API_KEY or POLYGON_API_KEY")
@@ -346,7 +427,7 @@ def _yfinance_fallback(symbol: str, price: float | None) -> dict:
     return out
 
 
-def build_candidate_research(enriched: Dict[str, pd.DataFrame], limit: int = 40) -> list[dict]:
+def build_candidate_research(enriched: Dict[str, pd.DataFrame], limit: int = 80) -> list[dict]:
     """Build and return the daily opportunity list."""
     spy = enriched.get("SPY")
     rows = [
@@ -359,11 +440,20 @@ def build_candidate_research(enriched: Dict[str, pd.DataFrame], limit: int = 40)
             and not bool(df.get("synthetic", pd.Series([False])).iloc[-1])
         )
     ]
+    protected_symbols = set(CORE_UNIVERSE + MEGA_CAP_UNIVERSE + ["SNDK"])
+    for row in rows:
+        if row["symbol"] in protected_symbols:
+            row["choice_group"] = "mega-cap/watchlist" if row["symbol"] in MEGA_CAP_UNIVERSE else "core/watchlist"
+            row["must_review"] = True
+        else:
+            row["choice_group"] = "discovery"
+            row["must_review"] = False
+
     rows.sort(key=lambda row: row.get("market_reward_score", 0), reverse=True)
 
     client = MassiveClient()
     if client.enabled:
-        candidate_symbols = [r["symbol"] for r in rows[:limit]]
+        candidate_symbols = sorted({r["symbol"] for r in rows[:limit]} | {r["symbol"] for r in rows if r["symbol"] in protected_symbols})
         for i, sym in enumerate(candidate_symbols, start=1):
             ratios = client.ratios(sym)
             rows_by_symbol = next(r for r in rows if r["symbol"] == sym)
@@ -377,12 +467,21 @@ def build_candidate_research(enriched: Dict[str, pd.DataFrame], limit: int = 40)
             if i % 8 == 0:
                 time.sleep(0.25)
 
-    fallback_symbols = [
+    fallback_symbols = sorted({
         r["symbol"] for r in rows
         if r.get("forecast_health_score") is None
         or r.get("consensus_price_target") is None
         or r.get("price_to_earnings") is None
-    ][: min(limit, 24)]
+    } & protected_symbols)
+    fallback_symbols += [
+        r["symbol"] for r in rows
+        if r["symbol"] not in set(fallback_symbols)
+        and (
+            r.get("forecast_health_score") is None
+            or r.get("consensus_price_target") is None
+            or r.get("price_to_earnings") is None
+        )
+    ][: max(0, min(limit, 40) - len(fallback_symbols))]
     for i, sym in enumerate(fallback_symbols, start=1):
         row = next(r for r in rows if r["symbol"] == sym)
         fallback = _yfinance_fallback(sym, row.get("price"))
@@ -422,7 +521,13 @@ def build_candidate_research(enriched: Dict[str, pd.DataFrame], limit: int = 40)
     rows.sort(key=lambda row: row.get("opportunity_score", 0.0), reverse=True)
     for rank, row in enumerate(rows, start=1):
         row["rank"] = rank
-    return rows[:limit]
+    selected = rows[:limit]
+    selected_symbols = {row["symbol"] for row in selected}
+    missing_protected = [row for row in rows if row["symbol"] in protected_symbols and row["symbol"] not in selected_symbols]
+    if missing_protected:
+        selected = selected + missing_protected
+        selected.sort(key=lambda row: row.get("opportunity_score", 0.0), reverse=True)
+    return selected
 
 
 def attach_research(enriched: Dict[str, pd.DataFrame], research_rows: Iterable[dict]) -> None:

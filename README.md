@@ -226,6 +226,10 @@ All are optional. The engine runs without any of them.
 | `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | Engine mirrors writes to Postgres |
 | `MASSIVE_API_KEY` or `POLYGON_API_KEY` | Adds Massive top movers, financial ratios, and Benzinga consensus ratings when the plan allows those datasets |
 
+Local runs also reuse `/Users/yunhanzhang/Desktop/works/high-risk-symbols/.env.massive`
+when those variables are not already exported. The secret file is shared in
+place and must not be copied or committed.
+
 ---
 
 ## Compliance and risk disclaimer

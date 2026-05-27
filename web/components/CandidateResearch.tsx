@@ -12,7 +12,7 @@ const cls = (n?: number | null) =>
   n == null || !Number.isFinite(n) || n === 0 ? "" : n > 0 ? "num-pos" : "num-neg";
 
 export default function CandidateResearchPanel({ candidates }: { candidates: CandidateResearch[] }) {
-  const top = candidates.slice(0, 12);
+  const choices = candidates;
   return (
     <section className="panel">
       <div className="panel-head">
@@ -22,7 +22,7 @@ export default function CandidateResearchPanel({ candidates }: { candidates: Can
         </div>
         <span className="tag">{candidates.length} tracked</span>
       </div>
-      {top.length === 0 ? (
+      {choices.length === 0 ? (
         <div className="text-sm" style={{ color: "var(--ink-mute)" }}>
           No candidate research yet. The next daily run will publish the live list.
         </div>
@@ -45,12 +45,13 @@ export default function CandidateResearchPanel({ candidates }: { candidates: Can
               </tr>
             </thead>
             <tbody>
-              {top.map((c) => (
+              {choices.map((c) => (
                 <tr key={`${c.rank}-${c.symbol}`}>
                   <td><span className="tag">#{c.rank}</span></td>
                   <td className="symbol">
                     {c.symbol}
                     {c.healthy_prediction ? <span className="pill green ml-2">healthy</span> : null}
+                    {c.must_review ? <span className="pill ml-2">watch</span> : null}
                   </td>
                   <td><span className="tag">{c.setup || "trend"}</span></td>
                   <td className={`right ${cls(c.opportunity_score)}`}>{fmt(c.opportunity_score, 2)}</td>

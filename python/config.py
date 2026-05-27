@@ -26,12 +26,20 @@ CORE_UNIVERSE = [
     "GOOGL", "MSFT", "AMZN", "META", "AAPL", "TSLA",
 ]
 
+# Must-watch mega-cap/liquid leaders. They are not automatic buys, but they
+# should never disappear from the daily choice set just because a short-term
+# technical score falls below smaller momentum names.
+MEGA_CAP_UNIVERSE = [
+    "NVDA", "AAPL", "MSFT", "AMZN", "GOOGL", "META", "AVGO", "TSLA",
+    "TSM", "BRK-B", "WMT", "JPM", "ORCL", "V", "LLY",
+]
+
 # Broader opportunity book. These are not automatic buys; they are the
 # daily discovery pool scored against price action, valuation/quality, and
 # optional Massive/Benzinga analyst data.
 DISCOVERY_UNIVERSE = [
     # Semiconductors / AI infrastructure
-    "ARM", "ASML", "MU", "LRCX", "KLAC", "AMAT", "MRVL", "MPWR", "ON", "NXPI",
+    "ARM", "ASML", "MU", "LRCX", "KLAC", "AMAT", "MRVL", "MPWR", "ON", "NXPI", "SNDK",
     # Software / cyber / data
     "PLTR", "CRM", "NOW", "SNOW", "DDOG", "NET", "CRWD", "PANW", "ZS", "MDB", "ADBE",
     # Internet / platforms / consumer tech
@@ -44,7 +52,7 @@ DISCOVERY_UNIVERSE = [
     "LLY", "NVO", "ISRG", "VRTX", "REGN", "TMO",
 ]
 
-WATCHLIST = CORE_UNIVERSE
+WATCHLIST = sorted(set(CORE_UNIVERSE + MEGA_CAP_UNIVERSE))
 BENCHMARK = "SPY"
 
 # --- Relative mandate (V2) ---------------------------------------------

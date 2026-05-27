@@ -20,6 +20,12 @@
         "META",
         "AAPL",
         "TSLA",
+        "BRK-B",
+        "WMT",
+        "JPM",
+        "ORCL",
+        "V",
+        "LLY",
         "ARM",
         "ASML",
         "MU",
@@ -30,6 +36,7 @@
         "MPWR",
         "ON",
         "NXPI",
+        "SNDK",
         "PLTR",
         "CRM",
         "NOW",
@@ -84,7 +91,8 @@
         "MRVL",
         "MPWR",
         "ON",
-        "NXPI"
+        "NXPI",
+        "SNDK"
       ],
       "etfs": [
         "QQQ",

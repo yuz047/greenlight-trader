@@ -85,6 +85,8 @@ export type CandidateResearch = {
   quality_health_score: number;
   healthy_prediction: boolean;
   setup?: string | null;
+  choice_group?: string | null;
+  must_review?: boolean | null;
   relative_strength_63d?: number | null;
   return_20d?: number | null;
   volume_ratio_20d?: number | null;
