@@ -146,7 +146,7 @@ backtest, switch `config.ACTIVE_IDS`. This is deliberate friction.
 
 | Cap | Value |
 |---|---:|
-| Starting capital | $1,000 |
+| Starting capital | $5,000 |
 | Max risk per trade | 1.0 % of NAV |
 | Max daily loss | 2.0 % of NAV |
 | Max portfolio drawdown (shutdown) | 10.0 % |

@@ -24,7 +24,7 @@ const fmtPct = (n: number, digits = 1) =>
 
 export default async function Home() {
   const d = await loadDashboard();
-  const startingCapital = (d.riskConfig.starting_capital as number) || 1000;
+  const startingCapital = (d.riskConfig.starting_capital as number) || 5000;
   const last = d.snapshots.at(-1);
   const equity = last?.equity ?? startingCapital;
   const alpha = last?.alpha ?? ((d.metrics.alpha_total as number) || 0);

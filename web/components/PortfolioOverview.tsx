@@ -26,7 +26,7 @@ export default function PortfolioOverview({
   const dailyPct = last.equity > 0 ? (last.daily_pnl / (last.equity - last.daily_pnl)) * 100 : 0;
 
   const items = [
-    { k: "Equity",         v: "$" + fmt(last.equity),         sub: `inception $${fmt(startingCapital, 0)}` },
+    { k: "Equity",         v: "$" + fmt(last.equity),         sub: `starting $${fmt(startingCapital, 0)}` },
     { k: "Cash",           v: "$" + fmt(last.cash),           sub: "available" },
     { k: "Market value",   v: "$" + fmt(last.market_value),   sub: "target sleeves" },
     { k: "Daily PnL",
