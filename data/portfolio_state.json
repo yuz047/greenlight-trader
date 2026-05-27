@@ -1,21 +1,21 @@
 {
-  "cash": 1063.8587248921742,
+  "cash": 369.0569972652115,
   "realized_pnl": 0.0,
-  "peak_relative_outperformance": 0.13691794376100774,
+  "peak_relative_outperformance": 0.13398311696843668,
   "inception": "2026-05-21",
   "positions": {
     "SPY": {
       "symbol": "SPY",
       "side": "long",
-      "quantity": 3.7956218249494564,
-      "entry_price": 738.2271932567309,
+      "quantity": 3.759974757367669,
+      "entry_price": 738.1099853515625,
       "entry_time": "2026-05-21 00:00:00",
       "stop_price": 0.0,
       "target_price": 0.0,
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 40.00%.",
-      "last_price": 750.5900268554688,
+      "last_price": 750.469970703125,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.4
@@ -31,7 +31,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 25.00%.",
-      "last_price": 730.280029296875,
+      "last_price": 729.780029296875,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.25
@@ -39,7 +39,7 @@
     "SMH": {
       "symbol": "SMH",
       "side": "long",
-      "quantity": 2.365692212952658,
+      "quantity": 2.3831546033541735,
       "entry_price": 566.719970703125,
       "entry_time": "2026-05-21 00:00:00",
       "stop_price": 0.0,
@@ -47,10 +47,26 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 20.00%.",
-      "last_price": 602.1400146484375,
+      "last_price": 596.4099731445312,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.2
+    },
+    "MPWR": {
+      "symbol": "MPWR",
+      "side": "long",
+      "quantity": 0.4379854390381216,
+      "entry_price": 1622.5849609375,
+      "entry_time": "2026-05-27T19:57:51Z",
+      "stop_price": 0.0,
+      "target_price": 0.0,
+      "max_hold_days": 10000,
+      "strategy_id": "adaptive_tech_semis_v1",
+      "thesis": "Target allocation for risk_on: {'SPY': 0.4, 'QQQ': 0.25, 'SMH': 0.2, 'CASH': 0.049999999999999975, 'MPWR': 0.1}",
+      "last_price": 1622.5849609375,
+      "age_days": 0,
+      "is_core": true,
+      "target_weight": 0.1
     }
   },
   "trades": []

@@ -25,8 +25,14 @@ MANIFEST = {
         "growth_universe": [
             "QQQ", "SMH", "NVDA", "AVGO", "AMD", "TSM",
             "GOOGL", "MSFT", "AMZN", "META", "AAPL", "TSLA",
+            "ARM", "ASML", "MU", "LRCX", "KLAC", "AMAT", "MRVL", "MPWR", "ON", "NXPI",
+            "PLTR", "CRM", "NOW", "SNOW", "DDOG", "NET", "CRWD", "PANW", "ZS", "MDB", "ADBE",
+            "UBER", "ABNB", "SHOP", "MELI", "NFLX", "SPOT", "BKNG",
+            "V", "MA", "AXP", "COIN", "HOOD", "CME", "ICE",
+            "GE", "ETN", "VRT", "CEG", "TLN", "PWR", "EME",
+            "LLY", "NVO", "ISRG", "VRTX", "REGN", "TMO",
         ],
-        "semis": ["SMH", "NVDA", "AVGO", "AMD", "TSM"],
+        "semis": ["SMH", "NVDA", "AVGO", "AMD", "TSM", "ARM", "ASML", "MU", "LRCX", "KLAC", "AMAT", "MRVL", "MPWR", "ON", "NXPI"],
         "etfs": ["QQQ", "SMH"],
         "max_picks": 4,
         "stock_weight": 0.10,
@@ -135,6 +141,8 @@ def compute_ranks(universe: Dict[str, pd.DataFrame], params: dict) -> Dict[str, 
         df = universe.get(sym)
         if df is None or df.empty or len(df) < max(200, params["rs_window"]) + 1:
             continue
+        if bool(df.get("synthetic", pd.Series([False])).iloc[-1]):
+            continue
         close = _last(df, "close")
         sma50 = _last(df, "sma50")
         sma200 = _last(df, "sma200")
@@ -149,6 +157,14 @@ def compute_ranks(universe: Dict[str, pd.DataFrame], params: dict) -> Dict[str, 
         trend = close / sma200 - 1.0 if sma200 > 0 else float("nan")
         high20 = _last(df, "high20", close)
         pullback = close / high20 - 1.0 if high20 > 0 else 0.0
+        research = df.attrs.get("candidate_research", {}) or {}
+        market_reward = float(research.get("market_reward_score") or 0.0)
+        forecast_health = float(research.get("forecast_health_score") or 0.0)
+        valuation_health = float(research.get("valuation_health_score") or 0.0)
+        quality_health = float(research.get("quality_health_score") or 0.0)
+        massive_bonus = 0.18 * market_reward + 0.12 * forecast_health + 0.10 * quality_health + 0.08 * valuation_health
+        if research.get("valuation_red_flag"):
+            massive_bonus -= 0.18
         overbought = (
             extension >= params["sell_extension_sma50"]
             or rsi14 >= params["sell_rsi"]
@@ -177,6 +193,7 @@ def compute_ranks(universe: Dict[str, pd.DataFrame], params: dict) -> Dict[str, 
                 1.8 * rel
                 + 0.9 * mom
                 + 0.7 * trend
+                + massive_bonus
                 + semi_bonus
                 + etf_bonus
                 + fear_pullback_bonus
@@ -198,6 +215,11 @@ def compute_ranks(universe: Dict[str, pd.DataFrame], params: dict) -> Dict[str, 
             "too_high_to_enter": bool(too_high_to_enter),
             "atr14": float(atr14) if np.isfinite(atr14) else 0.0,
             "target_weight": _target_weight(sym, params, ctx),
+            "market_reward_score": market_reward,
+            "forecast_health_score": forecast_health,
+            "valuation_health_score": valuation_health,
+            "quality_health_score": quality_health,
+            "massive_source": research.get("source"),
             **ctx,
         }))
 
@@ -264,6 +286,7 @@ def run(
             f"Rank #{info['rank']} adaptive tech/semis score={info['composite']:+.2f}; "
             f"RS63={info['relative_strength']*100:+.1f}%, mom20={info['momentum_20d']*100:+.1f}%, "
             f"price/50dma={info['extension_sma50']:.2f}, RSI={info['rsi14']:.1f}, "
+            f"forecast={info['forecast_health_score']:+.2f}, valuation={info['valuation_health_score']:+.2f}, "
             f"VIX={info['vix']:.1f}. Target weight {info['target_weight']*100:.0f}%."
         ),
         stop_distance=float(stop_distance),
@@ -278,6 +301,11 @@ def run(
             "mom20": round(info["momentum_20d"], 4),
             "extension_sma50": round(info["extension_sma50"], 3),
             "rsi14": round(info["rsi14"], 1),
+            "market_reward_score": round(info["market_reward_score"], 3),
+            "forecast_health_score": round(info["forecast_health_score"], 3),
+            "valuation_health_score": round(info["valuation_health_score"], 3),
+            "quality_health_score": round(info["quality_health_score"], 3),
+            "massive_source": info.get("massive_source"),
             "vix": round(info["vix"], 2) if np.isfinite(info["vix"]) else None,
             "regime_role": "growth",
         },
@@ -322,7 +350,7 @@ def target_weights(universe: Dict[str, pd.DataFrame], params: dict) -> dict:
 
     remaining = max(0.0, 1.0 - sum(targets.values()))
     for sym, _score in stock_candidates[:2]:
-        if remaining < params["stock_weight"]:
+        if remaining + 1e-9 < params["stock_weight"]:
             break
         targets[sym] = params["stock_weight"]
         remaining -= params["stock_weight"]

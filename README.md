@@ -172,15 +172,16 @@ A traffic light is recomputed on every run:
       │
       ▼
 1. Load portfolio state            (data/portfolio_state.json)
-2. Pull fresh OHLCV                (yfinance, daily, auto-adjusted)
-3. Pull headline sentiment         (Yahoo RSS + lexicon, optional)
-4. Mark-to-market open positions   (today's close)
-5. Apply stops / targets / MH      (intraday bar; stop precedes target)
-6. Generate signals                (every strategy × every symbol)
-7. Risk-gate and size              (NAV × 1%, ATR-based)
-8. Append snapshot + close trades  (data/snapshots.json, data/trades.json)
-9. Generate EOD review             (Anthropic or template)
-10. Persist JSON + Supabase mirror (if env vars present)
+2. Discover live candidates        (broad watchlist + Massive movers when enabled)
+3. Pull fresh OHLCV                (yfinance, daily, auto-adjusted)
+4. Enrich opportunity list         (Massive ratios + Benzinga consensus when enabled)
+5. Pull headline sentiment         (Yahoo RSS + lexicon, optional)
+6. Mark-to-market open positions   (today's close)
+7. Apply stops / targets / MH      (intraday bar; stop precedes target)
+8. Generate allocation targets     (SPY/QQQ/SMH/stocks/SHY/cash)
+9. Append snapshot + close trades  (data/snapshots.json, data/trades.json)
+10. Generate EOD review            (Anthropic or template)
+11. Persist JSON + Supabase mirror (if env vars present)
 ```
 
 The backtest in `python/backtest.py` runs the same risk engine and the
@@ -192,7 +193,7 @@ session.
 `data/portfolio_state.json` is intentionally persisted with the other
 JSON outputs. The scheduled GitHub Action starts from a fresh checkout,
 so this file is required to continue the paper book instead of
-cold-starting the account back at `$1,000`.
+cold-starting the account back at `$5,000`.
 
 ---
 
@@ -223,6 +224,7 @@ All are optional. The engine runs without any of them.
 |---|---|
 | `ANTHROPIC_API_KEY` | EOD review goes to Claude Haiku instead of the template |
 | `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | Engine mirrors writes to Postgres |
+| `MASSIVE_API_KEY` or `POLYGON_API_KEY` | Adds Massive top movers, financial ratios, and Benzinga consensus ratings when the plan allows those datasets |
 
 ---
 
@@ -232,7 +234,7 @@ This is a research and demonstration project. It is not investment advice.
 Nothing here is suitable for live trading without substantial additional
 work — broker integration, order management, regulatory review, monitoring,
 and a much longer forward-test track record. The starting balance is
-$1,000 of simulated capital; the system never connects to a real broker.
+$5,000 of simulated capital; the system never connects to a real broker.
 
 ---
 

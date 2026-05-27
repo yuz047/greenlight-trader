@@ -59,6 +59,8 @@ jobs:
           SUPABASE_URL:              ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           ANTHROPIC_API_KEY:         ${{ secrets.ANTHROPIC_API_KEY }}
+          MASSIVE_API_KEY:           ${{ secrets.MASSIVE_API_KEY }}
+          POLYGON_API_KEY:           ${{ secrets.POLYGON_API_KEY }}
         working-directory: python
         run: python run_daily.py
 
@@ -68,6 +70,8 @@ jobs:
           SUPABASE_URL:              ${{ secrets.SUPABASE_URL }}
           SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
           ANTHROPIC_API_KEY:         ${{ secrets.ANTHROPIC_API_KEY }}
+          MASSIVE_API_KEY:           ${{ secrets.MASSIVE_API_KEY }}
+          POLYGON_API_KEY:           ${{ secrets.POLYGON_API_KEY }}
         working-directory: python
         run: python seed_history.py
 

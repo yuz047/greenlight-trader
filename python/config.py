@@ -20,11 +20,31 @@ DATA_DIR.mkdir(parents=True, exist_ok=True)
 CACHE_DIR.mkdir(parents=True, exist_ok=True)
 
 # --- Universe -----------------------------------------------------------
-WATCHLIST = [
+CORE_UNIVERSE = [
     "SPY", "QQQ", "SHY", "^VIX",
     "SMH", "NVDA", "AVGO", "AMD", "TSM",
     "GOOGL", "MSFT", "AMZN", "META", "AAPL", "TSLA",
 ]
+
+# Broader opportunity book. These are not automatic buys; they are the
+# daily discovery pool scored against price action, valuation/quality, and
+# optional Massive/Benzinga analyst data.
+DISCOVERY_UNIVERSE = [
+    # Semiconductors / AI infrastructure
+    "ARM", "ASML", "MU", "LRCX", "KLAC", "AMAT", "MRVL", "MPWR", "ON", "NXPI",
+    # Software / cyber / data
+    "PLTR", "CRM", "NOW", "SNOW", "DDOG", "NET", "CRWD", "PANW", "ZS", "MDB", "ADBE",
+    # Internet / platforms / consumer tech
+    "UBER", "ABNB", "SHOP", "MELI", "NFLX", "SPOT", "BKNG",
+    # Fintech / exchanges
+    "V", "MA", "AXP", "COIN", "HOOD", "CME", "ICE",
+    # Industrials and energy tied to electrification / AI buildout
+    "GE", "ETN", "VRT", "CEG", "TLN", "PWR", "EME",
+    # Healthcare growth / quality
+    "LLY", "NVO", "ISRG", "VRTX", "REGN", "TMO",
+]
+
+WATCHLIST = CORE_UNIVERSE
 BENCHMARK = "SPY"
 
 # --- Relative mandate (V2) ---------------------------------------------
@@ -82,6 +102,9 @@ BACKTEST_DAYS = 504  # ~2 trading years
 SUPABASE_URL_ENV = "SUPABASE_URL"
 SUPABASE_KEY_ENV = "SUPABASE_SERVICE_ROLE_KEY"
 ANTHROPIC_KEY_ENV = "ANTHROPIC_API_KEY"
+MASSIVE_KEY_ENV = "MASSIVE_API_KEY"
+POLYGON_KEY_ENV = "POLYGON_API_KEY"
+MASSIVE_BASE_URL_ENV = "MASSIVE_API_BASE_URL"
 
 def risk_as_dict() -> dict:
     return asdict(MANDATE)

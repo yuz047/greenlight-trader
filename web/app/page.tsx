@@ -7,6 +7,7 @@ import TradesTable from "@/components/TradesTable";
 import RiskDashboard from "@/components/RiskDashboard";
 import BacktestDashboard from "@/components/BacktestDashboard";
 import DecisionLog from "@/components/DecisionLog";
+import CandidateResearchPanel from "@/components/CandidateResearch";
 
 export const revalidate = 60; // re-fetch from Supabase at most once a minute
 
@@ -114,6 +115,10 @@ export default async function Home() {
 
       <section className="container" style={{ paddingTop: 16, paddingBottom: 8 }}>
         <Positions positions={d.positions} />
+      </section>
+
+      <section className="container" style={{ paddingTop: 16, paddingBottom: 8 }}>
+        <CandidateResearchPanel candidates={d.candidateResearch} />
       </section>
 
       <section className="container" style={{ paddingTop: 16, paddingBottom: 8 }}>

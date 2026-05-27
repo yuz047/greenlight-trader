@@ -24,6 +24,7 @@ from portfolio import Portfolio
 from news import sentiment_for_universe
 from llm_review import review
 from db import write_json, read_json, upsert, replace_table, supabase_enabled
+from candidates import attach_research, build_candidate_research, discover_symbols
 
 
 def main():
@@ -48,13 +49,16 @@ def main():
             "Refusing to reset or truncate dashboard history; run seed_history.py to rebuild it."
         )
 
-    frames = load_universe()
-    health = data_feed_health(frames)
+    symbols = discover_symbols()
+    frames = load_universe(symbols)
+    health = data_feed_health({sym: frames[sym] for sym in WATCHLIST if sym in frames})
     data_safe_for_trading = health.get("ok", False) and not health.get("synthetic", False)
     enriched = {sym: enrich(df) for sym, df in frames.items()}
+    candidate_research = build_candidate_research(enriched)
+    attach_research(enriched, candidate_research)
 
     try:
-        sent_pair = sentiment_for_universe(WATCHLIST)
+        sent_pair = sentiment_for_universe(symbols[:80])
         sent = sent_pair[0] if isinstance(sent_pair, tuple) else sent_pair
     except Exception:
         sent = {s: 0.0 for s in WATCHLIST}
@@ -260,6 +264,7 @@ def main():
     metrics = _live_metrics(snapshots, all_trades)
     write_json("metrics", metrics)
     write_json("pitches", pitches)
+    write_json("candidate_research", candidate_research)
     write_json("strategy_manifests", manifests_for(ACTIVE_IDS))
 
     rev = review({
@@ -277,6 +282,7 @@ def main():
             "target_alpha_pct": MANDATE.target_alpha_pct,
             "max_relative_drawdown_pct": MANDATE.max_relative_drawdown_pct,
         },
+        "candidate_research": candidate_research[:10],
     })
     reviews = read_json("ai_reviews", default=[])
     reviews = [r for r in reviews if r.get("review_date") != today] + [rev]
@@ -309,6 +315,7 @@ def main():
         "benchmark_equity": bench_eq_now,
         "alpha_pct": round(status.relative_pnl_pct * 100, 3),
         "light": status.light, "signals": len(signals),
+        "candidate_count": len(candidate_research),
         "closed_today": len(closed_today),
         "open_picks": [p.symbol for s, p in port.positions.items() if s != BENCHMARK],
     }, indent=2, default=str))

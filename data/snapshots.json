@@ -5617,18 +5617,18 @@
   },
   {
     "date": "2026-05-27",
-    "equity": 7122.39,
-    "cash": 1063.86,
-    "market_value": 6058.53,
+    "equity": 7106.69,
+    "cash": 369.06,
+    "market_value": 6737.63,
     "daily_pnl": 0.0,
-    "cumulative_pnl": 2122.39,
+    "cumulative_pnl": 2106.69,
     "drawdown": 0.0,
-    "benchmark_equity": 6437.8,
-    "portfolio_return": 0.4245,
-    "benchmark_return": 0.2876,
-    "alpha": 0.1369,
+    "benchmark_equity": 6436.77,
+    "portfolio_return": 0.4213,
+    "benchmark_return": 0.2874,
+    "alpha": 0.134,
     "relative_drawdown": 0.0,
-    "spy_core_weight": 0.4,
-    "n_picks_open": 2
+    "spy_core_weight": 0.3971,
+    "n_picks_open": 3
   }
 ]

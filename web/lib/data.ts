@@ -70,6 +70,27 @@ export type StrategyVersion = {
   created_at?: string;
 };
 
+export type CandidateResearch = {
+  rank: number;
+  symbol: string;
+  opportunity_score: number;
+  market_reward_score: number;
+  forecast_health_score: number;
+  valuation_health_score: number;
+  quality_health_score: number;
+  healthy_prediction: boolean;
+  relative_strength_63d?: number | null;
+  return_20d?: number | null;
+  volume_ratio_20d?: number | null;
+  extension_sma50?: number | null;
+  consensus_upside?: number | null;
+  consensus_price_target?: number | null;
+  price_to_earnings?: number | null;
+  price_to_sales?: number | null;
+  return_on_equity?: number | null;
+  source?: string;
+};
+
 export type Review = {
   review_date: string;
   summary: string;
@@ -102,6 +123,7 @@ export type Dashboard = {
   metrics: Record<string, number | null>;
   riskConfig: Record<string, number>;
   decisionLog: any[];
+  candidateResearch: CandidateResearch[];
   source: "supabase" | "local";
 };
 
@@ -155,6 +177,7 @@ async function fromSupabase(): Promise<Dashboard | null> {
     metrics: readJson("metrics", {}),
     riskConfig: readJson("risk_config", {}),
     decisionLog: readJson("decision_log", []),
+    candidateResearch: readJson("candidate_research", []),
     source: "supabase",
   };
 }
@@ -173,6 +196,7 @@ function fromLocal(): Dashboard {
     metrics: readJson("metrics", {}),
     riskConfig: readJson("risk_config", {}),
     decisionLog: readJson("decision_log", []),
+    candidateResearch: readJson("candidate_research", []),
     source: "local",
   };
 }
