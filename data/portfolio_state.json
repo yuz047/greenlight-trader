@@ -15,7 +15,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 40.00%.",
-      "last_price": 750.469970703125,
+      "last_price": 750.4600219726562,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.4
@@ -31,7 +31,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 25.00%.",
-      "last_price": 729.780029296875,
+      "last_price": 729.4500122070312,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.25
@@ -47,7 +47,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 20.00%.",
-      "last_price": 596.4099731445312,
+      "last_price": 595.5,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.2
@@ -63,7 +63,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 10.00%.",
-      "last_price": 1622.5849609375,
+      "last_price": 1620.1700439453125,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.1
