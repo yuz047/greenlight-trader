@@ -259,6 +259,55 @@ a:hover { color: var(--accent); }
   color: var(--ink);
 }
 
+/* ---------- Dashboard surfaces ---------- */
+.dashboard-surface {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  padding: 22px 24px;
+  display: grid;
+  gap: 20px;
+}
+.dashboard-surface .panel,
+.dashboard-surface .status-banner {
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  padding: 0;
+}
+.dashboard-surface .status-banner {
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--rule);
+}
+.dashboard-surface .status-banner.green,
+.dashboard-surface .status-banner.yellow,
+.dashboard-surface .status-banner.red,
+.dashboard-surface .status-banner.black {
+  background: transparent;
+}
+.dashboard-surface > .panel,
+.dashboard-surface > .surface-split + .panel {
+  padding-top: 18px;
+  border-top: 1px solid var(--rule);
+}
+.dashboard-surface > .panel:first-child {
+  padding-top: 0;
+  border-top: 0;
+}
+.dashboard-surface .surface-split .panel {
+  padding-top: 0;
+  border-top: 0;
+}
+.surface-split {
+  display: grid;
+  gap: 20px;
+}
+@media (min-width: 980px) {
+  .surface-split.two {
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  }
+}
+
 /* ---------- KPI tiles ---------- */
 .kpi-grid {
   display: grid;
@@ -271,10 +320,11 @@ a:hover { color: var(--accent); }
   .kpi-grid.six   { grid-template-columns: repeat(6, minmax(0, 1fr)); }
 }
 .kpi-tile {
-  padding: 14px 16px;
-  border: 1px solid var(--rule);
-  border-radius: var(--radius-sm);
-  background: var(--paper);
+  padding: 4px 14px 10px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  border-bottom: 1px solid var(--rule);
 }
 .kpi-tile .label {
   font-family: var(--mono);

@@ -103,37 +103,31 @@ export default async function Home() {
       </section>
 
       <section className="container" style={{ paddingTop: 28, paddingBottom: 8 }}>
-        <SystemStatus status={d.status} />
-      </section>
-
-      <section className="container" style={{ paddingTop: 16, paddingBottom: 8 }}>
-        <div className="grid lg:grid-cols-2 gap-4">
-          <PortfolioOverview snapshots={d.snapshots} startingCapital={startingCapital} />
-          <EquityChart snapshots={d.snapshots} startingCapital={startingCapital} />
+        <div className="dashboard-surface">
+          <SystemStatus status={d.status} />
+          <div className="surface-split two">
+            <PortfolioOverview snapshots={d.snapshots} startingCapital={startingCapital} />
+            <EquityChart snapshots={d.snapshots} startingCapital={startingCapital} />
+          </div>
         </div>
       </section>
 
       <section className="container" style={{ paddingTop: 16, paddingBottom: 8 }}>
-        <Positions positions={d.positions} />
-      </section>
-
-      <section className="container" style={{ paddingTop: 16, paddingBottom: 8 }}>
-        <CandidateResearchPanel candidates={d.candidateResearch} />
-      </section>
-
-      <section className="container" style={{ paddingTop: 16, paddingBottom: 8 }}>
-        <div className="grid lg:grid-cols-2 gap-4">
-          <RiskDashboard metrics={d.metrics} riskConfig={d.riskConfig} />
-          <BacktestDashboard strategies={d.strategies} />
+        <div className="dashboard-surface">
+          <Positions positions={d.positions} />
+          <CandidateResearchPanel candidates={d.candidateResearch} />
         </div>
       </section>
 
       <section className="container" style={{ paddingTop: 16, paddingBottom: 8 }}>
-        <TradesTable trades={d.trades} />
-      </section>
-
-      <section className="container" style={{ paddingTop: 16, paddingBottom: 28 }}>
-        <DecisionLog reviews={d.reviews} />
+        <div className="dashboard-surface">
+          <div className="surface-split two">
+            <RiskDashboard metrics={d.metrics} riskConfig={d.riskConfig} />
+            <BacktestDashboard strategies={d.strategies} />
+          </div>
+          <TradesTable trades={d.trades} />
+          <DecisionLog reviews={d.reviews} />
+        </div>
       </section>
     </main>
   );

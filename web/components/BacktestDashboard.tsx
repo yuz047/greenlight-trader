@@ -35,8 +35,10 @@ export default function BacktestDashboard({ strategies }: { strategies: Strategy
             return (
               <article
                 key={s.strategy_id + s.version}
-                className="border rounded-md p-4"
-                style={{ borderColor: "var(--rule)", background: "var(--paper)" }}
+                style={{
+                  paddingBottom: 16,
+                  borderBottom: "1px solid var(--rule)",
+                }}
               >
                 <div className="flex items-baseline justify-between gap-3">
                   <div>
@@ -60,10 +62,8 @@ export default function BacktestDashboard({ strategies }: { strategies: Strategy
                     <div
                       key={k as string}
                       style={{
-                        padding: "8px 12px",
-                        border: "1px solid var(--rule)",
-                        borderRadius: 8,
-                        background: "var(--panel)",
+                        padding: "4px 12px 8px 0",
+                        borderBottom: "1px solid var(--rule)",
                       }}
                     >
                       <div className="label" style={{
