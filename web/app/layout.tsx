@@ -2,8 +2,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "GreenLight Trader — Sirius Zhang",
-  description: "Adaptive $5,000 paper-trading allocation dashboard.",
+  title: "GreenLight Trader — Adaptive Allocation Dashboard",
+  description: "A public dashboard for a $5,000 simulated allocation strategy with SPY-relative performance, risk controls, target weights, and ranked opportunities.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

@@ -18,7 +18,7 @@ export default function PortfolioOverview({
         <div className="panel-head">
           <div className="eyebrow">Portfolio overview</div>
         </div>
-        <div className="text-sm" style={{ color: "var(--ink-mute)" }}>No data yet — run the engine.</div>
+        <div className="text-sm" style={{ color: "var(--ink-mute)" }}>No portfolio data has been published yet.</div>
       </section>
     );
   }
@@ -55,7 +55,7 @@ export default function PortfolioOverview({
       <div className="panel-head">
         <div>
           <div className="eyebrow">Portfolio overview</div>
-          <h2 className="mt-2">${fmt(startingCapital, 0)} adaptive allocation book</h2>
+          <h2 className="mt-2">${fmt(startingCapital, 0)} simulated allocation model</h2>
         </div>
         <span className="tag">as of {last.date}</span>
       </div>

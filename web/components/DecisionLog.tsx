@@ -9,8 +9,8 @@ export default function DecisionLog({ reviews }: { reviews: Review[] }) {
     <section className="panel">
       <div className="panel-head">
         <div>
-          <div className="eyebrow">AI decision log</div>
-          <h2 className="mt-2">End-of-day reviews</h2>
+          <div className="eyebrow">Daily review</div>
+          <h2 className="mt-2">Latest model notes</h2>
         </div>
       </div>
       {ordered.length === 0 ? (
@@ -27,10 +27,9 @@ export default function DecisionLog({ reviews }: { reviews: Review[] }) {
                 <header className="flex items-baseline justify-between gap-3 mb-2">
                   <div className="tag">
                     <span style={{ color: "var(--ink-soft)" }}>{r.review_date}</span>
-                    {" · EOD review"}
+                    {" · review"}
                   </div>
                   <div className="flex items-center gap-2">
-                    <span className="tag">via {r.source}</span>
                     <span className={`pill ${lightCls}`}>{r.light?.toUpperCase()}</span>
                   </div>
                 </header>
@@ -64,7 +63,7 @@ export default function DecisionLog({ reviews }: { reviews: Review[] }) {
                 {Array.isArray(r.proposed_changes) && r.proposed_changes.length > 0 && (
                   <div className="mt-3 note-left">
                     <div className="eyebrow mb-1" style={{ color: "var(--accent)" }}>
-                      Proposed · needs backtest approval
+                      Proposed model change
                     </div>
                     <ul style={{ margin: 0, paddingLeft: 18 }}>
                       {r.proposed_changes.map((c: any, i) => (

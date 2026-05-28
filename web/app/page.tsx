@@ -43,12 +43,12 @@ export default async function Home() {
         <div className="page-head trader-hero">
           <div className="hero-grid">
             <div className="hero-copy">
-              <div className="eyebrow">Adaptive allocation lab · {d.source}</div>
+              <div className="eyebrow">Adaptive allocation dashboard</div>
               <h1>GreenLight Trader</h1>
               <p className="lede">
-                A {fmtUsd(startingCapital)} paper book that shifts between SPY ballast,
-                QQQ and semiconductor exposure, safety sleeves, and cash when volatility
-                says the next dollar should wait.
+                A public, simulated {fmtUsd(startingCapital)} allocation strategy
+                that tracks SPY-relative performance, risk controls, current target
+                weights, and ranked equity opportunities.
               </p>
             </div>
 

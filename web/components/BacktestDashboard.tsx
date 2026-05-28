@@ -5,17 +5,20 @@ const fmt = (n: number | null | undefined, d = 2) =>
     ? "—"
     : n.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d });
 
+const modelName = (id: string) =>
+  id === "adaptive_tech_semis_v1" ? "Adaptive tech and semiconductor allocation" : id;
+
 export default function BacktestDashboard({ strategies }: { strategies: StrategyVersion[] }) {
   return (
     <section className="panel">
       <div className="panel-head">
         <div>
-          <div className="eyebrow">Strategies &amp; backtest</div>
-          <h2 className="mt-2">Active versions</h2>
+          <div className="eyebrow">Model performance</div>
+          <h2 className="mt-2">Current allocation model</h2>
         </div>
       </div>
       {strategies.length === 0 ? (
-        <div className="text-sm" style={{ color: "var(--ink-mute)" }}>No strategies recorded.</div>
+        <div className="text-sm" style={{ color: "var(--ink-mute)" }}>No model record has been published yet.</div>
       ) : (
         <div className="space-y-3">
           {strategies.map((s) => {
@@ -46,7 +49,7 @@ export default function BacktestDashboard({ strategies }: { strategies: Strategy
                         margin: "6px 0 0", color: "var(--ink)",
                       }}
                     >
-                      {s.strategy_id}
+                      {modelName(s.strategy_id)}
                     </h3>
                   </div>
                   <span className={`pill ${s.status === "active" ? "green" : ""}`}>{s.status}</span>

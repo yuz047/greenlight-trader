@@ -24,14 +24,14 @@ export default function CandidateResearchPanel({ candidates }: { candidates: Can
     <section className="panel">
       <div className="panel-head">
         <div>
-          <div className="eyebrow">Live opportunity list</div>
-          <h2 className="mt-2">Market-rewarded stocks with healthier forecasts</h2>
+          <div className="eyebrow">Opportunity list</div>
+          <h2 className="mt-2">Ranked equity choices</h2>
         </div>
         <span className="tag">{candidates.length} tracked</span>
       </div>
       {choices.length === 0 ? (
         <div className="text-sm" style={{ color: "var(--ink-mute)" }}>
-          No candidate research yet. The next daily run will publish the live list.
+          No opportunity data has been published yet.
         </div>
       ) : (
         <div className="table-wrap">
