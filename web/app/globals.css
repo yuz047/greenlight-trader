@@ -326,6 +326,12 @@ a:hover { color: var(--accent); }
   background: transparent;
   border-bottom: 1px solid var(--rule);
 }
+.risk-cap-grid .kpi-tile {
+  padding: 14px 16px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
 .kpi-tile .label {
   font-family: var(--mono);
   font-size: 10.5px;

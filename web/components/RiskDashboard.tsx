@@ -22,7 +22,6 @@ export default function RiskDashboard({
   ];
 
   const caps = [
-    { k: "Starting capital",    v: "$" + fmt(riskConfig.starting_capital, 0) },
     { k: "Target alpha",        v: fmt(riskConfig.target_alpha_pct * 100, 1) + "%" },
     { k: "Max relative DD",     v: fmt(riskConfig.max_relative_drawdown_pct * 100, 1) + "%" },
     { k: "Max sleeves",         v: String(riskConfig.max_picks_open ?? "—") },
@@ -48,7 +47,7 @@ export default function RiskDashboard({
       </div>
       <div className="mt-5">
         <div className="eyebrow mb-2" style={{ color: "var(--ink-mute)" }}>Risk caps in force</div>
-        <div className="kpi-grid five">
+        <div className="kpi-grid five risk-cap-grid">
           {caps.map((c) => (
             <div key={c.k} className="kpi-tile accent">
               <div className="label">{c.k}</div>
