@@ -2,7 +2,7 @@
   {
     "symbol": "QQQ",
     "side": "long",
-    "quantity": 2.905994410150855,
+    "quantity": 2.3202272992109005,
     "entry_price": 729.780029296875,
     "entry_time": "2026-05-27 00:00:00",
     "stop_price": 0.0,
@@ -10,17 +10,17 @@
     "max_hold_days": 10000,
     "strategy_id": "adaptive_tech_semis_v1",
     "thesis": "Target allocation weight 25.00%.",
-    "last_price": 729.4500122070312,
+    "last_price": 735.5999755859375,
     "age_days": 0,
     "is_core": true,
-    "target_weight": 0.25,
-    "unrealized_pnl": -0.9590278183401899,
-    "notional": 2119.7776579581055
+    "target_weight": 0.2,
+    "unrealized_pnl": 13.503598259823988,
+    "notional": 1706.759144653364
   },
   {
     "symbol": "SMH",
     "side": "long",
-    "quantity": 2.844669648423222,
+    "quantity": 2.13405351852922,
     "entry_price": 596.4099731445312,
     "entry_time": "2026-05-27 00:00:00",
     "stop_price": 0.0,
@@ -28,12 +28,12 @@
     "max_hold_days": 10000,
     "strategy_id": "adaptive_tech_semis_v1",
     "thesis": "Target allocation weight 20.00%.",
-    "last_price": 595.5,
+    "last_price": 599.8300170898438,
     "age_days": 0,
     "is_core": true,
-    "target_weight": 0.2,
-    "unrealized_pnl": -2.588572985128285,
-    "notional": 1694.0007756360287
+    "target_weight": 0.15,
+    "unrealized_pnl": 7.298556815018697,
+    "notional": 1280.0693584900234
   },
   {
     "symbol": "MPWR",
@@ -46,11 +46,11 @@
     "max_hold_days": 10000,
     "strategy_id": "adaptive_tech_semis_v1",
     "thesis": "Target allocation weight 10.00%.",
-    "last_price": 1620.1700439453125,
+    "last_price": 1633.1700439453125,
     "age_days": 0,
     "is_core": true,
     "target_weight": 0.1,
-    "unrealized_pnl": -1.2625294038169537,
-    "notional": 847.0321449067615
+    "unrealized_pnl": 5.533928736449452,
+    "notional": 853.8286030470279
   }
 ]

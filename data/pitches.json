@@ -2,25 +2,15 @@
   {
     "symbol": "SPY",
     "strategy_id": "adaptive_tech_semis_v1",
-    "rationale": "Target allocation weight 40.0% in risk_on.",
+    "rationale": "Target allocation weight 55.0% in risk_on.",
     "stop_distance": 0,
     "target_distance": 0,
     "max_hold_days": 0,
-    "score": 0.4,
-    "target_weight": 0.4
+    "score": 0.55,
+    "target_weight": 0.55
   },
   {
     "symbol": "QQQ",
-    "strategy_id": "adaptive_tech_semis_v1",
-    "rationale": "Target allocation weight 25.0% in risk_on.",
-    "stop_distance": 0,
-    "target_distance": 0,
-    "max_hold_days": 0,
-    "score": 0.25,
-    "target_weight": 0.25
-  },
-  {
-    "symbol": "SMH",
     "strategy_id": "adaptive_tech_semis_v1",
     "rationale": "Target allocation weight 20.0% in risk_on.",
     "stop_distance": 0,
@@ -30,14 +20,14 @@
     "target_weight": 0.2
   },
   {
-    "symbol": "CASH",
+    "symbol": "SMH",
     "strategy_id": "adaptive_tech_semis_v1",
-    "rationale": "Target allocation weight 5.0% in risk_on.",
+    "rationale": "Target allocation weight 15.0% in risk_on.",
     "stop_distance": 0,
     "target_distance": 0,
     "max_hold_days": 0,
-    "score": 0.05,
-    "target_weight": 0.049999999999999864
+    "score": 0.15,
+    "target_weight": 0.15
   },
   {
     "symbol": "MPWR",
@@ -48,5 +38,15 @@
     "max_hold_days": 0,
     "score": 0.1,
     "target_weight": 0.1
+  },
+  {
+    "symbol": "CASH",
+    "strategy_id": "adaptive_tech_semis_v1",
+    "rationale": "Target allocation weight -0.0% in risk_on.",
+    "stop_distance": 0,
+    "target_distance": 0,
+    "max_hold_days": 0,
+    "score": -0.0,
+    "target_weight": -2.7755575615628914e-17
   }
 ]

@@ -1,29 +1,29 @@
 {
-  "cash": 424.147337155289,
+  "cash": 0.0,
   "realized_pnl": 0.0,
-  "peak_relative_outperformance": 0.3999672831833434,
+  "peak_relative_outperformance": 0.40451114465336446,
   "inception": "2026-05-27",
   "positions": {
     "SPY": {
       "symbol": "SPY",
       "side": "long",
-      "quantity": 4.5214050257909735,
-      "entry_price": 750.469970703125,
+      "quantity": 6.219372871609547,
+      "entry_price": 751.597514530912,
       "entry_time": "2026-05-27 00:00:00",
       "stop_price": 0.0,
       "target_price": 0.0,
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 40.00%.",
-      "last_price": 750.4600219726562,
+      "last_price": 754.5999755859375,
       "age_days": 0,
       "is_core": true,
-      "target_weight": 0.4
+      "target_weight": 0.55
     },
     "QQQ": {
       "symbol": "QQQ",
       "side": "long",
-      "quantity": 2.905994410150855,
+      "quantity": 2.3202272992109005,
       "entry_price": 729.780029296875,
       "entry_time": "2026-05-27 00:00:00",
       "stop_price": 0.0,
@@ -31,15 +31,15 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 25.00%.",
-      "last_price": 729.4500122070312,
+      "last_price": 735.5999755859375,
       "age_days": 0,
       "is_core": true,
-      "target_weight": 0.25
+      "target_weight": 0.2
     },
     "SMH": {
       "symbol": "SMH",
       "side": "long",
-      "quantity": 2.844669648423222,
+      "quantity": 2.13405351852922,
       "entry_price": 596.4099731445312,
       "entry_time": "2026-05-27 00:00:00",
       "stop_price": 0.0,
@@ -47,10 +47,10 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 20.00%.",
-      "last_price": 595.5,
+      "last_price": 599.8300170898438,
       "age_days": 0,
       "is_core": true,
-      "target_weight": 0.2
+      "target_weight": 0.15
     },
     "MPWR": {
       "symbol": "MPWR",
@@ -63,7 +63,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 10.00%.",
-      "last_price": 1620.1700439453125,
+      "last_price": 1633.1700439453125,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.1
