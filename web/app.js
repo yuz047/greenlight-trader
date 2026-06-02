@@ -206,6 +206,7 @@ async function main() {
     : `<span class="num-neg">stale</span>`;
   document.getElementById("statusDate").textContent = `as of ${log.date || status.latest_run_date || "n/a"}`;
 
+  const rolling = backtestResults.rolling_training || {};
   document.getElementById("resultsKpis").innerHTML = [
     kpi("Final equity", fmtUsd(finalEquity), `${backtestResults.invest_start} to ${backtestResults.end_date}`),
     kpi("Total return", fmtPct(green.total_return, 2, true), `SPY ${fmtPct(spy.total_return, 2, true)}`, numberClass(green.total_return)),
@@ -213,16 +214,9 @@ async function main() {
     kpi("Sharpe", fmtNum(green.Sharpe), "risk adjusted"),
     kpi("Max drawdown", fmtPct(green.max_drawdown), "absolute", "num-neg"),
     kpi("Alpha vs SPY", fmtPct(green.alpha_vs_SPY, 2, true), "test window", numberClass(green.alpha_vs_SPY)),
-  ].join("");
-
-  const rolling = backtestResults.rolling_training || {};
-  document.getElementById("replayKpis").innerHTML = [
     kpi("Initial train", `${backtestResults.train_start} to ${backtestResults.initial_train_end}`, "pre-replay"),
-    kpi("Replay start", backtestResults.invest_start || "n/a", "investment loop begins"),
+    kpi("Replay start", backtestResults.invest_start || "n/a", "daily loop begins"),
     kpi("Rolling window", `${rolling.window_years || "n/a"} years`, `updates ${rolling.updates || 0}`),
-    kpi("DeepSeek calls", String(backtestResults.ai_provider_call_count || 0), `${backtestResults.ai_memo_frequency || "n/a"} validation`),
-    kpi("Learning rows", fmtNum(backtestResults.learning_row_pool?.total, 0), "matured labels only"),
-    kpi("No lookahead", "enforced", "label_end_date < replay date", "num-pos"),
   ].join("");
   renderWeightTable(backtestResults.latest_learned_weights || {});
 
@@ -402,10 +396,10 @@ function renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots) {
   const series = [
     { label: "Greenlight", color: "#1f3a5f", width: 2.8, values: denseSeries(labels, local) },
     ...keys.map(([key, label, color, width, dash]) => ({
-    label,
-    color,
-    width,
-    dash,
+      label,
+      color,
+      width,
+      dash,
       values: denseSeries(labels, snapshots[key] || []),
     })),
   ];
@@ -416,11 +410,14 @@ function renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots) {
 
 function renderStoredChart(canvasId, title, labels, series) {
   CHART_STORE.set(canvasId, { title, labels, series });
-  drawCanvasChart(document.getElementById(canvasId), labels, series);
+  const canvas = document.getElementById(canvasId);
+  drawCanvasChart(canvas, labels, series);
+  attachChartHover(canvas);
 }
 
 function drawCanvasChart(canvas, labels, series) {
   if (!canvas || !labels.length) return;
+  canvas.__chartData = { labels, series };
   const parent = canvas.parentElement;
   const width = Math.max(parent?.clientWidth || 640, 320);
   const height = Math.max(parent?.clientHeight || 312, 240);
@@ -438,7 +435,10 @@ function drawCanvasChart(canvas, labels, series) {
   const plotW = width - pad.left - pad.right;
   const plotH = height - pad.top - pad.bottom;
   const values = series.flatMap((s) => s.values).filter((v) => Number.isFinite(v));
-  if (!values.length) return;
+  if (!values.length) {
+    canvas.__chartLayout = null;
+    return;
+  }
   const min = Math.min(...values);
   const max = Math.max(...values);
   const span = Math.max(max - min, 1);
@@ -446,6 +446,7 @@ function drawCanvasChart(canvas, labels, series) {
   const yMax = max + span * 0.08;
   const x = (idx) => pad.left + (labels.length <= 1 ? 0 : (idx / (labels.length - 1)) * plotW);
   const y = (value) => pad.top + (1 - (value - yMin) / (yMax - yMin)) * plotH;
+  canvas.__chartLayout = { pad, plotW, plotH, width, height };
 
   ctx.strokeStyle = "#e6e1d3";
   ctx.lineWidth = 1;
@@ -507,6 +508,72 @@ function drawCanvasChart(canvas, labels, series) {
   });
 }
 
+function attachChartHover(canvas) {
+  if (!canvas || canvas.dataset.chartHoverReady === "true") return;
+  canvas.dataset.chartHoverReady = "true";
+  canvas.addEventListener("mousemove", (event) => showChartTooltip(canvas, event));
+  canvas.addEventListener("mouseleave", hideChartTooltip);
+}
+
+function getChartTooltip() {
+  let tooltip = document.querySelector(".chart-tooltip");
+  if (!tooltip) {
+    tooltip = document.createElement("div");
+    tooltip.className = "chart-tooltip";
+    document.body.appendChild(tooltip);
+  }
+  return tooltip;
+}
+
+function showChartTooltip(canvas, event) {
+  const chart = canvas.__chartData;
+  const layout = canvas.__chartLayout;
+  if (!chart?.labels?.length || !layout) return;
+
+  const rect = canvas.getBoundingClientRect();
+  const localX = Math.min(Math.max(event.clientX - rect.left, layout.pad.left), layout.width - layout.pad.right);
+  const ratio = (localX - layout.pad.left) / Math.max(layout.plotW, 1);
+  const idx = Math.min(chart.labels.length - 1, Math.max(0, Math.round(ratio * (chart.labels.length - 1))));
+  const rows = chart.series
+    .map((item) => ({ label: item.label, color: item.color, value: item.values?.[idx] }))
+    .filter((row) => Number.isFinite(row.value));
+
+  if (!rows.length) {
+    hideChartTooltip();
+    return;
+  }
+
+  const tooltip = getChartTooltip();
+  tooltip.innerHTML = `
+    <strong>${escapeHtml(chart.labels[idx])}</strong>
+    ${rows
+      .map(
+        (row) => `<div><span><i style="background:${row.color}"></i>${escapeHtml(row.label)}</span><span>${fmtUsd(row.value, 0)}</span></div>`
+      )
+      .join("")}
+  `;
+  tooltip.style.display = "block";
+  positionChartTooltip(tooltip, event);
+}
+
+function positionChartTooltip(tooltip, event) {
+  const margin = 12;
+  let left = event.clientX + 14;
+  let top = event.clientY + 14;
+  tooltip.style.left = `${left}px`;
+  tooltip.style.top = `${top}px`;
+  const box = tooltip.getBoundingClientRect();
+  if (box.right > window.innerWidth - margin) left = event.clientX - box.width - 14;
+  if (box.bottom > window.innerHeight - margin) top = event.clientY - box.height - 14;
+  tooltip.style.left = `${Math.max(margin, left)}px`;
+  tooltip.style.top = `${Math.max(margin, top)}px`;
+}
+
+function hideChartTooltip() {
+  const tooltip = document.querySelector(".chart-tooltip");
+  if (tooltip) tooltip.style.display = "none";
+}
+
 function denseSeries(labels, rows) {
   const points = (rows || [])
     .map((row) => ({ date: row.date, time: Date.parse(`${row.date}T00:00:00Z`), value: Number(row.equity || 0) }))
@@ -538,16 +605,21 @@ function setupChartModal() {
   const modalCanvas = document.getElementById("chartModalCanvas");
   const modalTitle = document.getElementById("chartModalTitle");
   if (!modal || !close || !modalCanvas || !modalTitle) return;
+  let openChart = null;
 
   document.querySelectorAll("[data-expand-chart]").forEach((button) => {
     button.addEventListener("click", () => {
       const chart = CHART_STORE.get(button.getAttribute("data-expand-chart"));
       if (!chart) return;
+      openChart = chart;
       modalTitle.textContent = chart.title;
       modal.classList.add("is-open");
       modal.setAttribute("aria-hidden", "false");
       document.body.classList.add("modal-open");
-      requestAnimationFrame(() => drawCanvasChart(modalCanvas, chart.labels, chart.series));
+      requestAnimationFrame(() => {
+        drawCanvasChart(modalCanvas, chart.labels, chart.series);
+        attachChartHover(modalCanvas);
+      });
     });
   });
 
@@ -555,6 +627,7 @@ function setupChartModal() {
     modal.classList.remove("is-open");
     modal.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
+    hideChartTooltip();
   };
   close.addEventListener("click", closeModal);
   modal.addEventListener("click", (event) => {
@@ -572,7 +645,6 @@ function setupChartModal() {
         drawCanvasChart(document.getElementById(canvasId), chart.labels, chart.series);
       });
       if (modal.classList.contains("is-open")) {
-        const openChart = Array.from(CHART_STORE.values()).find((chart) => chart.title === modalTitle.textContent);
         if (openChart) drawCanvasChart(modalCanvas, openChart.labels, openChart.series);
       }
     }, 120);

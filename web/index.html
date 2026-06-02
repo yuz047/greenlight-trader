@@ -90,40 +90,26 @@
           <section class="panel">
             <div class="panel-head">
               <div>
-                <div class="eyebrow">Replay result</div>
-                <h2>Train through 2021, invest from 2022</h2>
-                <p class="subtitle">Out-of-sample replay using the same daily loop as paper mode.</p>
+                <div class="eyebrow">Summary</div>
+                <h2>Replay result and learning window</h2>
+                <p class="subtitle">Train through 2021, invest from 2022, and replay the same daily feedback loop used by paper mode.</p>
               </div>
               <span class="tag">rolling 3-year window</span>
             </div>
-            <div class="kpi-grid six" id="resultsKpis"></div>
+            <div class="kpi-grid summary" id="resultsKpis"></div>
           </section>
 
-          <div class="surface-split two">
-            <section class="panel">
-              <div class="panel-head">
-                <div>
-                  <div class="eyebrow">Replay mechanics</div>
-                  <h2>Daily feedback loop</h2>
-                  <p class="subtitle">Universe, features, scores, allocator, risk, execution, AI review, and ledger run every replay day.</p>
-                </div>
-                <span class="tag">no-lookahead</span>
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="eyebrow">Learned weights</div>
+                <h2>Latest rolling review</h2>
+                <p class="subtitle">Constrained weights are re-estimated from the rolling training window.</p>
               </div>
-              <div class="kpi-grid three" id="replayKpis"></div>
-            </section>
-
-            <section class="panel">
-              <div class="panel-head">
-                <div>
-                  <div class="eyebrow">Learned weights</div>
-                  <h2>Latest rolling review</h2>
-                  <p class="subtitle">Constrained weights are re-estimated from the rolling training window.</p>
-                </div>
-                <span class="tag">ML_ESTIMATED_OUTPUT</span>
-              </div>
-              <div class="table-wrap"><table class="gl compact" id="weightsTable"></table></div>
-            </section>
-          </div>
+              <span class="tag">ML_ESTIMATED_OUTPUT</span>
+            </div>
+            <div class="table-wrap"><table class="gl compact" id="weightsTable"></table></div>
+          </section>
         </div>
       </section>
 

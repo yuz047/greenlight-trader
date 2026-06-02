@@ -395,6 +395,10 @@ p {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
+  .kpi-grid.summary {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
   .kpi-grid.six {
     grid-template-columns: repeat(6, minmax(0, 1fr));
   }
@@ -545,6 +549,53 @@ table.gl td.text-cell {
 
 .chart-shell.large {
   height: 500px;
+}
+
+.chart-tooltip {
+  position: fixed;
+  z-index: 120;
+  display: none;
+  min-width: 190px;
+  max-width: 280px;
+  padding: 10px 12px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 14px 36px rgba(20, 22, 26, 0.16);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  line-height: 1.45;
+  pointer-events: none;
+}
+
+.chart-tooltip strong {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--ink);
+  font-family: var(--display);
+  font-size: 13px;
+  line-height: 1.25;
+}
+
+.chart-tooltip div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.chart-tooltip span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.chart-tooltip i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
 }
 
 .architecture-grid {
