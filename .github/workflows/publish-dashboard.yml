@@ -5,6 +5,7 @@ on:
   push:
     branches: ["main"]
     paths:
+      - ".github/workflows/publish-dashboard.yml"
       - "web/**"
       - "data/**"
 
@@ -39,11 +40,35 @@ jobs:
           cp web/index.html web/styles.css web/app.js site/web/
           cp -R data site/data
 
-      - uses: actions/configure-pages@v5
+      - name: Check Pages enablement
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          status=$(curl -sS -o /tmp/pages.json -w "%{http_code}" \
+            -H "Authorization: Bearer $GH_TOKEN" \
+            -H "Accept: application/vnd.github+json" \
+            "https://api.github.com/repos/$REPO/pages")
+          if [ "$status" = "200" ]; then
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+            cat /tmp/pages.json
+          else
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::GitHub Pages is not enabled for this repository. Dashboard data and static payload validated; enable Pages with source 'GitHub Actions' to deploy."
+          fi
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Configure Pages
+        if: steps.pages.outputs.enabled == 'true'
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        if: steps.pages.outputs.enabled == 'true'
+        uses: actions/upload-pages-artifact@v3
         with:
           path: site
 
-      - id: deployment
+      - name: Deploy Pages
+        if: steps.pages.outputs.enabled == 'true'
+        id: deployment
         uses: actions/deploy-pages@v4
