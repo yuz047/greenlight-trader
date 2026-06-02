@@ -175,7 +175,6 @@ async function main() {
   const green = greenMetric(benchmarkMetrics);
   const spy = metric(benchmarkMetrics, "SPY_buy_hold");
   const qqq = metric(benchmarkMetrics, "QQQ_buy_hold");
-  const vix = metric(benchmarkMetrics, "VIX_20_15_strategy");
   const finalEquity = (backtestResults.equity_curve || []).at(-1)?.equity || 0;
   const light = log.risk_light || status.risk_light || "UNKNOWN";
   const lightKey = riskClass(light);
@@ -291,11 +290,8 @@ async function main() {
   );
 
   renderChart(backtestResults, benchmarkSnapshots);
-  renderBenchmarkComparisonChart(benchmarkSnapshots);
+  renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots);
 
-  const verdict = benchmarkMetrics.verdict || {};
-  const failedSimple = Boolean(verdict.greenlight_failed_simple_benchmarks);
-  document.getElementById("benchmarkVerdict").textContent = failedSimple ? "verdict · failed simple benchmarks" : "verdict · competitive";
   const metricRows = Object.entries(benchmarkMetrics.metrics || {}).map(([name, row]) => {
     return `<tr><td class="symbol">${escapeHtml(name)}</td><td class="right ${numberClass(row.total_return)}">${fmtPct(row.total_return, 2, true)}</td><td class="right">${fmtNum(row.Sharpe, 2)}</td><td class="right num-neg">${fmtPct(row.max_drawdown)}</td><td class="right ${numberClass(row.alpha_vs_SPY)}">${fmtPct(row.alpha_vs_SPY, 2, true)}</td></tr>`;
   });
@@ -324,7 +320,6 @@ async function main() {
     })
   );
 
-  document.getElementById("verdictList").innerHTML = verdictRows(verdict, green, spy, qqq, vix);
   wireReportLinks();
   setupChartModal();
 }
@@ -385,18 +380,18 @@ function renderChart(backtestResults, benchmarkSnapshots) {
   const qqq = benchmarkSnapshots.snapshots?.QQQ_buy_hold || [];
   const labels = local.map((row) => row.date);
   const series = [
-    { label: "Greenlight", color: "#1f3a5f", width: 2.4, values: alignSeries(labels, local) },
-    { label: "SPY", color: "#767a82", width: 1.6, dash: [6, 5], values: alignSeries(labels, spy) },
-    { label: "QQQ", color: "#b45309", width: 1.6, values: alignSeries(labels, qqq) },
+    { label: "Greenlight", color: "#1f3a5f", width: 2.4, values: denseSeries(labels, local) },
+    { label: "SPY", color: "#767a82", width: 1.6, dash: [6, 5], values: denseSeries(labels, spy) },
+    { label: "QQQ", color: "#b45309", width: 1.6, values: denseSeries(labels, qqq) },
   ];
   renderStoredChart("equityChart", "Greenlight vs SPY and QQQ", labels, series);
 }
 
-function renderBenchmarkComparisonChart(benchmarkSnapshots) {
+function renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots) {
   const snapshots = benchmarkSnapshots.snapshots || {};
-  const greenKey = snapshots.learned_weight_Greenlight ? "learned_weight_Greenlight" : "fixed_weight_Greenlight";
+  const local = (backtestResults.equity_curve || []).map((row) => ({ date: row.date, equity: Number(row.equity || 0) }));
+  const labels = local.map((row) => row.date);
   const keys = [
-    [greenKey, "Greenlight", "#1f3a5f", 2.7],
     ["SPY_buy_hold", "SPY", "#767a82", 1.6, [6, 5]],
     ["QQQ_buy_hold", "QQQ", "#b45309", 1.6],
     ["VIX_20_15_strategy", "VIX 20/15", "#9b2c1f", 1.5, [3, 5]],
@@ -404,27 +399,24 @@ function renderBenchmarkComparisonChart(benchmarkSnapshots) {
     ["dynamic_ETF_momentum_rotation", "ETF rotation", "#256f8f", 1.7],
     ["agent_led_experimental", "Agent track", "#5f4b8b", 1.4, [8, 5]],
   ].filter(([key]) => snapshots[key]?.length);
-  const labels = benchmarkLabels(snapshots, keys.map(([key]) => key));
-  const series = keys.map(([key, label, color, width, dash]) => ({
+  const series = [
+    { label: "Greenlight", color: "#1f3a5f", width: 2.8, values: denseSeries(labels, local) },
+    ...keys.map(([key, label, color, width, dash]) => ({
     label,
     color,
     width,
     dash,
-    values: alignSeries(labels, snapshots[key] || []),
-  }));
+      values: denseSeries(labels, snapshots[key] || []),
+    })),
+  ];
+  const pointCount = document.getElementById("benchmarkPointCount");
+  if (pointCount) pointCount.textContent = `${labels.length.toLocaleString("en-US")} daily points`;
   renderStoredChart("benchmarkComparisonChart", "Benchmark comparison", labels, series);
 }
 
 function renderStoredChart(canvasId, title, labels, series) {
   CHART_STORE.set(canvasId, { title, labels, series });
   drawCanvasChart(document.getElementById(canvasId), labels, series);
-}
-
-function benchmarkLabels(snapshots, keys) {
-  const longest = keys
-    .map((key) => snapshots[key] || [])
-    .sort((a, b) => b.length - a.length)[0] || [];
-  return longest.map((row) => row.date);
 }
 
 function drawCanvasChart(canvas, labels, series) {
@@ -515,9 +507,27 @@ function drawCanvasChart(canvas, labels, series) {
   });
 }
 
-function alignSeries(labels, rows) {
-  const map = new Map(rows.map((row) => [row.date, Number(row.equity || 0)]));
-  return labels.map((label) => map.get(label) ?? null);
+function denseSeries(labels, rows) {
+  const points = (rows || [])
+    .map((row) => ({ date: row.date, time: Date.parse(`${row.date}T00:00:00Z`), value: Number(row.equity || 0) }))
+    .filter((row) => row.date && Number.isFinite(row.time) && Number.isFinite(row.value))
+    .sort((a, b) => a.time - b.time);
+  if (!points.length) return labels.map(() => null);
+
+  const exact = new Map(points.map((row) => [row.date, row.value]));
+  let idx = 0;
+  return labels.map((label) => {
+    if (exact.has(label)) return exact.get(label);
+    const time = Date.parse(`${label}T00:00:00Z`);
+    if (!Number.isFinite(time) || time < points[0].time) return null;
+    while (idx < points.length - 2 && points[idx + 1].time < time) idx += 1;
+    const prev = points[idx];
+    const next = points[idx + 1];
+    if (!next || time >= next.time) return prev.value;
+    const span = Math.max(next.time - prev.time, 1);
+    const t = (time - prev.time) / span;
+    return prev.value + (next.value - prev.value) * t;
+  });
 }
 
 function setupChartModal() {
@@ -567,23 +577,6 @@ function setupChartModal() {
       }
     }, 120);
   });
-}
-
-function verdictRows(verdict, green, spy, qqq, vix) {
-  const rows = [
-    ["Beat SPY", verdict.beat_SPY, `${fmtPct(green.total_return, 2, true)} vs ${fmtPct(spy.total_return, 2, true)}`],
-    ["Beat QQQ", verdict.beat_QQQ, `${fmtPct(green.total_return, 2, true)} vs ${fmtPct(qqq.total_return, 2, true)}`],
-    ["Beat VIX strategy", verdict.beat_VIX_strategy, `${fmtPct(green.total_return, 2, true)} vs ${fmtPct(vix.total_return, 2, true)}`],
-    ["Learned beat fixed", verdict.learned_beat_fixed, "not yet; budget/model training remains TODO"],
-    ["Agent added value", verdict.agent_led_add_value, "experimental track only"],
-  ];
-  return rows
-    .map(([label, passed, detail]) => {
-      const cls = passed ? "green" : "yellow";
-      const value = passed ? "yes" : "no";
-      return `<div class="verdict-row"><span>${escapeHtml(label)}</span><span class="pill ${cls}">${value}</span><em>${escapeHtml(detail)}</em></div>`;
-    })
-    .join("");
 }
 
 function wireReportLinks() {

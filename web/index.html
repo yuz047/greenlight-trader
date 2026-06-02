@@ -16,6 +16,7 @@
           <a href="#portfolio">Portfolio</a>
           <a href="#discovery">Discovery</a>
           <a href="#benchmarks">Benchmarks</a>
+          <a href="#architecture">Architecture</a>
           <a href="#logs">Logs</a>
           <a href="#reports">Reports</a>
         </nav>
@@ -232,41 +233,64 @@
               <div>
                 <div class="eyebrow">Benchmark comparison</div>
                 <h2>Replay equity curves</h2>
-                <p class="subtitle">Greenlight, index anchors, trend, VIX, ETF rotation, and experimental tracks plotted on the same test window.</p>
+                <p class="subtitle">Daily Greenlight replay data with comparison strategies densified onto the same trading-date axis.</p>
               </div>
               <div class="panel-actions">
-                <span class="tag">2022-2026 replay</span>
+                <span class="tag" id="benchmarkPointCount">daily replay</span>
                 <button class="chart-button" type="button" data-expand-chart="benchmarkComparisonChart">Expand</button>
               </div>
             </div>
             <div class="chart-shell large"><canvas id="benchmarkComparisonChart"></canvas></div>
           </section>
 
-          <div class="surface-split two">
-            <section class="panel">
-              <div class="panel-head">
-                <div>
-                  <div class="eyebrow">Benchmark verdict</div>
-                  <h2>Simple strategies stayed visible</h2>
-                  <p class="subtitle">Pass/fail checks remain beside the chart so weak results stay visible.</p>
-                </div>
-                <span class="tag" id="benchmarkVerdict">verdict · loading</span>
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="eyebrow">Benchmark metrics</div>
+                <h2>Greenlight vs alternatives</h2>
+                <p class="subtitle">Return, drawdown, and alpha summary for each comparison strategy.</p>
               </div>
-              <div class="verdict-list" id="verdictList"></div>
-            </section>
+              <span class="tag">metrics table</span>
+            </div>
+            <div class="table-wrap"><table class="gl" id="benchmarkTable"></table></div>
+          </section>
+        </div>
+      </section>
 
-            <section class="panel">
-              <div class="panel-head">
-                <div>
-                  <div class="eyebrow">Benchmark metrics</div>
-                  <h2>Greenlight vs alternatives</h2>
-                  <p class="subtitle">Return, drawdown, and alpha summary for each comparison strategy.</p>
-                </div>
-                <span class="tag">do not hide weak results</span>
+      <section class="container section-pad" id="architecture">
+        <div class="dashboard-surface">
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="eyebrow">Architecture</div>
+                <h2>Daily deterministic replay loop</h2>
+                <p class="subtitle">The replay path mirrors daily paper mode: each trading day rebuilds data, scores, allocations, execution decisions, logs, benchmarks, and watermarked review output.</p>
               </div>
-              <div class="table-wrap"><table class="gl" id="benchmarkTable"></table></div>
-            </section>
-          </div>
+              <span class="tag">production path</span>
+            </div>
+            <div class="architecture-grid">
+              <article>
+                <span>01</span>
+                <h3>Market data and universe</h3>
+                <p>Massive and tagged secondary data feed anchors, dynamic ETFs, current holdings, movers, relative-strength names, and liquid stock candidates.</p>
+              </article>
+              <article>
+                <span>02</span>
+                <h3>Features and learning</h3>
+                <p>Daily features are sliced no-lookahead. Rolling windows refresh stock and ETF score weights before each replay decision.</p>
+              </article>
+              <article>
+                <span>03</span>
+                <h3>Selection and allocation</h3>
+                <p>Regime, ETF discovery, candidate scores, volatility, caps, and sleeve budgets produce target weights rather than direct trade instructions.</p>
+              </article>
+              <article>
+                <span>04</span>
+                <h3>Execution and records</h3>
+                <p>Sparse execution checks drift, persistence, rebalance interval, turnover, and trade size, then writes portfolio state, benchmark curves, and decision logs.</p>
+              </article>
+            </div>
+          </section>
         </div>
       </section>
 

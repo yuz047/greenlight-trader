@@ -544,7 +544,46 @@ table.gl td.text-cell {
 }
 
 .chart-shell.large {
-  height: 470px;
+  height: 500px;
+}
+
+.architecture-grid {
+  display: grid;
+  gap: 14px;
+}
+
+@media (min-width: 780px) {
+  .architecture-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.architecture-grid article {
+  min-height: 190px;
+  padding: 16px 14px;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius-sm);
+  background: var(--paper);
+}
+
+.architecture-grid span {
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  color: var(--accent);
+}
+
+.architecture-grid h3 {
+  margin: 18px 0 8px;
+  font-family: var(--display);
+  font-size: 16px;
+  line-height: 1.25;
+}
+
+.architecture-grid p {
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.5;
 }
 
 .chart-modal {
@@ -610,33 +649,6 @@ table.gl td.text-cell {
   font-size: 12px;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-}
-
-.verdict-list {
-  display: grid;
-  gap: 10px;
-}
-
-.verdict-row {
-  display: grid;
-  grid-template-columns: minmax(130px, 1fr) auto minmax(180px, 1.2fr);
-  align-items: center;
-  gap: 12px;
-  min-height: 44px;
-  padding: 0 0 10px;
-  border-bottom: 1px solid var(--rule);
-}
-
-.verdict-row span:first-child {
-  font-family: var(--display);
-  font-weight: 650;
-  color: var(--ink);
-}
-
-.verdict-row em {
-  color: var(--ink-soft);
-  font-style: normal;
-  font-size: 13px;
 }
 
 .empty-state {
@@ -705,11 +717,6 @@ table.gl td.text-cell {
     gap: 18px;
     font-size: 13px;
     flex-wrap: wrap;
-  }
-
-  .verdict-row {
-    grid-template-columns: 1fr;
-    align-items: start;
   }
 
   .page-head {

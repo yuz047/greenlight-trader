@@ -215,10 +215,8 @@ def equal_weight_proxy(price_history: dict[str, pd.DataFrame], starting: float) 
 def _curve_snapshot(curve: pd.Series) -> list[dict[str, float | str]]:
     if curve is None or curve.empty:
         return []
-    sampled = curve.iloc[:: max(1, len(curve) // 250)]
-    if sampled.index[-1] != curve.index[-1]:
-        sampled = pd.concat([sampled, curve.iloc[[-1]]])
-    return [{"date": idx.date().isoformat(), "equity": round(float(value), 4)} for idx, value in sampled.items()]
+    daily = curve.dropna().astype(float)
+    return [{"date": idx.date().isoformat(), "equity": round(float(value), 4)} for idx, value in daily.items()]
 
 
 def _empty_metrics(final_value: float = 0.0) -> dict[str, float]:
