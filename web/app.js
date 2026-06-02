@@ -12,6 +12,9 @@ const SEGMENT_COLORS = [
   "#0f766e",
 ];
 
+const CHART_STORE = new Map();
+let chartModalReady = false;
+
 async function loadJson(name) {
   let lastError;
   for (const base of DATA_PATHS) {
@@ -323,6 +326,7 @@ async function main() {
 
   document.getElementById("verdictList").innerHTML = verdictRows(verdict, green, spy, qqq, vix);
   wireReportLinks();
+  setupChartModal();
 }
 
 function statusReason(light, dataHealth, log) {
@@ -380,12 +384,12 @@ function renderChart(backtestResults, benchmarkSnapshots) {
   const spy = benchmarkSnapshots.snapshots?.SPY_buy_hold || [];
   const qqq = benchmarkSnapshots.snapshots?.QQQ_buy_hold || [];
   const labels = local.map((row) => row.date);
-  const ctx = document.getElementById("equityChart");
-  drawCanvasChart(ctx, labels, [
+  const series = [
     { label: "Greenlight", color: "#1f3a5f", width: 2.4, values: alignSeries(labels, local) },
     { label: "SPY", color: "#767a82", width: 1.6, dash: [6, 5], values: alignSeries(labels, spy) },
     { label: "QQQ", color: "#b45309", width: 1.6, values: alignSeries(labels, qqq) },
-  ]);
+  ];
+  renderStoredChart("equityChart", "Greenlight vs SPY and QQQ", labels, series);
 }
 
 function renderBenchmarkComparisonChart(benchmarkSnapshots) {
@@ -408,7 +412,12 @@ function renderBenchmarkComparisonChart(benchmarkSnapshots) {
     dash,
     values: alignSeries(labels, snapshots[key] || []),
   }));
-  drawCanvasChart(document.getElementById("benchmarkComparisonChart"), labels, series);
+  renderStoredChart("benchmarkComparisonChart", "Benchmark comparison", labels, series);
+}
+
+function renderStoredChart(canvasId, title, labels, series) {
+  CHART_STORE.set(canvasId, { title, labels, series });
+  drawCanvasChart(document.getElementById(canvasId), labels, series);
 }
 
 function benchmarkLabels(snapshots, keys) {
@@ -509,6 +518,55 @@ function drawCanvasChart(canvas, labels, series) {
 function alignSeries(labels, rows) {
   const map = new Map(rows.map((row) => [row.date, Number(row.equity || 0)]));
   return labels.map((label) => map.get(label) ?? null);
+}
+
+function setupChartModal() {
+  if (chartModalReady) return;
+  chartModalReady = true;
+  const modal = document.getElementById("chartModal");
+  const close = document.getElementById("chartModalClose");
+  const modalCanvas = document.getElementById("chartModalCanvas");
+  const modalTitle = document.getElementById("chartModalTitle");
+  if (!modal || !close || !modalCanvas || !modalTitle) return;
+
+  document.querySelectorAll("[data-expand-chart]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const chart = CHART_STORE.get(button.getAttribute("data-expand-chart"));
+      if (!chart) return;
+      modalTitle.textContent = chart.title;
+      modal.classList.add("is-open");
+      modal.setAttribute("aria-hidden", "false");
+      document.body.classList.add("modal-open");
+      requestAnimationFrame(() => drawCanvasChart(modalCanvas, chart.labels, chart.series));
+    });
+  });
+
+  const closeModal = () => {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+  };
+  close.addEventListener("click", closeModal);
+  modal.addEventListener("click", (event) => {
+    if (event.target === modal) closeModal();
+  });
+  window.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && modal.classList.contains("is-open")) closeModal();
+  });
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    window.clearTimeout(resizeTimer);
+    resizeTimer = window.setTimeout(() => {
+      CHART_STORE.forEach((chart, canvasId) => {
+        drawCanvasChart(document.getElementById(canvasId), chart.labels, chart.series);
+      });
+      if (modal.classList.contains("is-open")) {
+        const openChart = Array.from(CHART_STORE.values()).find((chart) => chart.title === modalTitle.textContent);
+        if (openChart) drawCanvasChart(modalCanvas, openChart.labels, openChart.series);
+      }
+    }, 120);
+  });
 }
 
 function verdictRows(verdict, green, spy, qqq, vix) {

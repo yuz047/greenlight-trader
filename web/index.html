@@ -146,7 +146,10 @@
                   <div class="eyebrow">Equity curve</div>
                   <h2>Greenlight vs SPY and QQQ</h2>
                 </div>
-                <span class="tag">2022-2026 replay</span>
+                <div class="panel-actions">
+                  <span class="tag">2022-2026 replay</span>
+                  <button class="chart-button" type="button" data-expand-chart="equityChart">Expand</button>
+                </div>
               </div>
               <div class="chart-shell"><canvas id="equityChart"></canvas></div>
             </section>
@@ -231,7 +234,10 @@
                 <h2>Replay equity curves</h2>
                 <p class="subtitle">Greenlight, index anchors, trend, VIX, ETF rotation, and experimental tracks plotted on the same test window.</p>
               </div>
-              <span class="tag">2022-2026 replay</span>
+              <div class="panel-actions">
+                <span class="tag">2022-2026 replay</span>
+                <button class="chart-button" type="button" data-expand-chart="benchmarkComparisonChart">Expand</button>
+              </div>
             </div>
             <div class="chart-shell large"><canvas id="benchmarkComparisonChart"></canvas></div>
           </section>
@@ -320,6 +326,19 @@
         <span>Massive-first · Yahoo VIX · DeepSeek v4 Pro monthly review</span>
       </div>
     </footer>
+
+    <div class="chart-modal" id="chartModal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="chartModalTitle">
+      <div class="chart-modal-panel">
+        <div class="chart-modal-head">
+          <div>
+            <div class="eyebrow">Expanded plot</div>
+            <h2 id="chartModalTitle">Chart</h2>
+          </div>
+          <button class="chart-button" type="button" id="chartModalClose">Close</button>
+        </div>
+        <div class="chart-shell modal-chart"><canvas id="chartModalCanvas"></canvas></div>
+      </div>
+    </div>
 
     <script src="./app.js"></script>
   </body>

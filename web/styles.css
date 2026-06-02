@@ -44,6 +44,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -255,7 +259,8 @@ p {
 }
 
 .panel-head {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
@@ -288,8 +293,34 @@ p {
 .panel-head .tag {
   flex-shrink: 0;
   max-width: 230px;
-  margin-top: 2px;
+  margin-top: 0;
   text-align: right;
+}
+
+.panel-actions {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 10px;
+}
+
+.chart-button {
+  min-height: 30px;
+  padding: 0 10px;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-sm);
+  background: var(--panel);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.chart-button:hover {
+  border-color: var(--accent);
+  color: var(--accent);
 }
 
 .status-banner {
@@ -508,11 +539,57 @@ table.gl td.text-cell {
 }
 
 .chart-shell {
-  height: 312px;
+  height: 340px;
+  min-height: 260px;
 }
 
 .chart-shell.large {
-  height: 372px;
+  height: 470px;
+}
+
+.chart-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  display: none;
+  padding: 28px;
+  background: rgba(20, 22, 26, 0.58);
+}
+
+.chart-modal.is-open {
+  display: grid;
+  place-items: center;
+}
+
+.chart-modal-panel {
+  width: min(1180px, 100%);
+  max-height: calc(100vh - 56px);
+  overflow: hidden;
+  border: 1px solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  box-shadow: 0 24px 80px rgba(20, 22, 26, 0.24);
+}
+
+.chart-modal-head {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 16px;
+  padding: 18px 20px 14px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.chart-modal-head h2 {
+  margin-top: 4px;
+  font-family: var(--display);
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.modal-chart {
+  height: min(72vh, 720px);
+  padding: 4px 10px 12px;
 }
 
 .report-links {
@@ -658,10 +735,29 @@ table.gl td.text-cell {
 
   .panel-head {
     display: grid;
+    grid-template-columns: 1fr;
   }
 
   .panel-head .tag {
     max-width: none;
     text-align: left;
+  }
+
+  .panel-actions {
+    justify-self: start;
+    flex-wrap: wrap;
+  }
+
+  .chart-shell,
+  .chart-shell.large {
+    height: 320px;
+  }
+
+  .chart-modal {
+    padding: 12px;
+  }
+
+  .modal-chart {
+    height: 68vh;
   }
 }
