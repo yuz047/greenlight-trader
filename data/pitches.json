@@ -30,7 +30,7 @@
     "target_weight": 0.15
   },
   {
-    "symbol": "AVGO",
+    "symbol": "LRCX",
     "strategy_id": "adaptive_tech_semis_v1",
     "rationale": "Target allocation weight 10.0% in risk_on.",
     "stop_distance": 0,

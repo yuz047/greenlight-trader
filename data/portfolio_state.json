@@ -1,7 +1,7 @@
 {
   "cash": 0.0,
   "realized_pnl": 0.0,
-  "peak_relative_outperformance": 0.40451114465336446,
+  "peak_relative_outperformance": 0.4104221292946322,
   "inception": "2026-05-27",
   "positions": {
     "SPY": {
@@ -15,7 +15,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 40.00%.",
-      "last_price": 756.47998046875,
+      "last_price": 758.5399780273438,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.55
@@ -31,7 +31,7 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 25.00%.",
-      "last_price": 738.3099975585938,
+      "last_price": 742.739990234375,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.2
@@ -47,23 +47,23 @@
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
       "thesis": "Target allocation weight 20.00%.",
-      "last_price": 598.9299926757812,
+      "last_price": 607.8099975585938,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.15
     },
-    "AVGO": {
-      "symbol": "AVGO",
+    "LRCX": {
+      "symbol": "LRCX",
       "side": "long",
-      "quantity": 1.8327586729600582,
-      "entry_price": 446.7699890136719,
-      "entry_time": "2026-05-30T04:32:58Z",
+      "quantity": 2.6583439140353406,
+      "entry_price": 317.1199951171875,
+      "entry_time": "2026-06-02T05:10:08Z",
       "stop_price": 0.0,
       "target_price": 0.0,
       "max_hold_days": 10000,
       "strategy_id": "adaptive_tech_semis_v1",
-      "thesis": "Target allocation for risk_on: {'SPY': 0.55, 'QQQ': 0.2, 'SMH': 0.15, 'AVGO': 0.1, 'CASH': -2.7755575615628914e-17}",
-      "last_price": 446.7699890136719,
+      "thesis": "Target allocation for risk_on: {'SPY': 0.55, 'QQQ': 0.2, 'SMH': 0.15, 'LRCX': 0.1, 'CASH': -2.7755575615628914e-17}",
+      "last_price": 317.1199951171875,
       "age_days": 0,
       "is_core": true,
       "target_weight": 0.1
