@@ -288,6 +288,7 @@ async function main() {
   );
 
   renderChart(backtestResults, benchmarkSnapshots);
+  renderBenchmarkComparisonChart(benchmarkSnapshots);
 
   const verdict = benchmarkMetrics.verdict || {};
   const failedSimple = Boolean(verdict.greenlight_failed_simple_benchmarks);
@@ -387,6 +388,36 @@ function renderChart(backtestResults, benchmarkSnapshots) {
   ]);
 }
 
+function renderBenchmarkComparisonChart(benchmarkSnapshots) {
+  const snapshots = benchmarkSnapshots.snapshots || {};
+  const greenKey = snapshots.learned_weight_Greenlight ? "learned_weight_Greenlight" : "fixed_weight_Greenlight";
+  const keys = [
+    [greenKey, "Greenlight", "#1f3a5f", 2.7],
+    ["SPY_buy_hold", "SPY", "#767a82", 1.6, [6, 5]],
+    ["QQQ_buy_hold", "QQQ", "#b45309", 1.6],
+    ["VIX_20_15_strategy", "VIX 20/15", "#9b2c1f", 1.5, [3, 5]],
+    ["SPY_200DMA_trend", "SPY 200DMA", "#2f6a4a", 1.6],
+    ["dynamic_ETF_momentum_rotation", "ETF rotation", "#256f8f", 1.7],
+    ["agent_led_experimental", "Agent track", "#5f4b8b", 1.4, [8, 5]],
+  ].filter(([key]) => snapshots[key]?.length);
+  const labels = benchmarkLabels(snapshots, keys.map(([key]) => key));
+  const series = keys.map(([key, label, color, width, dash]) => ({
+    label,
+    color,
+    width,
+    dash,
+    values: alignSeries(labels, snapshots[key] || []),
+  }));
+  drawCanvasChart(document.getElementById("benchmarkComparisonChart"), labels, series);
+}
+
+function benchmarkLabels(snapshots, keys) {
+  const longest = keys
+    .map((key) => snapshots[key] || [])
+    .sort((a, b) => b.length - a.length)[0] || [];
+  return longest.map((row) => row.date);
+}
+
 function drawCanvasChart(canvas, labels, series) {
   if (!canvas || !labels.length) return;
   const parent = canvas.parentElement;
@@ -402,10 +433,11 @@ function drawCanvasChart(canvas, labels, series) {
   ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, width, height);
 
-  const pad = { top: 18, right: 18, bottom: 48, left: 70 };
+  const pad = { top: 18, right: 18, bottom: series.length > 4 ? 72 : 50, left: 70 };
   const plotW = width - pad.left - pad.right;
   const plotH = height - pad.top - pad.bottom;
   const values = series.flatMap((s) => s.values).filter((v) => Number.isFinite(v));
+  if (!values.length) return;
   const min = Math.min(...values);
   const max = Math.max(...values);
   const span = Math.max(max - min, 1);
@@ -432,7 +464,7 @@ function drawCanvasChart(canvas, labels, series) {
   for (let i = 0; i < tickCount; i += 1) {
     const idx = Math.round((labels.length - 1) * (i / (tickCount - 1)));
     const label = labels[idx];
-    ctx.fillText(label.slice(0, 7), x(idx) - 22, height - 24);
+    ctx.fillText(label.slice(0, 7), x(idx) - 22, height - pad.bottom + 28);
   }
 
   for (const item of series) {
@@ -455,16 +487,22 @@ function drawCanvasChart(canvas, labels, series) {
   ctx.setLineDash([]);
 
   let legendX = pad.left;
+  let legendY = height - (series.length > 4 ? 34 : 12);
   series.forEach((item) => {
+    const itemWidth = Math.max(96, ctx.measureText(item.label).width + 34);
+    if (legendX + itemWidth > width - pad.right && legendX > pad.left) {
+      legendX = pad.left;
+      legendY += 17;
+    }
     ctx.strokeStyle = item.color;
     ctx.lineWidth = 2;
     ctx.beginPath();
-    ctx.moveTo(legendX, height - 12);
-    ctx.lineTo(legendX + 20, height - 12);
+    ctx.moveTo(legendX, legendY);
+    ctx.lineTo(legendX + 20, legendY);
     ctx.stroke();
     ctx.fillStyle = "#45494f";
-    ctx.fillText(item.label, legendX + 26, height - 8);
-    legendX += 112;
+    ctx.fillText(item.label, legendX + 26, legendY + 4);
+    legendX += itemWidth + 12;
   });
 }
 

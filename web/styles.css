@@ -256,7 +256,7 @@ p {
 
 .panel-head {
   display: flex;
-  align-items: baseline;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 16px;
   margin-bottom: 14px;
@@ -264,13 +264,32 @@ p {
   border-bottom: 1px solid var(--rule);
 }
 
+.panel-head > div:first-child {
+  min-width: 0;
+  display: grid;
+  gap: 4px;
+}
+
 .panel-head h2 {
-  margin-top: 6px;
   font-family: var(--display);
   font-weight: 650;
   font-size: 17px;
   letter-spacing: 0;
   color: var(--ink);
+}
+
+.panel-head .subtitle {
+  max-width: 62ch;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.panel-head .tag {
+  flex-shrink: 0;
+  max-width: 230px;
+  margin-top: 2px;
+  text-align: right;
 }
 
 .status-banner {
@@ -492,6 +511,10 @@ table.gl td.text-cell {
   height: 312px;
 }
 
+.chart-shell.large {
+  height: 372px;
+}
+
 .report-links {
   display: grid;
   gap: 10px;
@@ -630,6 +653,15 @@ table.gl td.text-cell {
   }
 
   .status-meta {
+    text-align: left;
+  }
+
+  .panel-head {
+    display: grid;
+  }
+
+  .panel-head .tag {
+    max-width: none;
     text-align: left;
   }
 }
