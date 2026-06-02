@@ -1,0 +1,49 @@
+name: Publish Dashboard
+
+on:
+  workflow_dispatch:
+  push:
+    branches: ["main"]
+    paths:
+      - "web/**"
+      - "data/**"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: greenlight-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Validate dashboard data
+        run: |
+          python -m pip install -r python/requirements.txt
+          PYTHONPATH=python python python/validate_dashboard_data.py
+
+      - name: Build static site payload
+        run: |
+          mkdir -p site
+          cp web/index.html web/styles.css web/app.js site/
+          mkdir -p site/web
+          cp web/index.html web/styles.css web/app.js site/web/
+          cp -R data site/data
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+      - id: deployment
+        uses: actions/deploy-pages@v4

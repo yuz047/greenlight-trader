@@ -1,0 +1,198 @@
+{
+  "as_of": "2026-06-01",
+  "budgets": {
+    "agent_experimental": 0.0,
+    "defensive": 0.05,
+    "dynamic_etf": 0.15,
+    "qqq": 0.2,
+    "spy": 0.4,
+    "stock": 0.2
+  },
+  "cap_reasons": [
+    "sector_Broad Market_capped",
+    "theme_S&P 500_capped"
+  ],
+  "exposure": {
+    "sector": {
+      "Broad Growth": 0.2,
+      "Broad Market": 0.25,
+      "Cash": 0.2,
+      "Clean Energy": 0.022013,
+      "Consumer Staples": 0.050296,
+      "Energy": 0.030312,
+      "Factor": 0.030307,
+      "Technology": 0.017072,
+      "Unknown": 0.2
+    },
+    "theme": {
+      "Clean Energy": 0.022013,
+      "Consumer Staples": 0.050296,
+      "Energy": 0.030312,
+      "Momentum": 0.030307,
+      "Nasdaq 100": 0.2,
+      "S&P 500": 0.25,
+      "Semiconductors": 0.017072,
+      "Treasury Bills": 0.2,
+      "Unknown": 0.2
+    },
+    "top3_weight": 0.65
+  },
+  "generated_at": "2026-06-02T01:37:46Z",
+  "regime": "RISK_ON",
+  "rules": [
+    "Allocator outputs target weights, not raw buy/sell calls.",
+    "QQQ allocation is regime-dependent.",
+    "Dynamic ETFs earn allocation through score.",
+    "Unused alpha budget routes to defensive sleeve."
+  ],
+  "target_allocations": [
+    {
+      "asset_type": "benchmark",
+      "reason": "SPY core anchor",
+      "sector": "Broad Market",
+      "sleeve": "core",
+      "symbol": "SPY",
+      "theme": "S&P 500",
+      "weight": 0.25
+    },
+    {
+      "asset_type": "benchmark",
+      "reason": "regime-dependent Nasdaq/growth anchor",
+      "sector": "Broad Growth",
+      "sleeve": "core",
+      "symbol": "QQQ",
+      "theme": "Nasdaq 100",
+      "weight": 0.2
+    },
+    {
+      "asset_type": "cash_proxy",
+      "reason": "defensive/cash sleeve",
+      "sector": "Cash",
+      "sleeve": "defensive",
+      "symbol": "SGOV",
+      "theme": "Treasury Bills",
+      "weight": 0.2
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.65422",
+      "sector": "Consumer Staples",
+      "sleeve": "dynamic_etf",
+      "symbol": "XLP",
+      "theme": "Consumer Staples",
+      "weight": 0.050296
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.45981",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "AAPL",
+      "theme": null,
+      "weight": 0.032722
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.42682",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "JPM",
+      "theme": null,
+      "weight": 0.031922
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.65772",
+      "sector": "Energy",
+      "sleeve": "dynamic_etf",
+      "symbol": "XLE",
+      "theme": "Energy",
+      "weight": 0.030312
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.6962",
+      "sector": "Factor",
+      "sleeve": "dynamic_etf",
+      "symbol": "MTUM",
+      "theme": "Momentum",
+      "weight": 0.030307
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.42933",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "MA",
+      "theme": null,
+      "weight": 0.030234
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.41421",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "V",
+      "theme": null,
+      "weight": 0.026021
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.48589",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "AMZN",
+      "theme": null,
+      "weight": 0.024732
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.64244",
+      "sector": "Clean Energy",
+      "sleeve": "dynamic_etf",
+      "symbol": "ICLN",
+      "theme": "Clean Energy",
+      "weight": 0.022013
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.44752",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "GOOGL",
+      "theme": null,
+      "weight": 0.019556
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.44696",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "NVDA",
+      "theme": null,
+      "weight": 0.018025
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.60367",
+      "sector": "Technology",
+      "sleeve": "dynamic_etf",
+      "symbol": "SMH",
+      "theme": "Semiconductors",
+      "weight": 0.017072
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.44774",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "AVGO",
+      "theme": null,
+      "weight": 0.016788
+    }
+  ],
+  "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
+  "watermarks": [
+    "SYSTEMATIC_TEMPLATE_OUTPUT"
+  ]
+}

@@ -1,437 +1,629 @@
-"""Walk-forward backtest — V2 SPY-anchored.
-
-Simulates the daily engine over the last ~2 trading years. On every day:
-
-  1. Mark all positions (SPY core + any picks) to today's close.
-  2. Apply exits: stop / target / max-hold / signal-decay.
-  3. Run the strategy registry to get tomorrow's pick candidates.
-  4. If the relative-DD gate is in 'red', skip new entries (hold 100% SPY).
-  5. Open up to ``MANDATE.max_picks_open`` picks, each sized to
-     ``pick_weight_per_position`` of NAV by selling SPY.
-  6. Rebalance any residual cash back into the SPY core.
-  7. Append a snapshot containing both portfolio equity and a pure-SPY
-     benchmark equity, plus the live relative-DD/alpha numbers.
-"""
+"""Backtest engine for Greenlight 2.0."""
 from __future__ import annotations
-from dataclasses import dataclass, asdict
-from typing import Dict, List
-import math
-import importlib
+
+import argparse
+from datetime import date, timedelta
+from typing import Any
+
 import pandas as pd
-import numpy as np
 
-from config import MANDATE, ACTIVE_IDS, WATCHLIST, BENCHMARK, BACKTEST_DAYS
-from signals import enrich, market_regime
-from strategies import fire_all, REGISTRY
-from risk import compute_relative_status
-from portfolio import Portfolio
-
-
-@dataclass
-class Snapshot:
-    date: str
-    equity: float
-    cash: float
-    market_value: float
-    daily_pnl: float
-    cumulative_pnl: float
-    drawdown: float
-    # benchmark + relative
-    benchmark_equity: float
-    portfolio_return: float
-    benchmark_return: float
-    alpha: float                # portfolio - benchmark, in % of starting cap
-    relative_drawdown: float
-    spy_core_weight: float
-    n_picks_open: int
-
-    def to_dict(self) -> dict: return asdict(self)
+from agent_decision import build_agent_led_decision
+from ai_review import build_ai_memo, build_systematic_review
+from allocator import allocate_targets
+from comparison_report import write_comparison_report
+from config import DATA_DIR, MANDATE
+from data_contracts import write_json
+from decision_log import build_decision_log
+from etf_selector import select_dynamic_etfs
+from execution_policy import decide_execution
+from features import compute_features
+from massive_client import MassiveClient
+from portfolio import PaperPortfolio
+from regime import determine_regime
+from risk import evaluate_risk
+from scoring import score_candidates
+from strategy_benchmarks import run_benchmarks, write_benchmark_outputs
+from universe import build_universe, candidate_symbols
+from watermark import AI_GENERATED_MEMO, SYSTEMATIC_TEMPLATE_OUTPUT, add_watermark
+from weight_learning import learn_weights, write_learning_report
+from weight_review import review_candidate_weights
 
 
-def _bar(df: pd.DataFrame, dt) -> dict | None:
-    if dt not in df.index: return None
-    row = df.loc[dt]
-    return {"open": float(row["open"]), "high": float(row["high"]),
-            "low": float(row["low"]), "close": float(row["close"])}
+BUDGET_PRESETS: dict[str, dict[str, dict[str, float]] | None] = {
+    "default": None,
+    "growth_tilt": {
+        "RISK_ON": {"spy": 0.35, "qqq": 0.25, "dynamic_etf": 0.20, "stock": 0.20, "defensive": 0.00, "agent_experimental": 0.00},
+        "NEUTRAL": {"spy": 0.40, "qqq": 0.15, "dynamic_etf": 0.15, "stock": 0.15, "defensive": 0.15, "agent_experimental": 0.00},
+        "FEAR": {"spy": 0.25, "qqq": 0.05, "dynamic_etf": 0.05, "stock": 0.05, "defensive": 0.60, "agent_experimental": 0.00},
+        "STRESS": {"spy": 0.20, "qqq": 0.00, "dynamic_etf": 0.00, "stock": 0.00, "defensive": 0.80, "agent_experimental": 0.00},
+        "DATA_FAILURE": {"spy": 0.00, "qqq": 0.00, "dynamic_etf": 0.00, "stock": 0.00, "defensive": 1.00, "agent_experimental": 0.00},
+    },
+    "alpha_tilt": {
+        "RISK_ON": {"spy": 0.30, "qqq": 0.25, "dynamic_etf": 0.25, "stock": 0.20, "defensive": 0.00, "agent_experimental": 0.00},
+        "NEUTRAL": {"spy": 0.35, "qqq": 0.15, "dynamic_etf": 0.15, "stock": 0.20, "defensive": 0.15, "agent_experimental": 0.00},
+        "FEAR": {"spy": 0.25, "qqq": 0.05, "dynamic_etf": 0.05, "stock": 0.05, "defensive": 0.60, "agent_experimental": 0.00},
+        "STRESS": {"spy": 0.20, "qqq": 0.00, "dynamic_etf": 0.00, "stock": 0.00, "defensive": 0.80, "agent_experimental": 0.00},
+        "DATA_FAILURE": {"spy": 0.00, "qqq": 0.00, "dynamic_etf": 0.00, "stock": 0.00, "defensive": 1.00, "agent_experimental": 0.00},
+    },
+    "stock_alpha_tilt": {
+        "RISK_ON": {"spy": 0.30, "qqq": 0.20, "dynamic_etf": 0.15, "stock": 0.30, "defensive": 0.05, "agent_experimental": 0.00},
+        "NEUTRAL": {"spy": 0.35, "qqq": 0.10, "dynamic_etf": 0.10, "stock": 0.25, "defensive": 0.20, "agent_experimental": 0.00},
+        "FEAR": {"spy": 0.25, "qqq": 0.05, "dynamic_etf": 0.05, "stock": 0.05, "defensive": 0.60, "agent_experimental": 0.00},
+        "STRESS": {"spy": 0.20, "qqq": 0.00, "dynamic_etf": 0.00, "stock": 0.00, "defensive": 0.80, "agent_experimental": 0.00},
+        "DATA_FAILURE": {"spy": 0.00, "qqq": 0.00, "dynamic_etf": 0.00, "stock": 0.00, "defensive": 1.00, "agent_experimental": 0.00},
+    },
+}
 
 
 def run_backtest(
-    frames: Dict[str, pd.DataFrame],
-    days: int = BACKTEST_DAYS,
-    start_date: str | None = None,
-    sentiment_provider=None,
-) -> dict:
-    enriched = {sym: enrich(df) for sym, df in frames.items()}
-    spy = frames[BENCHMARK]
-    timeline = spy.index[-days:]
-    if start_date is not None:
-        timeline = timeline[timeline >= pd.Timestamp(start_date)]
-    if len(timeline) == 0:
-        raise RuntimeError(f"No benchmark bars available for backtest start_date={start_date!r}")
+    start_date: str,
+    end_date: str,
+    train_start: str | None = None,
+    train_end: str = "2020-12-31",
+    invest_start: str = "2021-01-01",
+    max_symbols: int | None = None,
+    allow_synthetic_trading: bool = False,
+    use_secondary_price_fallback: bool = True,
+    rolling_train_years: int = 12,
+    ai_memo_mode: str = "template",
+    ai_memo_frequency: str = "weekly",
+    budget_preset: str = "default",
+    step_days: int = 1,
+    train_step_days: int | None = None,
+) -> dict[str, Any]:
+    train_start = train_start or start_date
+    train_step_days = train_step_days or step_days
+    budget_overrides = BUDGET_PRESETS.get(budget_preset)
+    client = MassiveClient()
+    universe_payload = build_universe(as_of=end_date, client=client)
+    symbols = candidate_symbols(universe_payload)
+    if max_symbols:
+        core = ["SPY", "QQQ", "SGOV", "^VIX"]
+        rest = [s for s in symbols if s not in core][: max(0, max_symbols - len(core))]
+        symbols = sorted(set(core + rest))
+        universe_payload["candidates"] = [row for row in universe_payload["candidates"] if row["symbol"] in symbols]
 
-    for sid in ACTIVE_IDS:
-        entry = REGISTRY.get(sid, {})
-        module_name = entry.get("module")
-        if not module_name:
-            continue
-        try:
-            mod = importlib.import_module(f"strategies.{module_name}")
-        except Exception:
-            continue
-        if hasattr(mod, "target_weights"):
-            return _run_target_allocation_backtest(
-                frames, enriched, timeline, mod, entry.get("manifest", {}),
-            )
-
-    port = Portfolio()
-    snapshots: List[Snapshot] = []
-    prev_equity = port.nav()
-
-    # Establish the SPY baseline on day one.
-    first_dt = timeline[0]
-    spy_open0 = float(spy.loc[first_dt, "open"])
-    # Buy SPY with all starting cash at the first open
-    initial_shares = port.cash / spy_open0
-    from portfolio import Position
-    from datetime import datetime
-    port.positions[BENCHMARK] = Position(
-        symbol=BENCHMARK, side="long", quantity=initial_shares,
-        entry_price=spy_open0, entry_time=datetime.utcnow().isoformat() + "Z",
-        stop_price=0.0, target_price=0.0, max_hold_days=10_000,
-        strategy_id="spy_core_baseline",
-        thesis="SPY baseline.",
-        last_price=spy_open0, age_days=0, is_core=True,
+    fetch_start = (pd.Timestamp(train_start) - pd.Timedelta(days=430)).date().isoformat()
+    price_history, data_health = client.load_price_history(
+        symbols,
+        fetch_start,
+        end_date,
+        allow_synthetic=True,
+        allow_secondary_price_fallback=use_secondary_price_fallback,
     )
-    port.cash -= initial_shares * spy_open0
-    benchmark_shares = initial_shares  # parallel pure-SPY benchmark
-    starting_cap = MANDATE.starting_capital
+    loop_health = dict(data_health)
+    if allow_synthetic_trading and loop_health.get("synthetic"):
+        loop_health["ok"] = True
+        loop_health["synthetic"] = False
+        loop_health["source"] = "fallback.synthetic_research_only"
 
-    # State for relative-DD gate
-    peak_rel = 0.0
-    red_cooldown_until_idx = -1   # while i < this, no new picks
+    print(
+        (
+            f"Backtest data loaded: {len(symbols)} symbols, initial train {train_start}..{train_end}, "
+            f"rolling {rolling_train_years}y, invest {invest_start}..{end_date}"
+        ),
+        flush=True,
+    )
+    learning_rows = _collect_training_rows(
+        universe_payload=universe_payload,
+        price_history=price_history,
+        data_health=loop_health,
+        train_start=train_start,
+        train_end=end_date,
+        step_days=train_step_days,
+    )
 
-    for i, dt in enumerate(timeline):
-        # 1. Mark to market
-        close_prices = {}
-        bars = {}
-        for sym, df in frames.items():
-            if dt in df.index:
-                row = df.loc[dt]
-                close_prices[sym] = float(row["close"])
-                bars[sym] = {"open": float(row["open"]), "high": float(row["high"]),
-                             "low": float(row["low"]), "close": float(row["close"])}
-        port.mark_to_market(close_prices)
-        spy_close = close_prices.get(BENCHMARK, 0.0)
-
-        # 2. Recompute ranks once per day for exit / entry decisions
-        regime = market_regime(spy.loc[:dt])
-        sym_enriched_to_date = {s: e.loc[:dt] for s, e in enriched.items()}
-        # Pull the active strategy's exit threshold and rank lookup.
-        decay_z = 0.5
-        rank_lookup = {}
-        for sid in ACTIVE_IDS:
-            entry = REGISTRY.get(sid, {})
-            m = entry.get("manifest", {})
-            if "decay_zscore_exit" in m.get("params", {}):
-                decay_z = m["params"]["decay_zscore_exit"]
-            module_name = entry.get("module")
-            if module_name:
-                try:
-                    mod = importlib.import_module(f"strategies.{module_name}")
-                    if hasattr(mod, "compute_ranks"):
-                        rank_lookup.update(mod.compute_ranks(sym_enriched_to_date, m["params"]))
-                except Exception:
-                    pass
-
-        # 3. Exits
-        port.apply_exits(bars, rank_lookup=rank_lookup,
-                         decay_z=decay_z, spy_price=spy_close)
-
-        # 4. Generate signals
-        sent = sentiment_provider(dt) if sentiment_provider else {}
-        signals = fire_all(sym_enriched_to_date, regime=regime,
-                           sentiment=sent, active_ids=ACTIVE_IDS,
-                           universe=sym_enriched_to_date)
-
-        # 5. Relative-DD gate
-        nav_now = port.nav()
-        bench_eq = benchmark_shares * spy_close if spy_close > 0 else starting_cap
-        rs = compute_relative_status(
-            equity=nav_now, benchmark_equity=bench_eq,
-            starting_capital=starting_cap,
-            peak_relative_outperformance=peak_rel,
-            data_feed_ok=True, synthetic_data=False,
+    portfolio = PaperPortfolio()
+    decision_history: list[dict[str, Any]] = []
+    ai_review_history: list[dict[str, Any]] = []
+    ai_provider_weeks: set[tuple[int, int]] = set()
+    ai_provider_months: set[tuple[int, int]] = set()
+    ai_provider_call_count = 0
+    weight_history: list[dict[str, Any]] = []
+    equity_rows = []
+    agent_equity_rows = []
+    latest_stock_learning = learn_weights([], "stock", as_of=train_end)
+    latest_etf_learning = learn_weights([], "etf", as_of=train_end)
+    latest_benchmarks: dict[str, Any] = {}
+    dates = pd.bdate_range(invest_start, end_date)
+    dates = dates[:: max(1, step_days)]
+    total_invest_dates = len(dates)
+    print(f"Investment replay dates: {total_invest_dates}", flush=True)
+    for i, ts in enumerate(dates, start=1):
+        as_of = ts.date().isoformat()
+        latest_prices = _prices_as_of(price_history, as_of)
+        if "SPY" not in latest_prices:
+            continue
+        portfolio.mark_to_market(latest_prices)
+        daily_universe = _universe_as_of(universe_payload, price_history, as_of, list(portfolio.positions))
+        rolling = _learn_rolling_weights(
+            learning_rows=learning_rows,
+            as_of=as_of,
+            earliest_train_start=train_start,
+            rolling_years=rolling_train_years,
         )
-        peak_rel = rs.peak_relative_pnl_pct
-        if rs.light == "red":
-            # Force close all picks today; cool down for 20 trading days.
-            for sym in list(port.positions.keys()):
-                pos = port.positions[sym]
-                if pos.is_core or sym == BENCHMARK: continue
-                price = close_prices.get(sym)
-                if price:
-                    port.close_pick(sym, price, "relative_dd_breach", spy_close)
-            red_cooldown_until_idx = i + 20
+        latest_stock_learning = rolling["stock_learning"]
+        latest_etf_learning = rolling["etf_learning"]
+        stock_weights = latest_stock_learning.get("weights")
+        etf_weights = latest_etf_learning.get("weights")
+        weight_history.append(rolling["snapshot"])
 
-        max_picks_today = (
-            0 if i < red_cooldown_until_idx else MANDATE.max_picks_open
+        feature_payload = compute_features(daily_universe, price_history, as_of, portfolio.weights())
+        regime_payload = determine_regime(price_history, feature_payload, loop_health, as_of)
+        score_payload = score_candidates(feature_payload, regime_payload, stock_weights=stock_weights, etf_weights=etf_weights, as_of=as_of)
+        etf_payload = select_dynamic_etfs(score_payload, feature_payload, regime_payload, as_of)
+        target_payload = allocate_targets(
+            score_payload,
+            feature_payload,
+            etf_payload,
+            regime_payload,
+            as_of,
+            budget_overrides=budget_overrides,
         )
-        if rs.light == "yellow":
-            max_picks_today = min(max_picks_today, 1)
-
-        # 6. Open new picks at TOMORROW's open
-        next_dt = timeline[i + 1] if i + 1 < len(timeline) else None
-        for sig in signals:
-            if sig.symbol == BENCHMARK or sig.symbol in port.positions:
-                continue
-            if len([p for p in port.positions.values() if not p.is_core]) >= max_picks_today:
-                break
-            entry_price = None
-            if next_dt is not None and next_dt in frames[sig.symbol].index:
-                entry_price = float(frames[sig.symbol].loc[next_dt, "open"])
-            else:
-                entry_price = close_prices.get(sig.symbol)
-            if entry_price is None or math.isnan(entry_price):
-                continue
-            spy_for_swap = (float(frames[BENCHMARK].loc[next_dt, "open"])
-                            if next_dt is not None and next_dt in frames[BENCHMARK].index
-                            else spy_close)
-            port.open_pick(
-                symbol=sig.symbol, entry_price=entry_price,
-                stop_distance=sig.stop_distance, target_distance=sig.target_distance,
-                max_hold_days=sig.max_hold_days, strategy_id=sig.strategy_id,
-                thesis=sig.rationale, spy_price_at_entry=spy_for_swap,
-                target_weight=sig.extras.get("target_weight"),
+        risk_payload = evaluate_risk(portfolio.snapshot(), target_payload, loop_health, regime_payload, as_of)
+        execution_payload = decide_execution(portfolio.snapshot(), target_payload, risk_payload, decision_history, as_of)
+        orders = portfolio.rebalance_to_targets(target_payload.get("target_allocations", []), latest_prices, execution_payload, as_of)
+        if orders:
+            execution_payload["execution_decision"]["orders"] = orders
+        agent_payload = build_agent_led_decision(target_payload, score_payload, risk_payload, as_of)
+        portfolio.mark_to_market(latest_prices)
+        _update_relative_state(portfolio, price_history, as_of)
+        equity_rows.append({"date": as_of, "equity": portfolio.nav()})
+        agent_equity_rows.append({"date": as_of, "equity": portfolio.nav()})
+        if ai_memo_mode != "off":
+            strategy_equity_so_far = _equity_series(equity_rows)
+            agent_equity_so_far = _equity_series(agent_equity_rows)
+            latest_benchmarks = run_benchmarks(
+                _slice_history(price_history, invest_start, as_of),
+                strategy_equity=strategy_equity_so_far,
+                learned_equity=strategy_equity_so_far,
+                agent_equity=agent_equity_so_far,
+                as_of=as_of,
+            )
+        else:
+            latest_benchmarks = {}
+        decision_log = build_decision_log(
+            daily_universe,
+            score_payload,
+            etf_payload,
+            regime_payload,
+            target_payload,
+            risk_payload,
+            execution_payload,
+            agent_payload,
+            portfolio.snapshot(),
+            _benchmark_snapshot(latest_prices, latest_benchmarks),
+            as_of,
+        )
+        decision_history.append(decision_log)
+        if ai_memo_mode != "off":
+            review = build_systematic_review(decision_log, latest_benchmarks, as_of)
+            use_provider = ai_memo_mode == "deepseek" and _should_call_ai_provider(
+                as_of,
+                i,
+                total_invest_dates,
+                ai_memo_frequency,
+                ai_provider_weeks,
+                ai_provider_months,
+            )
+            memo = build_ai_memo(review, use_provider=use_provider)
+            if use_provider and "Provider: DeepSeek" in memo:
+                ai_provider_call_count += 1
+            ai_review_history.append(
+                {
+                    "systematic_review": review,
+                    "memo": memo,
+                    "provider_requested": use_provider,
+                    "watermark": AI_GENERATED_MEMO,
+                }
+            )
+        if i == 1 or i % 100 == 0 or i == total_invest_dates:
+            print(
+                (
+                    f"Investment replay {i}/{total_invest_dates}: {as_of} nav={portfolio.nav():.2f} "
+                    f"train_rows={rolling['snapshot']['usable_rows']}"
+                ),
+                flush=True,
             )
 
-        # 7. Rebalance leftover cash into SPY core
-        if spy_close > 0:
-            port.rebalance_to_core(spy_close)
+    strategy_equity = _equity_series(equity_rows)
+    agent_equity = _equity_series(agent_equity_rows)
+    benchmark_history = _slice_history(price_history, invest_start, end_date)
+    benchmarks = run_benchmarks(
+        benchmark_history,
+        strategy_equity=strategy_equity,
+        learned_equity=strategy_equity,
+        agent_equity=agent_equity,
+        as_of=end_date,
+    )
+    write_benchmark_outputs(benchmarks)
+    write_comparison_report(benchmarks)
+    write_learning_report(latest_stock_learning, latest_etf_learning)
+    review_candidate_weights(latest_stock_learning, end_date)
+    write_json(DATA_DIR / "ai_reviews.json", add_watermark({"reviews": ai_review_history[-50:]}, SYSTEMATIC_TEMPLATE_OUTPUT))
 
-        # 8. Age picks
-        port.age_positions()
+    public_decision_history = [_public_decision_log(row) for row in decision_history]
 
-        # 9. Snapshot
-        equity = port.nav()
-        bench_eq = benchmark_shares * spy_close if spy_close > 0 else starting_cap
-        rs2 = compute_relative_status(
-            equity=equity, benchmark_equity=bench_eq,
-            starting_capital=starting_cap,
-            peak_relative_outperformance=peak_rel,
-            data_feed_ok=True, synthetic_data=False,
-        )
-        peak_rel = rs2.peak_relative_pnl_pct
-        n_picks = len([p for p in port.positions.values() if not p.is_core])
-        spy_weight = (port.core_notional() / equity) if equity > 0 else 0.0
-        snap = Snapshot(
-            date=str(dt.date()),
-            equity=round(equity, 2),
-            cash=round(port.cash, 2),
-            market_value=round(equity - port.cash, 2),
-            daily_pnl=round(equity - prev_equity, 2),
-            cumulative_pnl=round(equity - starting_cap, 2),
-            drawdown=round(max(0.0, 1 - equity / max(starting_cap, equity)), 4),
-            benchmark_equity=round(bench_eq, 2),
-            portfolio_return=round(rs2.portfolio_return, 4),
-            benchmark_return=round(rs2.benchmark_return, 4),
-            alpha=round(rs2.relative_pnl_pct, 4),
-            relative_drawdown=round(rs2.relative_drawdown_pct, 4),
-            spy_core_weight=round(spy_weight, 4),
-            n_picks_open=n_picks,
-        )
-        snapshots.append(snap)
-        port.peak_relative_outperformance = peak_rel
-        prev_equity = equity
-
-    metrics = _compute_metrics(snapshots, port.trades, starting_cap)
-    return {
-        "snapshots": [s.to_dict() for s in snapshots],
-        "trades": [t.to_dict() for t in port.trades],
-        "open_positions": [p.to_dict() for p in port.positions.values() if not p.is_core],
-        "portfolio_state": {
-            "cash": port.cash,
-            "realized_pnl": port.realized_pnl,
-            "peak_relative_outperformance": peak_rel,
-            "inception": port.inception,
-            "positions": {s: p.to_dict() for s, p in port.positions.items()},
-            "trades": [t.to_dict() for t in port.trades],
+    payload = add_watermark(
+        {
+            "start_date": start_date,
+            "end_date": end_date,
+            "train_start": train_start,
+            "initial_train_end": train_end,
+            "invest_start": invest_start,
+            "rolling_training": {
+                "enabled": True,
+                "window_years": rolling_train_years,
+                "updated_every_replay_day": True,
+                "initial_window": [train_start, train_end],
+                "final_window": weight_history[-1]["window"] if weight_history else None,
+                "updates": len(weight_history),
+            },
+            "latest_learned_weights": {
+                "stock": latest_stock_learning.get("weights"),
+                "etf": latest_etf_learning.get("weights"),
+            },
+            "learning_row_pool": {
+                "total": len(learning_rows),
+                "stock": len([row for row in learning_rows if row["asset_type"] == "stock"]),
+                "etf": len([row for row in learning_rows if row["asset_type"] == "etf"]),
+            },
+            "weight_history": weight_history[-250:],
+            "research_windows": {
+                "full": ["2009-01-01", end_date],
+                "initial_train": [train_start, train_end],
+                "investment_test": [invest_start, end_date],
+                "walk_forward": "rolling daily retraining; rows are allowed only when label_end_date < replay date",
+            },
+            "allow_synthetic_trading": allow_synthetic_trading,
+            "use_secondary_price_fallback": use_secondary_price_fallback,
+            "ai_memo_mode": ai_memo_mode,
+            "ai_memo_frequency": ai_memo_frequency,
+            "budget_preset": budget_preset,
+            "ai_review_count": len(ai_review_history),
+            "ai_provider_call_count": ai_provider_call_count,
+            "data_health": data_health,
+            "equity_curve": [{"date": row["date"], "equity": round(row["equity"], 4)} for row in equity_rows],
+            "decision_logs": public_decision_history[-250:],
+            "benchmark_verdict": benchmarks.get("verdict", {}),
+            "no_lookahead": (
+                "daily features are sliced to date <= as_of; rolling training rows require "
+                "label_end_date before the replay date"
+            ),
         },
-        "metrics": metrics,
+        SYSTEMATIC_TEMPLATE_OUTPUT,
+    )
+    write_json(DATA_DIR / "backtest_results.json", payload)
+    write_json(DATA_DIR / "backtest_decision_logs.json", add_watermark({"logs": public_decision_history[-1000:]}, SYSTEMATIC_TEMPLATE_OUTPUT))
+    return payload
+
+
+def _public_decision_log(row: dict[str, Any]) -> dict[str, Any]:
+    """Keep published replay logs readable and small enough for GitHub Pages."""
+    def top_score(item: dict[str, Any]) -> dict[str, Any]:
+        keys = (
+            "symbol",
+            "asset_type",
+            "final_score",
+            "information_score",
+            "leadership_score",
+            "timing_score",
+            "risk_penalty",
+            "wait_flag",
+        )
+        return {key: item.get(key) for key in keys if key in item}
+
+    def etf(item: dict[str, Any]) -> dict[str, Any]:
+        return {
+            "symbol": item.get("symbol"),
+            "score": item.get("score"),
+            "category": item.get("category"),
+            "sector": item.get("sector"),
+            "theme": item.get("theme"),
+            "reasons": (item.get("reasons") or [])[:3],
+        }
+
+    health = row.get("data_health") or {}
+    data_health_summary = {
+        "ok": health.get("ok"),
+        "source": health.get("source"),
+        "synthetic": health.get("synthetic", False),
+        "fallback": health.get("fallback", False),
+        "secondary_source_symbols": health.get("secondary_source_symbols", []),
+        "unavailable_endpoint_count": len(
+            [
+                meta
+                for meta in (health.get("endpoint_availability") or {}).values()
+                if isinstance(meta, dict) and not meta.get("available", False)
+            ]
+        ),
+    }
+
+    agent = row.get("agent_led_decision") or {}
+    agent_summary = {
+        "watermark": agent.get("watermark"),
+        "confidence": agent.get("confidence"),
+        "risks": (agent.get("risks") or [])[:5],
+        "allowed_for_execution": agent.get("allowed_for_execution", False),
+    }
+    systematic = row.get("systematic_decision") or {}
+    systematic_summary = {
+        "decision": systematic.get("decision") or row.get("execution_decision"),
+        "reason": systematic.get("reason") or row.get("execution_reason"),
+    }
+    return {
+        "date": row.get("date"),
+        "market_regime": row.get("market_regime"),
+        "risk_light": row.get("risk_light"),
+        "data_health": data_health_summary,
+        "universe_size": row.get("universe_size"),
+        "candidate_score_summary": row.get("candidate_score_summary"),
+        "current_allocation": row.get("current_allocation"),
+        "target_allocation": row.get("target_allocation"),
+        "selected_etfs": [etf(item) for item in row.get("selected_etfs", [])[:8]],
+        "rejected_etfs": [etf(item) for item in row.get("rejected_etfs", [])[:20]],
+        "top_stock_candidates": [top_score(item) for item in row.get("top_stock_candidates", [])[:12]],
+        "systematic_decision": systematic_summary,
+        "agent_led_decision": agent_summary,
+        "execution_decision": row.get("execution_decision"),
+        "execution_reason": row.get("execution_reason"),
+        "orders": row.get("orders") or [],
+        "portfolio_snapshot": {
+            key: row.get("portfolio_snapshot", {}).get(key)
+            for key in ("nav", "cash", "peak_nav", "relative_drawdown_pct", "last_rebalance_date")
+        },
+        "benchmark_snapshot": row.get("benchmark_snapshot"),
+        "watermarks": row.get("watermarks", []),
     }
 
 
-def _run_target_allocation_backtest(
-    frames: Dict[str, pd.DataFrame],
-    enriched: Dict[str, pd.DataFrame],
-    timeline,
-    module,
-    manifest: dict,
-) -> dict:
-    snapshots: List[Snapshot] = []
-    starting_cap = MANDATE.starting_capital
-    equity = starting_cap
-    benchmark_equity = starting_cap
-    prev_equity = starting_cap
-    prev_dt = None
-    prev_targets = {BENCHMARK: 1.0}
-    peak_rel = 0.0
-
-    for dt in timeline:
-        if prev_dt is not None:
-            day_ret = 0.0
-            for sym, weight in prev_targets.items():
-                if sym == "CASH" or weight <= 0:
-                    continue
-                df = frames.get(sym)
-                if df is None or prev_dt not in df.index or dt not in df.index:
-                    continue
-                prev_close = float(df.loc[prev_dt, "close"])
-                close = float(df.loc[dt, "close"])
-                if prev_close > 0:
-                    day_ret += weight * (close / prev_close - 1.0)
-            equity *= 1.0 + day_ret
-
-            spy_prev = float(frames[BENCHMARK].loc[prev_dt, "close"])
-            spy_close = float(frames[BENCHMARK].loc[dt, "close"])
-            benchmark_equity *= spy_close / spy_prev
-
-        rs = compute_relative_status(
-            equity=equity, benchmark_equity=benchmark_equity,
-            starting_capital=starting_cap,
-            peak_relative_outperformance=peak_rel,
-            data_feed_ok=True, synthetic_data=False,
-        )
-        peak_rel = rs.peak_relative_pnl_pct
-        snap = Snapshot(
-            date=str(dt.date()),
-            equity=round(equity, 2),
-            cash=round(equity * prev_targets.get("CASH", 0.0), 2),
-            market_value=round(equity * (1.0 - prev_targets.get("CASH", 0.0)), 2),
-            daily_pnl=round(equity - prev_equity, 2),
-            cumulative_pnl=round(equity - starting_cap, 2),
-            drawdown=round(max(0.0, 1 - equity / max(starting_cap, equity)), 4),
-            benchmark_equity=round(benchmark_equity, 2),
-            portfolio_return=round(rs.portfolio_return, 4),
-            benchmark_return=round(rs.benchmark_return, 4),
-            alpha=round(rs.relative_pnl_pct, 4),
-            relative_drawdown=round(rs.relative_drawdown_pct, 4),
-            spy_core_weight=round(prev_targets.get(BENCHMARK, 0.0), 4),
-            n_picks_open=len([s for s, w in prev_targets.items() if s not in (BENCHMARK, "CASH") and w > 0]),
-        )
-        snapshots.append(snap)
-
-        universe_to_date = {s: e.loc[:dt] for s, e in enriched.items()}
-        targets = module.target_weights(universe_to_date, manifest.get("params", {}))
-        total = sum(max(0.0, float(w)) for w in targets.values())
-        if total > 1.0:
-            targets = {s: float(w) / total for s, w in targets.items()}
-        elif total < 1.0:
-            targets["CASH"] = targets.get("CASH", 0.0) + (1.0 - total)
-        prev_targets = targets
-        prev_dt = dt
-        prev_equity = equity
-
-    metrics = _compute_metrics(snapshots, [], starting_cap)
-    last_targets = prev_targets
-    last_prices = {
-        sym: float(frames[sym].loc[timeline[-1], "close"])
-        for sym in last_targets
-        if sym != "CASH" and sym in frames and timeline[-1] in frames[sym].index
-    }
-    open_positions = []
-    for sym, weight in last_targets.items():
-        if sym == "CASH" or weight <= 0 or sym not in last_prices:
+def _collect_training_rows(
+    universe_payload: dict[str, Any],
+    price_history: dict[str, pd.DataFrame],
+    data_health: dict[str, Any],
+    train_start: str,
+    train_end: str,
+    step_days: int,
+) -> list[dict[str, Any]]:
+    learning_rows: list[dict[str, Any]] = []
+    dates = pd.bdate_range(train_start, train_end)
+    dates = dates[:: max(1, step_days)]
+    total_dates = len(dates)
+    print(f"Training scan dates: {total_dates}", flush=True)
+    for i, ts in enumerate(dates, start=1):
+        as_of = ts.date().isoformat()
+        latest_prices = _prices_as_of(price_history, as_of)
+        if "SPY" not in latest_prices:
             continue
-        price = last_prices[sym]
-        qty = equity * weight / price
-        open_positions.append({
-            "symbol": sym, "side": "long", "quantity": qty,
-            "entry_price": price, "entry_time": str(timeline[-1]),
-            "stop_price": 0.0, "target_price": 0.0, "max_hold_days": 10_000,
-            "strategy_id": manifest.get("id", "allocation"),
-            "thesis": f"Target allocation weight {weight:.2%}.",
-            "last_price": price, "age_days": 0, "is_core": True,
-            "target_weight": weight, "unrealized_pnl": 0.0,
-            "notional": equity * weight,
-        })
-    return {
-        "snapshots": [s.to_dict() for s in snapshots],
-        "trades": [],
-        "open_positions": [p for p in open_positions if p["symbol"] != BENCHMARK],
-        "portfolio_state": {
-            "cash": equity * last_targets.get("CASH", 0.0),
-            "realized_pnl": 0.0,
-            "peak_relative_outperformance": peak_rel,
-            "inception": str(timeline[0].date()),
-            "positions": {p["symbol"]: p for p in open_positions},
-            "trades": [],
-        },
-        "metrics": metrics,
-    }
+        feature_payload = compute_features(universe_payload, price_history, as_of, {})
+        regime_payload = determine_regime(price_history, feature_payload, data_health, as_of)
+        score_payload = score_candidates(feature_payload, regime_payload, as_of=as_of)
+        learning_rows.extend(_learning_rows(score_payload, price_history, as_of))
+        if i == 1 or i % 100 == 0 or i == total_dates:
+            print(f"Training scan {i}/{total_dates}: {as_of}, rows={len(learning_rows)}", flush=True)
+    return learning_rows
 
 
-def _compute_metrics(snapshots: List[Snapshot], trades: list, start_cap: float) -> dict:
-    if not snapshots:
-        return {}
-    eq = pd.Series([s.equity for s in snapshots])
-    bench = pd.Series([s.benchmark_equity for s in snapshots])
-    rets = eq.pct_change().dropna()
-    bench_rets = bench.pct_change().dropna()
-    ann = 252
-    sharpe = float(rets.mean() / rets.std() * np.sqrt(ann)) if rets.std() > 0 else 0.0
-    bench_sharpe = float(bench_rets.mean() / bench_rets.std() * np.sqrt(ann)) if bench_rets.std() > 0 else 0.0
-    downside = rets[rets < 0]
-    sortino = float(rets.mean() / downside.std() * np.sqrt(ann)) if len(downside) > 1 and downside.std() > 0 else 0.0
-    max_dd = float(max((s.drawdown for s in snapshots), default=0.0))
-    max_rel_dd = float(max((s.relative_drawdown for s in snapshots), default=0.0))
-    total_return = float(eq.iloc[-1] / start_cap - 1.0)
-    bench_total = float(bench.iloc[-1] / start_cap - 1.0)
-    n_years = max(len(snapshots) / 252, 1e-6)
-    cagr = float((eq.iloc[-1] / start_cap) ** (1 / n_years) - 1.0)
-    bench_cagr = float((bench.iloc[-1] / start_cap) ** (1 / n_years) - 1.0)
-
-    excess_rets = rets - bench_rets
-    info_ratio = float(excess_rets.mean() / excess_rets.std() * np.sqrt(ann)) if excess_rets.std() > 0 else 0.0
-
-    closed_pnls = [
-        (t["pnl"] if isinstance(t, dict) else t.pnl)
-        for t in trades
-        if (isinstance(t, dict) and t.get("exit_price") is not None)
-        or (hasattr(t, "exit_price") and t.exit_price is not None)
+def _learn_rolling_weights(
+    learning_rows: list[dict[str, Any]],
+    as_of: str,
+    earliest_train_start: str,
+    rolling_years: int,
+) -> dict[str, Any]:
+    cutoff = pd.Timestamp(as_of) - pd.Timedelta(days=1)
+    window_start = max(pd.Timestamp(earliest_train_start), cutoff - pd.DateOffset(years=rolling_years))
+    rows = [
+        row
+        for row in learning_rows
+        if window_start <= pd.Timestamp(row["as_of"]) <= cutoff
+        and pd.Timestamp(row.get("label_end_date", row["as_of"])) <= cutoff
     ]
-    wins = [p for p in closed_pnls if p > 0]
-    losses = [p for p in closed_pnls if p < 0]
-    win_rate = float(len(wins) / len(closed_pnls)) if closed_pnls else 0.0
-    profit_factor = (sum(wins) / abs(sum(losses))) if losses else (None if not wins else None)
-
-    # Alpha attribution: sum of alpha_vs_spy across closed picks
-    alphas = []
-    for t in trades:
-        v = (t.get("alpha_vs_spy") if isinstance(t, dict) else t.alpha_vs_spy)
-        if v is not None:
-            alphas.append(float(v))
-    avg_pick_alpha = float(np.mean(alphas)) if alphas else 0.0
-
-    return {
-        "total_return": round(total_return, 4),
-        "cagr": round(cagr, 4),
-        "benchmark_total_return": round(bench_total, 4),
-        "benchmark_cagr": round(bench_cagr, 4),
-        "alpha_total": round(total_return - bench_total, 4),
-        "sharpe": round(sharpe, 3),
-        "benchmark_sharpe": round(bench_sharpe, 3),
-        "info_ratio": round(info_ratio, 3),
-        "sortino": round(sortino, 3),
-        "max_drawdown": round(max_dd, 4),
-        "max_relative_drawdown": round(max_rel_dd, 4),
-        "win_rate": round(win_rate, 3),
-        "profit_factor": round(profit_factor, 3) if profit_factor else None,
-        "n_trades": len(closed_pnls),
-        "avg_win": round(float(np.mean(wins)), 2) if wins else 0.0,
-        "avg_loss": round(float(np.mean(losses)), 2) if losses else 0.0,
-        "largest_loss": round(float(min(closed_pnls)), 2) if closed_pnls else 0.0,
-        "vol_annualized": round(float(rets.std() * np.sqrt(ann)), 4) if len(rets) else 0.0,
-        "avg_pick_alpha": round(avg_pick_alpha, 4),
-        "target_alpha_pct": MANDATE.target_alpha_pct,
-        "max_relative_drawdown_pct": MANDATE.max_relative_drawdown_pct,
+    stock_rows = [row for row in rows if row["asset_type"] == "stock"]
+    etf_rows = [row for row in rows if row["asset_type"] == "etf"]
+    stock_learning = learn_weights(stock_rows, "stock", as_of=as_of)
+    etf_learning = learn_weights(etf_rows, "etf", as_of=as_of)
+    snapshot = {
+        "date": as_of,
+        "window": [window_start.date().isoformat(), cutoff.date().isoformat()],
+        "usable_rows": len(rows),
+        "stock_rows": len(stock_rows),
+        "etf_rows": len(etf_rows),
+        "stock_weights": stock_learning.get("weights"),
+        "etf_weights": etf_learning.get("weights"),
+        "watermark": "ML_ESTIMATED_OUTPUT",
     }
+    return {"stock_learning": stock_learning, "etf_learning": etf_learning, "snapshot": snapshot}
+
+
+def _universe_as_of(
+    universe_payload: dict[str, Any],
+    price_history: dict[str, pd.DataFrame],
+    as_of: str,
+    current_holdings: list[str] | None = None,
+) -> dict[str, Any]:
+    current_holdings = current_holdings or []
+    always_include = {MANDATE.benchmark, MANDATE.secondary_growth_anchor, MANDATE.defensive_anchor, *current_holdings}
+    candidates = []
+    for row in universe_payload.get("candidates", []):
+        symbol = row.get("symbol")
+        if symbol in always_include or _has_history_as_of(price_history.get(symbol), as_of):
+            candidates.append(dict(row))
+    payload = dict(universe_payload)
+    payload["as_of"] = as_of
+    payload["candidates"] = candidates
+    payload["replay_filter"] = {
+        "source_pool_size": len(universe_payload.get("candidates", [])),
+        "daily_size": len(candidates),
+        "rule": "candidate must have price history available by replay date, except anchors/current holdings",
+    }
+    return payload
+
+
+def _has_history_as_of(frame: pd.DataFrame | None, as_of: str, min_bars: int = 20) -> bool:
+    if frame is None or frame.empty:
+        return False
+    idx = frame.index.searchsorted(pd.Timestamp(as_of), side="right")
+    return idx >= min_bars
+
+
+def _benchmark_snapshot(latest_prices: dict[str, float], benchmark_payload: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "SPY": {"close": latest_prices.get("SPY")},
+        "QQQ": {"close": latest_prices.get("QQQ")},
+        "verdict": benchmark_payload.get("verdict", {}),
+        "watermark": SYSTEMATIC_TEMPLATE_OUTPUT,
+    }
+
+
+def _should_call_ai_provider(
+    as_of: str,
+    index: int,
+    total_dates: int,
+    frequency: str,
+    seen_weeks: set[tuple[int, int]],
+    seen_months: set[tuple[int, int]],
+) -> bool:
+    if frequency == "daily":
+        return True
+    if frequency == "final":
+        return index == total_dates
+    if frequency == "monthly":
+        ts = pd.Timestamp(as_of)
+        key = (int(ts.year), int(ts.month))
+        if key in seen_months:
+            return False
+        seen_months.add(key)
+        return True
+    if frequency == "weekly":
+        iso = pd.Timestamp(as_of).isocalendar()
+        key = (int(iso.year), int(iso.week))
+        if key in seen_weeks:
+            return False
+        seen_weeks.add(key)
+        return True
+    return False
+
+
+def _prices_as_of(price_history: dict[str, pd.DataFrame], as_of: str) -> dict[str, float]:
+    prices = {}
+    ts = pd.Timestamp(as_of)
+    for symbol, frame in price_history.items():
+        if frame is None or frame.empty:
+            continue
+        idx = frame.index.searchsorted(ts, side="right")
+        if idx > 0:
+            prices[symbol] = float(frame["close"].iloc[idx - 1])
+    return prices
+
+
+def _slice_history(price_history: dict[str, pd.DataFrame], start_date: str, end_date: str) -> dict[str, pd.DataFrame]:
+    start = pd.Timestamp(start_date)
+    end = pd.Timestamp(end_date)
+    return {
+        symbol: frame.loc[(frame.index >= start) & (frame.index <= end)].copy()
+        for symbol, frame in price_history.items()
+        if frame is not None and not frame.empty
+    }
+
+
+def _equity_series(rows: list[dict[str, Any]]) -> pd.Series:
+    if not rows:
+        return pd.Series(dtype=float)
+    frame = pd.DataFrame(rows)
+    frame["date"] = pd.to_datetime(frame["date"])
+    return frame.set_index("date")["equity"].astype(float)
+
+
+def _update_relative_state(portfolio: PaperPortfolio, price_history: dict[str, pd.DataFrame], as_of: str) -> None:
+    spy = price_history.get("SPY")
+    if spy is None:
+        return
+    sliced = spy.loc[spy.index <= pd.Timestamp(as_of)]
+    if len(sliced) < 2:
+        return
+    daily_return = float(sliced["close"].iloc[-1] / sliced["close"].iloc[-2] - 1)
+    portfolio.benchmark_equity *= 1 + daily_return
+    relative = portfolio.nav() / MANDATE.starting_capital - portfolio.benchmark_equity / MANDATE.starting_capital
+    portfolio.peak_relative_outperformance = max(portfolio.peak_relative_outperformance, relative)
+    portfolio.relative_drawdown_pct = max(0.0, portfolio.peak_relative_outperformance - relative)
+
+
+def _learning_rows(score_payload: dict[str, Any], price_history: dict[str, pd.DataFrame], as_of: str) -> list[dict[str, Any]]:
+    out = []
+    ts = pd.Timestamp(as_of)
+    spy = price_history.get("SPY")
+    if spy is None or spy.empty:
+        return out
+    spy_future = _forward_return(spy, ts, 20)
+    if spy_future is None:
+        return out
+    for score in score_payload.get("scores", [])[:20]:
+        frame = price_history.get(score["symbol"])
+        future = _forward_return(frame, ts, 20)
+        if future is None:
+            continue
+        out.append(
+            {
+                "as_of": as_of,
+                "label_end_date": frame.index[frame.index.searchsorted(ts) + 20].date().isoformat(),
+                "symbol": score["symbol"],
+                "asset_type": "etf" if score.get("asset_type") == "etf" else "stock",
+                "information": score.get("information_score", 0.0),
+                "leadership": score.get("leadership_score", 0.0),
+                "timing": score.get("timing_score", 0.0),
+                "regime_fit": score.get("regime_fit_score", 0.0),
+                "diversification": score.get("diversification_score", 0.0),
+                "forward_20d_alpha_vs_spy": future - spy_future,
+            }
+        )
+    return out
+
+
+def _forward_return(frame: pd.DataFrame | None, ts: pd.Timestamp, days: int) -> float | None:
+    if frame is None or frame.empty:
+        return None
+    idx = frame.index.searchsorted(ts)
+    if idx >= len(frame) or idx + days >= len(frame):
+        return None
+    start = float(frame["close"].iloc[idx])
+    end = float(frame["close"].iloc[idx + days])
+    return end / start - 1 if start > 0 else None
+
+
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--start-date", default="2009-01-01")
+    parser.add_argument("--end-date", default=date.today().isoformat())
+    parser.add_argument("--train-start", default=None)
+    parser.add_argument("--train-end", default="2020-12-31")
+    parser.add_argument("--invest-start", default="2021-01-01")
+    parser.add_argument("--max-symbols", type=int, default=None)
+    parser.add_argument("--allow-synthetic-trading", action="store_true")
+    parser.add_argument("--no-secondary-price-fallback", action="store_true")
+    parser.add_argument("--rolling-train-years", type=int, default=12)
+    parser.add_argument("--ai-memo-mode", choices=("off", "template", "deepseek"), default="template")
+    parser.add_argument("--ai-memo-frequency", choices=("daily", "weekly", "monthly", "final"), default="weekly")
+    parser.add_argument("--budget-preset", choices=tuple(BUDGET_PRESETS), default="default")
+    parser.add_argument("--step-days", type=int, default=1)
+    parser.add_argument("--train-step-days", type=int, default=None)
+    return parser.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    run_backtest(
+        start_date=args.start_date,
+        end_date=args.end_date,
+        train_start=args.train_start,
+        train_end=args.train_end,
+        invest_start=args.invest_start,
+        max_symbols=args.max_symbols,
+        allow_synthetic_trading=args.allow_synthetic_trading,
+        use_secondary_price_fallback=not args.no_secondary_price_fallback,
+        rolling_train_years=args.rolling_train_years,
+        ai_memo_mode=args.ai_memo_mode,
+        ai_memo_frequency=args.ai_memo_frequency,
+        budget_preset=args.budget_preset,
+        step_days=args.step_days,
+        train_step_days=args.train_step_days,
+    )

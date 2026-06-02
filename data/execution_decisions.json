@@ -1,0 +1,15 @@
+{
+  "execution_decision": {
+    "as_of": "2026-06-01",
+    "decision": "NO_TRADE",
+    "drift": 1.0,
+    "orders": [],
+    "reason": "Turnover 100.00% exceeds cap 30.00%.",
+    "turnover": 1.0
+  },
+  "generated_at": "2026-06-02T01:37:46Z",
+  "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
+  "watermarks": [
+    "SYSTEMATIC_TEMPLATE_OUTPUT"
+  ]
+}

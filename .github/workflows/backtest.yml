@@ -1,0 +1,91 @@
+name: Greenlight Backtest
+
+on:
+  workflow_dispatch:
+    inputs:
+      start_date:
+        description: "Backtest start date"
+        required: true
+        default: "2009-01-01"
+      end_date:
+        description: "Backtest end date"
+        required: true
+        default: "2026-06-02"
+      train_start:
+        description: "Rolling learning source start date"
+        required: true
+        default: "2009-01-01"
+      train_end:
+        description: "Initial training cutoff"
+        required: true
+        default: "2021-12-31"
+      invest_start:
+        description: "Investment replay start date"
+        required: true
+        default: "2022-01-01"
+      rolling_train_years:
+        description: "Rolling learning window in years"
+        required: true
+        default: "3"
+      max_symbols:
+        description: "Optional symbol cap for faster research runs"
+        required: false
+        default: ""
+
+permissions:
+  contents: read
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: greenlight-massive-api
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: pip install -r python/requirements.txt
+
+      - name: Run backtest
+        env:
+          MASSIVE_API_KEY: ${{ secrets.MASSIVE_API_KEY }}
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+          MASSIVE_API_BASE_URL: ${{ secrets.MASSIVE_API_BASE_URL }}
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          DEEPSEEK_BASE_URL: ${{ secrets.DEEPSEEK_BASE_URL }}
+          DEEPSEEK_MODEL: ${{ secrets.DEEPSEEK_MODEL }}
+          PYTHONPATH: python
+        run: |
+          ARGS="--start-date ${{ inputs.start_date }} --end-date ${{ inputs.end_date }}"
+          ARGS="$ARGS --train-start ${{ inputs.train_start }} --train-end ${{ inputs.train_end }}"
+          ARGS="$ARGS --invest-start ${{ inputs.invest_start }} --rolling-train-years ${{ inputs.rolling_train_years }}"
+          ARGS="$ARGS --ai-memo-mode deepseek --ai-memo-frequency monthly"
+          if [ -n "${{ inputs.max_symbols }}" ]; then
+            ARGS="$ARGS --max-symbols ${{ inputs.max_symbols }}"
+          fi
+          python python/backtest.py $ARGS
+
+      - name: Validate reports
+        env:
+          PYTHONPATH: python
+        run: |
+          python python/validate_watermarks.py
+          test -f data/backtest_results.json
+          test -f data/comparison_report.md
+          test -f data/learning_report.md
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: greenlight-backtest-artifacts
+          path: |
+            data/backtest_results.json
+            data/backtest_decision_logs.json
+            data/benchmark_metrics.json
+            data/benchmark_snapshots.json
+            data/comparison_report.md
+            data/learning_report.md

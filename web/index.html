@@ -1,0 +1,308 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Greenlight Trader 2.0</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#top">Greenlight Trader</a>
+        <nav class="nav-links" aria-label="Greenlight dashboard navigation">
+          <a href="#status" class="is-current">Status</a>
+          <a href="#results">Results</a>
+          <a href="#portfolio">Portfolio</a>
+          <a href="#discovery">Discovery</a>
+          <a href="#logs">Logs</a>
+          <a href="#reports">Reports</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="container">
+        <div class="page-head trader-hero">
+          <div class="hero-grid">
+            <div class="hero-copy">
+              <div class="eyebrow">Systematic replay and paper allocation</div>
+              <h1>Greenlight Trader 2.0</h1>
+              <p class="lede">
+                Massive-first market discovery, rolling learned weights, deterministic allocation,
+                sparse execution, benchmark comparison, and watermarked AI review logs.
+              </p>
+            </div>
+
+            <div class="hero-readout" aria-label="Current replay readout">
+              <div>
+                <div class="label">Replay equity</div>
+                <div class="value" id="heroNav">Loading</div>
+              </div>
+              <div>
+                <div class="label">Risk light</div>
+                <div class="value" id="heroRisk">Loading</div>
+              </div>
+              <div>
+                <div class="label">Regime</div>
+                <div class="value" id="heroRegime">Loading</div>
+              </div>
+              <div>
+                <div class="label">Execution</div>
+                <div class="value" id="heroExecution">Loading</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-allocation" aria-label="Latest replay target allocation">
+            <div class="allocation-head">
+              <span class="eyebrow">Latest target</span>
+              <span class="tag" id="allocationDate">as of loading</span>
+            </div>
+            <div class="allocation-track" id="allocationTrack"></div>
+            <div class="allocation-legend" id="allocationLegend"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section-pad" id="status">
+        <div class="dashboard-surface">
+          <section class="status-banner yellow" id="statusBanner">
+            <div class="light-dot" id="statusDot"></div>
+            <div class="status-main">
+              <div class="eyebrow">System status</div>
+              <div class="status-label yellow" id="statusLabel">Loading</div>
+              <div class="status-reason" id="statusReason">Loading latest replay.</div>
+            </div>
+            <div class="status-meta">
+              <div class="tag">regime · <span class="tag-accent" id="statusRegime">n/a</span></div>
+              <div class="tag">data · <span id="statusData">n/a</span></div>
+              <div class="tag" id="statusDate">as of n/a</div>
+            </div>
+          </section>
+        </div>
+      </section>
+
+      <section class="container section-pad" id="results">
+        <div class="dashboard-surface">
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="eyebrow">Replay result</div>
+                <h2>Train through 2021, invest from 2022</h2>
+              </div>
+              <span class="tag">rolling 3-year window</span>
+            </div>
+            <div class="kpi-grid six" id="resultsKpis"></div>
+          </section>
+
+          <div class="surface-split two">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Replay mechanics</div>
+                  <h2>Daily feedback loop</h2>
+                </div>
+                <span class="tag">no-lookahead</span>
+              </div>
+              <div class="kpi-grid three" id="replayKpis"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Learned weights</div>
+                  <h2>Latest rolling review</h2>
+                </div>
+                <span class="tag">ML_ESTIMATED_OUTPUT</span>
+              </div>
+              <div class="table-wrap"><table class="gl compact" id="weightsTable"></table></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section-pad" id="portfolio">
+        <div class="dashboard-surface">
+          <div class="surface-split two">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Portfolio overview</div>
+                  <h2>$5,000 simulated allocation model</h2>
+                </div>
+                <span class="tag" id="portfolioAsOf">as of n/a</span>
+              </div>
+              <div class="kpi-grid three" id="portfolioKpis"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Equity curve</div>
+                  <h2>Greenlight vs SPY and QQQ</h2>
+                </div>
+                <span class="tag">2022-2026 replay</span>
+              </div>
+              <div class="chart-shell"><canvas id="equityChart"></canvas></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section-pad">
+        <div class="dashboard-surface">
+          <div class="surface-split two">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Target allocation</div>
+                  <h2>Systematic target weights</h2>
+                </div>
+                <span class="tag" id="targetSum">sum · n/a</span>
+              </div>
+              <div class="table-wrap"><table class="gl" id="allocationTable"></table></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Sparse execution</div>
+                  <h2>Latest trade decision</h2>
+                </div>
+                <span class="tag" id="executionTurnover">latest · n/a</span>
+              </div>
+              <div class="kpi-grid two" id="executionKpis"></div>
+              <div class="table-wrap mt-16"><table class="gl compact" id="ordersTable"></table></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section-pad" id="discovery">
+        <div class="dashboard-surface">
+          <div class="surface-split two">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Dynamic ETF discovery</div>
+                  <h2>Selected ETF sleeve</h2>
+                </div>
+                <span class="tag" id="etfCount">0 selected</span>
+              </div>
+              <div class="table-wrap"><table class="gl" id="etfTable"></table></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Rejected ETFs</div>
+                  <h2>Useful exposure was not earned</h2>
+                </div>
+                <span class="tag">no permanent sector winner</span>
+              </div>
+              <div class="table-wrap"><table class="gl" id="rejectedEtfTable"></table></div>
+            </section>
+          </div>
+
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="eyebrow">Stock candidates</div>
+                <h2>Top ranked equities</h2>
+              </div>
+              <span class="tag">deterministic score</span>
+            </div>
+            <div class="table-wrap"><table class="gl" id="stockTable"></table></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="container section-pad" id="benchmarks">
+        <div class="dashboard-surface">
+          <div class="surface-split two">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Benchmark verdict</div>
+                  <h2>Simple strategies stayed visible</h2>
+                </div>
+                <span class="tag" id="benchmarkVerdict">verdict · loading</span>
+              </div>
+              <div class="verdict-list" id="verdictList"></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Benchmark metrics</div>
+                  <h2>Greenlight vs alternatives</h2>
+                </div>
+                <span class="tag">do not hide weak results</span>
+              </div>
+              <div class="table-wrap"><table class="gl" id="benchmarkTable"></table></div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <section class="container section-pad" id="logs">
+        <div class="dashboard-surface">
+          <section class="panel">
+            <div class="panel-head">
+              <div>
+                <div class="eyebrow">Decision ledger</div>
+                <h2>Latest published replay logs</h2>
+              </div>
+              <span class="tag" id="logsCount">0 published</span>
+            </div>
+            <div class="table-wrap"><table class="gl logs" id="logsTable"></table></div>
+          </section>
+        </div>
+      </section>
+
+      <section class="container section-pad" id="reports">
+        <div class="dashboard-surface">
+          <div class="surface-split two">
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">AI / generated outputs</div>
+                  <h2>Watermarked memo trail</h2>
+                </div>
+                <span class="tag" id="memoProvider">memo · loading</span>
+              </div>
+              <div class="table-wrap"><table class="gl" id="aiTable"></table></div>
+            </section>
+
+            <section class="panel">
+              <div class="panel-head">
+                <div>
+                  <div class="eyebrow">Reports</div>
+                  <h2>Published artifacts</h2>
+                </div>
+                <span class="tag">static data only</span>
+              </div>
+              <div class="report-links">
+                <a href="../data/comparison_report.md" data-artifact="comparison_report.md">Comparison Report</a>
+                <a href="../data/learning_report.md" data-artifact="learning_report.md">Learning Report</a>
+                <a href="../data/backtest_results.json" data-artifact="backtest_results.json">Replay Summary JSON</a>
+                <a href="../data/backtest_decision_logs.json" data-artifact="backtest_decision_logs.json">Published Replay Logs</a>
+                <a href="../data/system_status.json" data-artifact="system_status.json">System Status JSON</a>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container row">
+        <span>Paper trading only</span>
+        <span>Massive-first · Yahoo VIX · DeepSeek v4 Pro monthly review</span>
+      </div>
+    </footer>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

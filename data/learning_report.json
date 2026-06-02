@@ -1,0 +1,76 @@
+{
+  "etf": {
+    "approved_for_production": false,
+    "as_of": "2026-06-02",
+    "asset_type": "etf",
+    "constraints": {
+      "human_approval_required": true,
+      "max_feature_weight_cap": 0.65,
+      "non_negative": true,
+      "sum_to_one": true
+    },
+    "generated_at": "2026-06-02T15:16:21Z",
+    "method": "ridge",
+    "targets": [
+      "forward_20d_alpha_vs_spy",
+      "forward_60d_alpha_vs_spy",
+      "probability_of_outperforming_spy",
+      "risk_adjusted_forward_return",
+      "drawdown_contribution"
+    ],
+    "validation": {
+      "clean_rows": 2716,
+      "out_of_sample_required": true,
+      "rank_ic_proxy": 0.102208
+    },
+    "watermark": "ML_ESTIMATED_OUTPUT",
+    "watermarks": [
+      "ML_ESTIMATED_OUTPUT"
+    ],
+    "weights": {
+      "diversification": 0.0,
+      "leadership": 0.0,
+      "regime_fit": 1.0,
+      "timing": 0.0
+    }
+  },
+  "generated_at": "2026-06-02T15:16:22Z",
+  "stock": {
+    "approved_for_production": false,
+    "as_of": "2026-06-02",
+    "asset_type": "stock",
+    "constraints": {
+      "human_approval_required": true,
+      "max_feature_weight_cap": 0.65,
+      "non_negative": true,
+      "sum_to_one": true
+    },
+    "generated_at": "2026-06-02T15:16:21Z",
+    "method": "ridge",
+    "targets": [
+      "forward_20d_alpha_vs_spy",
+      "forward_60d_alpha_vs_spy",
+      "probability_of_outperforming_spy",
+      "risk_adjusted_forward_return",
+      "drawdown_contribution"
+    ],
+    "validation": {
+      "clean_rows": 344,
+      "out_of_sample_required": true,
+      "rank_ic_proxy": -0.025753
+    },
+    "watermark": "ML_ESTIMATED_OUTPUT",
+    "watermarks": [
+      "ML_ESTIMATED_OUTPUT"
+    ],
+    "weights": {
+      "information": 0.0,
+      "leadership": 0.671816,
+      "timing": 0.328184
+    }
+  },
+  "watermark": "ML_ESTIMATED_OUTPUT",
+  "watermarks": [
+    "ML_ESTIMATED_OUTPUT"
+  ]
+}

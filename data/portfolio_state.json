@@ -1,73 +1,16 @@
 {
-  "cash": 0.0,
+  "benchmark_equity": 5027.009966,
+  "cash": 5000.0,
+  "date": "2026-06-01",
+  "last_rebalance_date": null,
+  "nav": 5000.0,
+  "peak_nav": 5000.0,
+  "peak_relative_outperformance": 0.008176,
+  "positions": {},
   "realized_pnl": 0.0,
-  "peak_relative_outperformance": 0.4104221292946322,
-  "inception": "2026-05-27",
-  "positions": {
-    "SPY": {
-      "symbol": "SPY",
-      "side": "long",
-      "quantity": 6.219372871609547,
-      "entry_price": 751.597514530912,
-      "entry_time": "2026-05-27 00:00:00",
-      "stop_price": 0.0,
-      "target_price": 0.0,
-      "max_hold_days": 10000,
-      "strategy_id": "adaptive_tech_semis_v1",
-      "thesis": "Target allocation weight 40.00%.",
-      "last_price": 758.5399780273438,
-      "age_days": 0,
-      "is_core": true,
-      "target_weight": 0.55
-    },
-    "QQQ": {
-      "symbol": "QQQ",
-      "side": "long",
-      "quantity": 2.3202272992109005,
-      "entry_price": 729.780029296875,
-      "entry_time": "2026-05-27 00:00:00",
-      "stop_price": 0.0,
-      "target_price": 0.0,
-      "max_hold_days": 10000,
-      "strategy_id": "adaptive_tech_semis_v1",
-      "thesis": "Target allocation weight 25.00%.",
-      "last_price": 742.739990234375,
-      "age_days": 0,
-      "is_core": true,
-      "target_weight": 0.2
-    },
-    "SMH": {
-      "symbol": "SMH",
-      "side": "long",
-      "quantity": 2.13405351852922,
-      "entry_price": 596.4099731445312,
-      "entry_time": "2026-05-27 00:00:00",
-      "stop_price": 0.0,
-      "target_price": 0.0,
-      "max_hold_days": 10000,
-      "strategy_id": "adaptive_tech_semis_v1",
-      "thesis": "Target allocation weight 20.00%.",
-      "last_price": 607.8099975585938,
-      "age_days": 0,
-      "is_core": true,
-      "target_weight": 0.15
-    },
-    "LRCX": {
-      "symbol": "LRCX",
-      "side": "long",
-      "quantity": 2.6583439140353406,
-      "entry_price": 317.1199951171875,
-      "entry_time": "2026-06-02T05:10:08Z",
-      "stop_price": 0.0,
-      "target_price": 0.0,
-      "max_hold_days": 10000,
-      "strategy_id": "adaptive_tech_semis_v1",
-      "thesis": "Target allocation for risk_on: {'SPY': 0.55, 'QQQ': 0.2, 'SMH': 0.15, 'LRCX': 0.1, 'CASH': -2.7755575615628914e-17}",
-      "last_price": 317.1199951171875,
-      "age_days": 0,
-      "is_core": true,
-      "target_weight": 0.1
-    }
-  },
-  "trades": []
+  "relative_drawdown_pct": 0.013578,
+  "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
+  "weights": {
+    "CASH": 1.0
+  }
 }

@@ -1,247 +1,228 @@
-# GreenLight Trader
+# Greenlight 2.0
 
-A small AI-supervised paper-trading research system.
-It runs a $5,000 controlled-risk portfolio, generates daily allocation
-choices from a broad tech, semiconductor, mega-cap, and discovery universe,
-gates every trade through a strict risk engine, and writes a human-readable
-end-of-day review.
+Greenlight 2.0 is a Massive-first, systematic, sparse-execution paper trading allocator.
+It observes daily, discovers stocks and ETFs dynamically, scores candidates with
+information, leadership, timing, and risk features, then produces deterministic
+target weights subject to strict risk and execution gates.
 
-**Survival first.** Strategy selection, sizing, and the EOD reviewer all
-optimize for risk-adjusted return on a small book — not absolute return.
+Paper trading only. No broker connection. Not investment advice.
 
-> Paper trading only. The engine never connects to a broker.
-> Not investment advice.
+## Design Principles
 
----
+- Massive/Polygon is the primary data source.
+- SPY is the permanent benchmark/core anchor.
+- QQQ is a regime-dependent growth anchor, not a permanent winner.
+- Cash/SHY/SGOV are defensive proxies.
+- Sector, industry, factor, theme, rates, and defensive ETFs must earn allocation dynamically.
+- The production track is deterministic.
+- Agent-led decisions are experimental, watermarked, compared, and never executable.
+- Every generated report, memo, decision, and validation output is watermarked.
+- Backtests must avoid lookahead. Unavailable historical point-in-time data is marked unavailable.
 
-## What it does
+## Layout
 
-Every weekday after the US close:
-
-1. Pulls fresh OHLCV for the watchlist from yfinance.
-2. Recomputes signals (SMA, RSI, ATR, 20-day high, volume z-score).
-3. Tags the market regime from SPY's 50/200 SMAs and 200d drawdown.
-4. Pulls Yahoo Finance RSS headlines and scores them through a small
-   positive/negative lexicon.
-5. Runs every active strategy across the watchlist.
-6. Ranks the resulting candidates by composite score.
-7. Pushes them through a risk gate — 1 % per-trade, 10 % drawdown shutdown,
-   max 3 open positions, 35 % single-name exposure, no leverage.
-8. Marks the book to market, fires stops / targets / max-hold exits.
-9. Generates an EOD review (Claude Haiku via the Anthropic API if a key is
-   present; otherwise fills a deterministic template with the same fields).
-10. Writes JSON snapshots to `data/` and (optionally) mirrors them into a
-    Supabase Postgres database.
-
-A static dashboard reads those JSON files and renders system status,
-portfolio state, the equity curve, open positions, the tomorrow pitch
-sheet, realized risk metrics, recent closed trades, and the AI review log.
-
----
-
-## Architecture
-
-```
-GitHub Actions (weeknight after the US close)
-        │
-        ▼
-Python engine ── yfinance (OHLCV) ── Yahoo RSS (sentiment)
-   data → signals → strategies/* → risk → portfolio
-                          │
-                          ├── EOD review (Anthropic, w/ template fallback)
-                          ▼
-                  data/*.json ──► Supabase (optional)
-                                       │
-                                       ▼
-                         Public read-only dashboard
-```
-
-The Python engine is the source of truth. The dashboard is a static page
-that fetches the JSON snapshots over HTTPS. A Postgres mirror is available
-for projects that prefer relational reads.
-
----
-
-## Repo layout
-
-```
+```text
 greenlight-trader/
 ├── python/
-│   ├── config.py            # watchlist, risk caps, active strategy ids
-│   ├── data.py              # yfinance loader + CSV cache + synthetic fallback
-│   ├── signals.py           # SMA, RSI(Wilder), ATR, 20d high, volume ratio
-│   ├── strategies/          # one file per strategy (auto-discovered)
-│   │   ├── _types.py
-│   │   ├── momentum_breakout_v1.py
-│   │   ├── mean_reversion_v1.py
-│   │   └── stock_pitcher_v1.py
-│   ├── risk.py              # position sizing + account-level caps + traffic light
-│   ├── portfolio.py         # paper book, realized/unrealized PnL, stop/target/MH
-│   ├── backtest.py          # walk-forward sim (uses the live risk engine)
-│   ├── news.py              # Yahoo RSS pull + lexicon sentiment
-│   ├── llm_review.py        # EOD review — Anthropic if keyed, template otherwise
-│   ├── db.py                # Supabase REST writer + JSON writer
-│   ├── seed_history.py      # one-shot ~2y backtest → seeds data/*.json
-│   └── run_daily.py         # daily orchestrator (entry point for the cron)
-├── supabase/
-│   └── schema.sql           # 5 tables with read-only RLS for the public anon key
-├── web/                     # Next.js + Tailwind + Recharts variant (optional)
-├── data/                    # JSON snapshots the dashboard reads
-└── .github/workflows/daily.yml
+│   ├── config.py
+│   ├── data_contracts.py
+│   ├── massive_client.py
+│   ├── universe.py
+│   ├── etf_selector.py
+│   ├── features.py
+│   ├── regime.py
+│   ├── scoring.py
+│   ├── allocator.py
+│   ├── exposure.py
+│   ├── risk.py
+│   ├── execution_policy.py
+│   ├── portfolio.py
+│   ├── backtest.py
+│   ├── run_daily.py
+│   ├── strategy_benchmarks.py
+│   ├── weight_learning.py
+│   ├── weight_registry.py
+│   ├── weight_review.py
+│   ├── agent_decision.py
+│   ├── watermark.py
+│   ├── decision_log.py
+│   ├── ai_review.py
+│   ├── comparison_report.py
+│   ├── validate_outputs.py
+│   ├── validate_watermarks.py
+│   ├── validate_dashboard_data.py
+│   └── tests/
+├── data/
+├── web/
+│   ├── index.html
+│   ├── styles.css
+│   └── app.js
+└── .github/workflows/
 ```
 
----
+This repo now hosts Greenlight Trader 2.0. The previous Next/Supabase dashboard
+and V1 strategy modules have been retired from the active tree; legacy notes live
+under `legacy/`.
 
-## Strategies
-
-The strategy package is **hot-swappable**: drop a `*.py` file into
-`python/strategies/`, expose a `MANIFEST` dict and a `run()` entrypoint,
-list its id in `config.ACTIVE_IDS`. The package auto-discovers everything
-on import; no central register to edit. Old versions stay in-tree for
-audit and comparison backtests.
-
-### `stock_pitcher_v1` — cross-sectional ranker
-
-A multi-factor ranker that picks tomorrow's candidates from the watchlist.
-For every name the pitcher computes:
-
-| Factor | Captures |
-|---|---|
-| Trend t-stat (60d) | slope / stderr of OLS on log(close) — persistent trend |
-| R² (60d) | quality of the trend line |
-| 63d relative strength vs SPY | excess return over the benchmark |
-| Risk-adjusted momentum (20d) | 20d return ÷ 20d realized vol |
-
-The four factors are z-scored across the universe and averaged into a
-composite. Names that clear `composite z > 0.6`, `R² > 0.25`, and
-`RS > −5 %` are kept; the top 3 by rank go to the risk gate.
-
-Sizing uses `stop = 1.5·ATR(14)` and a target derived from the regression
-slope projected 5 days forward, clipped to `[1, 4]·ATR`.
-
-### `momentum_breakout_v1` — 20-day breakout overlay
-
-Long entry when close prints above the prior 20-day high on volume
-≥ 1.5× the 20-day average, while SPY is not in `risk_off` or `distressed`
-and headline sentiment is non-negative. Stop = 1·ATR, target = 2·ATR,
-max hold 5 days.
-
-### `mean_reversion_v1` — oversold reversion
-
-Long entry when RSI(14) < 30 and the close is within 2 % of the 50-day
-SMA, while SPY is not in `distressed`. Stop = 1·ATR, target = 1·ATR
-(1:1 R/R), max hold 3 days.
-
-### Strategy governance
-
-The EOD reviewer can *propose* rule changes — those proposals appear in
-the AI decision log and in `data/ai_reviews.json`. It cannot apply them.
-To accept a proposal: add a new versioned file (e.g.
-`momentum_breakout_v1_1.py`) next to the old one, run a comparison
-backtest, switch `config.ACTIVE_IDS`. This is deliberate friction.
-
----
-
-## Risk framework
-
-| Cap | Value |
-|---|---:|
-| Starting capital | $5,000 |
-| Max risk per trade | 1.0 % of NAV |
-| Max daily loss | 2.0 % of NAV |
-| Max portfolio drawdown (shutdown) | 10.0 % |
-| Max open positions | 3 |
-| Max single-position exposure | 35 % of NAV |
-| Leverage | none |
-
-A traffic light is recomputed on every run:
-
-- **Green** — risk normal, strategy active.
-- **Yellow** — at 70 % of either the daily-loss or drawdown cap; new
-  entries proceed cautiously.
-- **Red** — daily-loss or drawdown cap breached. New entries paused;
-  existing positions still stop / target / max-hold normally.
-- **Black** — data feed failure. Trading halted.
-
----
-
-## Daily workflow
-
-```
-20:30 ET (weekdays)
-      │
-      ▼
-1. Load portfolio state            (data/portfolio_state.json)
-2. Discover live candidates        (broad watchlist + Massive movers when enabled)
-3. Pull fresh OHLCV                (yfinance, daily, auto-adjusted)
-4. Enrich opportunity list         (Massive ratios + Benzinga consensus when enabled)
-5. Pull headline sentiment         (Yahoo RSS + lexicon, optional)
-6. Mark-to-market open positions   (today's close)
-7. Apply stops / targets / MH      (intraday bar; stop precedes target)
-8. Generate allocation targets     (SPY/QQQ/SMH/stocks/SHY/cash)
-9. Append snapshot + close trades  (data/snapshots.json, data/trades.json)
-10. Generate EOD review            (Anthropic or template)
-11. Persist JSON + Supabase mirror (if env vars present)
-```
-
-The backtest in `python/backtest.py` runs the same risk engine and the
-same strategy registry against historical data. Live and backtest paths
-differ only in entry timing: the backtest opens on the next day's open;
-the live job opens on today's close because the cron runs after the
-session.
-
-`data/portfolio_state.json` is intentionally persisted with the other
-JSON outputs. The scheduled GitHub Action starts from a fresh checkout,
-so this file is required to continue the paper book instead of
-cold-starting the account back at `$5,000`.
-
----
-
-## Run it yourself
-
-Requires Python 3.11+. yfinance and pandas need an outbound connection;
-GitHub Actions runners work out of the box.
+## Local Setup
 
 ```bash
-git clone https://github.com/<your-fork>/greenlight-trader.git
-cd greenlight-trader
+cd "AI Trader/greenlight-trader"
+python -m venv .venv
+source .venv/bin/activate
 pip install -r python/requirements.txt
-cd python
-python seed_history.py         # ~2y backtest → data/*.json
-python run_daily.py            # appends today
 ```
 
-Open `web/` for the Next.js variant, or build your own static page that
-fetches the JSON files from `data/`. A self-contained example written in
-plain HTML + Chart.js lives in the personal-site repo this project was
-spun out of.
+Live Massive/Polygon data requires one of:
 
-### Environment variables
+```bash
+export MASSIVE_API_KEY="..."
+# or
+export POLYGON_API_KEY="..."
+```
 
-All are optional. The engine runs without any of them.
+Optional GenAI memos use DeepSeek:
 
-| Variable | Effect when set |
-|---|---|
-| `ANTHROPIC_API_KEY` | EOD review goes to Claude Haiku instead of the template |
-| `SUPABASE_URL` + `SUPABASE_SERVICE_ROLE_KEY` | Engine mirrors writes to Postgres |
-| `MASSIVE_API_KEY` or `POLYGON_API_KEY` | Adds Massive top movers, financial ratios, and Benzinga consensus ratings when the plan allows those datasets |
+```bash
+export DEEPSEEK_API_KEY="..."
+export DEEPSEEK_MODEL="deepseek-v4-pro"
+```
 
-Local runs also reuse `/Users/yunhanzhang/Desktop/works/high-risk-symbols/.env.massive`
-when those variables are not already exported. The secret file is shared in
-place and must not be copied or committed.
+You can also put these values in a local `.env` file. `.env` is gitignored.
 
----
+Without a key, the engine writes deterministic synthetic fallback data, marks
+data health as fallback/synthetic, sets risk to `BLACK`, and refuses production
+execution. This keeps local validation and dashboard development runnable while
+making it impossible to mistake fallback output for live tradable data.
 
-## Compliance and risk disclaimer
+## Run Daily Mode
 
-This is a research and demonstration project. It is not investment advice.
-Nothing here is suitable for live trading without substantial additional
-work — broker integration, order management, regulatory review, monitoring,
-and a much longer forward-test track record. The starting balance is
-$5,000 of simulated capital; the system never connects to a real broker.
+```bash
+cd "AI Trader/greenlight-trader"
+PYTHONPATH=python python python/run_daily.py
+PYTHONPATH=python python python/validate_outputs.py
+PYTHONPATH=python python python/validate_watermarks.py
+PYTHONPATH=python python python/validate_dashboard_data.py
+```
 
----
+Daily mode writes:
 
-## License
+```text
+data/snapshots.json
+data/portfolio_state.json
+data/candidate_universe.json
+data/candidate_scores.json
+data/selected_etfs.json
+data/target_allocations.json
+data/execution_decisions.json
+data/decision_logs.json
+data/system_status.json
+data/benchmark_metrics.json
+data/benchmark_snapshots.json
+data/weight_reviews.json
+data/review_events.json
+data/learning_report.md
+data/comparison_report.md
+data/ai_reviews.json
+```
 
-MIT.
+## Run Backtest
+
+Full mandate window:
+
+```bash
+cd "AI Trader/greenlight-trader"
+PYTHONPATH=python python python/backtest.py \
+  --start-date 2009-01-01 \
+  --train-start 2009-01-01 \
+  --train-end 2021-12-31 \
+  --invest-start 2022-01-01 \
+  --end-date 2026-06-02 \
+  --rolling-train-years 3 \
+  --ai-memo-mode deepseek \
+  --ai-memo-frequency monthly
+```
+
+Research windows:
+
+- Train: `2009-01-01` to `2021-12-31`
+- Test: `2022-01-01` to latest available date
+- Walk-forward: daily replay with rolling retraining; published result uses a 3-year rolling window
+
+Fast smoke test:
+
+```bash
+PYTHONPATH=python python python/backtest.py --start-date 2024-01-01 --end-date 2024-04-30 --max-symbols 18
+```
+
+## Dashboard
+
+The dashboard is static and GitHub Pages compatible. It reads only committed
+`data/*.json` files and never calls Massive from the browser.
+
+Local preview:
+
+```bash
+cd "AI Trader/greenlight-trader"
+python -m http.server 8000
+```
+
+Open `http://localhost:8000/web/`.
+
+## GitHub Secrets
+
+Required for live daily runs:
+
+- `MASSIVE_API_KEY` or `POLYGON_API_KEY`
+
+Optional:
+
+- `MASSIVE_API_BASE_URL`
+- `DEEPSEEK_API_KEY`
+- `DEEPSEEK_BASE_URL`
+- `DEEPSEEK_MODEL`
+
+No frontend secret is required or allowed.
+
+## GitHub Actions
+
+- `.github/workflows/daily.yml`: scheduled daily after the US close, validates keys, runs daily mode, validates outputs and watermarks, commits updated `data/*.json`.
+- `.github/workflows/backtest.yml`: manual backtest with `start_date` and `end_date` inputs, uploads artifacts.
+- `.github/workflows/publish-dashboard.yml`: deploys the static dashboard at the GitHub Pages root and keeps `/web/` available.
+
+## Massive Endpoints Used
+
+The client records endpoint availability under `data/system_status.json`.
+
+- `/v2/aggs/ticker/{symbol}/range/{multiplier}/{timespan}/{from}/{to}` for OHLCV aggregates.
+- `/v3/reference/tickers/{ticker}` for ticker metadata and company profile fields.
+- `/v3/reference/tickers` for reference ticker discovery when enabled.
+- `/v2/reference/news` for news metadata when available.
+- `/vX/reference/financials` for financial snapshots when available.
+- `/v2/snapshot/locale/us/markets/stocks/{direction}` for market movers when available.
+
+Plan-dependent or historically incomplete endpoints are explicitly marked
+unavailable instead of being forward-filled into historical backtests.
+
+If Massive/Polygon index bars are unavailable for VIX under the current plan,
+Greenlight fetches `^VIX` daily bars from Yahoo as a VIX-only secondary source.
+This is recorded in `data_health.secondary_source_symbols`; equities and ETFs
+remain Massive-first and do not use Yahoo fallback.
+
+## Known Limitations
+
+- The repository ships with deterministic synthetic fallback output for local
+  testing; live decisions require Massive/Polygon data.
+- Historical analyst, ratings, price target, and fundamentals are used only
+  when the API response confirms availability at the requested date.
+- ETF overlap is approximated through correlation in V1; holdings-level ETF
+  overlap is left for a later data entitlement.
+- The agent-led track is a structured experimental mirror, not an autonomous
+  trading agent.
+
+## TODO
+
+- Add holdings-level ETF overlap when a licensed source is available.
+- Add point-in-time analyst revision history if the data plan supports it.
+- Add richer slippage models for very small-cap equities.
+- Add human approval workflow for learned-weight promotion.
