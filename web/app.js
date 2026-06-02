@@ -76,9 +76,73 @@ function renderTable(id, headers, rows) {
   const table = document.getElementById(id);
   if (!table) return;
   table.innerHTML = `
-    <thead><tr>${headers.map((h) => `<th>${escapeHtml(h)}</th>`).join("")}</tr></thead>
+    <thead><tr>${headers.map((h) => `<th><button class="sort-button" type="button"><span>${escapeHtml(h)}</span><span class="sort-indicator" aria-hidden="true"></span></button></th>`).join("")}</tr></thead>
     <tbody>${rows.length ? rows.join("") : `<tr><td colspan="${headers.length}">No rows</td></tr>`}</tbody>
   `;
+  alignTableHeaders(table);
+  wireSortableTable(table);
+}
+
+function alignTableHeaders(table) {
+  const rows = [...(table.tBodies[0]?.rows || [])].filter((row) => row.cells.length > 1);
+  [...(table.tHead?.rows[0]?.cells || [])].forEach((th, idx) => {
+    const cells = rows.map((row) => row.cells[idx]).filter(Boolean);
+    const rightAligned = cells.length > 0 && cells.every((cell) => cell.classList.contains("right"));
+    th.classList.toggle("right", rightAligned);
+  });
+}
+
+function wireSortableTable(table) {
+  [...(table.tHead?.rows[0]?.cells || [])].forEach((th, idx) => {
+    const button = th.querySelector(".sort-button");
+    if (!button) return;
+    button.addEventListener("click", () => sortTableByColumn(table, idx));
+  });
+}
+
+function sortTableByColumn(table, columnIdx) {
+  const tbody = table.tBodies[0];
+  const rows = [...tbody.rows].filter((row) => row.cells.length > 1);
+  if (!tbody || rows.length < 2) return;
+
+  const previousColumn = table.dataset.sortColumn;
+  const previousDirection = table.dataset.sortDirection || "asc";
+  const nextDirection = previousColumn === String(columnIdx) && previousDirection === "asc" ? "desc" : "asc";
+  table.dataset.sortColumn = String(columnIdx);
+  table.dataset.sortDirection = nextDirection;
+
+  rows
+    .map((row, originalIdx) => ({ row, originalIdx, value: sortableCellValue(row.cells[columnIdx]) }))
+    .sort((a, b) => compareSortableValues(a, b, nextDirection))
+    .forEach(({ row }) => tbody.appendChild(row));
+
+  [...table.tHead.rows[0].cells].forEach((th, idx) => {
+    const active = idx === columnIdx;
+    th.setAttribute("aria-sort", active ? (nextDirection === "asc" ? "ascending" : "descending") : "none");
+    const indicator = th.querySelector(".sort-indicator");
+    if (indicator) indicator.textContent = active ? (nextDirection === "asc" ? "▲" : "▼") : "";
+  });
+}
+
+function sortableCellValue(cell) {
+  const raw = (cell?.textContent || "").trim();
+  if (!raw) return { type: "empty", value: "" };
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return { type: "number", value: Date.parse(`${raw}T00:00:00Z`) };
+  const numeric = Number(raw.replace(/[$,%+,]/g, ""));
+  if (Number.isFinite(numeric) && /[0-9]/.test(raw)) return { type: "number", value: numeric };
+  return { type: "text", value: raw.toLowerCase() };
+}
+
+function compareSortableValues(a, b, direction) {
+  const dir = direction === "asc" ? 1 : -1;
+  if (a.value.type === "empty" && b.value.type !== "empty") return 1;
+  if (b.value.type === "empty" && a.value.type !== "empty") return -1;
+  if (a.value.type === "number" && b.value.type === "number") {
+    const diff = a.value.value - b.value.value;
+    return diff === 0 ? a.originalIdx - b.originalIdx : diff * dir;
+  }
+  const diff = String(a.value.value).localeCompare(String(b.value.value));
+  return diff === 0 ? a.originalIdx - b.originalIdx : diff * dir;
 }
 
 function riskClass(light) {
@@ -214,7 +278,7 @@ async function main() {
     kpi("Sharpe", fmtNum(green.Sharpe), "risk adjusted"),
     kpi("Max drawdown", fmtPct(green.max_drawdown), "absolute", "num-neg"),
     kpi("Alpha vs SPY", fmtPct(green.alpha_vs_SPY, 2, true), "test window", numberClass(green.alpha_vs_SPY)),
-    kpi("Initial train", `${backtestResults.train_start} to ${backtestResults.initial_train_end}`, "pre-replay"),
+    kpi("Initial train", `${backtestResults.train_start} ~ ${backtestResults.initial_train_end}`, "pre-replay"),
     kpi("Replay start", backtestResults.invest_start || "n/a", "daily loop begins"),
     kpi("Rolling window", `${rolling.window_years || "n/a"} years`, `updates ${rolling.updates || 0}`),
   ].join("");
@@ -409,9 +473,11 @@ function renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots) {
 }
 
 function renderStoredChart(canvasId, title, labels, series) {
-  CHART_STORE.set(canvasId, { title, labels, series });
+  const chart = { title, labels, series };
+  CHART_STORE.set(canvasId, chart);
   const canvas = document.getElementById(canvasId);
   drawCanvasChart(canvas, labels, series);
+  renderChartLegendControls(canvas, chart);
   attachChartHover(canvas);
 }
 
@@ -434,7 +500,8 @@ function drawCanvasChart(canvas, labels, series) {
   const pad = { top: 18, right: 18, bottom: series.length > 4 ? 72 : 50, left: 70 };
   const plotW = width - pad.left - pad.right;
   const plotH = height - pad.top - pad.bottom;
-  const values = series.flatMap((s) => s.values).filter((v) => Number.isFinite(v));
+  const visibleSeries = activeChartSeries(series);
+  const values = visibleSeries.flatMap((s) => s.values).filter((v) => Number.isFinite(v));
   if (!values.length) {
     canvas.__chartLayout = null;
     return;
@@ -469,7 +536,7 @@ function drawCanvasChart(canvas, labels, series) {
     ctx.fillText(label.slice(0, 7), x(idx) - 22, height - pad.bottom + 28);
   }
 
-  for (const item of series) {
+  for (const item of visibleSeries) {
     ctx.beginPath();
     ctx.strokeStyle = item.color;
     ctx.lineWidth = item.width;
@@ -488,31 +555,22 @@ function drawCanvasChart(canvas, labels, series) {
   }
   ctx.setLineDash([]);
 
-  let legendX = pad.left;
-  let legendY = height - (series.length > 4 ? 34 : 12);
-  series.forEach((item) => {
-    const itemWidth = Math.max(96, ctx.measureText(item.label).width + 34);
-    if (legendX + itemWidth > width - pad.right && legendX > pad.left) {
-      legendX = pad.left;
-      legendY += 17;
-    }
-    ctx.strokeStyle = item.color;
-    ctx.lineWidth = 2;
-    ctx.beginPath();
-    ctx.moveTo(legendX, legendY);
-    ctx.lineTo(legendX + 20, legendY);
-    ctx.stroke();
-    ctx.fillStyle = "#45494f";
-    ctx.fillText(item.label, legendX + 26, legendY + 4);
-    legendX += itemWidth + 12;
-  });
+  canvas.__chartLegendItems = [];
+}
+
+function activeChartSeries(series) {
+  const visible = series.filter((item) => !item.hidden);
+  return visible.length ? visible : series;
 }
 
 function attachChartHover(canvas) {
   if (!canvas || canvas.dataset.chartHoverReady === "true") return;
   canvas.dataset.chartHoverReady = "true";
   canvas.addEventListener("mousemove", (event) => showChartTooltip(canvas, event));
-  canvas.addEventListener("mouseleave", hideChartTooltip);
+  canvas.addEventListener("mouseleave", () => {
+    canvas.style.cursor = "default";
+    hideChartTooltip();
+  });
 }
 
 function getChartTooltip() {
@@ -529,12 +587,14 @@ function showChartTooltip(canvas, event) {
   const chart = canvas.__chartData;
   const layout = canvas.__chartLayout;
   if (!chart?.labels?.length || !layout) return;
+  canvas.style.cursor = "default";
 
   const rect = canvas.getBoundingClientRect();
   const localX = Math.min(Math.max(event.clientX - rect.left, layout.pad.left), layout.width - layout.pad.right);
   const ratio = (localX - layout.pad.left) / Math.max(layout.plotW, 1);
   const idx = Math.min(chart.labels.length - 1, Math.max(0, Math.round(ratio * (chart.labels.length - 1))));
   const rows = chart.series
+    .filter((item) => !item.hidden)
     .map((item) => ({ label: item.label, color: item.color, value: item.values?.[idx] }))
     .filter((row) => Number.isFinite(row.value));
 
@@ -572,6 +632,54 @@ function positionChartTooltip(tooltip, event) {
 function hideChartTooltip() {
   const tooltip = document.querySelector(".chart-tooltip");
   if (tooltip) tooltip.style.display = "none";
+}
+
+function renderChartLegendControls(canvas, chart) {
+  if (!canvas?.parentElement || !chart?.series?.length) return;
+  let legend = canvas.parentElement.querySelector(".chart-legend-controls");
+  if (!legend) {
+    legend = document.createElement("div");
+    legend.className = "chart-legend-controls";
+    canvas.parentElement.appendChild(legend);
+  }
+  legend.innerHTML = chart.series
+    .map((item, idx) => `
+      <button class="chart-legend-button ${item.hidden ? "is-hidden" : ""}" type="button" data-series-idx="${idx}" aria-pressed="${item.hidden ? "false" : "true"}">
+        <span class="chart-legend-line" style="background:${item.color}"></span>
+        <span>${escapeHtml(item.label)}</span>
+      </button>
+    `)
+    .join("");
+  legend.querySelectorAll(".chart-legend-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const item = chart.series[Number(button.dataset.seriesIdx)];
+      toggleChartSeries(chart, item, canvas);
+    });
+  });
+}
+
+function toggleChartSeries(chart, item, activeCanvas) {
+  if (!chart || !item) return;
+  const visibleCount = chart.series.filter((item) => !item.hidden).length;
+  if (!item.hidden && visibleCount <= 1) return;
+  item.hidden = !item.hidden;
+  hideChartTooltip();
+  redrawRelatedCharts(chart, activeCanvas);
+}
+
+function redrawRelatedCharts(chart, activeCanvas) {
+  CHART_STORE.forEach((stored, canvasId) => {
+    if (stored.series !== chart.series) return;
+    const canvas = document.getElementById(canvasId);
+    drawCanvasChart(canvas, stored.labels, stored.series);
+    renderChartLegendControls(canvas, stored);
+    attachChartHover(canvas);
+  });
+  if (!activeCanvas.id || !CHART_STORE.has(activeCanvas.id)) {
+    drawCanvasChart(activeCanvas, chart.labels, chart.series);
+    renderChartLegendControls(activeCanvas, chart);
+    attachChartHover(activeCanvas);
+  }
 }
 
 function denseSeries(labels, rows) {
@@ -618,6 +726,7 @@ function setupChartModal() {
       document.body.classList.add("modal-open");
       requestAnimationFrame(() => {
         drawCanvasChart(modalCanvas, chart.labels, chart.series);
+        renderChartLegendControls(modalCanvas, chart);
         attachChartHover(modalCanvas);
       });
     });
@@ -645,7 +754,10 @@ function setupChartModal() {
         drawCanvasChart(document.getElementById(canvasId), chart.labels, chart.series);
       });
       if (modal.classList.contains("is-open")) {
-        if (openChart) drawCanvasChart(modalCanvas, openChart.labels, openChart.series);
+        if (openChart) {
+          drawCanvasChart(modalCanvas, openChart.labels, openChart.series);
+          renderChartLegendControls(modalCanvas, openChart);
+        }
       }
     }, 120);
   });

@@ -510,6 +510,43 @@ table.gl th {
   border-bottom: 1px solid var(--rule);
 }
 
+table.gl th.right {
+  text-align: right;
+}
+
+table.gl th.right .sort-button {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+.sort-button {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 6px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  text-transform: inherit;
+  cursor: pointer;
+}
+
+.sort-button:hover {
+  color: var(--accent);
+}
+
+.sort-indicator {
+  min-width: 10px;
+  color: var(--accent);
+  font-size: 9px;
+  line-height: 1;
+}
+
 table.gl td {
   padding: 12px 14px;
   border-bottom: 1px solid var(--rule);
@@ -547,12 +584,56 @@ table.gl td.text-cell {
 }
 
 .chart-shell {
+  position: relative;
   height: 340px;
   min-height: 260px;
 }
 
 .chart-shell.large {
   height: 500px;
+}
+
+.chart-legend-controls {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px 12px;
+  flex-wrap: wrap;
+  pointer-events: auto;
+}
+
+.chart-legend-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 18px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 11px;
+  cursor: pointer;
+}
+
+.chart-legend-button:hover {
+  color: var(--accent);
+}
+
+.chart-legend-button.is-hidden {
+  color: var(--ink-mute);
+  opacity: 0.45;
+}
+
+.chart-legend-line {
+  width: 20px;
+  height: 2px;
+  border-radius: 999px;
+  flex-shrink: 0;
 }
 
 .chart-tooltip {
