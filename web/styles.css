@@ -272,13 +272,17 @@ p {
 .panel-head > div:first-child {
   min-width: 0;
   display: grid;
+  grid-template-rows: auto minmax(42px, auto) auto;
   gap: 4px;
 }
 
 .panel-head h2 {
+  display: flex;
+  align-items: flex-start;
   font-family: var(--display);
   font-weight: 650;
   font-size: 17px;
+  line-height: 1.25;
   letter-spacing: 0;
   color: var(--ink);
 }
@@ -625,10 +629,13 @@ table.gl td.text-cell {
 }
 
 .architecture-grid h3 {
+  min-height: 40px;
   margin: 18px 0 8px;
   font-family: var(--display);
   font-size: 16px;
   line-height: 1.25;
+  display: flex;
+  align-items: flex-start;
 }
 
 .architecture-grid p {
@@ -794,6 +801,15 @@ table.gl td.text-cell {
   .panel-head {
     display: grid;
     grid-template-columns: 1fr;
+  }
+
+  .panel-head > div:first-child {
+    grid-template-rows: auto;
+  }
+
+  .panel-head h2,
+  .architecture-grid h3 {
+    min-height: 0;
   }
 
   .panel-head .tag {
