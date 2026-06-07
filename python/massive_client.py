@@ -19,6 +19,7 @@ from config import (
     DEFAULT_MASSIVE_BASE_URL,
     MASSIVE_API_KEY_ENVS,
     MASSIVE_BASE_URL_ENV,
+    MASSIVE_FORCE_REFRESH_ENV,
 )
 from data_contracts import EndpointAvailability, PriceBar, TickerProfile, utc_now_iso, write_json
 
@@ -42,6 +43,7 @@ class MassiveClient:
         self.cache_dir = cache_dir
         self.cache_dir.mkdir(parents=True, exist_ok=True)
         self.timeout = timeout
+        self.force_refresh = os.getenv(MASSIVE_FORCE_REFRESH_ENV, "").lower() in {"1", "true", "yes", "on"}
         self.endpoint_availability: dict[str, EndpointAvailability] = {}
 
     @staticmethod
@@ -100,7 +102,7 @@ class MassiveClient:
             return {"status": "UNAVAILABLE", "results": []}
 
         cache_path = self._cache_path(endpoint, params)
-        if use_cache and cache_path.exists():
+        if use_cache and not self.force_refresh and cache_path.exists():
             try:
                 cached = json.loads(cache_path.read_text())
                 self._mark(endpoint, True, "cache_hit", plan_dependent, point_in_time_safe)

@@ -37,7 +37,19 @@ def main() -> None:
     universe_payload = build_universe(as_of=as_of, client=client, current_holdings=list(portfolio.positions))
     symbols = candidate_symbols(universe_payload)
     start_date = (date.today() - timedelta(days=420)).isoformat()
-    price_history, data_health = client.load_price_history(symbols, start_date, as_of, allow_synthetic=True)
+    critical_symbols = {
+        MANDATE.benchmark,
+        MANDATE.secondary_growth_anchor,
+        MANDATE.defensive_anchor,
+        *portfolio.positions,
+    }
+    price_history, data_health = client.load_price_history(
+        symbols,
+        start_date,
+        as_of,
+        allow_synthetic=True,
+        optional_symbols=set(symbols) - critical_symbols,
+    )
     latest_prices = _latest_prices(price_history)
     portfolio.mark_to_market(latest_prices)
 

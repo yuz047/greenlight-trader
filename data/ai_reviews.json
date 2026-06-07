@@ -1,140 +1,8 @@
 {
-  "generated_at": "2026-06-02T15:16:22Z",
+  "generated_at": "2026-06-07T16:35:12Z",
   "reviews": [
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:02Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-25\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 55.91% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
-      "provider_requested": false,
-      "systematic_review": {
-        "as_of": "2026-03-25",
-        "benchmark_verdict": {
-          "agent_led_add_value": false,
-          "beat_200DMA": true,
-          "beat_QQQ": true,
-          "beat_SPY": true,
-          "beat_VIX_strategy": true,
-          "greenlight_failed_simple_benchmarks": false,
-          "learned_beat_fixed": false
-        },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.91% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:02Z",
-        "market_regime": "FEAR",
-        "memo_type": "systematic_template",
-        "risk_light": "GREEN",
-        "selected_etfs": [
-          "TLT",
-          "IEF",
-          "GLD"
-        ],
-        "top_stock_candidates": [
-          "COST",
-          "REGN",
-          "VRTX",
-          "OCS",
-          "ETN",
-          "GOOGL",
-          "AMZN",
-          "JPM",
-          "AAPL",
-          "VRT"
-        ],
-        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
-        "watermarks": [
-          "SYSTEMATIC_TEMPLATE_OUTPUT"
-        ]
-      },
-      "watermark": "AI_GENERATED_MEMO"
-    },
-    {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:03Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-26\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 55.21% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
-      "provider_requested": false,
-      "systematic_review": {
-        "as_of": "2026-03-26",
-        "benchmark_verdict": {
-          "agent_led_add_value": false,
-          "beat_200DMA": true,
-          "beat_QQQ": true,
-          "beat_SPY": true,
-          "beat_VIX_strategy": true,
-          "greenlight_failed_simple_benchmarks": false,
-          "learned_beat_fixed": false
-        },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.21% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:03Z",
-        "market_regime": "FEAR",
-        "memo_type": "systematic_template",
-        "risk_light": "GREEN",
-        "selected_etfs": [
-          "IEF",
-          "TLT",
-          "GLD"
-        ],
-        "top_stock_candidates": [
-          "COST",
-          "VRTX",
-          "ETN",
-          "OCS",
-          "REGN",
-          "AAPL",
-          "NET",
-          "VRT",
-          "AMZN",
-          "NFLX"
-        ],
-        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
-        "watermarks": [
-          "SYSTEMATIC_TEMPLATE_OUTPUT"
-        ]
-      },
-      "watermark": "AI_GENERATED_MEMO"
-    },
-    {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:03Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-27\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 55.12% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
-      "provider_requested": false,
-      "systematic_review": {
-        "as_of": "2026-03-27",
-        "benchmark_verdict": {
-          "agent_led_add_value": false,
-          "beat_200DMA": true,
-          "beat_QQQ": true,
-          "beat_SPY": true,
-          "beat_VIX_strategy": true,
-          "greenlight_failed_simple_benchmarks": false,
-          "learned_beat_fixed": false
-        },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.12% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:03Z",
-        "market_regime": "FEAR",
-        "memo_type": "systematic_template",
-        "risk_light": "GREEN",
-        "selected_etfs": [
-          "IEF",
-          "TLT",
-          "GLD"
-        ],
-        "top_stock_candidates": [
-          "ETN",
-          "COST",
-          "OCS",
-          "REGN",
-          "VRT",
-          "AAPL",
-          "NET",
-          "VRTX",
-          "AMD",
-          "NFLX"
-        ],
-        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
-        "watermarks": [
-          "SYSTEMATIC_TEMPLATE_OUTPUT"
-        ]
-      },
-      "watermark": "AI_GENERATED_MEMO"
-    },
-    {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:04Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-30\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 55.77% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:00Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-30\n\nRegime: FEAR\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-03-30",
@@ -147,28 +15,28 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.77% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:04Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:00Z",
         "market_regime": "FEAR",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "TLT",
           "IEF",
           "GLD"
         ],
         "top_stock_candidates": [
-          "COST",
-          "REGN",
-          "ETN",
-          "OCS",
-          "VRTX",
           "JPM",
-          "NET",
-          "VRT",
-          "AAPL",
-          "AMZN"
+          "REGN",
+          "V",
+          "MA",
+          "AMZN",
+          "ETN",
+          "UBER",
+          "CRM",
+          "COST",
+          "TMO"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -178,7 +46,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:05Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-31\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 54.93% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:01Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-31\n\nRegime: FEAR\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-03-31",
@@ -191,28 +59,28 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 54.93% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:05Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:01Z",
         "market_regime": "FEAR",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "TLT",
           "IEF",
           "GLD"
         ],
         "top_stock_candidates": [
-          "OCS",
-          "ETN",
-          "COST",
-          "REGN",
           "AAPL",
+          "V",
+          "MA",
+          "TMO",
+          "AMZN",
+          "ETN",
           "GOOGL",
-          "VRT",
-          "VRTX",
-          "AMD",
-          "NFLX"
+          "UBER",
+          "NVDA",
+          "PANW"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -222,7 +90,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:21Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: DeepSeek\nModel: deepseek-v4-pro\nThinking: enabled\nReasoning effort: high\n\nGreenlight 2.0 End-of-Day Memo \u2013 2026-04-01\n\nRegime: FEAR | Risk Light: GREEN\nExecution: NO_TRADE (turnover 55% exceeds 30% cap)\n\nBenchmark Verdict\n- Beat SPY, QQQ, 200-DMA, and VIX strategy.\n- Greenlight did not fail simple benchmarks.\n- However, agent-led component did not add value; learned model did not beat fixed.\n\nSelected Safety ETFs (no trades placed): IEF, TLT, GLD\nTop Stock Candidates (indicative only): OCS, COST, ETN, GOOGL, AAPL, VRTX, REGN, VRT, LLY, NFLX\n\nNote: While headline benchmarks were met, internal alpha signals failed to improve on fixed strategies. This divergence introduces some uncertainty in the signal\u2019s consistency. No trades are executed; risk controls remain fully in place.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:13Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: DeepSeek\nModel: deepseek-v4-pro\nThinking: enabled\nReasoning effort: high\n\nGreenlight 2.0 End-of-Day Memo \u2013 2026-04-01\n\nRisk Light: RED (FEAR regime)  \nExecution Decision: RISK_REDUCE \u2013 Only de-risking rebalance is allowed, per risk controls.\n\nBenchmark Verdict:  \n- Beat SPY, QQQ, 200-DMA, and VIX strategy: Yes.  \n- Agent-led alpha and learned-beat-fixed: No.  \n- Greenlight failed simple benchmarks: No.  \nOverall, the strategy outperformed passive benchmarks, but agent-driven value-add is not confirmed. Uncertainty remains given the FEAR regime and lack of learned-beat-fixed success.\n\nSelected ETFs for risk-reducing allocation: IEF, TLT, GLD.\n\nTop Stock Candidates (monitoring only; no execution in RED): AAPL, V, MA, GOOGL, LLY, AMZN, GE, TSLA, NVDA, ISRG.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": true,
       "systematic_review": {
         "as_of": "2026-04-01",
@@ -235,28 +103,28 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.00% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:05Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:02Z",
         "market_regime": "FEAR",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "IEF",
           "TLT",
           "GLD"
         ],
         "top_stock_candidates": [
-          "OCS",
-          "COST",
-          "ETN",
-          "GOOGL",
           "AAPL",
-          "VRTX",
-          "REGN",
-          "VRT",
+          "V",
+          "MA",
+          "GOOGL",
           "LLY",
-          "NFLX"
+          "AMZN",
+          "GE",
+          "TSLA",
+          "NVDA",
+          "ISRG"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -266,7 +134,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:21Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-02\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 55.45% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:14Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-02\n\nRegime: FEAR\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-02",
@@ -279,28 +147,28 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.45% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:21Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:14Z",
         "market_regime": "FEAR",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "TLT",
           "IEF",
           "GLD"
         ],
         "top_stock_candidates": [
-          "COST",
-          "OCS",
-          "ETN",
+          "V",
+          "MA",
           "GOOGL",
-          "REGN",
-          "VRT",
+          "AMZN",
+          "NVDA",
+          "AVGO",
+          "ISRG",
+          "UBER",
           "VRTX",
-          "NFLX",
-          "AAPL",
-          "NET"
+          "LLY"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -310,7 +178,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:22Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-03\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 55.45% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:14Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-03\n\nRegime: FEAR\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-03",
@@ -323,28 +191,28 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.45% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:22Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:14Z",
         "market_regime": "FEAR",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "TLT",
           "IEF",
           "GLD"
         ],
         "top_stock_candidates": [
-          "COST",
-          "OCS",
-          "ETN",
+          "V",
+          "MA",
           "GOOGL",
-          "REGN",
-          "VRT",
+          "AMZN",
+          "NVDA",
+          "AVGO",
+          "ISRG",
+          "UBER",
           "VRTX",
-          "NFLX",
-          "AAPL",
-          "NET"
+          "LLY"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -354,7 +222,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:23Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-06\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 55.46% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:15Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-06\n\nRegime: FEAR\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-06",
@@ -367,28 +235,28 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.46% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:23Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:15Z",
         "market_regime": "FEAR",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "IEF",
           "TLT",
           "GLD"
         ],
         "top_stock_candidates": [
-          "OCS",
-          "COST",
-          "ETN",
+          "V",
+          "MA",
           "GOOGL",
-          "REGN",
-          "NFLX",
-          "VRT",
-          "AAPL",
+          "GE",
+          "NVDA",
+          "AVGO",
+          "UBER",
           "VRTX",
-          "NET"
+          "LLY",
+          "AAPL"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -398,7 +266,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:23Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-07\n\nRegime: FEAR\nRisk light: GREEN\nExecution: NO_TRADE - Turnover 55.26% exceeds cap 30.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:16Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-07\n\nRegime: FEAR\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-07",
@@ -411,28 +279,28 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Turnover 55.26% exceeds cap 30.00%.",
-        "generated_at": "2026-06-02T15:15:23Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:16Z",
         "market_regime": "FEAR",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "TLT",
           "IEF",
           "GLD"
         ],
         "top_stock_candidates": [
-          "OCS",
-          "COST",
-          "ETN",
-          "GOOGL",
-          "REGN",
           "AAPL",
-          "VRT",
-          "NET",
-          "NFLX",
-          "VRTX"
+          "V",
+          "MA",
+          "GOOGL",
+          "GE",
+          "LLY",
+          "NVDA",
+          "VRTX",
+          "MELI",
+          "COST"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -442,7 +310,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:24Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-08\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.55% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:16Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-08\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-08",
@@ -455,12 +323,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.55% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:24Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:16Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
           "XLE",
@@ -469,16 +337,16 @@
           "XLV"
         ],
         "top_stock_candidates": [
-          "ETN",
-          "OCS",
-          "GOOGL",
-          "COST",
-          "VRT",
+          "META",
           "VRTX",
-          "REGN",
-          "NFLX",
           "GE",
-          "AVGO"
+          "ISRG",
+          "MA",
+          "GOOGL",
+          "AMZN",
+          "ETN",
+          "UBER",
+          "MELI"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -488,7 +356,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:25Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-09\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.66% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:17Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-09\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-09",
@@ -501,12 +369,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.66% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:25Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:17Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLE",
           "XLP",
@@ -515,16 +383,16 @@
           "USMV"
         ],
         "top_stock_candidates": [
-          "ETN",
-          "OCS",
-          "GOOGL",
-          "COST",
-          "AMZN",
-          "VRT",
-          "REGN",
           "VRTX",
-          "AAPL",
-          "JPM"
+          "ISRG",
+          "V",
+          "MA",
+          "REGN",
+          "GOOGL",
+          "CRWD",
+          "UBER",
+          "GE",
+          "MSFT"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -534,7 +402,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:25Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-10\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.53% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:18Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-10\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-10",
@@ -547,12 +415,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.53% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:25Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:18Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLE",
           "XLP",
@@ -561,16 +429,16 @@
           "USMV"
         ],
         "top_stock_candidates": [
+          "V",
+          "MA",
+          "ISRG",
+          "VRTX",
+          "CRWD",
+          "PANW",
           "COST",
-          "ETN",
-          "OCS",
           "GOOGL",
           "REGN",
-          "AAPL",
-          "VRT",
-          "GE",
-          "JPM",
-          "NVDA"
+          "CEG"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -580,7 +448,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:26Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-13\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.46% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:18Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-13\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-13",
@@ -593,30 +461,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.46% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:26Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:18Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
           "XLE",
           "XLU",
-          "USMV",
-          "XLRE"
+          "XLRE",
+          "USMV"
         ],
         "top_stock_candidates": [
-          "OCS",
-          "ETN",
+          "MA",
           "REGN",
-          "COST",
-          "GOOGL",
-          "AAPL",
           "VRTX",
-          "GE",
-          "VRT",
-          "JPM"
+          "LLY",
+          "ISRG",
+          "UBER",
+          "MSFT",
+          "AAPL",
+          "COST",
+          "V"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -626,7 +494,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:27Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-14\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.91% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:19Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-14\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-14",
@@ -639,30 +507,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.91% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:27Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:19Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLE",
           "XLP",
+          "XLE",
           "XLU",
           "XLRE",
-          "XBI"
+          "KRE"
         ],
         "top_stock_candidates": [
           "COST",
+          "ISRG",
           "REGN",
-          "ETN",
-          "AAPL",
           "VRTX",
-          "OCS",
-          "VRT",
-          "NVDA",
-          "JPM",
-          "GOOGL"
+          "LLY",
+          "TSLA",
+          "AAPL",
+          "V",
+          "MA",
+          "CRWD"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -672,7 +540,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:27Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-15\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.50% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:20Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-15\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-15",
@@ -685,12 +553,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.50% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:27Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:20Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
           "XLE",
@@ -699,16 +567,16 @@
           "XLRE"
         ],
         "top_stock_candidates": [
-          "ETN",
+          "ISRG",
           "REGN",
-          "COST",
-          "OCS",
-          "JPM",
           "VRTX",
-          "VRT",
-          "AAPL",
+          "LLY",
+          "CRM",
+          "COST",
+          "JPM",
           "V",
-          "GE"
+          "MA",
+          "ETN"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -718,7 +586,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:28Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-16\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.59% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:20Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-16\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-16",
@@ -731,30 +599,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.59% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:28Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:20Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
           "XLE",
-          "XLV",
           "XLU",
+          "XLV",
           "XLRE"
         ],
         "top_stock_candidates": [
+          "ISRG",
           "REGN",
-          "ETN",
-          "COST",
-          "OCS",
           "VRTX",
-          "JPM",
-          "AAPL",
+          "LLY",
+          "CRM",
+          "COST",
           "V",
           "MA",
-          "VRT"
+          "TMO",
+          "GE"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -764,7 +632,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:29Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-17\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.61% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:21Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-17\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-17",
@@ -777,30 +645,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.61% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:29Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:21Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
           "XLE",
           "XLU",
           "XLRE",
-          "XLV"
+          "KRE"
         ],
         "top_stock_candidates": [
-          "AAPL",
-          "ETN",
+          "ISRG",
+          "CRM",
           "COST",
-          "OCS",
+          "GE",
           "REGN",
           "NFLX",
           "VRTX",
-          "GE",
-          "GOOGL",
-          "MA"
+          "LLY",
+          "AAPL",
+          "TSLA"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -810,7 +678,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:30Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-20\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.82% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:22Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-20\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-20",
@@ -823,30 +691,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.82% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:30Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:22Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLE",
           "XLP",
+          "XLE",
           "XLU",
           "XLRE",
-          "KRE"
+          "XLV"
         ],
         "top_stock_candidates": [
           "REGN",
-          "COST",
           "VRTX",
-          "OCS",
+          "ISRG",
+          "CEG",
+          "COST",
+          "LLY",
           "NFLX",
-          "ETN",
-          "AAPL",
-          "GOOGL",
-          "NET",
-          "MA"
+          "NOW",
+          "CRM",
+          "NET"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -856,7 +724,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:30Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-21\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.41% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:23Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-21\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-21",
@@ -869,30 +737,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.41% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:30Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:23Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLE",
           "XLP",
+          "XLE",
           "XLU",
           "XLV",
           "XLRE"
         ],
         "top_stock_candidates": [
-          "REGN",
-          "OCS",
-          "COST",
-          "AAPL",
+          "ISRG",
+          "GE",
           "VRTX",
-          "JPM",
-          "ETN",
+          "LLY",
+          "REGN",
+          "COST",
+          "V",
           "MA",
-          "NET",
-          "GE"
+          "CEG",
+          "NOW"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -902,7 +770,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:31Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-22\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.42% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:23Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-22\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-22",
@@ -915,12 +783,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.42% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:31Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:23Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
           "XLE",
@@ -929,16 +797,16 @@
           "XLRE"
         ],
         "top_stock_candidates": [
-          "REGN",
-          "OCS",
-          "COST",
-          "AAPL",
           "ISRG",
-          "JPM",
           "VRTX",
-          "NFLX",
-          "ETN",
-          "LLY"
+          "LLY",
+          "REGN",
+          "CEG",
+          "COST",
+          "GE",
+          "TMO",
+          "NOW",
+          "NFLX"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -948,7 +816,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:32Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-23\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.29% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:24Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-23\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-23",
@@ -961,30 +829,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.29% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:32Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:24Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLP",
           "XLV",
+          "XLP",
           "XLE",
           "XLU",
           "XLRE"
         ],
         "top_stock_candidates": [
-          "OCS",
-          "REGN",
-          "COST",
-          "AAPL",
-          "JPM",
-          "LLY",
           "VRTX",
+          "LLY",
+          "TMO",
+          "REGN",
           "ISRG",
-          "NET",
-          "NFLX"
+          "GE",
+          "COST",
+          "V",
+          "MA",
+          "TSLA"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -994,7 +862,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:32Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-24\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.52% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:25Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-24\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-24",
@@ -1007,30 +875,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.52% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:32Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:25Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
           "XLV",
           "XLE",
           "XLU",
-          "XLRE"
+          "VLUE"
         ],
         "top_stock_candidates": [
           "REGN",
-          "OCS",
-          "COST",
-          "AAPL",
-          "JPM",
-          "NET",
-          "PANW",
           "VRTX",
+          "TMO",
+          "GE",
+          "COST",
+          "V",
           "MA",
-          "GOOGL"
+          "CRM",
+          "PANW",
+          "TSLA"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1040,7 +908,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:33Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-27\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.79% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:25Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-27\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-27",
@@ -1053,30 +921,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.79% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:33Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:25Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLE",
-          "XLU",
-          "XLP",
+          "XLV",
           "USMV",
-          "XLV"
+          "XLP",
+          "XLE",
+          "XLU"
         ],
         "top_stock_candidates": [
           "REGN",
-          "COST",
-          "OCS",
-          "ETN",
-          "AAPL",
-          "JPM",
-          "NFLX",
-          "NET",
+          "VRTX",
           "GE",
-          "MA"
+          "TMO",
+          "NFLX",
+          "COST",
+          "V",
+          "MA",
+          "CRM",
+          "ISRG"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1086,7 +954,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:34Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-28\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.45% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:26Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-28\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-28",
@@ -1099,30 +967,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.45% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:34Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:26Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
+          "XLV",
           "XLE",
           "XLU",
-          "XLV",
           "XLRE"
         ],
         "top_stock_candidates": [
-          "ETN",
-          "JPM",
-          "OCS",
-          "REGN",
-          "VRT",
-          "AAPL",
-          "NFLX",
-          "COST",
+          "ISRG",
           "GE",
-          "MA"
+          "REGN",
+          "VRTX",
+          "NFLX",
+          "CRM",
+          "JPM",
+          "MA",
+          "V",
+          "TMO"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1132,7 +1000,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:34Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-29\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.44% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:27Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-29\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-29",
@@ -1145,29 +1013,29 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.44% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:34Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:27Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLP",
           "XLU",
-          "XLE",
           "XLV",
+          "XLE",
           "XLRE"
         ],
         "top_stock_candidates": [
-          "ETN",
-          "AAPL",
-          "V",
+          "ISRG",
+          "GE",
+          "VRTX",
           "JPM",
           "MA",
-          "COST",
-          "VRT",
-          "OCS",
-          "NET",
+          "AAPL",
+          "V",
+          "ETN",
+          "TMO",
           "NFLX"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
@@ -1178,7 +1046,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:35Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-30\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.27% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:27Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-04-30\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-04-30",
@@ -1191,30 +1059,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.27% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:35Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:27Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLE",
-          "XLP",
-          "XLU",
           "XLV",
-          "XLRE"
+          "XLP",
+          "XLE",
+          "XLU",
+          "ICLN"
         ],
         "top_stock_candidates": [
-          "ETN",
-          "AAPL",
-          "COST",
-          "JPM",
-          "NVDA",
-          "OCS",
-          "NFLX",
+          "META",
+          "ISRG",
           "LLY",
+          "VRTX",
           "REGN",
-          "V"
+          "TMO",
+          "AAPL",
+          "MA",
+          "GE",
+          "NVDA"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1224,7 +1092,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:52Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: DeepSeek\nModel: deepseek-v4-pro\nThinking: enabled\nReasoning effort: high\n\n**Greenlight 2.0 End-of-Day Memo**  \n**Date:** 2026-05-01  \n\n**Risk & Regime**  \nRisk Light: GREEN \u2014 Market Regime: RISK_ON.  \n\n**Execution Decision**  \nNO_TRADE triggered. Max drift (3.37%) remains below the 5.00% rebalance threshold.  \n\n**Benchmark Performance**  \n- Beat 200DMA, SPY, QQQ, and the VIX strategy.  \n- Greenlight did not fail simple benchmarks.  \n- **Caution:** Agent-led selection did not add value (agent_led_add_value = false) and the learned strategy did not outperform the fixed benchmark (learned_beat_fixed = false). This introduces uncertainty regarding the short-term predictive edge of active tilts.  \n\n**Portfolio & Watchlist (for informational purposes only; no trade action recommended)**  \nSelected ETFs: XLE, XLP, XLU, XLV, XLRE  \nTop-of-mind stock candidates: AAPL, ETN, JPM, AVGO, NVDA, COST, LLY, CEG, OCS, V  \n\nNo changes today. Drift and exposure remain within acceptable guardrails.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:41Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: DeepSeek\nModel: deepseek-v4-pro\nThinking: enabled\nReasoning effort: high\n\n**Greenlight 2.0 End\u2011of\u2011Day Memo \u2013 2026\u201105\u201101**\n\nRegime remains RISK\u2011ON, but Risk Light has moved to RED, triggering a RISK_REDUCE posture; only de\u2011risking rebalancing is permitted. Benchmark performance was mixed: the strategy beat SPY, QQQ, its 200\u2011DMA reference, and the VIX overlay, yet failed to add value on an agent\u2011led basis and did not beat the learned\u2011fixed benchmark. This divergence introduces uncertainty about the signal\u2019s internal consistency. Current selected ETFs (XLV, XLP, XLE, XLU, ICLN) and top stock candidates (MA, ISRG, META, LLY, REGN, VRTX, GE, JPM, AAPL, UBER) are being monitored but no new long\u2011side positioning can be initiated under today\u2019s risk constraint. All risk controls remain in place; no override is authorized.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": true,
       "systematic_review": {
         "as_of": "2026-05-01",
@@ -1237,30 +1105,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.37% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:36Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:28Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLE",
-          "XLP",
-          "XLU",
           "XLV",
-          "XLRE"
+          "XLP",
+          "XLE",
+          "XLU",
+          "ICLN"
         ],
         "top_stock_candidates": [
-          "AAPL",
-          "ETN",
-          "JPM",
-          "AVGO",
-          "NVDA",
-          "COST",
+          "MA",
+          "ISRG",
+          "META",
           "LLY",
-          "CEG",
-          "OCS",
-          "V"
+          "REGN",
+          "VRTX",
+          "GE",
+          "JPM",
+          "AAPL",
+          "UBER"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1270,7 +1138,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:52Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-04\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.77% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:42Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-04\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-04",
@@ -1283,30 +1151,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.77% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:52Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:42Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLE",
           "XLV",
-          "XLU",
           "XLP",
+          "XLE",
+          "XLU",
           "XLRE"
         ],
         "top_stock_candidates": [
+          "ISRG",
+          "REGN",
+          "VRTX",
+          "META",
           "ETN",
-          "CEG",
-          "NVDA",
-          "AVGO",
-          "VRT",
           "JPM",
-          "OCS",
-          "AAPL",
-          "COST",
-          "MSFT"
+          "MA",
+          "MSFT",
+          "NVDA",
+          "MELI"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1316,7 +1184,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:53Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-05\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.47% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:43Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-05\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-05",
@@ -1329,29 +1197,29 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.47% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:53Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:43Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLV",
-          "XLE",
           "XLP",
+          "XLE",
           "XLU",
           "XLRE"
         ],
         "top_stock_candidates": [
+          "ISRG",
+          "VRTX",
+          "MA",
+          "REGN",
+          "GE",
+          "UBER",
           "ETN",
-          "CEG",
-          "NVDA",
-          "AVGO",
-          "AAPL",
           "JPM",
-          "OCS",
           "V",
-          "COST",
           "MSFT"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
@@ -1362,7 +1230,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:54Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-06\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.28% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:44Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-06\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-06",
@@ -1375,30 +1243,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.28% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:54Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:44Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLU",
           "XLE",
-          "XLP",
           "XLV",
+          "XLP",
           "XLRE"
         ],
         "top_stock_candidates": [
-          "CEG",
-          "OCS",
-          "AVGO",
-          "NVDA",
+          "ISRG",
+          "REGN",
           "UBER",
-          "ETN",
-          "AAPL",
+          "VRTX",
+          "MA",
           "COST",
+          "CRM",
           "JPM",
-          "MSFT"
+          "V",
+          "GE"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1408,7 +1276,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:54Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-07\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.67% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:44Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-07\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-07",
@@ -1421,30 +1289,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.67% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:54Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:44Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLU",
           "XLE",
-          "XLP",
+          "XLU",
           "XLV",
-          "HACK"
+          "HACK",
+          "KRE"
         ],
         "top_stock_candidates": [
-          "NVDA",
-          "AVGO",
-          "OCS",
-          "CEG",
+          "MA",
+          "ISRG",
+          "REGN",
+          "VRTX",
+          "UBER",
           "ETN",
-          "MSFT",
-          "VRT",
-          "AAPL",
           "COST",
-          "TSLA"
+          "JPM",
+          "V",
+          "MSFT"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1454,7 +1322,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:55Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-08\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.86% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:45Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-08\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-08",
@@ -1467,12 +1335,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.86% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:55Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:45Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLE",
           "XLU",
@@ -1481,15 +1349,15 @@
           "USMV"
         ],
         "top_stock_candidates": [
-          "NVDA",
-          "AVGO",
-          "AAPL",
-          "VRT",
-          "OCS",
-          "RKLX",
-          "CEG",
-          "ETN",
+          "ISRG",
+          "REGN",
+          "VRTX",
+          "GE",
+          "MA",
+          "NET",
+          "CRM",
           "COST",
+          "V",
           "MSFT"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
@@ -1500,7 +1368,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:56Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-11\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.60% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:46Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-11\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-11",
@@ -1513,12 +1381,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.60% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:56Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:46Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLU",
           "XLV",
@@ -1527,16 +1395,16 @@
           "USMV"
         ],
         "top_stock_candidates": [
-          "AVGO",
-          "NVDA",
-          "ETN",
-          "COST",
-          "VRT",
-          "RKLX",
-          "CEG",
-          "MSFT",
           "REGN",
-          "AAPL"
+          "MA",
+          "VRTX",
+          "ETN",
+          "CRM",
+          "COST",
+          "MSFT",
+          "PLTR",
+          "NET",
+          "CEG"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1546,7 +1414,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:57Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-12\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.60% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:46Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-12\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-12",
@@ -1559,12 +1427,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.60% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:57Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:46Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLU",
           "XLV",
@@ -1573,16 +1441,16 @@
           "USMV"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "COST",
-          "AVGO",
-          "NVDA",
-          "OCS",
-          "ETN",
+          "MA",
           "REGN",
-          "AAPL",
+          "COST",
+          "CEG",
+          "NFLX",
+          "JPM",
+          "VRTX",
+          "UBER",
           "LLY",
-          "RKLX"
+          "ETN"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1592,7 +1460,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:57Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-13\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.76% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:47Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-13\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-13",
@@ -1605,30 +1473,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.76% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:57Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:47Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLU",
           "ICLN",
-          "XLP",
-          "XLE",
-          "XLV"
+          "KRE",
+          "QUAL",
+          "USMV"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "AVGO",
-          "NVDA",
+          "MA",
+          "REGN",
+          "META",
+          "NFLX",
           "COST",
-          "VRT",
-          "OCS",
-          "ETN",
           "V",
-          "LLY",
-          "REGN"
+          "MSFT",
+          "NET",
+          "UBER",
+          "ETN"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1638,7 +1506,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:58Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-14\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.29% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:48Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-14\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-14",
@@ -1651,30 +1519,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.29% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:58Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:48Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLU",
           "HACK",
-          "XLP",
-          "XLE",
-          "XLRE"
+          "KRE",
+          "QUAL",
+          "USMV"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "AVGO",
-          "COST",
-          "ETN",
-          "OCS",
-          "V",
-          "NVDA",
+          "MA",
+          "GE",
           "REGN",
-          "LLY",
-          "VRTX"
+          "COST",
+          "JPM",
+          "V",
+          "AMZN",
+          "NET",
+          "UBER",
+          "ETN"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1684,7 +1552,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:59Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-15\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.89% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:48Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-15\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-15",
@@ -1697,30 +1565,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.89% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:59Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:48Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLU",
-          "MTUM",
-          "XLE",
+          "KRE",
           "QUAL",
-          "XLI"
+          "USMV",
+          "XLB"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "NVDA",
-          "AVGO",
-          "VRT",
-          "AMD",
-          "COST",
-          "OCS",
+          "MA",
+          "GE",
+          "REGN",
           "MSFT",
-          "ETN",
-          "NFLX"
+          "NFLX",
+          "CRM",
+          "AMZN",
+          "NET",
+          "VRTX",
+          "UBER"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1730,7 +1598,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:15:59Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-18\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.07% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:49Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-18\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-18",
@@ -1743,30 +1611,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.07% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:15:59Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:49Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLU",
           "XBI",
-          "MTUM",
-          "XLE",
-          "QUAL"
+          "KRE",
+          "QUAL",
+          "USMV"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "NVDA",
-          "AVGO",
-          "VRT",
-          "COST",
+          "VRTX",
+          "GE",
           "NFLX",
-          "AMD",
-          "AAPL",
+          "ETN",
+          "CRM",
+          "MA",
           "MSFT",
-          "V"
+          "PLTR",
+          "AMZN",
+          "NET"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1776,7 +1644,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:00Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-19\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.61% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:50Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-19\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-19",
@@ -1789,30 +1657,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.61% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:00Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:50Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLB",
           "XLU",
           "XBI",
-          "VLUE",
-          "MTUM"
+          "KRE",
+          "QUAL"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "GOOGL",
-          "NVDA",
-          "AVGO",
-          "COST",
-          "VRT",
-          "V",
+          "GE",
+          "ISRG",
           "NFLX",
-          "AAPL",
-          "AMD"
+          "TMO",
+          "JPM",
+          "V",
+          "ETN",
+          "CRM",
+          "MSFT",
+          "PLTR"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1822,7 +1690,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:01Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-20\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.51% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:50Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-20\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-20",
@@ -1835,30 +1703,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.51% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:01Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:50Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "XLU",
           "XLB",
-          "VLUE",
-          "XLE",
-          "MTUM"
+          "XLU",
+          "KRE",
+          "QUAL",
+          "USMV"
         ],
         "top_stock_candidates": [
-          "GOOGL",
-          "AMZN",
-          "NVDA",
-          "AVGO",
-          "VRT",
-          "COST",
-          "V",
-          "AMD",
+          "VRTX",
+          "ISRG",
+          "META",
+          "ETN",
           "NFLX",
-          "MSFT"
+          "CRM",
+          "MELI",
+          "MA",
+          "V",
+          "PLTR"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1868,7 +1736,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:01Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-21\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.71% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:51Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-21\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-21",
@@ -1881,30 +1749,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.71% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:01Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:51Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLB",
           "XLU",
-          "XLE",
-          "MTUM",
-          "QUAL"
+          "KRE",
+          "QUAL",
+          "USMV"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "GOOGL",
-          "AVGO",
-          "COST",
-          "NVDA",
-          "VRT",
-          "V",
-          "OCS",
+          "META",
           "NFLX",
-          "AMD"
+          "ISRG",
+          "ETN",
+          "COST",
+          "JPM",
+          "CRM",
+          "MA",
+          "V",
+          "PLTR"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1914,7 +1782,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:02Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-22\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.85% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:52Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-22\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-22",
@@ -1927,30 +1795,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.85% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:02Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:52Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "MTUM",
-          "XLE",
+          "KRE",
           "QUAL",
-          "XLRE",
-          "XLY"
+          "USMV",
+          "XLB",
+          "XLC"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "GOOGL",
-          "AVGO",
-          "VRT",
-          "V",
+          "VRTX",
+          "UBER",
+          "META",
           "NFLX",
+          "ISRG",
+          "TMO",
+          "CRM",
           "COST",
-          "NET",
-          "TSLA",
-          "NVDA"
+          "JPM",
+          "MA"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -1960,7 +1828,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:03Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-25\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.85% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:52Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-25\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-25",
@@ -1973,30 +1841,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.85% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:03Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:52Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "MTUM",
-          "XLE",
+          "KRE",
           "QUAL",
-          "XLRE",
-          "XLY"
+          "USMV",
+          "XLB",
+          "XLC"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "GOOGL",
-          "AVGO",
-          "VRT",
-          "V",
+          "VRTX",
+          "UBER",
+          "META",
           "NFLX",
+          "ISRG",
+          "TMO",
+          "CRM",
           "COST",
-          "NET",
-          "TSLA",
-          "NVDA"
+          "JPM",
+          "MA"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -2006,7 +1874,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:04Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-26\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.77% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:53Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-26\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-26",
@@ -2019,30 +1887,30 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.77% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:04Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:53Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
-          "QUAL",
-          "XLE",
-          "XLRE",
           "KRE",
-          "XLY"
+          "QUAL",
+          "USMV",
+          "XLB",
+          "XLC"
         ],
         "top_stock_candidates": [
-          "GOOGL",
-          "AMZN",
-          "AVGO",
-          "V",
-          "VRT",
-          "ETN",
-          "COST",
+          "UBER",
+          "MA",
           "NFLX",
-          "NET",
-          "JPM"
+          "ISRG",
+          "COST",
+          "CRM",
+          "JPM",
+          "V",
+          "MSFT",
+          "PLTR"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -2052,7 +1920,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:04Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-27\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.68% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:54Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-27\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-27",
@@ -2065,12 +1933,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.68% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:04Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:54Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLE",
           "XLU",
@@ -2079,16 +1947,16 @@
           "QUAL"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "GOOGL",
-          "AVGO",
-          "NVDA",
-          "ETN",
-          "V",
-          "AMD",
+          "MA",
+          "NFLX",
+          "JPM",
+          "CRM",
           "COST",
-          "VRT",
-          "OCS"
+          "V",
+          "MSFT",
+          "CEG",
+          "AMZN",
+          "PLTR"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -2098,7 +1966,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:05Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-28\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 4.11% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:54Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-28\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-28",
@@ -2111,12 +1979,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.11% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:05Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:54Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "QUAL",
           "XLE",
@@ -2125,16 +1993,16 @@
           "KRE"
         ],
         "top_stock_candidates": [
-          "AMZN",
-          "GOOGL",
-          "AVGO",
-          "NVDA",
           "COST",
           "MSFT",
-          "TSLA",
-          "NET",
-          "ETN",
-          "VRT"
+          "MA",
+          "TMO",
+          "NFLX",
+          "JPM",
+          "V",
+          "CEG",
+          "AMZN",
+          "GOOGL"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -2144,7 +2012,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:06Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-29\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.74% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:55Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-05-29\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-05-29",
@@ -2157,12 +2025,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.74% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:06Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:55Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLE",
           "XLU",
@@ -2171,16 +2039,16 @@
           "QUAL"
         ],
         "top_stock_candidates": [
+          "JPM",
+          "MA",
+          "NFLX",
+          "COST",
           "AVGO",
-          "AMZN",
-          "MSFT",
-          "GOOGL",
-          "NVDA",
-          "TSLA",
-          "PLTR",
-          "AMD",
-          "VRT",
-          "JPM"
+          "CEG",
+          "V",
+          "CRM",
+          "ISRG",
+          "UBER"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -2190,7 +2058,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:21Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: DeepSeek\nModel: deepseek-v4-pro\nThinking: enabled\nReasoning effort: high\n\nGreenlight 2.0 End-of-Day Memo  \nDate: 2026-06-01  \n\nRisk Light: GREEN | Regime: RISK_ON  \nExecution: NO_TRADE \u2013 Max drift 4.04% below 5.00% threshold.\n\nBenchmark Verdict:  \n- Outperformed SPY, QQQ, 200DMA, and VIX-based strategy.  \n- No greenlight failure vs. simple benchmarks.  \n- Agent-led component added no value (agent_led_add_value: false); learned signal underperformed fixed benchmarks (learned_beat_fixed: false). This introduces uncertainty around the strategy\u2019s alpha generation despite broad market outperformance.\n\nSelected ETFs: XLE, XLP, XLU, MTUM, KRE  \nTop Candidates: AVGO, AMZN, NVDA, AAPL, GOOGL, FLNC, AMD, ETN, V, VRT  \n(No trades executed; drift-controlled allocation remains unchanged.)\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:35:10Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: DeepSeek\nModel: deepseek-v4-pro\nThinking: enabled\nReasoning effort: high\n\n**Greenlight 2.0 End-of-Day Memo**  \n**Date:** 2026-06-01  \n**Risk Light:** RED \u2192 Only de-risking rebalance allowed.  \n**Execution Decision:** RISK_REDUCE \u2013 No new positions; reduce exposure.\n\n**Benchmark Verdict:**  \n- Beat SPY, QQQ, 200DMA, and VIX strategy.  \n- Failed to beat fixed allocation; agent-led alpha absent.  \n- Greenlight did not fail simple benchmarks overall.\n\n**Market Regime:** RISK_ON (note: risk light RED creates tension \u2013 proceed with caution).\n\n**Selected ETFs:** XLE, XLP, XLU, MTUM, KRE.  \n**Top Stock Candidates:** MA, JPM, META, NFLX, COST, V, VRTX, AMZN, TMO, UBER.\n\n**Uncertainty Warning**  \nBenchmark signals are mixed: broad market beats but no learned edge over fixed strategies. Risk light RED in a risk-on regime adds uncertainty. De-risk only; no new commitments.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": true,
       "systematic_review": {
         "as_of": "2026-06-01",
@@ -2203,12 +2071,12 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 4.04% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:06Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:34:56Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
           "XLE",
           "XLP",
@@ -2217,16 +2085,16 @@
           "KRE"
         ],
         "top_stock_candidates": [
-          "AVGO",
-          "AMZN",
-          "NVDA",
-          "AAPL",
-          "GOOGL",
-          "FLNC",
-          "AMD",
-          "ETN",
+          "MA",
+          "JPM",
+          "META",
+          "NFLX",
+          "COST",
           "V",
-          "VRT"
+          "VRTX",
+          "AMZN",
+          "TMO",
+          "UBER"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
@@ -2236,7 +2104,7 @@
       "watermark": "AI_GENERATED_MEMO"
     },
     {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-02T15:16:22Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-06-02\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: NO_TRADE - Max drift 3.85% is below threshold 5.00%.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:35:10Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-06-02\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
       "systematic_review": {
         "as_of": "2026-06-02",
@@ -2249,30 +2117,168 @@
           "greenlight_failed_simple_benchmarks": false,
           "learned_beat_fixed": false
         },
-        "execution_decision": "NO_TRADE",
-        "execution_reason": "Max drift 3.85% is below threshold 5.00%.",
-        "generated_at": "2026-06-02T15:16:22Z",
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:35:10Z",
         "market_regime": "RISK_ON",
         "memo_type": "systematic_template",
-        "risk_light": "GREEN",
+        "risk_light": "RED",
         "selected_etfs": [
+          "XLC",
           "XLP",
           "XLU",
           "XBI",
-          "KRE",
-          "QUAL"
+          "KRE"
         ],
         "top_stock_candidates": [
-          "NVDA",
+          "MA",
+          "META",
+          "COST",
+          "VRTX",
+          "UBER",
+          "CEG",
+          "JPM",
           "AMZN",
-          "AAPL",
-          "GOOGL",
-          "ETN",
-          "VRT",
-          "AMD",
-          "TSLA",
+          "TMO",
+          "ETN"
+        ],
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
+        "watermarks": [
+          "SYSTEMATIC_TEMPLATE_OUTPUT"
+        ]
+      },
+      "watermark": "AI_GENERATED_MEMO"
+    },
+    {
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:35:11Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-06-03\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "provider_requested": false,
+      "systematic_review": {
+        "as_of": "2026-06-03",
+        "benchmark_verdict": {
+          "agent_led_add_value": false,
+          "beat_200DMA": true,
+          "beat_QQQ": true,
+          "beat_SPY": true,
+          "beat_VIX_strategy": true,
+          "greenlight_failed_simple_benchmarks": false,
+          "learned_beat_fixed": false
+        },
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:35:11Z",
+        "market_regime": "RISK_ON",
+        "memo_type": "systematic_template",
+        "risk_light": "RED",
+        "selected_etfs": [
+          "XLC",
+          "XLP",
+          "XLU",
+          "XBI",
+          "KRE"
+        ],
+        "top_stock_candidates": [
+          "V",
+          "MA",
+          "COST",
+          "VRTX",
+          "UBER",
+          "JPM",
           "MSFT",
-          "JPM"
+          "ETN",
+          "TSLA",
+          "META"
+        ],
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
+        "watermarks": [
+          "SYSTEMATIC_TEMPLATE_OUTPUT"
+        ]
+      },
+      "watermark": "AI_GENERATED_MEMO"
+    },
+    {
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:35:12Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-06-04\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "provider_requested": false,
+      "systematic_review": {
+        "as_of": "2026-06-04",
+        "benchmark_verdict": {
+          "agent_led_add_value": false,
+          "beat_200DMA": true,
+          "beat_QQQ": true,
+          "beat_SPY": true,
+          "beat_VIX_strategy": true,
+          "greenlight_failed_simple_benchmarks": false,
+          "learned_beat_fixed": false
+        },
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:35:12Z",
+        "market_regime": "RISK_ON",
+        "memo_type": "systematic_template",
+        "risk_light": "RED",
+        "selected_etfs": [
+          "XLC",
+          "XLF",
+          "XLP",
+          "XLU",
+          "XLV"
+        ],
+        "top_stock_candidates": [
+          "MA",
+          "UBER",
+          "COST",
+          "ISRG",
+          "MELI",
+          "JPM",
+          "V",
+          "VRTX",
+          "MSFT",
+          "ETN"
+        ],
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
+        "watermarks": [
+          "SYSTEMATIC_TEMPLATE_OUTPUT"
+        ]
+      },
+      "watermark": "AI_GENERATED_MEMO"
+    },
+    {
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:35:12Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-06-05\n\nRegime: RISK_ON\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "provider_requested": false,
+      "systematic_review": {
+        "as_of": "2026-06-05",
+        "benchmark_verdict": {
+          "agent_led_add_value": false,
+          "beat_200DMA": true,
+          "beat_QQQ": true,
+          "beat_SPY": true,
+          "beat_VIX_strategy": true,
+          "greenlight_failed_simple_benchmarks": false,
+          "learned_beat_fixed": false
+        },
+        "execution_decision": "RISK_REDUCE",
+        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
+        "generated_at": "2026-06-07T16:35:12Z",
+        "market_regime": "RISK_ON",
+        "memo_type": "systematic_template",
+        "risk_light": "RED",
+        "selected_etfs": [
+          "XLC",
+          "XLU",
+          "XLV",
+          "XLY",
+          "XBI"
+        ],
+        "top_stock_candidates": [
+          "MA",
+          "META",
+          "COST",
+          "AMZN",
+          "ISRG",
+          "AAPL",
+          "UBER",
+          "TSLA",
+          "V",
+          "AVGO"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [

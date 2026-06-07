@@ -29,6 +29,9 @@ from weight_learning import learn_weights, write_learning_report
 from weight_review import review_candidate_weights
 
 
+CRITICAL_PRICE_SYMBOLS = {MANDATE.benchmark, MANDATE.secondary_growth_anchor, MANDATE.defensive_anchor}
+
+
 BUDGET_PRESETS: dict[str, dict[str, dict[str, float]] | None] = {
     "default": None,
     "growth_tilt": {
@@ -63,6 +66,7 @@ def run_backtest(
     invest_start: str = "2021-01-01",
     max_symbols: int | None = None,
     allow_synthetic_trading: bool = False,
+    allow_synthetic_fallback: bool = True,
     use_secondary_price_fallback: bool = True,
     rolling_train_years: int = 12,
     ai_memo_mode: str = "template",
@@ -88,8 +92,9 @@ def run_backtest(
         symbols,
         fetch_start,
         end_date,
-        allow_synthetic=True,
+        allow_synthetic=allow_synthetic_fallback,
         allow_secondary_price_fallback=use_secondary_price_fallback,
+        optional_symbols=set(symbols) - CRITICAL_PRICE_SYMBOLS,
     )
     loop_health = dict(data_health)
     if allow_synthetic_trading and loop_health.get("synthetic"):
@@ -276,6 +281,7 @@ def run_backtest(
                 "walk_forward": "rolling daily retraining; rows are allowed only when label_end_date < replay date",
             },
             "allow_synthetic_trading": allow_synthetic_trading,
+            "allow_synthetic_fallback": allow_synthetic_fallback,
             "use_secondary_price_fallback": use_secondary_price_fallback,
             "ai_memo_mode": ai_memo_mode,
             "ai_memo_frequency": ai_memo_frequency,
@@ -599,6 +605,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--invest-start", default="2021-01-01")
     parser.add_argument("--max-symbols", type=int, default=None)
     parser.add_argument("--allow-synthetic-trading", action="store_true")
+    parser.add_argument("--no-synthetic-fallback", action="store_true")
     parser.add_argument("--no-secondary-price-fallback", action="store_true")
     parser.add_argument("--rolling-train-years", type=int, default=12)
     parser.add_argument("--ai-memo-mode", choices=("off", "template", "deepseek"), default="template")
@@ -619,6 +626,7 @@ if __name__ == "__main__":
         invest_start=args.invest_start,
         max_symbols=args.max_symbols,
         allow_synthetic_trading=args.allow_synthetic_trading,
+        allow_synthetic_fallback=not args.no_synthetic_fallback,
         use_secondary_price_fallback=not args.no_secondary_price_fallback,
         rolling_train_years=args.rolling_train_years,
         ai_memo_mode=args.ai_memo_mode,

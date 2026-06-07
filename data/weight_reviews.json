@@ -1,36 +1,6 @@
 {
-  "generated_at": "2026-06-02T15:16:22Z",
+  "generated_at": "2026-06-07T16:35:12Z",
   "reviews": [
-    {
-      "approved_for_production": false,
-      "as_of": "2024-01-12",
-      "asset_type": "stock",
-      "blocked_reasons": [
-        "human_approval_required"
-      ],
-      "candidate_weights": {
-        "information": 0.5,
-        "leadership": 0.3,
-        "timing": 0.2
-      },
-      "changes": {
-        "information": 0.0,
-        "leadership": 0.0,
-        "timing": 0.0
-      },
-      "current_weights": {
-        "information": 0.5,
-        "leadership": 0.3,
-        "timing": 0.2
-      },
-      "generated_at": "2026-06-02T01:08:58Z",
-      "max_weight_change_per_review": 0.2,
-      "requires_human_approval": true,
-      "watermark": "ML_ESTIMATED_OUTPUT",
-      "watermarks": [
-        "ML_ESTIMATED_OUTPUT"
-      ]
-    },
     {
       "approved_for_production": false,
       "as_of": "2024-01-12",
@@ -1118,6 +1088,130 @@
         "timing": 0.2
       },
       "generated_at": "2026-06-02T15:16:22Z",
+      "max_weight_change_per_review": 0.2,
+      "requires_human_approval": true,
+      "watermark": "ML_ESTIMATED_OUTPUT",
+      "watermarks": [
+        "ML_ESTIMATED_OUTPUT"
+      ]
+    },
+    {
+      "approved_for_production": false,
+      "as_of": "2026-06-07",
+      "asset_type": "stock",
+      "blocked_reasons": [
+        "human_approval_required",
+        "max_weight_change_breach"
+      ],
+      "candidate_weights": {
+        "information": 0.0,
+        "leadership": 0.167535,
+        "timing": 0.832465
+      },
+      "changes": {
+        "information": -0.5,
+        "leadership": -0.132465,
+        "timing": 0.632465
+      },
+      "current_weights": {
+        "information": 0.5,
+        "leadership": 0.3,
+        "timing": 0.2
+      },
+      "generated_at": "2026-06-07T15:02:11Z",
+      "max_weight_change_per_review": 0.2,
+      "requires_human_approval": true,
+      "watermark": "ML_ESTIMATED_OUTPUT",
+      "watermarks": [
+        "ML_ESTIMATED_OUTPUT"
+      ]
+    },
+    {
+      "approved_for_production": false,
+      "as_of": "2026-06-07",
+      "asset_type": "stock",
+      "blocked_reasons": [
+        "human_approval_required",
+        "max_weight_change_breach"
+      ],
+      "candidate_weights": {
+        "information": 0.0,
+        "leadership": 0.0,
+        "timing": 1.0
+      },
+      "changes": {
+        "information": -0.5,
+        "leadership": -0.3,
+        "timing": 0.8
+      },
+      "current_weights": {
+        "information": 0.5,
+        "leadership": 0.3,
+        "timing": 0.2
+      },
+      "generated_at": "2026-06-07T15:50:41Z",
+      "max_weight_change_per_review": 0.2,
+      "requires_human_approval": true,
+      "watermark": "ML_ESTIMATED_OUTPUT",
+      "watermarks": [
+        "ML_ESTIMATED_OUTPUT"
+      ]
+    },
+    {
+      "approved_for_production": false,
+      "as_of": "2024-01-12",
+      "asset_type": "stock",
+      "blocked_reasons": [
+        "human_approval_required",
+        "max_weight_change_breach"
+      ],
+      "candidate_weights": {
+        "information": 1.0,
+        "leadership": 0.0,
+        "timing": 0.0
+      },
+      "changes": {
+        "information": 0.5,
+        "leadership": -0.3,
+        "timing": -0.2
+      },
+      "current_weights": {
+        "information": 0.5,
+        "leadership": 0.3,
+        "timing": 0.2
+      },
+      "generated_at": "2026-06-07T15:51:29Z",
+      "max_weight_change_per_review": 0.2,
+      "requires_human_approval": true,
+      "watermark": "ML_ESTIMATED_OUTPUT",
+      "watermarks": [
+        "ML_ESTIMATED_OUTPUT"
+      ]
+    },
+    {
+      "approved_for_production": false,
+      "as_of": "2026-06-07",
+      "asset_type": "stock",
+      "blocked_reasons": [
+        "human_approval_required",
+        "max_weight_change_breach"
+      ],
+      "candidate_weights": {
+        "information": 0.0,
+        "leadership": 0.0,
+        "timing": 1.0
+      },
+      "changes": {
+        "information": -0.5,
+        "leadership": -0.3,
+        "timing": 0.8
+      },
+      "current_weights": {
+        "information": 0.5,
+        "leadership": 0.3,
+        "timing": 0.2
+      },
+      "generated_at": "2026-06-07T16:35:12Z",
       "max_weight_change_per_review": 0.2,
       "requires_human_approval": true,
       "watermark": "ML_ESTIMATED_OUTPUT",

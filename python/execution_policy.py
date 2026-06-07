@@ -49,11 +49,16 @@ def decide_execution(
         decision = ExecutionDecision(as_of, "NO_TRADE", f"Target drift has not persisted for {MANDATE.signal_persistence_days} decision days.", [], turnover, drift)
         return add_watermark({"execution_decision": asdict(decision)}, SYSTEMATIC_TEMPLATE_OUTPUT)
 
-    if turnover > MANDATE.max_daily_turnover:
+    if has_positions and turnover > MANDATE.max_daily_turnover:
         decision = ExecutionDecision(as_of, "NO_TRADE", f"Turnover {turnover:.2%} exceeds cap {MANDATE.max_daily_turnover:.2%}.", [], turnover, drift)
         return add_watermark({"execution_decision": asdict(decision)}, SYSTEMATIC_TEMPLATE_OUTPUT)
 
-    decision = ExecutionDecision(as_of, "EXECUTE", "Drift threshold, persistence, rebalance interval, turnover, and risk gates passed.", [], turnover, drift)
+    reason = (
+        "Initial allocation from cash passed risk and drift gates."
+        if not has_positions
+        else "Drift threshold, persistence, rebalance interval, turnover, and risk gates passed."
+    )
+    decision = ExecutionDecision(as_of, "EXECUTE", reason, [], turnover, drift)
     return add_watermark({"execution_decision": asdict(decision)}, SYSTEMATIC_TEMPLATE_OUTPUT)
 
 

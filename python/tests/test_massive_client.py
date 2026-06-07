@@ -33,3 +33,24 @@ def test_merge_price_bars_prefers_primary_overlap():
     merged = merge_price_bars(primary=primary, secondary=secondary)
     assert [bar.date for bar in merged] == ["2020-01-02", "2020-01-03"]
     assert merged[-1].source == "massive"
+
+
+def test_optional_missing_symbol_does_not_fail_data_health(monkeypatch):
+    client = MassiveClient(api_key="test-key")
+
+    def fake_get_aggregates(symbol, start_date, end_date):
+        if symbol == "SPY":
+            return [PriceBar("SPY", "2024-01-02", 1, 1, 1, 1, 100, source="massive", data_quality_flag="ok")]
+        return []
+
+    monkeypatch.setattr(client, "get_aggregates", fake_get_aggregates)
+    _, health = client.load_price_history(
+        ["SPY", "BAD"],
+        "2024-01-01",
+        "2024-01-31",
+        allow_synthetic=False,
+        optional_symbols={"BAD"},
+    )
+    assert health["ok"] is True
+    assert health["optional_missing_symbols"] == ["BAD"]
+    assert health["missing_critical_symbols"] == []

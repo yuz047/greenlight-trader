@@ -21,3 +21,14 @@ def test_small_drift_no_trade():
         "2024-01-31",
     )
     assert payload["execution_decision"]["decision"] == "NO_TRADE"
+
+
+def test_initial_cash_allocation_can_exceed_turnover_cap():
+    payload = decide_execution(
+        {"weights": {"CASH": 1.0}, "positions": {}},
+        {"target_allocations": [{"symbol": "SPY", "weight": 1.0}]},
+        {"risk_status": {"light": "GREEN"}},
+        [],
+        "2024-01-31",
+    )
+    assert payload["execution_decision"]["decision"] == "EXECUTE"
