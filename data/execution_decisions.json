@@ -1,13 +1,158 @@
 {
   "execution_decision": {
-    "as_of": "2026-06-01",
-    "decision": "NO_TRADE",
+    "as_of": "2026-06-08",
+    "decision": "EXECUTE",
     "drift": 1.0,
-    "orders": [],
-    "reason": "Turnover 100.00% exceeds cap 30.00%.",
-    "turnover": 1.0
+    "orders": [
+      {
+        "notional": 197.56,
+        "price": 301.600308,
+        "shares": 0.65503912,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "AAPL",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 148.155,
+        "price": 245.269044,
+        "shares": 0.60405095,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "AMZN",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 72.25,
+        "price": 658.921758,
+        "shares": 0.10964883,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "CRWD",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 98.565,
+        "price": 403.220628,
+        "shares": 0.24444434,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "ETN",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 100.15,
+        "price": 363.382662,
+        "shares": 0.27560478,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "GOOGL",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 106.57,
+        "price": 96.799356,
+        "shares": 1.10093708,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "HACK",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 183.875,
+        "price": 311.172222,
+        "shares": 0.59091071,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "JPM",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 177.085,
+        "price": 70.374072,
+        "shares": 2.51633869,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "KRE",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 79.405,
+        "price": 266.383266,
+        "shares": 0.29808554,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "PANW",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 1000.0,
+        "price": 716.213214,
+        "shares": 1.39623227,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "QQQ",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 250.0,
+        "price": 100.480092,
+        "shares": 2.48805505,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "SGOV",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 2000.0,
+        "price": 739.367844,
+        "shares": 2.7050135,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "SPY",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 120.035,
+        "price": 443.048592,
+        "shares": 0.27092965,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "VRTX",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 144.155,
+        "price": 58.341666,
+        "shares": 2.47087562,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "XLE",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 123.775,
+        "price": 184.216836,
+        "shares": 0.67189841,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "XLK",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 198.41,
+        "price": 43.528704,
+        "shares": 4.55814168,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "XLU",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      }
+    ],
+    "reason": "Initial allocation from cash passed risk and drift gates.",
+    "turnover": 0.999999
   },
-  "generated_at": "2026-06-02T01:37:46Z",
+  "generated_at": "2026-06-08T23:43:04Z",
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"

@@ -1,10 +1,10 @@
 {
-  "as_of": "2026-06-01",
+  "as_of": "2026-06-08",
   "automatic_logic_mutation_allowed": false,
   "diagnostics": {
-    "as_of": "2026-06-01",
+    "as_of": "2026-06-08",
     "excess_turnover_without_alpha": false,
-    "generated_at": "2026-06-02T01:37:46Z",
+    "generated_at": "2026-06-08T23:43:04Z",
     "recommendation": "review_weights_and_benchmarks",
     "relative_drawdown_breach": false,
     "rolling_alpha_decay": false,
@@ -14,7 +14,7 @@
       "SYSTEMATIC_TEMPLATE_OUTPUT"
     ]
   },
-  "generated_at": "2026-06-02T01:37:46Z",
+  "generated_at": "2026-06-08T23:43:04Z",
   "human_approval_required": true,
   "triggers": [
     "underperformed_spy"

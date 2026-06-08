@@ -1,16 +1,177 @@
 {
-  "benchmark_equity": 5027.009966,
-  "cash": 5000.0,
-  "date": "2026-06-01",
-  "last_rebalance_date": null,
-  "nav": 5000.0,
+  "benchmark_equity": 5038.39239,
+  "cash": 0.01,
+  "date": "2026-06-08",
+  "last_rebalance_date": "2026-06-08",
+  "nav": 4999.000202,
   "peak_nav": 5000.0,
   "peak_relative_outperformance": 0.008176,
-  "positions": {},
+  "positions": {
+    "AAPL": {
+      "asset_type": "stock",
+      "avg_price": 301.600308,
+      "market_price": 301.54,
+      "market_value": 197.520496,
+      "sector": null,
+      "shares": 0.65503912,
+      "theme": null
+    },
+    "AMZN": {
+      "asset_type": "stock",
+      "avg_price": 245.269044,
+      "market_price": 245.22,
+      "market_value": 148.125375,
+      "sector": null,
+      "shares": 0.60405095,
+      "theme": null
+    },
+    "CRWD": {
+      "asset_type": "stock",
+      "avg_price": 658.921758,
+      "market_price": 658.79,
+      "market_value": 72.235553,
+      "sector": null,
+      "shares": 0.10964883,
+      "theme": null
+    },
+    "ETN": {
+      "asset_type": "stock",
+      "avg_price": 403.220628,
+      "market_price": 403.14,
+      "market_value": 98.545291,
+      "sector": null,
+      "shares": 0.24444434,
+      "theme": null
+    },
+    "GOOGL": {
+      "asset_type": "stock",
+      "avg_price": 363.382662,
+      "market_price": 363.31,
+      "market_value": 100.129974,
+      "sector": null,
+      "shares": 0.27560478,
+      "theme": null
+    },
+    "HACK": {
+      "asset_type": "etf",
+      "avg_price": 96.799356,
+      "market_price": 96.78,
+      "market_value": 106.54869,
+      "sector": "Cybersecurity",
+      "shares": 1.10093708,
+      "theme": "Cybersecurity"
+    },
+    "JPM": {
+      "asset_type": "stock",
+      "avg_price": 311.172222,
+      "market_price": 311.11,
+      "market_value": 183.838232,
+      "sector": null,
+      "shares": 0.59091071,
+      "theme": null
+    },
+    "KRE": {
+      "asset_type": "etf",
+      "avg_price": 70.374072,
+      "market_price": 70.36,
+      "market_value": 177.04959,
+      "sector": "Financials",
+      "shares": 2.51633869,
+      "theme": "Regional Banks"
+    },
+    "PANW": {
+      "asset_type": "stock",
+      "avg_price": 266.383266,
+      "market_price": 266.33,
+      "market_value": 79.389122,
+      "sector": null,
+      "shares": 0.29808554,
+      "theme": null
+    },
+    "QQQ": {
+      "asset_type": "benchmark",
+      "avg_price": 716.213214,
+      "market_price": 716.07,
+      "market_value": 999.80004,
+      "sector": "Broad Growth",
+      "shares": 1.39623227,
+      "theme": "Nasdaq 100"
+    },
+    "SGOV": {
+      "asset_type": "cash_proxy",
+      "avg_price": 100.480092,
+      "market_price": 100.46,
+      "market_value": 249.95001,
+      "sector": "Cash",
+      "shares": 2.48805505,
+      "theme": "Treasury Bills"
+    },
+    "SPY": {
+      "asset_type": "benchmark",
+      "avg_price": 739.367844,
+      "market_price": 739.22,
+      "market_value": 1999.60008,
+      "sector": "Broad Market",
+      "shares": 2.7050135,
+      "theme": "S&P 500"
+    },
+    "VRTX": {
+      "asset_type": "stock",
+      "avg_price": 443.048592,
+      "market_price": 442.96,
+      "market_value": 120.010998,
+      "sector": null,
+      "shares": 0.27092965,
+      "theme": null
+    },
+    "XLE": {
+      "asset_type": "etf",
+      "avg_price": 58.341666,
+      "market_price": 58.33,
+      "market_value": 144.126175,
+      "sector": "Energy",
+      "shares": 2.47087562,
+      "theme": "Energy"
+    },
+    "XLK": {
+      "asset_type": "etf",
+      "avg_price": 184.216836,
+      "market_price": 184.18,
+      "market_value": 123.75025,
+      "sector": "Technology",
+      "shares": 0.67189841,
+      "theme": "Technology"
+    },
+    "XLU": {
+      "asset_type": "etf",
+      "avg_price": 43.528704,
+      "market_price": 43.52,
+      "market_value": 198.370326,
+      "sector": "Utilities",
+      "shares": 4.55814168,
+      "theme": "Utilities"
+    }
+  },
   "realized_pnl": 0.0,
-  "relative_drawdown_pct": 0.013578,
+  "relative_drawdown_pct": 0.016054,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
-    "CASH": 1.0
+    "AAPL": 0.039512,
+    "AMZN": 0.029631,
+    "CASH": 2e-06,
+    "CRWD": 0.01445,
+    "ETN": 0.019713,
+    "GOOGL": 0.02003,
+    "HACK": 0.021314,
+    "JPM": 0.036775,
+    "KRE": 0.035417,
+    "PANW": 0.015881,
+    "QQQ": 0.2,
+    "SGOV": 0.05,
+    "SPY": 0.4,
+    "VRTX": 0.024007,
+    "XLE": 0.028831,
+    "XLK": 0.024755,
+    "XLU": 0.039682
   }
 }

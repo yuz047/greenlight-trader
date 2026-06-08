@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-01",
+  "as_of": "2026-06-08",
   "budgets": {
     "agent_experimental": 0.0,
     "defensive": 0.05,
@@ -8,36 +8,33 @@
     "spy": 0.4,
     "stock": 0.2
   },
-  "cap_reasons": [
-    "sector_Broad Market_capped",
-    "theme_S&P 500_capped"
-  ],
+  "cap_reasons": [],
   "exposure": {
     "sector": {
       "Broad Growth": 0.2,
-      "Broad Market": 0.25,
-      "Cash": 0.2,
-      "Clean Energy": 0.022013,
-      "Consumer Staples": 0.050296,
-      "Energy": 0.030312,
-      "Factor": 0.030307,
-      "Technology": 0.017072,
-      "Unknown": 0.2
+      "Broad Market": 0.4,
+      "Cash": 0.05,
+      "Cybersecurity": 0.021314,
+      "Energy": 0.028831,
+      "Financials": 0.035417,
+      "Technology": 0.024755,
+      "Unknown": 0.19999899999999998,
+      "Utilities": 0.039682
     },
     "theme": {
-      "Clean Energy": 0.022013,
-      "Consumer Staples": 0.050296,
-      "Energy": 0.030312,
-      "Momentum": 0.030307,
+      "Cybersecurity": 0.021314,
+      "Energy": 0.028831,
       "Nasdaq 100": 0.2,
-      "S&P 500": 0.25,
-      "Semiconductors": 0.017072,
-      "Treasury Bills": 0.2,
-      "Unknown": 0.2
+      "Regional Banks": 0.035417,
+      "S&P 500": 0.4,
+      "Technology": 0.024755,
+      "Treasury Bills": 0.05,
+      "Unknown": 0.19999899999999998,
+      "Utilities": 0.039682
     },
     "top3_weight": 0.65
   },
-  "generated_at": "2026-06-02T01:37:46Z",
+  "generated_at": "2026-06-08T23:43:04Z",
   "regime": "RISK_ON",
   "rules": [
     "Allocator outputs target weights, not raw buy/sell calls.",
@@ -53,7 +50,7 @@
       "sleeve": "core",
       "symbol": "SPY",
       "theme": "S&P 500",
-      "weight": 0.25
+      "weight": 0.4
     },
     {
       "asset_type": "benchmark",
@@ -71,124 +68,124 @@
       "sleeve": "defensive",
       "symbol": "SGOV",
       "theme": "Treasury Bills",
-      "weight": 0.2
+      "weight": 0.05
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.65422",
-      "sector": "Consumer Staples",
+      "reason": "risk-adjusted score allocation from 0.61884",
+      "sector": "Utilities",
       "sleeve": "dynamic_etf",
-      "symbol": "XLP",
-      "theme": "Consumer Staples",
-      "weight": 0.050296
+      "symbol": "XLU",
+      "theme": "Utilities",
+      "weight": 0.039682
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.45981",
+      "reason": "risk-adjusted score allocation from 0.49918",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "AAPL",
       "theme": null,
-      "weight": 0.032722
+      "weight": 0.039512
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.42682",
+      "reason": "risk-adjusted score allocation from 0.45136",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "JPM",
       "theme": null,
-      "weight": 0.031922
+      "weight": 0.036775
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.65772",
-      "sector": "Energy",
+      "reason": "risk-adjusted score allocation from 0.63684",
+      "sector": "Financials",
       "sleeve": "dynamic_etf",
-      "symbol": "XLE",
-      "theme": "Energy",
-      "weight": 0.030312
-    },
-    {
-      "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.6962",
-      "sector": "Factor",
-      "sleeve": "dynamic_etf",
-      "symbol": "MTUM",
-      "theme": "Momentum",
-      "weight": 0.030307
+      "symbol": "KRE",
+      "theme": "Regional Banks",
+      "weight": 0.035417
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.42933",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "MA",
-      "theme": null,
-      "weight": 0.030234
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.41421",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "V",
-      "theme": null,
-      "weight": 0.026021
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.48589",
+      "reason": "risk-adjusted score allocation from 0.47595",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "AMZN",
       "theme": null,
-      "weight": 0.024732
+      "weight": 0.029631
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.64244",
-      "sector": "Clean Energy",
+      "reason": "risk-adjusted score allocation from 0.64945",
+      "sector": "Energy",
       "sleeve": "dynamic_etf",
-      "symbol": "ICLN",
-      "theme": "Clean Energy",
-      "weight": 0.022013
+      "symbol": "XLE",
+      "theme": "Energy",
+      "weight": 0.028831
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.6387",
+      "sector": "Technology",
+      "sleeve": "dynamic_etf",
+      "symbol": "XLK",
+      "theme": "Technology",
+      "weight": 0.024755
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.44752",
+      "reason": "risk-adjusted score allocation from 0.40212",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "VRTX",
+      "theme": null,
+      "weight": 0.024007
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.6964",
+      "sector": "Cybersecurity",
+      "sleeve": "dynamic_etf",
+      "symbol": "HACK",
+      "theme": "Cybersecurity",
+      "weight": 0.021314
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.40648",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "GOOGL",
       "theme": null,
-      "weight": 0.019556
+      "weight": 0.02003
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.44696",
+      "reason": "risk-adjusted score allocation from 0.4381",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "NVDA",
+      "symbol": "ETN",
       "theme": null,
-      "weight": 0.018025
-    },
-    {
-      "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.60367",
-      "sector": "Technology",
-      "sleeve": "dynamic_etf",
-      "symbol": "SMH",
-      "theme": "Semiconductors",
-      "weight": 0.017072
+      "weight": 0.019713
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.44774",
+      "reason": "risk-adjusted score allocation from 0.46393",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "AVGO",
+      "symbol": "PANW",
       "theme": null,
-      "weight": 0.016788
+      "weight": 0.015881
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.45035",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "CRWD",
+      "theme": null,
+      "weight": 0.01445
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",

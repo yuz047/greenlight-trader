@@ -1,72 +1,38 @@
 {
   "etf": {
     "approved_for_production": false,
-    "as_of": "2026-06-05",
+    "as_of": "2026-06-08",
     "asset_type": "etf",
-    "constraints": {
-      "human_approval_required": true,
-      "max_feature_weight_cap": 0.65,
-      "non_negative": true,
-      "sum_to_one": true
-    },
-    "generated_at": "2026-06-07T16:35:12Z",
+    "generated_at": "2026-06-08T23:43:04Z",
     "method": "ridge",
-    "targets": [
-      "forward_20d_alpha_vs_spy",
-      "forward_60d_alpha_vs_spy",
-      "probability_of_outperforming_spy",
-      "risk_adjusted_forward_return",
-      "drawdown_contribution"
-    ],
-    "validation": {
-      "clean_rows": 13574,
-      "out_of_sample_required": true,
-      "rank_ic_proxy": 0.097187
-    },
+    "reason": "insufficient_training_data_default_weights_retained",
     "watermark": "ML_ESTIMATED_OUTPUT",
     "watermarks": [
       "ML_ESTIMATED_OUTPUT"
     ],
     "weights": {
-      "diversification": 0.0,
-      "leadership": 0.0,
-      "regime_fit": 1.0,
-      "timing": 0.0
+      "diversification": 0.2,
+      "leadership": 0.4,
+      "regime_fit": 0.25,
+      "timing": 0.15
     }
   },
-  "generated_at": "2026-06-07T16:35:12Z",
+  "generated_at": "2026-06-08T23:43:04Z",
   "stock": {
     "approved_for_production": false,
-    "as_of": "2026-06-05",
+    "as_of": "2026-06-08",
     "asset_type": "stock",
-    "constraints": {
-      "human_approval_required": true,
-      "max_feature_weight_cap": 0.65,
-      "non_negative": true,
-      "sum_to_one": true
-    },
-    "generated_at": "2026-06-07T16:35:12Z",
+    "generated_at": "2026-06-08T23:43:04Z",
     "method": "ridge",
-    "targets": [
-      "forward_20d_alpha_vs_spy",
-      "forward_60d_alpha_vs_spy",
-      "probability_of_outperforming_spy",
-      "risk_adjusted_forward_return",
-      "drawdown_contribution"
-    ],
-    "validation": {
-      "clean_rows": 1686,
-      "out_of_sample_required": true,
-      "rank_ic_proxy": 0.009874
-    },
+    "reason": "insufficient_training_data_default_weights_retained",
     "watermark": "ML_ESTIMATED_OUTPUT",
     "watermarks": [
       "ML_ESTIMATED_OUTPUT"
     ],
     "weights": {
-      "information": 0.0,
-      "leadership": 0.0,
-      "timing": 1.0
+      "information": 0.5,
+      "leadership": 0.3,
+      "timing": 0.2
     }
   },
   "watermark": "ML_ESTIMATED_OUTPUT",

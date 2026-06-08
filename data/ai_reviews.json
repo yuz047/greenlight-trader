@@ -1,50 +1,6 @@
 {
-  "generated_at": "2026-06-07T16:35:12Z",
+  "generated_at": "2026-06-08T23:43:04Z",
   "reviews": [
-    {
-      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:00Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-30\n\nRegime: FEAR\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
-      "provider_requested": false,
-      "systematic_review": {
-        "as_of": "2026-03-30",
-        "benchmark_verdict": {
-          "agent_led_add_value": false,
-          "beat_200DMA": true,
-          "beat_QQQ": true,
-          "beat_SPY": true,
-          "beat_VIX_strategy": true,
-          "greenlight_failed_simple_benchmarks": false,
-          "learned_beat_fixed": false
-        },
-        "execution_decision": "RISK_REDUCE",
-        "execution_reason": "Risk light RED: only de-risking rebalance is allowed.",
-        "generated_at": "2026-06-07T16:34:00Z",
-        "market_regime": "FEAR",
-        "memo_type": "systematic_template",
-        "risk_light": "RED",
-        "selected_etfs": [
-          "TLT",
-          "IEF",
-          "GLD"
-        ],
-        "top_stock_candidates": [
-          "JPM",
-          "REGN",
-          "V",
-          "MA",
-          "AMZN",
-          "ETN",
-          "UBER",
-          "CRM",
-          "COST",
-          "TMO"
-        ],
-        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
-        "watermarks": [
-          "SYSTEMATIC_TEMPLATE_OUTPUT"
-        ]
-      },
-      "watermark": "AI_GENERATED_MEMO"
-    },
     {
       "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-07T16:34:01Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-03-31\n\nRegime: FEAR\nRisk light: RED\nExecution: RISK_REDUCE - Risk light RED: only de-risking rebalance is allowed.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
       "provider_requested": false,
@@ -2279,6 +2235,51 @@
           "TSLA",
           "V",
           "AVGO"
+        ],
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
+        "watermarks": [
+          "SYSTEMATIC_TEMPLATE_OUTPUT"
+        ]
+      },
+      "watermark": "AI_GENERATED_MEMO"
+    },
+    {
+      "memo": "Watermark: AI_GENERATED_MEMO\nGenerated-At: 2026-06-08T23:43:04Z\n\n# Greenlight 2.0 AI Memo\n\nProvider: deterministic fallback\n\nDate: 2026-06-08\n\nRegime: RISK_ON\nRisk light: GREEN\nExecution: EXECUTE - Initial allocation from cash passed risk and drift gates.\n\nAgent policy note: this memo may summarize and flag risks, but it may not execute, override risk, or mutate allocation logic.\n",
+      "systematic_review": {
+        "as_of": "2026-06-08",
+        "benchmark_verdict": {
+          "agent_led_add_value": false,
+          "beat_200DMA": false,
+          "beat_QQQ": false,
+          "beat_SPY": false,
+          "beat_VIX_strategy": false,
+          "greenlight_failed_simple_benchmarks": true,
+          "learned_beat_fixed": false
+        },
+        "execution_decision": "EXECUTE",
+        "execution_reason": "Initial allocation from cash passed risk and drift gates.",
+        "generated_at": "2026-06-08T23:43:04Z",
+        "market_regime": "RISK_ON",
+        "memo_type": "systematic_template",
+        "risk_light": "GREEN",
+        "selected_etfs": [
+          "HACK",
+          "XLE",
+          "XLK",
+          "KRE",
+          "XLU"
+        ],
+        "top_stock_candidates": [
+          "AAPL",
+          "AMZN",
+          "PANW",
+          "JPM",
+          "CRWD",
+          "ETN",
+          "GOOGL",
+          "VRTX",
+          "V",
+          "COST"
         ],
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "watermarks": [
