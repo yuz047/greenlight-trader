@@ -60,9 +60,7 @@ greenlight-trader/
 └── .github/workflows/
 ```
 
-This repo now hosts Greenlight Trader 2.0. The previous Next/Supabase dashboard
-and V1 strategy modules have been retired from the active tree; legacy notes live
-under `legacy/`.
+This repository contains only the current Greenlight 2.0 implementation.
 
 ## Local Setup
 
@@ -137,10 +135,11 @@ PYTHONPATH=python python python/backtest.py \
   --train-start 2009-01-01 \
   --train-end 2021-12-31 \
   --invest-start 2022-01-01 \
-  --end-date 2026-06-02 \
+  --end-date "$(date -u +%F)" \
   --rolling-train-years 3 \
   --ai-memo-mode deepseek \
-  --ai-memo-frequency monthly
+  --ai-memo-frequency monthly \
+  --no-synthetic-fallback
 ```
 
 Research windows:
@@ -186,8 +185,8 @@ No frontend secret is required or allowed.
 
 ## GitHub Actions
 
-- `.github/workflows/daily.yml`: scheduled daily after the US close, validates keys, runs daily mode, validates outputs and watermarks, commits updated `data/*.json`.
-- `.github/workflows/backtest.yml`: manual backtest with `start_date` and `end_date` inputs, uploads artifacts.
+- `.github/workflows/daily.yml`: scheduled daily after the US close, runs live mode when repository secrets are configured, validates outputs and watermarks, commits updated `data/*.json`.
+- `.github/workflows/backtest.yml`: manual backtest with `start_date` and optional `end_date` inputs, clamps to the latest available market bar, uploads artifacts.
 - `.github/workflows/publish-dashboard.yml`: deploys the static dashboard at the GitHub Pages root and keeps `/web/` available.
 
 ## Massive Endpoints Used
@@ -215,14 +214,7 @@ remain Massive-first and do not use Yahoo fallback.
   testing; live decisions require Massive/Polygon data.
 - Historical analyst, ratings, price target, and fundamentals are used only
   when the API response confirms availability at the requested date.
-- ETF overlap is approximated through correlation in V1; holdings-level ETF
+- ETF overlap is approximated through correlation; holdings-level ETF
   overlap is left for a later data entitlement.
 - The agent-led track is a structured experimental mirror, not an autonomous
   trading agent.
-
-## TODO
-
-- Add holdings-level ETF overlap when a licensed source is available.
-- Add point-in-time analyst revision history if the data plan supports it.
-- Add richer slippage models for very small-cap equities.
-- Add human approval workflow for learned-weight promotion.

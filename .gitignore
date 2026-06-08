@@ -26,6 +26,8 @@ DEPLOY.md
 SETUP.md
 NOTES*.md
 TODO*.md
+work.md
+legacy/
 
 # OS / editors
 .DS_Store
