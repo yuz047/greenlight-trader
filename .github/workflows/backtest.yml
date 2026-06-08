@@ -8,9 +8,9 @@ on:
         required: true
         default: "2009-01-01"
       end_date:
-        description: "Backtest end date"
-        required: true
-        default: "2026-06-02"
+        description: "Backtest end date; blank uses current date and clamps to latest available SPY bar"
+        required: false
+        default: ""
       train_start:
         description: "Rolling learning source start date"
         required: true
@@ -59,12 +59,17 @@ jobs:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           DEEPSEEK_BASE_URL: ${{ secrets.DEEPSEEK_BASE_URL }}
           DEEPSEEK_MODEL: ${{ secrets.DEEPSEEK_MODEL }}
+          MASSIVE_FORCE_REFRESH: "1"
           PYTHONPATH: python
         run: |
-          ARGS="--start-date ${{ inputs.start_date }} --end-date ${{ inputs.end_date }}"
+          END_DATE="${{ inputs.end_date }}"
+          if [ -z "$END_DATE" ]; then
+            END_DATE="$(date -u +%F)"
+          fi
+          ARGS="--start-date ${{ inputs.start_date }} --end-date $END_DATE"
           ARGS="$ARGS --train-start ${{ inputs.train_start }} --train-end ${{ inputs.train_end }}"
           ARGS="$ARGS --invest-start ${{ inputs.invest_start }} --rolling-train-years ${{ inputs.rolling_train_years }}"
-          ARGS="$ARGS --ai-memo-mode deepseek --ai-memo-frequency monthly"
+          ARGS="$ARGS --ai-memo-mode deepseek --ai-memo-frequency monthly --no-synthetic-fallback"
           if [ -n "${{ inputs.max_symbols }}" ]; then
             ARGS="$ARGS --max-symbols ${{ inputs.max_symbols }}"
           fi

@@ -102,10 +102,12 @@ def run_backtest(
         loop_health["synthetic"] = False
         loop_health["source"] = "fallback.synthetic_research_only"
 
+    effective_end_date = _effective_end_date(end_date, price_history)
+
     print(
         (
             f"Backtest data loaded: {len(symbols)} symbols, initial train {train_start}..{train_end}, "
-            f"rolling {rolling_train_years}y, invest {invest_start}..{end_date}"
+            f"rolling {rolling_train_years}y, invest {invest_start}..{effective_end_date}"
         ),
         flush=True,
     )
@@ -114,7 +116,7 @@ def run_backtest(
         price_history=price_history,
         data_health=loop_health,
         train_start=train_start,
-        train_end=end_date,
+        train_end=effective_end_date,
         step_days=train_step_days,
     )
 
@@ -130,7 +132,7 @@ def run_backtest(
     latest_stock_learning = learn_weights([], "stock", as_of=train_end)
     latest_etf_learning = learn_weights([], "etf", as_of=train_end)
     latest_benchmarks: dict[str, Any] = {}
-    dates = pd.bdate_range(invest_start, end_date)
+    dates = pd.bdate_range(invest_start, effective_end_date)
     dates = dates[:: max(1, step_days)]
     total_invest_dates = len(dates)
     print(f"Investment replay dates: {total_invest_dates}", flush=True)
@@ -233,18 +235,18 @@ def run_backtest(
 
     strategy_equity = _equity_series(equity_rows)
     agent_equity = _equity_series(agent_equity_rows)
-    benchmark_history = _slice_history(price_history, invest_start, end_date)
+    benchmark_history = _slice_history(price_history, invest_start, effective_end_date)
     benchmarks = run_benchmarks(
         benchmark_history,
         strategy_equity=strategy_equity,
         learned_equity=strategy_equity,
         agent_equity=agent_equity,
-        as_of=end_date,
+        as_of=effective_end_date,
     )
     write_benchmark_outputs(benchmarks)
     write_comparison_report(benchmarks)
     write_learning_report(latest_stock_learning, latest_etf_learning)
-    review_candidate_weights(latest_stock_learning, end_date)
+    review_candidate_weights(latest_stock_learning, effective_end_date)
     write_json(DATA_DIR / "ai_reviews.json", add_watermark({"reviews": ai_review_history[-50:]}, SYSTEMATIC_TEMPLATE_OUTPUT))
 
     public_decision_history = [_public_decision_log(row) for row in decision_history]
@@ -252,7 +254,8 @@ def run_backtest(
     payload = add_watermark(
         {
             "start_date": start_date,
-            "end_date": end_date,
+            "end_date": effective_end_date,
+            "requested_end_date": end_date,
             "train_start": train_start,
             "initial_train_end": train_end,
             "invest_start": invest_start,
@@ -275,9 +278,9 @@ def run_backtest(
             },
             "weight_history": weight_history[-250:],
             "research_windows": {
-                "full": ["2009-01-01", end_date],
+                "full": ["2009-01-01", effective_end_date],
                 "initial_train": [train_start, train_end],
-                "investment_test": [invest_start, end_date],
+                "investment_test": [invest_start, effective_end_date],
                 "walk_forward": "rolling daily retraining; rows are allowed only when label_end_date < replay date",
             },
             "allow_synthetic_trading": allow_synthetic_trading,
@@ -530,6 +533,17 @@ def _slice_history(price_history: dict[str, pd.DataFrame], start_date: str, end_
         for symbol, frame in price_history.items()
         if frame is not None and not frame.empty
     }
+
+
+def _effective_end_date(end_date: str, price_history: dict[str, pd.DataFrame]) -> str:
+    spy = price_history.get(MANDATE.benchmark)
+    if spy is None or spy.empty:
+        return end_date
+    requested = pd.Timestamp(end_date)
+    available = spy.loc[spy.index <= requested]
+    if available.empty:
+        return end_date
+    return available.index[-1].date().isoformat()
 
 
 def _equity_series(rows: list[dict[str, Any]]) -> pd.Series:
