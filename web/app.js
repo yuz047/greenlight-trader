@@ -178,6 +178,16 @@ function latestLog(backtestLogs, backtestResults) {
   return logs.at(-1) || {};
 }
 
+function latestReplayDate(log, backtestResults, status) {
+  return (
+    log.date ||
+    (backtestResults.equity_curve || []).at(-1)?.date ||
+    backtestResults.end_date ||
+    status.latest_run_date ||
+    "n/a"
+  );
+}
+
 function targetRowsFromLog(log, fallbackRows) {
   const target = log.target_allocation || {};
   const rows = Object.entries(target)
@@ -240,9 +250,10 @@ async function main() {
   const spy = metric(benchmarkMetrics, "SPY_buy_hold");
   const qqq = metric(benchmarkMetrics, "QQQ_buy_hold");
   const finalEquity = (backtestResults.equity_curve || []).at(-1)?.equity || 0;
+  const replayDate = latestReplayDate(log, backtestResults, status);
   const light = log.risk_light || status.risk_light || "UNKNOWN";
   const lightKey = riskClass(light);
-  const dataHealth = status.data_health || log.data_health || {};
+  const dataHealth = log.data_health || status.data_health || {};
   const targetRows = targetRowsFromLog(log, targets.target_allocations || []);
   const targetSum = targetRows.reduce((sum, row) => sum + Number(row.weight || 0), 0);
   const replayLogs = backtestLogs.logs || [];
@@ -252,7 +263,7 @@ async function main() {
   document.getElementById("heroRisk").className = `value ${lightKey === "green" ? "num-pos" : lightKey === "red" ? "num-neg" : ""}`;
   document.getElementById("heroRegime").textContent = log.market_regime || status.market_regime || "n/a";
   document.getElementById("heroExecution").textContent = log.execution_decision || "n/a";
-  document.getElementById("allocationDate").textContent = `replay ${log.date || status.latest_run_date || "n/a"}`;
+  document.getElementById("allocationDate").textContent = `replay ${replayDate}`;
   renderAllocationTrack(targetRows);
 
   const banner = document.getElementById("statusBanner");
@@ -268,11 +279,11 @@ async function main() {
   document.getElementById("statusData").innerHTML = dataHealth.ok
     ? `<span class="num-pos">ok</span>${dataHealth.secondary_source_symbols?.length ? ` · ${escapeHtml(dataHealth.secondary_source_symbols.join(", "))}` : ""}`
     : `<span class="num-neg">stale</span>`;
-  document.getElementById("statusDate").textContent = `as of ${log.date || status.latest_run_date || "n/a"}`;
+  document.getElementById("statusDate").textContent = `as of ${replayDate}`;
 
   const rolling = backtestResults.rolling_training || {};
   document.getElementById("resultsKpis").innerHTML = [
-    kpi("Final equity", fmtUsd(finalEquity), `${backtestResults.invest_start} to ${backtestResults.end_date}`),
+    kpi("Final equity", fmtUsd(finalEquity), `${backtestResults.invest_start} ~ ${replayDate}`),
     kpi("Total return", fmtPct(green.total_return, 2, true), `SPY ${fmtPct(spy.total_return, 2, true)}`, numberClass(green.total_return)),
     kpi("CAGR", fmtPct(green.CAGR, 2, true), `QQQ ${fmtPct(qqq.CAGR, 2, true)}`, numberClass(green.CAGR)),
     kpi("Sharpe", fmtNum(green.Sharpe), "risk adjusted"),
@@ -284,7 +295,7 @@ async function main() {
   ].join("");
   renderWeightTable(backtestResults.latest_learned_weights || {});
 
-  document.getElementById("portfolioAsOf").textContent = `replay ${log.date || "n/a"}`;
+  document.getElementById("portfolioAsOf").textContent = `replay ${replayDate}`;
   document.getElementById("portfolioKpis").innerHTML = [
     kpi("Replay NAV", fmtUsd(finalEquity), `starting ${fmtUsd(5000, 0)}`),
     kpi("Daily paper NAV", fmtUsd(portfolio.nav), `state file ${portfolio.date || "n/a"}`),
@@ -303,7 +314,7 @@ async function main() {
     )
   );
 
-  document.getElementById("executionTurnover").textContent = `latest · ${log.date || "n/a"}`;
+  document.getElementById("executionTurnover").textContent = `latest · ${replayDate}`;
   document.getElementById("executionKpis").innerHTML = [
     kpi("Decision", log.execution_decision || "n/a", log.execution_reason || ""),
     kpi("Risk light", light, log.market_regime || "n/a", lightKey === "green" ? "num-pos" : lightKey === "red" ? "num-neg" : ""),
