@@ -47,6 +47,19 @@ jobs:
           PYTHONPATH: python
         run: python python/run_daily.py
 
+      - name: Update public replay data
+        if: steps.live-data.outputs.enabled == 'true'
+        env:
+          MASSIVE_API_KEY: ${{ secrets.MASSIVE_API_KEY }}
+          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
+          MASSIVE_API_BASE_URL: ${{ secrets.MASSIVE_API_BASE_URL }}
+          MASSIVE_FORCE_REFRESH: "1"
+          PYTHONPATH: python
+        run: |
+          python python/update_production_replay_curve.py
+          python python/update_public_benchmarks.py
+          python python/build_production_public_data.py
+
       - name: Validate outputs
         env:
           PYTHONPATH: python

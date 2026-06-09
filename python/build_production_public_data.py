@@ -64,7 +64,7 @@ def main() -> None:
         {
             "start_date": "2009-01-01",
             "end_date": labels[-1],
-            "requested_end_date": "2026-06-07",
+            "requested_end_date": labels[-1],
             "train_start": "2009-01-01",
             "initial_train_end": "2021-12-31",
             "invest_start": labels[0],

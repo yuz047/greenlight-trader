@@ -71,6 +71,8 @@ jobs:
             ARGS="$ARGS --max-symbols ${{ inputs.max_symbols }}"
           fi
           python python/backtest.py $ARGS
+          python python/update_production_replay_curve.py --end-date "$END_DATE"
+          python python/update_public_benchmarks.py --end-date "$END_DATE"
           python python/build_production_public_data.py
 
       - name: Validate reports
