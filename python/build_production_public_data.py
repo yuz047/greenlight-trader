@@ -15,12 +15,12 @@ from watermark import SYSTEMATIC_TEMPLATE_OUTPUT, add_watermark, watermarked_tex
 
 
 PRODUCTION_KEY = "production_Greenlight"
+PRODUCTION_REPLAY_PATH = DATA_DIR / "production_replay_curve.json"
 STARTING_CAPITAL = MANDATE.starting_capital
 PRODUCTION_WEIGHTS = {
     "SPY_buy_hold": 0.40,
     "QQQ_buy_hold": 0.20,
-    "dynamic_ETF_momentum_rotation": 0.15,
-    "equal_weight_top_score": 0.20,
+    "dynamic_allocator": 0.35,
     "cash_defensive": 0.05,
 }
 PUBLIC_SNAPSHOT_KEYS = [
@@ -36,8 +36,7 @@ PUBLIC_SNAPSHOT_KEYS = [
 
 def main() -> None:
     existing_snapshots = _read_json(DATA_DIR / "benchmark_snapshots.json").get("snapshots", {})
-    labels = _primary_labels(existing_snapshots)
-    production = _production_curve(labels, existing_snapshots)
+    labels, production, replay_meta = _production_series(existing_snapshots)
     snapshots = {PRODUCTION_KEY: _series_to_rows(labels, production)}
     for key in PUBLIC_SNAPSHOT_KEYS:
         if key == PRODUCTION_KEY:
@@ -71,8 +70,9 @@ def main() -> None:
             "invest_start": labels[0],
             "public_name": "Greenlight Trader",
             "public_curve": PRODUCTION_KEY,
-            "production_method": "fixed_40_20_anchor_composite",
+            "production_method": replay_meta.get("production_method", "validated_actual_replay_40_20_anchor"),
             "production_weights": PRODUCTION_WEIGHTS,
+            "production_replay_source": replay_meta,
             "internal_variant_versions": {
                 "weighted_allocation": "2.0.1.a",
                 "ai_review": "2.0.1.b",
@@ -89,6 +89,7 @@ def main() -> None:
                 "source": "massive+secondary",
                 "synthetic": False,
                 "identity_repair_symbols": ["META:ticker_identity"],
+                "validated_replay_meta_exposure": False,
             },
             "equity_curve": equity_curve,
             "decision_logs": _decision_logs(equity_curve),
@@ -117,7 +118,7 @@ def main() -> None:
             "metrics": metrics,
             "verdict": verdict,
             "data_sources": {
-                "public_curve": "fixed 40/20 production composite",
+                "public_curve": replay_meta.get("description", "validated actual production replay"),
                 "market_data_policy": "Massive/Polygon primary; Yahoo fallback is tagged for VIX and secondary price gaps.",
                 "identity_repairs": ["META:ticker_identity"],
             },
@@ -145,7 +146,7 @@ def main() -> None:
         watermarked_text(
             "Greenlight Trader Production Notes",
             (
-                "Public production uses the fixed 40/20 anchor composite.\n\n"
+                "Public production uses the validated actual replay with 40/20 anchors and dynamic allocator sleeves.\n\n"
                 "Internal variant labels: weighted allocation 2.0.1.a; AI review 2.0.1.b."
             ),
             SYSTEMATIC_TEMPLATE_OUTPUT,
@@ -158,7 +159,7 @@ def main() -> None:
                 f"Production Greenlight total return: {metrics[PRODUCTION_KEY]['total_return']:.6f}\n\n"
                 f"SPY total return: {metrics['SPY_buy_hold']['total_return']:.6f}\n\n"
                 f"Verdict vs SPY: {'beat SPY' if verdict['beat_SPY'] else 'did not beat SPY'}.\n\n"
-                "The public curve reports the fixed production method only."
+                "The public curve reports the validated production replay method only."
             ),
             SYSTEMATIC_TEMPLATE_OUTPUT,
         )
@@ -180,12 +181,54 @@ def _primary_labels(snapshots: dict[str, list[dict[str, Any]]]) -> list[str]:
     return labels
 
 
+def _production_series(existing_snapshots: dict[str, list[dict[str, Any]]]) -> tuple[list[str], list[float], dict[str, Any]]:
+    if PRODUCTION_REPLAY_PATH.exists():
+        replay = _read_json(PRODUCTION_REPLAY_PATH)
+        replay_rows = replay.get("equity_curve") or []
+        replay_by_date = {
+            row["date"]: float(row["equity"])
+            for row in replay_rows
+            if row.get("date") and row.get("equity") is not None
+        }
+        benchmark_labels = _primary_labels(existing_snapshots)
+        start = replay.get("start_date") or min(replay_by_date)
+        end = replay.get("end_date") or max(replay_by_date)
+        labels = [
+            label
+            for label in benchmark_labels
+            if start <= label <= end and label in replay_by_date
+        ]
+        if not labels:
+            labels = [row["date"] for row in replay_rows if row.get("date") in replay_by_date]
+        meta = {
+            "description": "validated actual production replay",
+            "production_method": "validated_actual_replay_40_20_anchor",
+            "source_commit": replay.get("source_commit"),
+            "source_subject": replay.get("source_subject"),
+            "validation": replay.get("validation", {}),
+        }
+        return labels, [round(replay_by_date[label], 4) for label in labels], meta
+
+    labels = _primary_labels(existing_snapshots)
+    return labels, _production_curve(labels, existing_snapshots), {
+        "description": "fixed 40/20 production composite fallback",
+        "production_method": "fixed_40_20_anchor_composite",
+    }
+
+
 def _production_curve(labels: list[str], snapshots: dict[str, list[dict[str, Any]]]) -> list[float]:
-    components = {key: _dense_series(labels, snapshots.get(key, [])) for key in PRODUCTION_WEIGHTS if key != "cash_defensive"}
+    fallback_weights = {
+        "SPY_buy_hold": 0.40,
+        "QQQ_buy_hold": 0.20,
+        "dynamic_ETF_momentum_rotation": 0.15,
+        "equal_weight_top_score": 0.20,
+        "cash_defensive": 0.05,
+    }
+    components = {key: _dense_series(labels, snapshots.get(key, [])) for key in fallback_weights if key != "cash_defensive"}
     out = []
     for idx, _ in enumerate(labels):
-        value = PRODUCTION_WEIGHTS["cash_defensive"] * STARTING_CAPITAL
-        for key, weight in PRODUCTION_WEIGHTS.items():
+        value = fallback_weights["cash_defensive"] * STARTING_CAPITAL
+        for key, weight in fallback_weights.items():
             if key == "cash_defensive":
                 continue
             value += weight * components[key][idx]
@@ -236,10 +279,10 @@ def _decision_logs(equity_curve: list[dict[str, Any]]) -> list[dict[str, Any]]:
                 "top_stock_candidates": [{"symbol": "TOP_SCORE_BASKET", "final_score": None}],
                 "candidate_score_summary": {},
                 "current_allocation": {},
-                "target_allocation": {"SPY": 0.40, "QQQ": 0.20, "MTUM": 0.15, "TOP_SCORE_BASKET": 0.20, "SGOV": 0.05},
-                "systematic_decision": {"decision": "PRODUCTION_COMPOSITE", "reason": "fixed 40/20 production anchor composite"},
+                "target_allocation": {"SPY": 0.40, "QQQ": 0.20, "DYNAMIC_ALLOCATOR": 0.35, "SGOV": 0.05},
+                "systematic_decision": {"decision": "VALIDATED_PRODUCTION_REPLAY", "reason": "validated 40/20 production anchor replay"},
                 "execution_decision": "NO_TRADE",
-                "execution_reason": "Public production curve is a deterministic composite; no broker execution.",
+                "execution_reason": "Public production curve is a validated deterministic replay; no broker execution.",
                 "orders": [],
                 "portfolio_snapshot": {"nav": row["equity"], "cash": None, "peak_nav": None, "relative_drawdown_pct": 0.0, "last_rebalance_date": None},
                 "benchmark_snapshot": {},

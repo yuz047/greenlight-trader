@@ -294,7 +294,7 @@ async function main() {
     kpi("Alpha vs SPY", fmtPct(green.alpha_vs_SPY, 2, true), "test window", numberClass(green.alpha_vs_SPY)),
     kpi("Initial train", `${backtestResults.train_start} ~ ${backtestResults.initial_train_end}`, "pre-replay"),
     kpi("Replay start", backtestResults.invest_start || "n/a", "daily loop begins"),
-    kpi("Production mix", "40 / 20 anchor", "fixed public curve"),
+    kpi("Production replay", "40 / 20 anchor", "validated public curve"),
   ].join("");
   renderProductionMixTable(backtestResults.production_weights || {});
 
@@ -427,12 +427,11 @@ function renderProductionMixTable(weights) {
   const labels = {
     SPY_buy_hold: "SPY anchor",
     QQQ_buy_hold: "QQQ anchor",
-    dynamic_ETF_momentum_rotation: "ETF rotation sleeve",
-    equal_weight_top_score: "Top-score sleeve",
+    dynamic_allocator: "Dynamic allocator",
     cash_defensive: "Defensive cash",
   };
   const rows = Object.entries(weights || {}).map(([key, value]) => (
-    `<tr><td class="symbol">${escapeHtml(labels[key] || key)}</td><td class="right">${fmtPct(value, 2)}</td><td>${escapeHtml(key)}</td><td>fixed production mix</td></tr>`
+    `<tr><td class="symbol">${escapeHtml(labels[key] || key)}</td><td class="right">${fmtPct(value, 2)}</td><td>${escapeHtml(key)}</td><td>validated replay budget</td></tr>`
   ));
   renderTable("weightsTable", ["Sleeve", "Target", "Source", "Note"], rows);
 }
