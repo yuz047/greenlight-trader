@@ -29,6 +29,14 @@ async function loadJson(name) {
   throw lastError || new Error(`${name}: unavailable`);
 }
 
+async function loadOptionalJson(name, fallback = null) {
+  try {
+    return await loadJson(name);
+  } catch {
+    return fallback;
+  }
+}
+
 function fmtPct(value, digits = 2, signed = false) {
   const num = Number(value || 0);
   const sign = signed && num > 0 ? "+" : "";
@@ -231,6 +239,7 @@ async function main() {
     aiReviews,
     backtestResults,
     backtestLogs,
+    plotData,
   ] = await Promise.all([
     loadJson("system_status.json"),
     loadJson("portfolio_state.json"),
@@ -243,6 +252,7 @@ async function main() {
     loadJson("ai_reviews.json"),
     loadJson("backtest_results.json"),
     loadJson("backtest_decision_logs.json"),
+    loadOptionalJson("greenlight_plot_data.json", null),
   ]);
 
   const log = latestLog(backtestLogs, backtestResults);
@@ -358,8 +368,8 @@ async function main() {
     )
   );
 
-  renderChart(backtestResults, benchmarkSnapshots);
-  renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots);
+  renderChart(backtestResults, benchmarkSnapshots, plotData);
+  renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots, plotData);
 
   const metricRows = Object.entries(benchmarkMetrics.metrics || {}).map(([name, row]) => {
     return `<tr><td class="symbol">${escapeHtml(name)}</td><td class="right ${numberClass(row.total_return)}">${fmtPct(row.total_return, 2, true)}</td><td class="right">${fmtNum(row.Sharpe, 2)}</td><td class="right num-neg">${fmtPct(row.max_drawdown)}</td><td class="right ${numberClass(row.alpha_vs_SPY)}">${fmtPct(row.alpha_vs_SPY, 2, true)}</td></tr>`;
@@ -443,7 +453,14 @@ function renderWeightTable(weights) {
   renderTable("weightsTable", ["Sleeve", "Weight", "Value", "Note"], rows);
 }
 
-function renderChart(backtestResults, benchmarkSnapshots) {
+function renderChart(backtestResults, benchmarkSnapshots, plotData) {
+  if (plotData?.labels?.length && plotData?.series?.length) {
+    const selected = plotData.series.filter((item) => ["Greenlight", "SPY", "QQQ"].includes(item.label));
+    if (selected.length >= 3) {
+      renderStoredChart("equityChart", "Greenlight vs SPY and QQQ", plotData.labels, normalizePlotSeries(selected));
+      return;
+    }
+  }
   const local = (backtestResults.equity_curve || []).map((row) => ({ date: row.date, equity: Number(row.equity || 0) }));
   const spy = benchmarkSnapshots.snapshots?.SPY_buy_hold || [];
   const qqq = benchmarkSnapshots.snapshots?.QQQ_buy_hold || [];
@@ -456,7 +473,13 @@ function renderChart(backtestResults, benchmarkSnapshots) {
   renderStoredChart("equityChart", "Greenlight vs SPY and QQQ", labels, series);
 }
 
-function renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots) {
+function renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots, plotData) {
+  if (plotData?.labels?.length && plotData?.series?.length) {
+    const pointCount = document.getElementById("benchmarkPointCount");
+    if (pointCount) pointCount.textContent = `${plotData.labels.length.toLocaleString("en-US")} daily points`;
+    renderStoredChart("benchmarkComparisonChart", "Benchmark comparison", plotData.labels, normalizePlotSeries(plotData.series));
+    return;
+  }
   const snapshots = benchmarkSnapshots.snapshots || {};
   const local = (backtestResults.equity_curve || []).map((row) => ({ date: row.date, equity: Number(row.equity || 0) }));
   const labels = local.map((row) => row.date);
@@ -481,6 +504,16 @@ function renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots) {
   const pointCount = document.getElementById("benchmarkPointCount");
   if (pointCount) pointCount.textContent = `${labels.length.toLocaleString("en-US")} daily points`;
   renderStoredChart("benchmarkComparisonChart", "Benchmark comparison", labels, series);
+}
+
+function normalizePlotSeries(series) {
+  return (series || []).map((item, idx) => ({
+    label: item.label || item.key || `Series ${idx + 1}`,
+    color: item.color || SEGMENT_COLORS[idx % SEGMENT_COLORS.length],
+    width: Number(item.width || 1.5),
+    dash: item.dash,
+    values: (item.values || []).map((value) => (value == null ? null : Number(value))),
+  }));
 }
 
 function renderStoredChart(canvasId, title, labels, series) {
