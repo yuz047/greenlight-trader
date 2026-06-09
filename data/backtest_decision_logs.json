@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-09T17:41:37Z",
+  "generated_at": "2026-06-09T23:48:31Z",
   "logs": [
     {
       "benchmark_snapshot": {},
@@ -54855,7 +54855,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9768.3011,
+        "nav": 9768.301,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },

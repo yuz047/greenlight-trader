@@ -60976,7 +60976,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9768.3011,
+        "nav": 9768.301,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -65559,7 +65559,7 @@
     },
     {
       "date": "2026-06-04",
-      "equity": 9768.3011
+      "equity": 9768.301
     },
     {
       "date": "2026-06-05",
@@ -65570,7 +65570,7 @@
       "equity": 9551.2012
     }
   ],
-  "generated_at": "2026-06-09T17:41:37Z",
+  "generated_at": "2026-06-09T23:48:31Z",
   "initial_train_end": "2021-12-31",
   "internal_variant_versions": {
     "ai_review": "2.0.1.b",
