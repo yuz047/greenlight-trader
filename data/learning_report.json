@@ -1,42 +1,12 @@
 {
-  "etf": {
-    "approved_for_production": false,
-    "as_of": "2026-06-08",
-    "asset_type": "etf",
-    "generated_at": "2026-06-08T23:43:04Z",
-    "method": "ridge",
-    "reason": "insufficient_training_data_default_weights_retained",
-    "watermark": "ML_ESTIMATED_OUTPUT",
-    "watermarks": [
-      "ML_ESTIMATED_OUTPUT"
-    ],
-    "weights": {
-      "diversification": 0.2,
-      "leadership": 0.4,
-      "regime_fit": 0.25,
-      "timing": 0.15
-    }
+  "generated_at": "2026-06-09T14:25:27Z",
+  "internal_variant_versions": {
+    "ai_review": "2.0.1.b",
+    "weighted_allocation": "2.0.1.a"
   },
-  "generated_at": "2026-06-08T23:43:04Z",
-  "stock": {
-    "approved_for_production": false,
-    "as_of": "2026-06-08",
-    "asset_type": "stock",
-    "generated_at": "2026-06-08T23:43:04Z",
-    "method": "ridge",
-    "reason": "insufficient_training_data_default_weights_retained",
-    "watermark": "ML_ESTIMATED_OUTPUT",
-    "watermarks": [
-      "ML_ESTIMATED_OUTPUT"
-    ],
-    "weights": {
-      "information": 0.5,
-      "leadership": 0.3,
-      "timing": 0.2
-    }
-  },
-  "watermark": "ML_ESTIMATED_OUTPUT",
+  "public_production": true,
+  "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
-    "ML_ESTIMATED_OUTPUT"
+    "SYSTEMATIC_TEMPLATE_OUTPUT"
   ]
 }

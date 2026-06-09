@@ -1,6 +1,6 @@
-# Greenlight 2.0
+# Greenlight Trader
 
-Greenlight 2.0 is a Massive-first, systematic, sparse-execution paper trading allocator.
+Greenlight Trader is a Massive-first, systematic, sparse-execution paper trading allocator.
 It observes daily, discovers stocks and ETFs dynamically, scores candidates with
 information, leadership, timing, and risk features, then produces deterministic
 target weights subject to strict risk and execution gates.
@@ -15,7 +15,8 @@ Paper trading only. No broker connection. Not investment advice.
 - Cash/SHY/SGOV are defensive proxies.
 - Sector, industry, factor, theme, rates, and defensive ETFs must earn allocation dynamically.
 - The production track is deterministic.
-- Agent-led decisions are experimental, watermarked, compared, and never executable.
+- The public production result uses the fixed 40/20 anchor composite.
+- Internal variant labels are tracked separately: weighted allocation `2.0.1.a`; AI review `2.0.1.b`.
 - Every generated report, memo, decision, and validation output is watermarked.
 - Backtests must avoid lookahead. Unavailable historical point-in-time data is marked unavailable.
 
@@ -60,7 +61,7 @@ greenlight-trader/
 └── .github/workflows/
 ```
 
-This repository contains only the current Greenlight 2.0 implementation.
+This repository contains the current Greenlight Trader production implementation.
 
 ## Local Setup
 
@@ -77,13 +78,6 @@ Live Massive/Polygon data requires one of:
 export MASSIVE_API_KEY="..."
 # or
 export POLYGON_API_KEY="..."
-```
-
-Optional GenAI memos use DeepSeek:
-
-```bash
-export DEEPSEEK_API_KEY="..."
-export DEEPSEEK_MODEL="deepseek-v4-pro"
 ```
 
 You can also put these values in a local `.env` file. `.env` is gitignored.

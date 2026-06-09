@@ -1,4 +1,4 @@
-"""Backtest engine for Greenlight 2.0."""
+"""Backtest engine for Greenlight Trader."""
 from __future__ import annotations
 
 import argparse

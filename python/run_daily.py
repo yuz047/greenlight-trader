@@ -1,4 +1,4 @@
-"""Daily Greenlight 2.0 runner."""
+"""Daily Greenlight Trader runner."""
 from __future__ import annotations
 
 from datetime import date, timedelta
@@ -6,11 +6,7 @@ from typing import Any
 
 import pandas as pd
 
-from adaptive_monitor import evaluate_adaptive_triggers
-from agent_decision import build_agent_led_decision
-from ai_review import append_ai_review, build_ai_memo, build_systematic_review
 from allocator import allocate_targets, write_target_allocations
-from comparison_report import write_comparison_report
 from config import DATA_DIR, MANDATE
 from data_contracts import read_json, write_json
 from decision_log import append_decision_log, build_decision_log, load_decision_history
@@ -22,11 +18,9 @@ from portfolio import PaperPortfolio
 from regime import determine_regime
 from risk import evaluate_risk, write_risk_status
 from scoring import score_candidates, write_candidate_scores
-from strategy_benchmarks import run_benchmarks, write_benchmark_outputs
+from strategy_benchmarks import run_benchmarks
 from universe import build_universe, candidate_symbols, write_candidate_universe
 from watermark import SYSTEMATIC_TEMPLATE_OUTPUT, add_watermark
-from weight_learning import learn_weights, write_learning_report
-from weight_review import review_candidate_weights
 
 
 def main() -> None:
@@ -75,16 +69,7 @@ def main() -> None:
 
     strategy_equity = _strategy_equity_from_snapshots(portfolio.nav(), as_of)
     benchmark_payload = run_benchmarks(price_history, strategy_equity=strategy_equity, as_of=as_of)
-    write_benchmark_outputs(benchmark_payload)
-    write_comparison_report(benchmark_payload)
 
-    stock_learning = learn_weights([], "stock", as_of=as_of)
-    etf_learning = learn_weights([], "etf", as_of=as_of)
-    write_learning_report(stock_learning, etf_learning)
-    review_candidate_weights(stock_learning, as_of)
-    evaluate_adaptive_triggers(benchmark_payload, as_of)
-
-    agent_payload = build_agent_led_decision(target_payload, score_payload, risk_payload, as_of)
     benchmark_snapshot = _benchmark_snapshot(price_history, benchmark_payload)
     decision_payload = build_decision_log(
         universe_payload,
@@ -94,15 +79,12 @@ def main() -> None:
         target_payload,
         risk_payload,
         execution_payload,
-        agent_payload,
+        {},
         portfolio.snapshot(),
         benchmark_snapshot,
         as_of,
     )
     decision_logs_payload = append_decision_log(decision_payload)
-    review = build_systematic_review(decision_payload, benchmark_payload, as_of)
-    memo = build_ai_memo(review)
-    append_ai_review(review, memo)
 
     _append_snapshot(portfolio, benchmark_snapshot, risk_payload, regime_payload, execution_payload, as_of)
     _write_system_status(as_of, data_health, risk_payload, regime_payload, client.availability_report(), decision_logs_payload)

@@ -174,11 +174,7 @@ function metric(metrics, key) {
 }
 
 function greenMetric(metrics) {
-  return (
-    metric(metrics, "learned_weight_Greenlight").total_return != null
-      ? metric(metrics, "learned_weight_Greenlight")
-      : metric(metrics, "fixed_weight_Greenlight")
-  );
+  return metric(metrics, "production_Greenlight");
 }
 
 function latestLog(backtestLogs, backtestResults) {
@@ -236,7 +232,6 @@ async function main() {
     execution,
     benchmarkMetrics,
     benchmarkSnapshots,
-    aiReviews,
     backtestResults,
     backtestLogs,
     plotData,
@@ -249,7 +244,6 @@ async function main() {
     loadJson("execution_decisions.json"),
     loadJson("benchmark_metrics.json"),
     loadJson("benchmark_snapshots.json"),
-    loadJson("ai_reviews.json"),
     loadJson("backtest_results.json"),
     loadJson("backtest_decision_logs.json"),
     loadOptionalJson("greenlight_plot_data.json", null),
@@ -291,7 +285,6 @@ async function main() {
     : `<span class="num-neg">stale</span>`;
   document.getElementById("statusDate").textContent = `as of ${replayDate}`;
 
-  const rolling = backtestResults.rolling_training || {};
   document.getElementById("resultsKpis").innerHTML = [
     kpi("Final equity", fmtUsd(finalEquity), `${backtestResults.invest_start} ~ ${replayDate}`),
     kpi("Total return", fmtPct(green.total_return, 2, true), `SPY ${fmtPct(spy.total_return, 2, true)}`, numberClass(green.total_return)),
@@ -301,9 +294,9 @@ async function main() {
     kpi("Alpha vs SPY", fmtPct(green.alpha_vs_SPY, 2, true), "test window", numberClass(green.alpha_vs_SPY)),
     kpi("Initial train", `${backtestResults.train_start} ~ ${backtestResults.initial_train_end}`, "pre-replay"),
     kpi("Replay start", backtestResults.invest_start || "n/a", "daily loop begins"),
-    kpi("Rolling window", `${rolling.window_years || "n/a"} years`, `updates ${rolling.updates || 0}`),
+    kpi("Production mix", "40 / 20 anchor", "fixed public curve"),
   ].join("");
-  renderWeightTable(backtestResults.latest_learned_weights || {});
+  renderProductionMixTable(backtestResults.production_weights || {});
 
   document.getElementById("portfolioAsOf").textContent = `replay ${replayDate}`;
   document.getElementById("portfolioKpis").innerHTML = [
@@ -312,7 +305,6 @@ async function main() {
     kpi("Cash", fmtUsd(log.portfolio_snapshot?.cash ?? portfolio.cash), "latest replay cash"),
     kpi("Relative DD", fmtPct(log.portfolio_snapshot?.relative_drawdown_pct ?? portfolio.relative_drawdown_pct), "vs SPY mandate", Number(log.portfolio_snapshot?.relative_drawdown_pct || 0) > 0 ? "num-neg" : ""),
     kpi("Data source", dataHealth.source || "n/a", dataHealth.synthetic ? "synthetic" : "Massive-first / tagged fallback"),
-    kpi("Memo", memoProvider(aiReviews), "watermarked"),
   ].join("");
 
   document.getElementById("targetSum").textContent = `sum · ${fmtPct(targetSum, 1)}`;
@@ -386,17 +378,15 @@ async function main() {
     })
   );
 
-  document.getElementById("memoProvider").textContent = `memo · ${memoProvider(aiReviews)}`;
-  const reviews = aiReviews.reviews || [];
+  document.getElementById("scopeProvider").textContent = "public production";
   renderTable(
-    "aiTable",
-    ["Date", "Watermark", "Provider", "Regime", "Risk", "Execution"],
-    reviews.slice(-8).reverse().map((row) => {
-      const review = row.systematic_review || {};
-      const memo = row.memo || "";
-      const provider = memo.includes("Model: deepseek-v4-pro") ? "DeepSeek v4 Pro" : memo.includes("Provider: DeepSeek") ? "DeepSeek" : "Template";
-      return `<tr><td class="symbol">${escapeHtml(review.as_of || row.date || "")}</td><td>${escapeHtml(row.watermark || review.watermark || "")}</td><td>${provider}</td><td>${escapeHtml(review.market_regime || "")}</td><td>${escapeHtml(review.risk_light || "")}</td><td>${escapeHtml(review.execution_decision || "")}</td></tr>`;
-    })
+    "scopeTable",
+    ["Scope", "Status", "Use"],
+    [
+      `<tr><td class="symbol">Production curve</td><td>public</td><td>fixed 40/20 anchor composite</td></tr>`,
+      `<tr><td class="symbol">Execution</td><td>paper only</td><td>no broker connection</td></tr>`,
+      `<tr><td class="symbol">Data</td><td>tagged</td><td>Massive-first with documented Yahoo fallback</td></tr>`,
+    ]
   );
 
   wireReportLinks();
@@ -410,14 +400,6 @@ function statusReason(light, dataHealth, log) {
   if (log.execution_reason) parts.push(log.execution_reason);
   if (!parts.length) parts.push(`${light} risk state`);
   return parts.join(". ");
-}
-
-function memoProvider(aiReviews) {
-  const last = (aiReviews.reviews || []).at(-1) || {};
-  const memo = last.memo || "";
-  if (memo.includes("Model: deepseek-v4-pro")) return "DeepSeek v4 Pro";
-  if (memo.includes("Provider: DeepSeek")) return "DeepSeek";
-  return "Template";
 }
 
 function renderAllocationTrack(rows) {
@@ -441,16 +423,18 @@ function renderAllocationTrack(rows) {
   });
 }
 
-function renderWeightTable(weights) {
-  const rows = [];
-  for (const [assetType, values] of Object.entries(weights || {})) {
-    for (const [name, value] of Object.entries(values || {})) {
-      rows.push(
-        `<tr><td class="symbol">${escapeHtml(assetType)}</td><td>${escapeHtml(name)}</td><td class="right">${fmtPct(value, 2)}</td><td>${escapeHtml(assetType === "etf" && Number(value) === 1 ? "watch for overfit" : "rolling learned")}</td></tr>`
-      );
-    }
-  }
-  renderTable("weightsTable", ["Sleeve", "Weight", "Value", "Note"], rows);
+function renderProductionMixTable(weights) {
+  const labels = {
+    SPY_buy_hold: "SPY anchor",
+    QQQ_buy_hold: "QQQ anchor",
+    dynamic_ETF_momentum_rotation: "ETF rotation sleeve",
+    equal_weight_top_score: "Top-score sleeve",
+    cash_defensive: "Defensive cash",
+  };
+  const rows = Object.entries(weights || {}).map(([key, value]) => (
+    `<tr><td class="symbol">${escapeHtml(labels[key] || key)}</td><td class="right">${fmtPct(value, 2)}</td><td>${escapeHtml(key)}</td><td>fixed production mix</td></tr>`
+  ));
+  renderTable("weightsTable", ["Sleeve", "Target", "Source", "Note"], rows);
 }
 
 function renderChart(backtestResults, benchmarkSnapshots, plotData) {
@@ -489,7 +473,6 @@ function renderBenchmarkComparisonChart(backtestResults, benchmarkSnapshots, plo
     ["VIX_20_15_strategy", "VIX 20/15", "#9b2c1f", 1.5, [3, 5]],
     ["SPY_200DMA_trend", "SPY 200DMA", "#2f6a4a", 1.6],
     ["dynamic_ETF_momentum_rotation", "ETF rotation", "#256f8f", 1.7],
-    ["agent_led_experimental", "Agent track", "#5f4b8b", 1.4, [8, 5]],
   ].filter(([key]) => snapshots[key]?.length);
   const series = [
     { label: "Greenlight", color: "#1f3a5f", width: 2.8, values: denseSeries(labels, local) },

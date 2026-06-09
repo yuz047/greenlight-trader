@@ -12,13 +12,13 @@ from watermark import SYSTEMATIC_TEMPLATE_OUTPUT, add_watermark
 
 
 PLOT_SERIES = [
-    ("learned_weight_Greenlight", "Greenlight", "#1f3a5f", 2.7, None),
+    ("production_Greenlight", "Greenlight", "#1f3a5f", 2.7, None),
     ("SPY_buy_hold", "SPY", "#767a82", 1.5, [6, 5]),
     ("QQQ_buy_hold", "QQQ", "#b45309", 1.5, None),
     ("VIX_20_15_strategy", "VIX 20/15", "#9b2c1f", 1.4, [3, 5]),
     ("SPY_200DMA_trend", "SPY 200DMA", "#2f6a4a", 1.5, None),
     ("dynamic_ETF_momentum_rotation", "ETF rotation", "#256f8f", 1.6, None),
-    ("agent_led_experimental", "Agent track", "#5f4b8b", 1.3, [8, 5]),
+    ("equal_weight_top_score", "Top-score sleeve", "#2f6a4a", 1.5, None),
 ]
 
 
@@ -33,7 +33,7 @@ def main() -> None:
 
     labels = [str(row["date"]) for row in equity_curve if row.get("date")]
     snapshots = dict(benchmark_snapshots.get("snapshots") or {})
-    snapshots["learned_weight_Greenlight"] = [
+    snapshots["production_Greenlight"] = [
         {"date": row["date"], "equity": row["equity"]}
         for row in equity_curve
         if row.get("date") and row.get("equity") is not None

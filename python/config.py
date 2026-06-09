@@ -1,4 +1,4 @@
-"""Central configuration for Greenlight 2.0.
+"""Central configuration for Greenlight Trader.
 
 The constants in this file define the mandate and guardrails. They should stay
 boring and explicit: production behavior is deterministic and reviewable.

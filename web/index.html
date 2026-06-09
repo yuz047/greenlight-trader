@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Greenlight Trader 2.0</title>
+    <title>Greenlight Trader</title>
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
@@ -29,10 +29,10 @@
           <div class="hero-grid">
             <div class="hero-copy">
               <div class="eyebrow">Systematic replay and paper allocation</div>
-              <h1>Greenlight Trader 2.0</h1>
+              <h1>Greenlight Trader</h1>
               <p class="lede">
-                Massive-first market discovery, rolling learned weights, deterministic allocation,
-                sparse execution, benchmark comparison, and watermarked AI review logs.
+                Massive-first market discovery, deterministic 40/20 anchor allocation,
+                benchmark comparison, and static production reporting.
               </p>
             </div>
 
@@ -91,10 +91,10 @@
             <div class="panel-head">
               <div>
                 <div class="eyebrow">Summary</div>
-                <h2>Replay result and learning window</h2>
-                <p class="subtitle">Train through 2021, invest from 2022, and replay the same daily feedback loop used by paper mode.</p>
+                <h2>Production result</h2>
+                <p class="subtitle">Fixed 40/20 anchor composite, measured daily from 2022 through the latest available market date.</p>
               </div>
-              <span class="tag">rolling 3-year window</span>
+              <span class="tag">production 40/20</span>
             </div>
             <div class="kpi-grid summary" id="resultsKpis"></div>
           </section>
@@ -102,11 +102,11 @@
           <section class="panel">
             <div class="panel-head">
               <div>
-                <div class="eyebrow">Learned weights</div>
-                <h2>Latest rolling review</h2>
-                <p class="subtitle">Constrained weights are re-estimated from the rolling training window.</p>
+                <div class="eyebrow">Production mix</div>
+                <h2>Fixed sleeve weights</h2>
+                <p class="subtitle">Public result uses the production anchor mix only.</p>
               </div>
-              <span class="tag">ML_ESTIMATED_OUTPUT</span>
+              <span class="tag">SYSTEMATIC_TEMPLATE_OUTPUT</span>
             </div>
             <div class="table-wrap"><table class="gl compact" id="weightsTable"></table></div>
           </section>
@@ -262,8 +262,8 @@
               </article>
               <article>
                 <span>02</span>
-                <h3>Features and learning</h3>
-                <p>Daily features are sliced no-lookahead. Rolling windows refresh stock and ETF score weights before each replay decision.</p>
+                <h3>Production sleeves</h3>
+                <p>The public curve combines SPY, QQQ, ETF rotation, top-score sleeve, and defensive cash with fixed production weights.</p>
               </article>
               <article>
                 <span>03</span>
@@ -273,7 +273,7 @@
               <article>
                 <span>04</span>
                 <h3>Execution and records</h3>
-                <p>Sparse execution checks drift, persistence, rebalance interval, turnover, and trade size, then writes portfolio state, benchmark curves, and decision logs.</p>
+                <p>Static outputs write portfolio snapshots, benchmark curves, comparison reports, and decision logs without broker execution.</p>
               </article>
             </div>
           </section>
@@ -301,12 +301,12 @@
             <section class="panel">
               <div class="panel-head">
                 <div>
-                  <div class="eyebrow">AI / generated outputs</div>
-                  <h2>Watermarked memo trail</h2>
+                  <div class="eyebrow">Production scope</div>
+                  <h2>Public production scope</h2>
                 </div>
-                <span class="tag" id="memoProvider">memo · loading</span>
+                <span class="tag" id="scopeProvider">loading</span>
               </div>
-              <div class="table-wrap"><table class="gl" id="aiTable"></table></div>
+              <div class="table-wrap"><table class="gl" id="scopeTable"></table></div>
             </section>
 
             <section class="panel">
@@ -319,7 +319,7 @@
               </div>
               <div class="report-links">
                 <a href="../data/comparison_report.md" data-artifact="comparison_report.md">Comparison Report</a>
-                <a href="../data/learning_report.md" data-artifact="learning_report.md">Learning Report</a>
+                <a href="../data/learning_report.md" data-artifact="learning_report.md">Production Notes</a>
                 <a href="../data/greenlight_plot_data.json" data-artifact="greenlight_plot_data.json">Full Plot Data JSON</a>
                 <a href="../data/backtest_results.json" data-artifact="backtest_results.json">Replay Summary JSON</a>
                 <a href="../data/backtest_decision_logs.json" data-artifact="backtest_decision_logs.json">Published Replay Logs</a>
@@ -334,7 +334,7 @@
     <footer class="site-footer">
       <div class="container row">
         <span>Paper trading only</span>
-        <span>Massive-first · Yahoo VIX · DeepSeek v4 Pro monthly review</span>
+        <span>Massive-first · Yahoo VIX fallback · Production 40/20</span>
       </div>
     </footer>
 

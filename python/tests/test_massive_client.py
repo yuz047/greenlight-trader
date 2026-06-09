@@ -35,6 +35,25 @@ def test_merge_price_bars_prefers_primary_overlap():
     assert merged[-1].source == "massive"
 
 
+def test_meta_identity_merge_uses_secondary_before_ticker_change():
+    secondary = [
+        PriceBar("META", "2022-01-28", 301, 301, 301, 301, 100, source="yahoo.price", data_quality_flag="secondary_source"),
+        PriceBar("META", "2022-01-31", 310, 310, 310, 310, 100, source="yahoo.price", data_quality_flag="secondary_source"),
+        PriceBar("META", "2022-06-09", 190, 190, 190, 190, 100, source="yahoo.price", data_quality_flag="secondary_source"),
+    ]
+    primary = [
+        PriceBar("META", "2022-01-28", 12, 12, 12, 12, 100, source="massive", data_quality_flag="ok"),
+        PriceBar("META", "2022-06-09", 191, 191, 191, 191, 100, source="massive", data_quality_flag="ok"),
+    ]
+    merged = merge_price_bars(primary=primary, secondary=secondary, symbol="META")
+    by_date = {bar.date: bar for bar in merged}
+    assert by_date["2022-01-28"].source == "yahoo.price"
+    assert by_date["2022-01-28"].close == 301
+    assert by_date["2022-01-31"].close == 310
+    assert by_date["2022-06-09"].source == "massive"
+    assert by_date["2022-06-09"].close == 191
+
+
 def test_optional_missing_symbol_does_not_fail_data_health(monkeypatch):
     client = MassiveClient(api_key="test-key")
 

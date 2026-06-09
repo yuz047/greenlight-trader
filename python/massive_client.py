@@ -24,6 +24,14 @@ from config import (
 from data_contracts import EndpointAvailability, PriceBar, TickerProfile, utc_now_iso, write_json
 
 
+TICKER_IDENTITY_RULES = {
+    "META": {
+        "secondary_before": "2022-06-09",
+        "reason": "META before 2022-06-09 belonged to a different listed security; use FB/Meta Platforms secondary history before the ticker change.",
+    },
+}
+
+
 class MassiveClient:
     """Small normalized wrapper around Massive/Polygon endpoints.
 
@@ -233,6 +241,7 @@ class MassiveClient:
         fallback_symbols: list[str] = []
         optional_missing_symbols: list[str] = []
         secondary_source_symbols: list[str] = []
+        identity_repair_symbols: list[str] = []
         for symbol in symbols:
             bars = self.get_aggregates(symbol, start_date, end_date) if self.has_key else []
             if not bars and self.has_key and symbol in {"^VIX", "VIX", "I:VIX"}:
@@ -244,8 +253,10 @@ class MassiveClient:
             if self.has_key and allow_secondary_price_fallback and _bars_start_after(bars, start_date):
                 secondary_bars = yahoo_price_bars(symbol, start_date, end_date)
                 if secondary_bars:
-                    bars = merge_price_bars(primary=bars, secondary=secondary_bars)
+                    bars = merge_price_bars(primary=bars, secondary=secondary_bars, symbol=symbol)
                     secondary_source_symbols.append(f"{symbol}:yahoo_price")
+                    if symbol in TICKER_IDENTITY_RULES:
+                        identity_repair_symbols.append(f"{symbol}:ticker_identity")
             if not bars and self.has_key and symbol in optional_symbols:
                 frames[symbol] = bars_to_frame([])
                 optional_missing_symbols.append(symbol)
@@ -268,6 +279,7 @@ class MassiveClient:
             "fallback_symbols": fallback_symbols[:50],
             "optional_missing_symbols": optional_missing_symbols[:50],
             "secondary_source_symbols": secondary_source_symbols[:50],
+            "identity_repair_symbols": identity_repair_symbols[:50],
             "missing_critical_symbols": missing_critical[:50],
             "endpoint_availability": self.availability_report(),
         }
@@ -300,10 +312,17 @@ def _bars_start_after(bars: list[PriceBar], requested_start: str, tolerance_days
     return first > pd.Timestamp(requested_start) + pd.Timedelta(days=tolerance_days)
 
 
-def merge_price_bars(primary: list[PriceBar], secondary: list[PriceBar]) -> list[PriceBar]:
+def merge_price_bars(primary: list[PriceBar], secondary: list[PriceBar], symbol: str | None = None) -> list[PriceBar]:
     """Merge secondary historical bars with primary data, preferring Massive overlap."""
 
     by_date = {bar.date: bar for bar in secondary}
+    rule = TICKER_IDENTITY_RULES.get(symbol or "")
+    if rule:
+        cutoff = pd.Timestamp(rule["secondary_before"])
+        for bar in primary:
+            if pd.Timestamp(bar.date) >= cutoff:
+                by_date[bar.date] = bar
+        return [by_date[key] for key in sorted(by_date)]
     by_date.update({bar.date: bar for bar in primary})
     return [by_date[key] for key in sorted(by_date)]
 

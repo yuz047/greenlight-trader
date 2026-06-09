@@ -53,7 +53,7 @@ def build_ai_memo(review: dict[str, Any], use_provider: bool = True) -> str:
             "Agent policy note: this memo may summarize and flag risks, but it may "
             "not execute, override risk, or mutate allocation logic."
         )
-        return watermarked_text("Greenlight 2.0 AI Memo", body, AI_GENERATED_MEMO)
+        return watermarked_text("Greenlight Trader AI Memo", body, AI_GENERATED_MEMO)
 
     body = (
         "Provider: deterministic fallback\n\n"
@@ -64,7 +64,7 @@ def build_ai_memo(review: dict[str, Any], use_provider: bool = True) -> str:
         "Agent policy note: this memo may summarize and flag risks, but it may "
         "not execute, override risk, or mutate allocation logic."
     )
-    return watermarked_text("Greenlight 2.0 AI Memo", body, AI_GENERATED_MEMO)
+    return watermarked_text("Greenlight Trader AI Memo", body, AI_GENERATED_MEMO)
 
 
 def append_ai_review(review: dict[str, Any], memo_text: str) -> dict[str, Any]:
@@ -95,7 +95,7 @@ def _deepseek_memo(review: dict[str, Any]) -> str | None:
         "benchmark_verdict": review.get("benchmark_verdict"),
     }
     prompt = (
-        "Write a concise Greenlight 2.0 end-of-day memo using only this JSON. Return the final memo only. "
+        "Write a concise Greenlight Trader end-of-day memo using only this JSON. Return the final memo only. "
         "Do not add unsupported market facts, do not recommend executable trades, "
         "and do not override risk controls. Mention uncertainty when data is weak.\n\n"
         f"{json.dumps(safe_review, sort_keys=True)}"

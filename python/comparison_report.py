@@ -21,6 +21,6 @@ def write_comparison_report(benchmark_payload: dict[str, Any]) -> str:
         lines.append(f"- {name}: total_return={total}, Sharpe={sharpe}, max_drawdown={max_dd}")
     lines.append("")
     lines.append("Weak benchmark results are intentionally preserved in this report.")
-    text = watermarked_text("Greenlight 2.0 Comparison Report", "\n".join(lines), SYSTEMATIC_TEMPLATE_OUTPUT)
+    text = watermarked_text("Greenlight Trader Comparison Report", "\n".join(lines), SYSTEMATIC_TEMPLATE_OUTPUT)
     (DATA_DIR / "comparison_report.md").write_text(text)
     return text

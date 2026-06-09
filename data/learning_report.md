@@ -1,10 +1,8 @@
-Watermark: ML_ESTIMATED_OUTPUT
-Generated-At: 2026-06-08T23:43:04Z
+Watermark: SYSTEMATIC_TEMPLATE_OUTPUT
+Generated-At: 2026-06-09T14:25:27Z
 
-# Learning Report
+# Greenlight Trader Production Notes
 
-Stock weights: {'information': 0.5, 'leadership': 0.3, 'timing': 0.2}
+Public production uses the fixed 40/20 anchor composite.
 
-ETF weights: {'leadership': 0.4, 'regime_fit': 0.25, 'diversification': 0.2, 'timing': 0.15}
-
-Production promotion: blocked until human approval and out-of-sample validation pass.
+Internal variant labels: weighted allocation 2.0.1.a; AI review 2.0.1.b.

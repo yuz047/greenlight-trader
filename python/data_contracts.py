@@ -1,4 +1,4 @@
-"""Normalized data contracts for Greenlight 2.0."""
+"""Normalized data contracts for Greenlight Trader."""
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass, field, is_dataclass
