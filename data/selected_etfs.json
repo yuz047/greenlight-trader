@@ -1,116 +1,116 @@
 {
-  "as_of": "2026-06-10",
-  "generated_at": "2026-06-10T23:53:49Z",
+  "as_of": "2026-06-11",
+  "generated_at": "2026-06-11T23:58:30Z",
   "regime": "RISK_ON",
   "rejected_etfs": [
     {
       "reason": "not_selected_after_rank",
-      "score": 0.64642,
-      "symbol": "KRE"
+      "score": 0.64564,
+      "symbol": "XLRE"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.63702,
-      "symbol": "XLU"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.61908,
-      "symbol": "XLK"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.61228,
+      "score": 0.63402,
       "symbol": "MTUM"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.59157,
-      "symbol": "XLB"
+      "score": 0.63379,
+      "symbol": "XLU"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.58597,
-      "symbol": "XLV"
+      "score": 0.62849,
+      "symbol": "XLK"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.58344,
+      "score": 0.59947,
       "symbol": "XLF"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.57792,
-      "symbol": "XLI"
+      "score": 0.5909,
+      "symbol": "XLV"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.57018,
-      "symbol": "XBI"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.56757,
+      "score": 0.58359,
       "symbol": "SMH"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.56124,
-      "symbol": "ICLN"
+      "score": 0.57056,
+      "symbol": "XLB"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.55852,
+      "score": 0.56146,
+      "symbol": "XLI"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.55968,
+      "symbol": "XBI"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.55842,
       "symbol": "USMV"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.52729,
+      "score": 0.55068,
+      "symbol": "ICLN"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.53942,
       "symbol": "QUAL"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.523,
-      "symbol": "IEF"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.51064,
+      "score": 0.53663,
       "symbol": "IWM"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.48654,
+      "score": 0.51901,
       "symbol": "IWC"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.48318,
-      "symbol": "XLY"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.4822,
+      "score": 0.5166,
       "symbol": "TLT"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.4731,
+      "score": 0.49602,
       "symbol": "XLC"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.44848,
+      "score": 0.48075,
       "symbol": "BOTZ"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.39989,
+      "score": 0.48015,
+      "symbol": "XLY"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.4749,
+      "symbol": "IEF"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.40271,
       "symbol": "ARKK"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.34006,
+      "score": 0.37203,
       "symbol": "GLD"
     }
   ],
@@ -128,43 +128,19 @@
         "ETF has favorable regime fit",
         "earned dynamic ETF eligibility through score"
       ],
-      "score": 0.68076,
+      "score": 0.67204,
       "sector": "Cybersecurity",
       "symbol": "HACK",
       "theme": "Cybersecurity"
     },
     {
-      "category": "factor",
-      "reasons": [
-        "leadership and relative-strength inputs are supportive",
-        "ETF has favorable regime fit",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.67443,
-      "sector": "Factor",
-      "symbol": "VLUE",
-      "theme": "Value"
-    },
-    {
       "category": "sector",
       "reasons": [
         "ETF has favorable regime fit",
         "ETF adds diversification versus anchors/current book",
         "earned dynamic ETF eligibility through score"
       ],
-      "score": 0.66637,
-      "sector": "Consumer Staples",
-      "symbol": "XLP",
-      "theme": "Consumer Staples"
-    },
-    {
-      "category": "sector",
-      "reasons": [
-        "ETF has favorable regime fit",
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.65733,
+      "score": 0.66955,
       "sector": "Energy",
       "symbol": "XLE",
       "theme": "Energy"
@@ -176,10 +152,35 @@
         "ETF adds diversification versus anchors/current book",
         "earned dynamic ETF eligibility through score"
       ],
-      "score": 0.65328,
-      "sector": "Real Estate",
-      "symbol": "XLRE",
-      "theme": "Real Estate"
+      "score": 0.662,
+      "sector": "Consumer Staples",
+      "symbol": "XLP",
+      "theme": "Consumer Staples"
+    },
+    {
+      "category": "factor",
+      "reasons": [
+        "leadership and relative-strength inputs are supportive",
+        "ETF has favorable regime fit",
+        "earned dynamic ETF eligibility through score"
+      ],
+      "score": 0.6556,
+      "sector": "Factor",
+      "symbol": "VLUE",
+      "theme": "Value"
+    },
+    {
+      "category": "industry",
+      "reasons": [
+        "leadership and relative-strength inputs are supportive",
+        "ETF has favorable regime fit",
+        "ETF adds diversification versus anchors/current book",
+        "earned dynamic ETF eligibility through score"
+      ],
+      "score": 0.65202,
+      "sector": "Financials",
+      "symbol": "KRE",
+      "theme": "Regional Banks"
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
