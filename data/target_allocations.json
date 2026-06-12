@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-11",
+  "as_of": "2026-06-12",
   "budgets": {
     "agent_experimental": 0.0,
     "defensive": 0.05,
@@ -14,27 +14,27 @@
       "Broad Growth": 0.2,
       "Broad Market": 0.4,
       "Cash": 0.05,
-      "Consumer Staples": 0.044839,
-      "Cybersecurity": 0.018287,
-      "Energy": 0.028158,
-      "Factor": 0.025836,
-      "Financials": 0.03288,
-      "Unknown": 0.200001
+      "Consumer Staples": 0.040523,
+      "Cybersecurity": 0.016515,
+      "Factor": 0.023658,
+      "Financials": 0.034264,
+      "Unknown": 0.199999,
+      "Utilities": 0.03504
     },
     "theme": {
-      "Consumer Staples": 0.044839,
-      "Cybersecurity": 0.018287,
-      "Energy": 0.028158,
+      "Consumer Staples": 0.040523,
+      "Cybersecurity": 0.016515,
       "Nasdaq 100": 0.2,
-      "Regional Banks": 0.03288,
+      "Regional Banks": 0.034264,
       "S&P 500": 0.4,
       "Treasury Bills": 0.05,
-      "Unknown": 0.200001,
-      "Value": 0.025836
+      "Unknown": 0.199999,
+      "Utilities": 0.03504,
+      "Value": 0.023658
     },
     "top3_weight": 0.65
   },
-  "generated_at": "2026-06-11T23:58:30Z",
+  "generated_at": "2026-06-12T23:58:50Z",
   "regime": "RISK_ON",
   "rules": [
     "Allocator outputs target weights, not raw buy/sell calls.",
@@ -72,120 +72,120 @@
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.662",
+      "reason": "risk-adjusted score allocation from 0.65443",
       "sector": "Consumer Staples",
       "sleeve": "dynamic_etf",
       "symbol": "XLP",
       "theme": "Consumer Staples",
-      "weight": 0.044839
+      "weight": 0.040523
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.46726",
+      "reason": "risk-adjusted score allocation from 0.42664",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "JPM",
+      "symbol": "COST",
       "theme": null,
-      "weight": 0.037352
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.47493",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "AAPL",
-      "theme": null,
-      "weight": 0.035193
+      "weight": 0.03539
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.65202",
+      "reason": "risk-adjusted score allocation from 0.66206",
+      "sector": "Utilities",
+      "sleeve": "dynamic_etf",
+      "symbol": "XLU",
+      "theme": "Utilities",
+      "weight": 0.03504
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.71066",
       "sector": "Financials",
       "sleeve": "dynamic_etf",
       "symbol": "KRE",
       "theme": "Regional Banks",
-      "weight": 0.03288
+      "weight": 0.034264
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.42659",
+      "reason": "risk-adjusted score allocation from 0.44181",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "JPM",
+      "theme": null,
+      "weight": 0.032632
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.45244",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "AAPL",
+      "theme": null,
+      "weight": 0.031921
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.42965",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "MA",
       "theme": null,
-      "weight": 0.031881
-    },
-    {
-      "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.66955",
-      "sector": "Energy",
-      "sleeve": "dynamic_etf",
-      "symbol": "XLE",
-      "theme": "Energy",
-      "weight": 0.028158
+      "weight": 0.030188
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.45117",
+      "reason": "risk-adjusted score allocation from 0.44317",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "AMZN",
       "theme": null,
-      "weight": 0.027165
+      "weight": 0.025081
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.6556",
+      "reason": "risk-adjusted score allocation from 0.6562",
       "sector": "Factor",
       "sleeve": "dynamic_etf",
       "symbol": "VLUE",
       "theme": "Value",
-      "weight": 0.025836
+      "weight": 0.023658
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.41537",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "GOOGL",
-      "theme": null,
-      "weight": 0.019984
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.45738",
+      "reason": "risk-adjusted score allocation from 0.43655",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "ETN",
       "theme": null,
-      "weight": 0.019751
+      "weight": 0.017803
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.67204",
+      "reason": "risk-adjusted score allocation from 0.66414",
       "sector": "Cybersecurity",
       "sleeve": "dynamic_etf",
       "symbol": "HACK",
       "theme": "Cybersecurity",
-      "weight": 0.018287
+      "weight": 0.016515
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.4604",
+      "reason": "risk-adjusted score allocation from 0.46086",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "PANW",
       "theme": null,
-      "weight": 0.015043
+      "weight": 0.014199
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.4461",
+      "reason": "risk-adjusted score allocation from 0.44526",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "CRWD",
       "theme": null,
-      "weight": 0.013632
+      "weight": 0.012785
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
