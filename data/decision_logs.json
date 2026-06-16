@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-16T00:07:22Z",
+  "generated_at": "2026-06-16T23:53:43Z",
   "logs": [
     {
       "agent_led_decision": {
@@ -15646,12 +15646,12 @@
       "agent_led_decision": {},
       "benchmark_snapshot": {
         "QQQ": {
-          "close": 744.0,
-          "daily_return": 0.031414
+          "close": 729.86,
+          "daily_return": -0.019005
         },
         "SPY": {
-          "close": 754.83,
-          "daily_return": 0.017634
+          "close": 750.33,
+          "daily_return": -0.005962
         },
         "verdict": {
           "agent_led_add_value": false,
@@ -15665,85 +15665,77 @@
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
       },
       "candidate_score_summary": {
-        "count": 109,
-        "investable_count": 76,
+        "count": 108,
+        "investable_count": 75,
         "top_symbols": [
           "VLUE",
-          "KRE",
           "HACK",
-          "XLU",
+          "KRE",
           "XLP",
-          "MTUM",
           "XLRE",
+          "MTUM",
           "XLK",
-          "XLB",
-          "XLV"
+          "XLU",
+          "XLV",
+          "XLE"
         ]
       },
       "current_allocation": {
-        "AAPL": 0.03803148,
-        "AMZN": 0.02910801,
-        "CASH": 1.96e-06,
-        "CRWD": 0.01488159,
-        "ETN": 0.01948978,
-        "GOOGL": 0.01993854,
-        "HACK": 0.02099911,
-        "JPM": 0.03696795,
-        "KRE": 0.03560043,
-        "PANW": 0.01661318,
-        "QQQ": 0.20346942,
-        "SGOV": 0.04899189,
-        "SPY": 0.3999329,
-        "VRTX": 0.02390459,
-        "XLE": 0.02688459,
-        "XLK": 0.02524051,
-        "XLU": 0.03994407
+        "AAPL": 0.03860179,
+        "AMZN": 0.0292637,
+        "CASH": 1.97e-06,
+        "CRWD": 0.01467262,
+        "ETN": 0.01962691,
+        "GOOGL": 0.02025849,
+        "HACK": 0.02079442,
+        "JPM": 0.03853488,
+        "KRE": 0.0359226,
+        "PANW": 0.01643101,
+        "QQQ": 0.20068631,
+        "SGOV": 0.04926283,
+        "SPY": 0.39970746,
+        "VRTX": 0.02417899,
+        "XLE": 0.02693813,
+        "XLK": 0.02466966,
+        "XLU": 0.04044823
       },
       "data_health": {
         "endpoint_availability": {
           "/v2/aggs/ticker/AAPL/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:55Z",
+            "checked_at": "2026-06-16T23:53:12Z",
             "endpoint": "/v2/aggs/ticker/AAPL/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/ADTX/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:12Z",
+            "endpoint": "/v2/aggs/ticker/ADTX/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/AHMA/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:55Z",
+            "checked_at": "2026-06-16T23:53:13Z",
             "endpoint": "/v2/aggs/ticker/AHMA/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/AIDX/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:06:56Z",
-            "endpoint": "/v2/aggs/ticker/AIDX/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/AMD/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:56Z",
+            "checked_at": "2026-06-16T23:53:13Z",
             "endpoint": "/v2/aggs/ticker/AMD/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/AMPGR/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:06:56Z",
-            "endpoint": "/v2/aggs/ticker/AMPGR/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/AMZN/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:56Z",
+            "checked_at": "2026-06-16T23:53:13Z",
             "endpoint": "/v2/aggs/ticker/AMZN/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15751,7 +15743,7 @@
           },
           "/v2/aggs/ticker/ARKK/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:57Z",
+            "checked_at": "2026-06-16T23:53:14Z",
             "endpoint": "/v2/aggs/ticker/ARKK/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15759,55 +15751,79 @@
           },
           "/v2/aggs/ticker/AVGO/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:57Z",
+            "checked_at": "2026-06-16T23:53:14Z",
             "endpoint": "/v2/aggs/ticker/AVGO/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/AXTU/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:14Z",
+            "endpoint": "/v2/aggs/ticker/AXTU/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/AXTX/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:14Z",
+            "endpoint": "/v2/aggs/ticker/AXTX/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/BIAF/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:15Z",
+            "endpoint": "/v2/aggs/ticker/BIAF/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/BITA/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:15Z",
+            "endpoint": "/v2/aggs/ticker/BITA/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/BOTZ/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:57Z",
+            "checked_at": "2026-06-16T23:53:15Z",
             "endpoint": "/v2/aggs/ticker/BOTZ/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/CAST/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/CCTG/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:57Z",
-            "endpoint": "/v2/aggs/ticker/CAST/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:15Z",
+            "endpoint": "/v2/aggs/ticker/CCTG/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/CEG/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:58Z",
+            "checked_at": "2026-06-16T23:53:16Z",
             "endpoint": "/v2/aggs/ticker/CEG/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/CMTL/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/CIIT/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:58Z",
-            "endpoint": "/v2/aggs/ticker/CMTL/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/CNTX/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:06:58Z",
-            "endpoint": "/v2/aggs/ticker/CNTX/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:16Z",
+            "endpoint": "/v2/aggs/ticker/CIIT/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/COIN/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:58Z",
+            "checked_at": "2026-06-16T23:53:16Z",
             "endpoint": "/v2/aggs/ticker/COIN/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15815,7 +15831,7 @@
           },
           "/v2/aggs/ticker/COST/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:59Z",
+            "checked_at": "2026-06-16T23:53:16Z",
             "endpoint": "/v2/aggs/ticker/COST/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15823,15 +15839,23 @@
           },
           "/v2/aggs/ticker/CRM/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:59Z",
+            "checked_at": "2026-06-16T23:53:17Z",
             "endpoint": "/v2/aggs/ticker/CRM/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/CRVO/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:17Z",
+            "endpoint": "/v2/aggs/ticker/CRVO/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/CRWD/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:59Z",
+            "checked_at": "2026-06-16T23:53:17Z",
             "endpoint": "/v2/aggs/ticker/CRWD/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15839,23 +15863,39 @@
           },
           "/v2/aggs/ticker/CUPR/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:59Z",
+            "checked_at": "2026-06-16T23:53:18Z",
             "endpoint": "/v2/aggs/ticker/CUPR/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/DAICW/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:18Z",
+            "endpoint": "/v2/aggs/ticker/DAICW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/DDOG/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:00Z",
+            "checked_at": "2026-06-16T23:53:18Z",
             "endpoint": "/v2/aggs/ticker/DDOG/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/DOMO/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:18Z",
+            "endpoint": "/v2/aggs/ticker/DOMO/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/ELTX/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:00Z",
+            "checked_at": "2026-06-16T23:53:19Z",
             "endpoint": "/v2/aggs/ticker/ELTX/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15863,23 +15903,39 @@
           },
           "/v2/aggs/ticker/ETN/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:00Z",
+            "checked_at": "2026-06-16T23:53:19Z",
             "endpoint": "/v2/aggs/ticker/ETN/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/EVLVW/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/EVGOW/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:00Z",
-            "endpoint": "/v2/aggs/ticker/EVLVW/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:19Z",
+            "endpoint": "/v2/aggs/ticker/EVGOW/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/FTHM/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:19Z",
+            "endpoint": "/v2/aggs/ticker/FTHM/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/GDC/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:20Z",
+            "endpoint": "/v2/aggs/ticker/GDC/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/GE/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:01Z",
+            "checked_at": "2026-06-16T23:53:20Z",
             "endpoint": "/v2/aggs/ticker/GE/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15887,7 +15943,7 @@
           },
           "/v2/aggs/ticker/GLD/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:01Z",
+            "checked_at": "2026-06-16T23:53:20Z",
             "endpoint": "/v2/aggs/ticker/GLD/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15895,23 +15951,15 @@
           },
           "/v2/aggs/ticker/GOOGL/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:01Z",
+            "checked_at": "2026-06-16T23:53:21Z",
             "endpoint": "/v2/aggs/ticker/GOOGL/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/GPUS/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:01Z",
-            "endpoint": "/v2/aggs/ticker/GPUS/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/HACK/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:02Z",
+            "checked_at": "2026-06-16T23:53:21Z",
             "endpoint": "/v2/aggs/ticker/HACK/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15919,47 +15967,15 @@
           },
           "/v2/aggs/ticker/HOOD/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:02Z",
+            "checked_at": "2026-06-16T23:53:21Z",
             "endpoint": "/v2/aggs/ticker/HOOD/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/HQ/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:02Z",
-            "endpoint": "/v2/aggs/ticker/HQ/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/HQWWW/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:02Z",
-            "endpoint": "/v2/aggs/ticker/HQWWW/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/HUBC/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:03Z",
-            "endpoint": "/v2/aggs/ticker/HUBC/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/HUBCZ/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:03Z",
-            "endpoint": "/v2/aggs/ticker/HUBCZ/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/ICLN/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:03Z",
+            "checked_at": "2026-06-16T23:53:21Z",
             "endpoint": "/v2/aggs/ticker/ICLN/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15967,23 +15983,15 @@
           },
           "/v2/aggs/ticker/IEF/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:03Z",
+            "checked_at": "2026-06-16T23:53:22Z",
             "endpoint": "/v2/aggs/ticker/IEF/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/IMCC/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:04Z",
-            "endpoint": "/v2/aggs/ticker/IMCC/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/ISRG/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:04Z",
+            "checked_at": "2026-06-16T23:53:22Z",
             "endpoint": "/v2/aggs/ticker/ISRG/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15991,7 +15999,7 @@
           },
           "/v2/aggs/ticker/IVDA/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:04Z",
+            "checked_at": "2026-06-16T23:53:22Z",
             "endpoint": "/v2/aggs/ticker/IVDA/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -15999,7 +16007,7 @@
           },
           "/v2/aggs/ticker/IVDAW/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:04Z",
+            "checked_at": "2026-06-16T23:53:22Z",
             "endpoint": "/v2/aggs/ticker/IVDAW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16007,7 +16015,7 @@
           },
           "/v2/aggs/ticker/IWC/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:04Z",
+            "checked_at": "2026-06-16T23:53:23Z",
             "endpoint": "/v2/aggs/ticker/IWC/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16015,7 +16023,7 @@
           },
           "/v2/aggs/ticker/IWM/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:05Z",
+            "checked_at": "2026-06-16T23:53:23Z",
             "endpoint": "/v2/aggs/ticker/IWM/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16023,71 +16031,71 @@
           },
           "/v2/aggs/ticker/JPM/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:05Z",
+            "checked_at": "2026-06-16T23:53:23Z",
             "endpoint": "/v2/aggs/ticker/JPM/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/KIDZW/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:05Z",
-            "endpoint": "/v2/aggs/ticker/KIDZW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/KRE/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:05Z",
+            "checked_at": "2026-06-16T23:53:24Z",
             "endpoint": "/v2/aggs/ticker/KRE/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/LFVN/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/LGLR/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:06Z",
-            "endpoint": "/v2/aggs/ticker/LFVN/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:24Z",
+            "endpoint": "/v2/aggs/ticker/LGLR/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/LLY/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:06Z",
+            "checked_at": "2026-06-16T23:53:24Z",
             "endpoint": "/v2/aggs/ticker/LLY/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/LOKVU/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/LNAI/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:06Z",
-            "endpoint": "/v2/aggs/ticker/LOKVU/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:24Z",
+            "endpoint": "/v2/aggs/ticker/LNAI/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/LPRO/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:25Z",
+            "endpoint": "/v2/aggs/ticker/LPRO/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/MA/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:06Z",
+            "checked_at": "2026-06-16T23:53:25Z",
             "endpoint": "/v2/aggs/ticker/MA/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/MEHA/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/MCRP/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:07Z",
-            "endpoint": "/v2/aggs/ticker/MEHA/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:25Z",
+            "endpoint": "/v2/aggs/ticker/MCRP/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/MELI/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:07Z",
+            "checked_at": "2026-06-16T23:53:25Z",
             "endpoint": "/v2/aggs/ticker/MELI/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16095,47 +16103,23 @@
           },
           "/v2/aggs/ticker/META/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:07Z",
+            "checked_at": "2026-06-16T23:53:26Z",
             "endpoint": "/v2/aggs/ticker/META/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/MNTSW/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:07Z",
-            "endpoint": "/v2/aggs/ticker/MNTSW/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/MRNOW/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:07Z",
-            "endpoint": "/v2/aggs/ticker/MRNOW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/MSFT/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:08Z",
+            "checked_at": "2026-06-16T23:53:26Z",
             "endpoint": "/v2/aggs/ticker/MSFT/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/MTEN/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:08Z",
-            "endpoint": "/v2/aggs/ticker/MTEN/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/MTUM/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:08Z",
+            "checked_at": "2026-06-16T23:53:26Z",
             "endpoint": "/v2/aggs/ticker/MTUM/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16143,7 +16127,7 @@
           },
           "/v2/aggs/ticker/MYPSW/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:08Z",
+            "checked_at": "2026-06-16T23:53:26Z",
             "endpoint": "/v2/aggs/ticker/MYPSW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16151,7 +16135,7 @@
           },
           "/v2/aggs/ticker/NET/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:09Z",
+            "checked_at": "2026-06-16T23:53:27Z",
             "endpoint": "/v2/aggs/ticker/NET/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16159,23 +16143,15 @@
           },
           "/v2/aggs/ticker/NFLX/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:09Z",
+            "checked_at": "2026-06-16T23:53:27Z",
             "endpoint": "/v2/aggs/ticker/NFLX/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/NIXXW/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:09Z",
-            "endpoint": "/v2/aggs/ticker/NIXXW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/NMRA/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:09Z",
+            "checked_at": "2026-06-16T23:53:27Z",
             "endpoint": "/v2/aggs/ticker/NMRA/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16183,7 +16159,7 @@
           },
           "/v2/aggs/ticker/NOW/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:10Z",
+            "checked_at": "2026-06-16T23:53:28Z",
             "endpoint": "/v2/aggs/ticker/NOW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16191,31 +16167,31 @@
           },
           "/v2/aggs/ticker/NVDA/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:10Z",
+            "checked_at": "2026-06-16T23:53:28Z",
             "endpoint": "/v2/aggs/ticker/NVDA/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/NWGL/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/OBAI/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:10Z",
-            "endpoint": "/v2/aggs/ticker/NWGL/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:28Z",
+            "endpoint": "/v2/aggs/ticker/OBAI/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/ORGNW/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/OTLK/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:10Z",
-            "endpoint": "/v2/aggs/ticker/ORGNW/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:28Z",
+            "endpoint": "/v2/aggs/ticker/OTLK/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/PANW/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:11Z",
+            "checked_at": "2026-06-16T23:53:29Z",
             "endpoint": "/v2/aggs/ticker/PANW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16223,7 +16199,7 @@
           },
           "/v2/aggs/ticker/PLTR/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:11Z",
+            "checked_at": "2026-06-16T23:53:29Z",
             "endpoint": "/v2/aggs/ticker/PLTR/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16231,7 +16207,7 @@
           },
           "/v2/aggs/ticker/PRFX/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:11Z",
+            "checked_at": "2026-06-16T23:53:29Z",
             "endpoint": "/v2/aggs/ticker/PRFX/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16239,31 +16215,15 @@
           },
           "/v2/aggs/ticker/QQQ/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:11Z",
+            "checked_at": "2026-06-16T23:53:30Z",
             "endpoint": "/v2/aggs/ticker/QQQ/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/QTEX/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:12Z",
-            "endpoint": "/v2/aggs/ticker/QTEX/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/QTEXW/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:12Z",
-            "endpoint": "/v2/aggs/ticker/QTEXW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/QUAL/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:12Z",
+            "checked_at": "2026-06-16T23:53:30Z",
             "endpoint": "/v2/aggs/ticker/QUAL/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16271,7 +16231,7 @@
           },
           "/v2/aggs/ticker/REGN/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:12Z",
+            "checked_at": "2026-06-16T23:53:30Z",
             "endpoint": "/v2/aggs/ticker/REGN/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16279,7 +16239,7 @@
           },
           "/v2/aggs/ticker/RGNT/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:12Z",
+            "checked_at": "2026-06-16T23:53:30Z",
             "endpoint": "/v2/aggs/ticker/RGNT/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16287,7 +16247,7 @@
           },
           "/v2/aggs/ticker/SDOT/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:13Z",
+            "checked_at": "2026-06-16T23:53:31Z",
             "endpoint": "/v2/aggs/ticker/SDOT/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16295,7 +16255,7 @@
           },
           "/v2/aggs/ticker/SGOV/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:13Z",
+            "checked_at": "2026-06-16T23:53:31Z",
             "endpoint": "/v2/aggs/ticker/SGOV/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16303,7 +16263,7 @@
           },
           "/v2/aggs/ticker/SHOP/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:13Z",
+            "checked_at": "2026-06-16T23:53:31Z",
             "endpoint": "/v2/aggs/ticker/SHOP/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16311,7 +16271,7 @@
           },
           "/v2/aggs/ticker/SHY/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:13Z",
+            "checked_at": "2026-06-16T23:53:31Z",
             "endpoint": "/v2/aggs/ticker/SHY/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16319,7 +16279,7 @@
           },
           "/v2/aggs/ticker/SLBT/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:14Z",
+            "checked_at": "2026-06-16T23:53:32Z",
             "endpoint": "/v2/aggs/ticker/SLBT/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16327,55 +16287,63 @@
           },
           "/v2/aggs/ticker/SMH/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:14Z",
+            "checked_at": "2026-06-16T23:53:32Z",
             "endpoint": "/v2/aggs/ticker/SMH/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/SNBR/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:14Z",
-            "endpoint": "/v2/aggs/ticker/SNBR/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/SNOW/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:14Z",
+            "checked_at": "2026-06-16T23:53:32Z",
             "endpoint": "/v2/aggs/ticker/SNOW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/SPCM/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/SNWV/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:15Z",
-            "endpoint": "/v2/aggs/ticker/SPCM/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:33Z",
+            "endpoint": "/v2/aggs/ticker/SNWV/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/SPY/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:15Z",
+            "checked_at": "2026-06-16T23:53:33Z",
             "endpoint": "/v2/aggs/ticker/SPY/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/SVREW/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/SVAQW/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:15Z",
-            "endpoint": "/v2/aggs/ticker/SVREW/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:33Z",
+            "endpoint": "/v2/aggs/ticker/SVAQW/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/TBLAW/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:33Z",
+            "endpoint": "/v2/aggs/ticker/TBLAW/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/TDIC/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:34Z",
+            "endpoint": "/v2/aggs/ticker/TDIC/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/TLT/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:15Z",
+            "checked_at": "2026-06-16T23:53:34Z",
             "endpoint": "/v2/aggs/ticker/TLT/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16383,23 +16351,15 @@
           },
           "/v2/aggs/ticker/TMO/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:16Z",
+            "checked_at": "2026-06-16T23:53:34Z",
             "endpoint": "/v2/aggs/ticker/TMO/range/1/day/2025-04-22/2026-06-16",
-            "plan_dependent": false,
-            "point_in_time_safe": true,
-            "reason": "DELAYED"
-          },
-          "/v2/aggs/ticker/TRAW/range/1/day/2025-04-22/2026-06-16": {
-            "available": true,
-            "checked_at": "2026-06-16T00:07:16Z",
-            "endpoint": "/v2/aggs/ticker/TRAW/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/TSLA/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:16Z",
+            "checked_at": "2026-06-16T23:53:34Z",
             "endpoint": "/v2/aggs/ticker/TSLA/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16407,7 +16367,7 @@
           },
           "/v2/aggs/ticker/TYGR/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:16Z",
+            "checked_at": "2026-06-16T23:53:35Z",
             "endpoint": "/v2/aggs/ticker/TYGR/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16415,7 +16375,7 @@
           },
           "/v2/aggs/ticker/UBER/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:16Z",
+            "checked_at": "2026-06-16T23:53:35Z",
             "endpoint": "/v2/aggs/ticker/UBER/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16423,7 +16383,7 @@
           },
           "/v2/aggs/ticker/USMV/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:17Z",
+            "checked_at": "2026-06-16T23:53:35Z",
             "endpoint": "/v2/aggs/ticker/USMV/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16431,7 +16391,7 @@
           },
           "/v2/aggs/ticker/V/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:17Z",
+            "checked_at": "2026-06-16T23:53:35Z",
             "endpoint": "/v2/aggs/ticker/V/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16439,7 +16399,7 @@
           },
           "/v2/aggs/ticker/VLUE/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:17Z",
+            "checked_at": "2026-06-16T23:53:36Z",
             "endpoint": "/v2/aggs/ticker/VLUE/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16447,7 +16407,7 @@
           },
           "/v2/aggs/ticker/VRT/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:17Z",
+            "checked_at": "2026-06-16T23:53:36Z",
             "endpoint": "/v2/aggs/ticker/VRT/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16455,23 +16415,47 @@
           },
           "/v2/aggs/ticker/VRTX/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:18Z",
+            "checked_at": "2026-06-16T23:53:36Z",
             "endpoint": "/v2/aggs/ticker/VRTX/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
-          "/v2/aggs/ticker/VSME/range/1/day/2025-04-22/2026-06-16": {
+          "/v2/aggs/ticker/VRXA/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:18Z",
-            "endpoint": "/v2/aggs/ticker/VSME/range/1/day/2025-04-22/2026-06-16",
+            "checked_at": "2026-06-16T23:53:37Z",
+            "endpoint": "/v2/aggs/ticker/VRXA/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/VRXAW/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:37Z",
+            "endpoint": "/v2/aggs/ticker/VRXAW/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/WALDW/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:37Z",
+            "endpoint": "/v2/aggs/ticker/WALDW/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/WOK/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:38Z",
+            "endpoint": "/v2/aggs/ticker/WOK/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/WYFL/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:18Z",
+            "checked_at": "2026-06-16T23:53:38Z",
             "endpoint": "/v2/aggs/ticker/WYFL/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16479,7 +16463,7 @@
           },
           "/v2/aggs/ticker/XBI/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:18Z",
+            "checked_at": "2026-06-16T23:53:38Z",
             "endpoint": "/v2/aggs/ticker/XBI/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16487,7 +16471,7 @@
           },
           "/v2/aggs/ticker/XLB/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:19Z",
+            "checked_at": "2026-06-16T23:53:38Z",
             "endpoint": "/v2/aggs/ticker/XLB/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16495,7 +16479,7 @@
           },
           "/v2/aggs/ticker/XLC/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:19Z",
+            "checked_at": "2026-06-16T23:53:39Z",
             "endpoint": "/v2/aggs/ticker/XLC/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16503,7 +16487,7 @@
           },
           "/v2/aggs/ticker/XLE/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:19Z",
+            "checked_at": "2026-06-16T23:53:39Z",
             "endpoint": "/v2/aggs/ticker/XLE/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16511,7 +16495,7 @@
           },
           "/v2/aggs/ticker/XLF/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:19Z",
+            "checked_at": "2026-06-16T23:53:39Z",
             "endpoint": "/v2/aggs/ticker/XLF/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16519,7 +16503,7 @@
           },
           "/v2/aggs/ticker/XLI/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:20Z",
+            "checked_at": "2026-06-16T23:53:40Z",
             "endpoint": "/v2/aggs/ticker/XLI/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16527,7 +16511,7 @@
           },
           "/v2/aggs/ticker/XLK/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:20Z",
+            "checked_at": "2026-06-16T23:53:40Z",
             "endpoint": "/v2/aggs/ticker/XLK/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16535,7 +16519,7 @@
           },
           "/v2/aggs/ticker/XLP/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:20Z",
+            "checked_at": "2026-06-16T23:53:40Z",
             "endpoint": "/v2/aggs/ticker/XLP/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16543,7 +16527,7 @@
           },
           "/v2/aggs/ticker/XLRE/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:20Z",
+            "checked_at": "2026-06-16T23:53:40Z",
             "endpoint": "/v2/aggs/ticker/XLRE/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16551,7 +16535,7 @@
           },
           "/v2/aggs/ticker/XLU/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:20Z",
+            "checked_at": "2026-06-16T23:53:41Z",
             "endpoint": "/v2/aggs/ticker/XLU/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16559,7 +16543,7 @@
           },
           "/v2/aggs/ticker/XLV/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:21Z",
+            "checked_at": "2026-06-16T23:53:41Z",
             "endpoint": "/v2/aggs/ticker/XLV/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16567,15 +16551,23 @@
           },
           "/v2/aggs/ticker/XLY/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:21Z",
+            "checked_at": "2026-06-16T23:53:41Z",
             "endpoint": "/v2/aggs/ticker/XLY/range/1/day/2025-04-22/2026-06-16",
+            "plan_dependent": false,
+            "point_in_time_safe": true,
+            "reason": "DELAYED"
+          },
+          "/v2/aggs/ticker/YMAT/range/1/day/2025-04-22/2026-06-16": {
+            "available": true,
+            "checked_at": "2026-06-16T23:53:42Z",
+            "endpoint": "/v2/aggs/ticker/YMAT/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
             "reason": "DELAYED"
           },
           "/v2/aggs/ticker/^VIX/range/1/day/2025-04-22/2026-06-16": {
             "available": true,
-            "checked_at": "2026-06-16T00:07:21Z",
+            "checked_at": "2026-06-16T23:53:42Z",
             "endpoint": "/v2/aggs/ticker/^VIX/range/1/day/2025-04-22/2026-06-16",
             "plan_dependent": false,
             "point_in_time_safe": true,
@@ -16583,7 +16575,7 @@
           },
           "/v2/snapshot/locale/us/markets/stocks/gainers": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:55Z",
+            "checked_at": "2026-06-16T23:53:12Z",
             "endpoint": "/v2/snapshot/locale/us/markets/stocks/gainers",
             "plan_dependent": true,
             "point_in_time_safe": true,
@@ -16591,7 +16583,7 @@
           },
           "/v2/snapshot/locale/us/markets/stocks/losers": {
             "available": true,
-            "checked_at": "2026-06-16T00:06:55Z",
+            "checked_at": "2026-06-16T23:53:12Z",
             "endpoint": "/v2/snapshot/locale/us/markets/stocks/losers",
             "plan_dependent": true,
             "point_in_time_safe": true,
@@ -16603,6 +16595,7 @@
         "missing_critical_symbols": [],
         "ok": true,
         "optional_missing_symbols": [
+          "LGLR",
           "TYGR"
         ],
         "secondary_source_symbols": [
@@ -16613,24 +16606,24 @@
       },
       "date": "2026-06-16",
       "execution_decision": "NO_TRADE",
-      "execution_reason": "Max drift 4.07% is below threshold 5.00%.",
-      "generated_at": "2026-06-16T00:07:22Z",
+      "execution_reason": "Max drift 4.11% is below threshold 5.00%.",
+      "generated_at": "2026-06-16T23:53:43Z",
       "market_regime": "RISK_ON",
       "orders": [],
       "portfolio_snapshot": {
-        "benchmark_equity": 5144.787381,
+        "benchmark_equity": 5114.116179,
         "cash": 0.01,
         "date": "2026-06-16",
         "last_rebalance_date": "2026-06-08",
-        "nav": 5105.419846,
+        "nav": 5077.845578,
         "peak_nav": 5105.419846,
         "peak_relative_outperformance": 0.008176,
         "positions": {
           "AAPL": {
             "asset_type": "stock",
             "avg_price": 301.600308,
-            "market_price": 296.42,
-            "market_value": 194.166696,
+            "market_price": 299.24,
+            "market_value": 196.013906,
             "sector": null,
             "shares": 0.65503912,
             "theme": null
@@ -16638,8 +16631,8 @@
           "AMZN": {
             "asset_type": "stock",
             "avg_price": 245.269044,
-            "market_price": 246.02,
-            "market_value": 148.608615,
+            "market_price": 246.0,
+            "market_value": 148.596534,
             "sector": null,
             "shares": 0.60405095,
             "theme": null
@@ -16647,8 +16640,8 @@
           "CRWD": {
             "asset_type": "stock",
             "avg_price": 658.921758,
-            "market_price": 692.91,
-            "market_value": 75.976771,
+            "market_price": 679.49,
+            "market_value": 74.505283,
             "sector": null,
             "shares": 0.10964883,
             "theme": null
@@ -16656,8 +16649,8 @@
           "ETN": {
             "asset_type": "stock",
             "avg_price": 403.220628,
-            "market_price": 407.06,
-            "market_value": 99.503513,
+            "market_price": 407.71,
+            "market_value": 99.662402,
             "sector": null,
             "shares": 0.24444434,
             "theme": null
@@ -16665,8 +16658,8 @@
           "GOOGL": {
             "asset_type": "stock",
             "avg_price": 363.382662,
-            "market_price": 369.35,
-            "market_value": 101.794625,
+            "market_price": 373.25,
+            "market_value": 102.869484,
             "sector": null,
             "shares": 0.27560478,
             "theme": null
@@ -16674,8 +16667,8 @@
           "HACK": {
             "asset_type": "etf",
             "avg_price": 96.799356,
-            "market_price": 97.38,
-            "market_value": 107.209253,
+            "market_price": 95.91,
+            "market_value": 105.590875,
             "sector": "Cybersecurity",
             "shares": 1.10093708,
             "theme": "Cybersecurity"
@@ -16683,8 +16676,8 @@
           "JPM": {
             "asset_type": "stock",
             "avg_price": 311.172222,
-            "market_price": 319.4,
-            "market_value": 188.736881,
+            "market_price": 331.14,
+            "market_value": 195.674173,
             "sector": null,
             "shares": 0.59091071,
             "theme": null
@@ -16692,8 +16685,8 @@
           "KRE": {
             "asset_type": "etf",
             "avg_price": 70.374072,
-            "market_price": 72.23,
-            "market_value": 181.755144,
+            "market_price": 72.49,
+            "market_value": 182.409392,
             "sector": "Financials",
             "shares": 2.51633869,
             "theme": "Regional Banks"
@@ -16701,8 +16694,8 @@
           "PANW": {
             "asset_type": "stock",
             "avg_price": 266.383266,
-            "market_price": 284.54,
-            "market_value": 84.81726,
+            "market_price": 279.9,
+            "market_value": 83.434143,
             "sector": null,
             "shares": 0.29808554,
             "theme": null
@@ -16710,8 +16703,8 @@
           "QQQ": {
             "asset_type": "benchmark",
             "avg_price": 716.213214,
-            "market_price": 744.0,
-            "market_value": 1038.796809,
+            "market_price": 729.86,
+            "market_value": 1019.054085,
             "sector": "Broad Growth",
             "shares": 1.39623227,
             "theme": "Nasdaq 100"
@@ -16719,8 +16712,8 @@
           "SGOV": {
             "asset_type": "cash_proxy",
             "avg_price": 100.480092,
-            "market_price": 100.53,
-            "market_value": 250.124174,
+            "market_price": 100.54,
+            "market_value": 250.149055,
             "sector": "Cash",
             "shares": 2.48805505,
             "theme": "Treasury Bills"
@@ -16728,8 +16721,8 @@
           "SPY": {
             "asset_type": "benchmark",
             "avg_price": 739.367844,
-            "market_price": 754.83,
-            "market_value": 2041.82534,
+            "market_price": 750.33,
+            "market_value": 2029.652779,
             "sector": "Broad Market",
             "shares": 2.7050135,
             "theme": "S&P 500"
@@ -16737,8 +16730,8 @@
           "VRTX": {
             "asset_type": "stock",
             "avg_price": 443.048592,
-            "market_price": 450.46,
-            "market_value": 122.04297,
+            "market_price": 453.17,
+            "market_value": 122.777189,
             "sector": null,
             "shares": 0.27092965,
             "theme": null
@@ -16746,8 +16739,8 @@
           "XLE": {
             "asset_type": "etf",
             "avg_price": 58.341666,
-            "market_price": 55.55,
-            "market_value": 137.257141,
+            "market_price": 55.36,
+            "market_value": 136.787674,
             "sector": "Energy",
             "shares": 2.47087562,
             "theme": "Energy"
@@ -16755,8 +16748,8 @@
           "XLK": {
             "asset_type": "etf",
             "avg_price": 184.216836,
-            "market_price": 191.79,
-            "market_value": 128.863396,
+            "market_price": 186.44,
+            "market_value": 125.26874,
             "sector": "Technology",
             "shares": 0.67189841,
             "theme": "Technology"
@@ -16764,145 +16757,145 @@
           "XLU": {
             "asset_type": "etf",
             "avg_price": 43.528704,
-            "market_price": 44.74,
-            "market_value": 203.931259,
+            "market_price": 45.06,
+            "market_value": 205.389864,
             "sector": "Utilities",
             "shares": 4.55814168,
             "theme": "Utilities"
           }
         },
         "realized_pnl": 0.0,
-        "relative_drawdown_pct": 0.01605,
+        "relative_drawdown_pct": 0.01543,
         "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
         "weights": {
-          "AAPL": 0.03803148,
-          "AMZN": 0.02910801,
-          "CASH": 1.96e-06,
-          "CRWD": 0.01488159,
-          "ETN": 0.01948978,
-          "GOOGL": 0.01993854,
-          "HACK": 0.02099911,
-          "JPM": 0.03696795,
-          "KRE": 0.03560043,
-          "PANW": 0.01661318,
-          "QQQ": 0.20346942,
-          "SGOV": 0.04899189,
-          "SPY": 0.3999329,
-          "VRTX": 0.02390459,
-          "XLE": 0.02688459,
-          "XLK": 0.02524051,
-          "XLU": 0.03994407
+          "AAPL": 0.03860179,
+          "AMZN": 0.0292637,
+          "CASH": 1.97e-06,
+          "CRWD": 0.01467262,
+          "ETN": 0.01962691,
+          "GOOGL": 0.02025849,
+          "HACK": 0.02079442,
+          "JPM": 0.03853488,
+          "KRE": 0.0359226,
+          "PANW": 0.01643101,
+          "QQQ": 0.20068631,
+          "SGOV": 0.04926283,
+          "SPY": 0.39970746,
+          "VRTX": 0.02417899,
+          "XLE": 0.02693813,
+          "XLK": 0.02466966,
+          "XLU": 0.04044823
         }
       },
       "rejected_etfs": [
         {
           "reason": "not_selected_after_rank",
-          "score": 0.64674,
+          "score": 0.64193,
           "symbol": "MTUM"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.64657,
-          "symbol": "XLRE"
-        },
-        {
-          "reason": "not_selected_after_rank",
-          "score": 0.64603,
+          "score": 0.63576,
           "symbol": "XLK"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.64532,
-          "symbol": "XLB"
+          "score": 0.62366,
+          "symbol": "XLU"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.61336,
+          "score": 0.61638,
           "symbol": "XLV"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.60268,
+          "score": 0.60904,
           "symbol": "XLE"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.58856,
-          "symbol": "SMH"
+          "score": 0.60209,
+          "symbol": "XLB"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.58066,
-          "symbol": "XBI"
-        },
-        {
-          "reason": "not_selected_after_rank",
-          "score": 0.57122,
+          "score": 0.58418,
           "symbol": "XLI"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.56829,
-          "symbol": "XLF"
+          "score": 0.58408,
+          "symbol": "XBI"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.55486,
+          "score": 0.58181,
+          "symbol": "SMH"
+        },
+        {
+          "reason": "not_selected_after_rank",
+          "score": 0.54953,
           "symbol": "USMV"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.54259,
+          "score": 0.54736,
+          "symbol": "XLF"
+        },
+        {
+          "reason": "not_selected_after_rank",
+          "score": 0.54213,
           "symbol": "QUAL"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.5414,
+          "score": 0.54163,
           "symbol": "IWM"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.53806,
+          "score": 0.53366,
           "symbol": "ICLN"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.53092,
+          "score": 0.53099,
           "symbol": "IWC"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.52192,
+          "score": 0.51754,
           "symbol": "XLY"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.50215,
+          "score": 0.51429,
           "symbol": "TLT"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.49588,
-          "symbol": "XLC"
-        },
-        {
-          "reason": "not_selected_after_rank",
-          "score": 0.4727,
-          "symbol": "ARKK"
-        },
-        {
-          "reason": "not_selected_after_rank",
-          "score": 0.47072,
-          "symbol": "IEF"
-        },
-        {
-          "reason": "not_selected_after_rank",
-          "score": 0.45887,
+          "score": 0.50574,
           "symbol": "BOTZ"
         },
         {
           "reason": "not_selected_after_rank",
-          "score": 0.44863,
+          "score": 0.50321,
+          "symbol": "XLC"
+        },
+        {
+          "reason": "not_selected_after_rank",
+          "score": 0.47846,
+          "symbol": "IEF"
+        },
+        {
+          "reason": "not_selected_after_rank",
+          "score": 0.46853,
+          "symbol": "ARKK"
+        },
+        {
+          "reason": "not_selected_after_rank",
+          "score": 0.4488,
           "symbol": "GLD"
         }
       ],
@@ -16915,10 +16908,22 @@
             "ETF has favorable regime fit",
             "earned dynamic ETF eligibility through score"
           ],
-          "score": 0.68587,
+          "score": 0.68221,
           "sector": "Factor",
           "symbol": "VLUE",
           "theme": "Value"
+        },
+        {
+          "category": "theme",
+          "reasons": [
+            "leadership and relative-strength inputs are supportive",
+            "ETF has favorable regime fit",
+            "earned dynamic ETF eligibility through score"
+          ],
+          "score": 0.6613,
+          "sector": "Cybersecurity",
+          "symbol": "HACK",
+          "theme": "Cybersecurity"
         },
         {
           "category": "industry",
@@ -16928,104 +16933,84 @@
             "ETF adds diversification versus anchors/current book",
             "earned dynamic ETF eligibility through score"
           ],
-          "score": 0.67996,
+          "score": 0.64953,
           "sector": "Financials",
           "symbol": "KRE",
           "theme": "Regional Banks"
         },
         {
-          "category": "theme",
-          "reasons": [
-            "leadership and relative-strength inputs are supportive",
-            "ETF has favorable regime fit",
-            "earned dynamic ETF eligibility through score"
-          ],
-          "score": 0.67399,
-          "sector": "Cybersecurity",
-          "symbol": "HACK",
-          "theme": "Cybersecurity"
-        },
-        {
           "category": "sector",
           "reasons": [
             "ETF has favorable regime fit",
             "ETF adds diversification versus anchors/current book",
             "earned dynamic ETF eligibility through score"
           ],
-          "score": 0.67192,
-          "sector": "Utilities",
-          "symbol": "XLU",
-          "theme": "Utilities"
-        },
-        {
-          "category": "sector",
-          "reasons": [
-            "ETF has favorable regime fit",
-            "ETF adds diversification versus anchors/current book",
-            "earned dynamic ETF eligibility through score"
-          ],
-          "score": 0.64745,
+          "score": 0.64795,
           "sector": "Consumer Staples",
           "symbol": "XLP",
           "theme": "Consumer Staples"
+        },
+        {
+          "category": "sector",
+          "reasons": [
+            "ETF has favorable regime fit",
+            "ETF adds diversification versus anchors/current book",
+            "earned dynamic ETF eligibility through score"
+          ],
+          "score": 0.64555,
+          "sector": "Real Estate",
+          "symbol": "XLRE",
+          "theme": "Real Estate"
         }
       ],
       "systematic_decision": {
         "risk_status": {
-          "absolute_drawdown_pct": 0.0,
+          "absolute_drawdown_pct": -0.005401,
           "allow_new_alpha_entries": true,
           "as_of": "2026-06-16",
           "concentration": {
-            "max_sector_weight": 0.199999,
+            "max_sector_weight": 0.2,
             "max_symbol_weight": 0.4,
-            "max_theme_weight": 0.199999,
-            "top3_weight": 0.112337
+            "max_theme_weight": 0.2,
+            "top3_weight": 0.110651
           },
           "data_health": {
             "endpoint_availability": {
               "/v2/aggs/ticker/AAPL/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:55Z",
+                "checked_at": "2026-06-16T23:53:12Z",
                 "endpoint": "/v2/aggs/ticker/AAPL/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/ADTX/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:12Z",
+                "endpoint": "/v2/aggs/ticker/ADTX/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/AHMA/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:55Z",
+                "checked_at": "2026-06-16T23:53:13Z",
                 "endpoint": "/v2/aggs/ticker/AHMA/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/AIDX/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:06:56Z",
-                "endpoint": "/v2/aggs/ticker/AIDX/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/AMD/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:56Z",
+                "checked_at": "2026-06-16T23:53:13Z",
                 "endpoint": "/v2/aggs/ticker/AMD/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/AMPGR/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:06:56Z",
-                "endpoint": "/v2/aggs/ticker/AMPGR/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/AMZN/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:56Z",
+                "checked_at": "2026-06-16T23:53:13Z",
                 "endpoint": "/v2/aggs/ticker/AMZN/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17033,7 +17018,7 @@
               },
               "/v2/aggs/ticker/ARKK/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:57Z",
+                "checked_at": "2026-06-16T23:53:14Z",
                 "endpoint": "/v2/aggs/ticker/ARKK/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17041,55 +17026,79 @@
               },
               "/v2/aggs/ticker/AVGO/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:57Z",
+                "checked_at": "2026-06-16T23:53:14Z",
                 "endpoint": "/v2/aggs/ticker/AVGO/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/AXTU/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:14Z",
+                "endpoint": "/v2/aggs/ticker/AXTU/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/AXTX/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:14Z",
+                "endpoint": "/v2/aggs/ticker/AXTX/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/BIAF/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:15Z",
+                "endpoint": "/v2/aggs/ticker/BIAF/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/BITA/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:15Z",
+                "endpoint": "/v2/aggs/ticker/BITA/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/BOTZ/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:57Z",
+                "checked_at": "2026-06-16T23:53:15Z",
                 "endpoint": "/v2/aggs/ticker/BOTZ/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/CAST/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/CCTG/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:57Z",
-                "endpoint": "/v2/aggs/ticker/CAST/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:15Z",
+                "endpoint": "/v2/aggs/ticker/CCTG/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/CEG/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:58Z",
+                "checked_at": "2026-06-16T23:53:16Z",
                 "endpoint": "/v2/aggs/ticker/CEG/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/CMTL/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/CIIT/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:58Z",
-                "endpoint": "/v2/aggs/ticker/CMTL/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/CNTX/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:06:58Z",
-                "endpoint": "/v2/aggs/ticker/CNTX/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:16Z",
+                "endpoint": "/v2/aggs/ticker/CIIT/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/COIN/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:58Z",
+                "checked_at": "2026-06-16T23:53:16Z",
                 "endpoint": "/v2/aggs/ticker/COIN/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17097,7 +17106,7 @@
               },
               "/v2/aggs/ticker/COST/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:59Z",
+                "checked_at": "2026-06-16T23:53:16Z",
                 "endpoint": "/v2/aggs/ticker/COST/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17105,15 +17114,23 @@
               },
               "/v2/aggs/ticker/CRM/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:59Z",
+                "checked_at": "2026-06-16T23:53:17Z",
                 "endpoint": "/v2/aggs/ticker/CRM/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/CRVO/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:17Z",
+                "endpoint": "/v2/aggs/ticker/CRVO/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/CRWD/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:59Z",
+                "checked_at": "2026-06-16T23:53:17Z",
                 "endpoint": "/v2/aggs/ticker/CRWD/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17121,23 +17138,39 @@
               },
               "/v2/aggs/ticker/CUPR/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:59Z",
+                "checked_at": "2026-06-16T23:53:18Z",
                 "endpoint": "/v2/aggs/ticker/CUPR/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/DAICW/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:18Z",
+                "endpoint": "/v2/aggs/ticker/DAICW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/DDOG/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:00Z",
+                "checked_at": "2026-06-16T23:53:18Z",
                 "endpoint": "/v2/aggs/ticker/DDOG/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/DOMO/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:18Z",
+                "endpoint": "/v2/aggs/ticker/DOMO/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/ELTX/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:00Z",
+                "checked_at": "2026-06-16T23:53:19Z",
                 "endpoint": "/v2/aggs/ticker/ELTX/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17145,23 +17178,39 @@
               },
               "/v2/aggs/ticker/ETN/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:00Z",
+                "checked_at": "2026-06-16T23:53:19Z",
                 "endpoint": "/v2/aggs/ticker/ETN/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/EVLVW/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/EVGOW/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:00Z",
-                "endpoint": "/v2/aggs/ticker/EVLVW/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:19Z",
+                "endpoint": "/v2/aggs/ticker/EVGOW/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/FTHM/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:19Z",
+                "endpoint": "/v2/aggs/ticker/FTHM/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/GDC/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:20Z",
+                "endpoint": "/v2/aggs/ticker/GDC/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/GE/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:01Z",
+                "checked_at": "2026-06-16T23:53:20Z",
                 "endpoint": "/v2/aggs/ticker/GE/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17169,7 +17218,7 @@
               },
               "/v2/aggs/ticker/GLD/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:01Z",
+                "checked_at": "2026-06-16T23:53:20Z",
                 "endpoint": "/v2/aggs/ticker/GLD/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17177,23 +17226,15 @@
               },
               "/v2/aggs/ticker/GOOGL/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:01Z",
+                "checked_at": "2026-06-16T23:53:21Z",
                 "endpoint": "/v2/aggs/ticker/GOOGL/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/GPUS/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:01Z",
-                "endpoint": "/v2/aggs/ticker/GPUS/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/HACK/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:02Z",
+                "checked_at": "2026-06-16T23:53:21Z",
                 "endpoint": "/v2/aggs/ticker/HACK/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17201,47 +17242,15 @@
               },
               "/v2/aggs/ticker/HOOD/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:02Z",
+                "checked_at": "2026-06-16T23:53:21Z",
                 "endpoint": "/v2/aggs/ticker/HOOD/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/HQ/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:02Z",
-                "endpoint": "/v2/aggs/ticker/HQ/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/HQWWW/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:02Z",
-                "endpoint": "/v2/aggs/ticker/HQWWW/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/HUBC/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:03Z",
-                "endpoint": "/v2/aggs/ticker/HUBC/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/HUBCZ/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:03Z",
-                "endpoint": "/v2/aggs/ticker/HUBCZ/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/ICLN/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:03Z",
+                "checked_at": "2026-06-16T23:53:21Z",
                 "endpoint": "/v2/aggs/ticker/ICLN/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17249,23 +17258,15 @@
               },
               "/v2/aggs/ticker/IEF/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:03Z",
+                "checked_at": "2026-06-16T23:53:22Z",
                 "endpoint": "/v2/aggs/ticker/IEF/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/IMCC/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:04Z",
-                "endpoint": "/v2/aggs/ticker/IMCC/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/ISRG/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:04Z",
+                "checked_at": "2026-06-16T23:53:22Z",
                 "endpoint": "/v2/aggs/ticker/ISRG/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17273,7 +17274,7 @@
               },
               "/v2/aggs/ticker/IVDA/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:04Z",
+                "checked_at": "2026-06-16T23:53:22Z",
                 "endpoint": "/v2/aggs/ticker/IVDA/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17281,7 +17282,7 @@
               },
               "/v2/aggs/ticker/IVDAW/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:04Z",
+                "checked_at": "2026-06-16T23:53:22Z",
                 "endpoint": "/v2/aggs/ticker/IVDAW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17289,7 +17290,7 @@
               },
               "/v2/aggs/ticker/IWC/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:04Z",
+                "checked_at": "2026-06-16T23:53:23Z",
                 "endpoint": "/v2/aggs/ticker/IWC/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17297,7 +17298,7 @@
               },
               "/v2/aggs/ticker/IWM/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:05Z",
+                "checked_at": "2026-06-16T23:53:23Z",
                 "endpoint": "/v2/aggs/ticker/IWM/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17305,71 +17306,71 @@
               },
               "/v2/aggs/ticker/JPM/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:05Z",
+                "checked_at": "2026-06-16T23:53:23Z",
                 "endpoint": "/v2/aggs/ticker/JPM/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/KIDZW/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:05Z",
-                "endpoint": "/v2/aggs/ticker/KIDZW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/KRE/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:05Z",
+                "checked_at": "2026-06-16T23:53:24Z",
                 "endpoint": "/v2/aggs/ticker/KRE/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/LFVN/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/LGLR/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:06Z",
-                "endpoint": "/v2/aggs/ticker/LFVN/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:24Z",
+                "endpoint": "/v2/aggs/ticker/LGLR/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/LLY/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:06Z",
+                "checked_at": "2026-06-16T23:53:24Z",
                 "endpoint": "/v2/aggs/ticker/LLY/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/LOKVU/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/LNAI/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:06Z",
-                "endpoint": "/v2/aggs/ticker/LOKVU/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:24Z",
+                "endpoint": "/v2/aggs/ticker/LNAI/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/LPRO/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:25Z",
+                "endpoint": "/v2/aggs/ticker/LPRO/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/MA/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:06Z",
+                "checked_at": "2026-06-16T23:53:25Z",
                 "endpoint": "/v2/aggs/ticker/MA/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/MEHA/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/MCRP/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:07Z",
-                "endpoint": "/v2/aggs/ticker/MEHA/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:25Z",
+                "endpoint": "/v2/aggs/ticker/MCRP/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/MELI/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:07Z",
+                "checked_at": "2026-06-16T23:53:25Z",
                 "endpoint": "/v2/aggs/ticker/MELI/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17377,47 +17378,23 @@
               },
               "/v2/aggs/ticker/META/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:07Z",
+                "checked_at": "2026-06-16T23:53:26Z",
                 "endpoint": "/v2/aggs/ticker/META/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/MNTSW/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:07Z",
-                "endpoint": "/v2/aggs/ticker/MNTSW/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/MRNOW/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:07Z",
-                "endpoint": "/v2/aggs/ticker/MRNOW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/MSFT/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:08Z",
+                "checked_at": "2026-06-16T23:53:26Z",
                 "endpoint": "/v2/aggs/ticker/MSFT/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/MTEN/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:08Z",
-                "endpoint": "/v2/aggs/ticker/MTEN/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/MTUM/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:08Z",
+                "checked_at": "2026-06-16T23:53:26Z",
                 "endpoint": "/v2/aggs/ticker/MTUM/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17425,7 +17402,7 @@
               },
               "/v2/aggs/ticker/MYPSW/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:08Z",
+                "checked_at": "2026-06-16T23:53:26Z",
                 "endpoint": "/v2/aggs/ticker/MYPSW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17433,7 +17410,7 @@
               },
               "/v2/aggs/ticker/NET/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:09Z",
+                "checked_at": "2026-06-16T23:53:27Z",
                 "endpoint": "/v2/aggs/ticker/NET/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17441,23 +17418,15 @@
               },
               "/v2/aggs/ticker/NFLX/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:09Z",
+                "checked_at": "2026-06-16T23:53:27Z",
                 "endpoint": "/v2/aggs/ticker/NFLX/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/NIXXW/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:09Z",
-                "endpoint": "/v2/aggs/ticker/NIXXW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/NMRA/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:09Z",
+                "checked_at": "2026-06-16T23:53:27Z",
                 "endpoint": "/v2/aggs/ticker/NMRA/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17465,7 +17434,7 @@
               },
               "/v2/aggs/ticker/NOW/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:10Z",
+                "checked_at": "2026-06-16T23:53:28Z",
                 "endpoint": "/v2/aggs/ticker/NOW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17473,31 +17442,31 @@
               },
               "/v2/aggs/ticker/NVDA/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:10Z",
+                "checked_at": "2026-06-16T23:53:28Z",
                 "endpoint": "/v2/aggs/ticker/NVDA/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/NWGL/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/OBAI/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:10Z",
-                "endpoint": "/v2/aggs/ticker/NWGL/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:28Z",
+                "endpoint": "/v2/aggs/ticker/OBAI/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/ORGNW/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/OTLK/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:10Z",
-                "endpoint": "/v2/aggs/ticker/ORGNW/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:28Z",
+                "endpoint": "/v2/aggs/ticker/OTLK/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/PANW/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:11Z",
+                "checked_at": "2026-06-16T23:53:29Z",
                 "endpoint": "/v2/aggs/ticker/PANW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17505,7 +17474,7 @@
               },
               "/v2/aggs/ticker/PLTR/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:11Z",
+                "checked_at": "2026-06-16T23:53:29Z",
                 "endpoint": "/v2/aggs/ticker/PLTR/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17513,7 +17482,7 @@
               },
               "/v2/aggs/ticker/PRFX/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:11Z",
+                "checked_at": "2026-06-16T23:53:29Z",
                 "endpoint": "/v2/aggs/ticker/PRFX/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17521,31 +17490,15 @@
               },
               "/v2/aggs/ticker/QQQ/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:11Z",
+                "checked_at": "2026-06-16T23:53:30Z",
                 "endpoint": "/v2/aggs/ticker/QQQ/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/QTEX/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:12Z",
-                "endpoint": "/v2/aggs/ticker/QTEX/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/QTEXW/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:12Z",
-                "endpoint": "/v2/aggs/ticker/QTEXW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/QUAL/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:12Z",
+                "checked_at": "2026-06-16T23:53:30Z",
                 "endpoint": "/v2/aggs/ticker/QUAL/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17553,7 +17506,7 @@
               },
               "/v2/aggs/ticker/REGN/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:12Z",
+                "checked_at": "2026-06-16T23:53:30Z",
                 "endpoint": "/v2/aggs/ticker/REGN/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17561,7 +17514,7 @@
               },
               "/v2/aggs/ticker/RGNT/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:12Z",
+                "checked_at": "2026-06-16T23:53:30Z",
                 "endpoint": "/v2/aggs/ticker/RGNT/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17569,7 +17522,7 @@
               },
               "/v2/aggs/ticker/SDOT/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:13Z",
+                "checked_at": "2026-06-16T23:53:31Z",
                 "endpoint": "/v2/aggs/ticker/SDOT/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17577,7 +17530,7 @@
               },
               "/v2/aggs/ticker/SGOV/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:13Z",
+                "checked_at": "2026-06-16T23:53:31Z",
                 "endpoint": "/v2/aggs/ticker/SGOV/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17585,7 +17538,7 @@
               },
               "/v2/aggs/ticker/SHOP/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:13Z",
+                "checked_at": "2026-06-16T23:53:31Z",
                 "endpoint": "/v2/aggs/ticker/SHOP/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17593,7 +17546,7 @@
               },
               "/v2/aggs/ticker/SHY/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:13Z",
+                "checked_at": "2026-06-16T23:53:31Z",
                 "endpoint": "/v2/aggs/ticker/SHY/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17601,7 +17554,7 @@
               },
               "/v2/aggs/ticker/SLBT/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:14Z",
+                "checked_at": "2026-06-16T23:53:32Z",
                 "endpoint": "/v2/aggs/ticker/SLBT/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17609,55 +17562,63 @@
               },
               "/v2/aggs/ticker/SMH/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:14Z",
+                "checked_at": "2026-06-16T23:53:32Z",
                 "endpoint": "/v2/aggs/ticker/SMH/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/SNBR/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:14Z",
-                "endpoint": "/v2/aggs/ticker/SNBR/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/SNOW/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:14Z",
+                "checked_at": "2026-06-16T23:53:32Z",
                 "endpoint": "/v2/aggs/ticker/SNOW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/SPCM/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/SNWV/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:15Z",
-                "endpoint": "/v2/aggs/ticker/SPCM/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:33Z",
+                "endpoint": "/v2/aggs/ticker/SNWV/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/SPY/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:15Z",
+                "checked_at": "2026-06-16T23:53:33Z",
                 "endpoint": "/v2/aggs/ticker/SPY/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/SVREW/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/SVAQW/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:15Z",
-                "endpoint": "/v2/aggs/ticker/SVREW/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:33Z",
+                "endpoint": "/v2/aggs/ticker/SVAQW/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/TBLAW/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:33Z",
+                "endpoint": "/v2/aggs/ticker/TBLAW/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/TDIC/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:34Z",
+                "endpoint": "/v2/aggs/ticker/TDIC/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/TLT/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:15Z",
+                "checked_at": "2026-06-16T23:53:34Z",
                 "endpoint": "/v2/aggs/ticker/TLT/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17665,23 +17626,15 @@
               },
               "/v2/aggs/ticker/TMO/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:16Z",
+                "checked_at": "2026-06-16T23:53:34Z",
                 "endpoint": "/v2/aggs/ticker/TMO/range/1/day/2025-04-22/2026-06-16",
-                "plan_dependent": false,
-                "point_in_time_safe": true,
-                "reason": "DELAYED"
-              },
-              "/v2/aggs/ticker/TRAW/range/1/day/2025-04-22/2026-06-16": {
-                "available": true,
-                "checked_at": "2026-06-16T00:07:16Z",
-                "endpoint": "/v2/aggs/ticker/TRAW/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/TSLA/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:16Z",
+                "checked_at": "2026-06-16T23:53:34Z",
                 "endpoint": "/v2/aggs/ticker/TSLA/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17689,7 +17642,7 @@
               },
               "/v2/aggs/ticker/TYGR/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:16Z",
+                "checked_at": "2026-06-16T23:53:35Z",
                 "endpoint": "/v2/aggs/ticker/TYGR/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17697,7 +17650,7 @@
               },
               "/v2/aggs/ticker/UBER/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:16Z",
+                "checked_at": "2026-06-16T23:53:35Z",
                 "endpoint": "/v2/aggs/ticker/UBER/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17705,7 +17658,7 @@
               },
               "/v2/aggs/ticker/USMV/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:17Z",
+                "checked_at": "2026-06-16T23:53:35Z",
                 "endpoint": "/v2/aggs/ticker/USMV/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17713,7 +17666,7 @@
               },
               "/v2/aggs/ticker/V/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:17Z",
+                "checked_at": "2026-06-16T23:53:35Z",
                 "endpoint": "/v2/aggs/ticker/V/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17721,7 +17674,7 @@
               },
               "/v2/aggs/ticker/VLUE/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:17Z",
+                "checked_at": "2026-06-16T23:53:36Z",
                 "endpoint": "/v2/aggs/ticker/VLUE/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17729,7 +17682,7 @@
               },
               "/v2/aggs/ticker/VRT/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:17Z",
+                "checked_at": "2026-06-16T23:53:36Z",
                 "endpoint": "/v2/aggs/ticker/VRT/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17737,23 +17690,47 @@
               },
               "/v2/aggs/ticker/VRTX/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:18Z",
+                "checked_at": "2026-06-16T23:53:36Z",
                 "endpoint": "/v2/aggs/ticker/VRTX/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
-              "/v2/aggs/ticker/VSME/range/1/day/2025-04-22/2026-06-16": {
+              "/v2/aggs/ticker/VRXA/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:18Z",
-                "endpoint": "/v2/aggs/ticker/VSME/range/1/day/2025-04-22/2026-06-16",
+                "checked_at": "2026-06-16T23:53:37Z",
+                "endpoint": "/v2/aggs/ticker/VRXA/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/VRXAW/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:37Z",
+                "endpoint": "/v2/aggs/ticker/VRXAW/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/WALDW/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:37Z",
+                "endpoint": "/v2/aggs/ticker/WALDW/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/WOK/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:38Z",
+                "endpoint": "/v2/aggs/ticker/WOK/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/WYFL/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:18Z",
+                "checked_at": "2026-06-16T23:53:38Z",
                 "endpoint": "/v2/aggs/ticker/WYFL/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17761,7 +17738,7 @@
               },
               "/v2/aggs/ticker/XBI/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:18Z",
+                "checked_at": "2026-06-16T23:53:38Z",
                 "endpoint": "/v2/aggs/ticker/XBI/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17769,7 +17746,7 @@
               },
               "/v2/aggs/ticker/XLB/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:19Z",
+                "checked_at": "2026-06-16T23:53:38Z",
                 "endpoint": "/v2/aggs/ticker/XLB/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17777,7 +17754,7 @@
               },
               "/v2/aggs/ticker/XLC/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:19Z",
+                "checked_at": "2026-06-16T23:53:39Z",
                 "endpoint": "/v2/aggs/ticker/XLC/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17785,7 +17762,7 @@
               },
               "/v2/aggs/ticker/XLE/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:19Z",
+                "checked_at": "2026-06-16T23:53:39Z",
                 "endpoint": "/v2/aggs/ticker/XLE/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17793,7 +17770,7 @@
               },
               "/v2/aggs/ticker/XLF/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:19Z",
+                "checked_at": "2026-06-16T23:53:39Z",
                 "endpoint": "/v2/aggs/ticker/XLF/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17801,7 +17778,7 @@
               },
               "/v2/aggs/ticker/XLI/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:20Z",
+                "checked_at": "2026-06-16T23:53:40Z",
                 "endpoint": "/v2/aggs/ticker/XLI/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17809,7 +17786,7 @@
               },
               "/v2/aggs/ticker/XLK/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:20Z",
+                "checked_at": "2026-06-16T23:53:40Z",
                 "endpoint": "/v2/aggs/ticker/XLK/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17817,7 +17794,7 @@
               },
               "/v2/aggs/ticker/XLP/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:20Z",
+                "checked_at": "2026-06-16T23:53:40Z",
                 "endpoint": "/v2/aggs/ticker/XLP/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17825,7 +17802,7 @@
               },
               "/v2/aggs/ticker/XLRE/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:20Z",
+                "checked_at": "2026-06-16T23:53:40Z",
                 "endpoint": "/v2/aggs/ticker/XLRE/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17833,7 +17810,7 @@
               },
               "/v2/aggs/ticker/XLU/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:20Z",
+                "checked_at": "2026-06-16T23:53:41Z",
                 "endpoint": "/v2/aggs/ticker/XLU/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17841,7 +17818,7 @@
               },
               "/v2/aggs/ticker/XLV/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:21Z",
+                "checked_at": "2026-06-16T23:53:41Z",
                 "endpoint": "/v2/aggs/ticker/XLV/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17849,15 +17826,23 @@
               },
               "/v2/aggs/ticker/XLY/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:21Z",
+                "checked_at": "2026-06-16T23:53:41Z",
                 "endpoint": "/v2/aggs/ticker/XLY/range/1/day/2025-04-22/2026-06-16",
+                "plan_dependent": false,
+                "point_in_time_safe": true,
+                "reason": "DELAYED"
+              },
+              "/v2/aggs/ticker/YMAT/range/1/day/2025-04-22/2026-06-16": {
+                "available": true,
+                "checked_at": "2026-06-16T23:53:42Z",
+                "endpoint": "/v2/aggs/ticker/YMAT/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
                 "reason": "DELAYED"
               },
               "/v2/aggs/ticker/^VIX/range/1/day/2025-04-22/2026-06-16": {
                 "available": true,
-                "checked_at": "2026-06-16T00:07:21Z",
+                "checked_at": "2026-06-16T23:53:42Z",
                 "endpoint": "/v2/aggs/ticker/^VIX/range/1/day/2025-04-22/2026-06-16",
                 "plan_dependent": false,
                 "point_in_time_safe": true,
@@ -17865,7 +17850,7 @@
               },
               "/v2/snapshot/locale/us/markets/stocks/gainers": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:55Z",
+                "checked_at": "2026-06-16T23:53:12Z",
                 "endpoint": "/v2/snapshot/locale/us/markets/stocks/gainers",
                 "plan_dependent": true,
                 "point_in_time_safe": true,
@@ -17873,7 +17858,7 @@
               },
               "/v2/snapshot/locale/us/markets/stocks/losers": {
                 "available": true,
-                "checked_at": "2026-06-16T00:06:55Z",
+                "checked_at": "2026-06-16T23:53:12Z",
                 "endpoint": "/v2/snapshot/locale/us/markets/stocks/losers",
                 "plan_dependent": true,
                 "point_in_time_safe": true,
@@ -17885,6 +17870,7 @@
             "missing_critical_symbols": [],
             "ok": true,
             "optional_missing_symbols": [
+              "LGLR",
               "TYGR"
             ],
             "secondary_source_symbols": [
@@ -17897,7 +17883,7 @@
           "reasons": [
             "risk checks passed"
           ],
-          "relative_drawdown_pct": 0.015028
+          "relative_drawdown_pct": 0.01605
         },
         "target_allocations": [
           {
@@ -17929,140 +17915,140 @@
           },
           {
             "asset_type": "etf",
-            "reason": "risk-adjusted score allocation from 0.64745",
+            "reason": "risk-adjusted score allocation from 0.64795",
             "sector": "Consumer Staples",
             "sleeve": "dynamic_etf",
             "symbol": "XLP",
             "theme": "Consumer Staples",
-            "weight": 0.04066
+            "weight": 0.041079
           },
           {
             "asset_type": "etf",
-            "reason": "risk-adjusted score allocation from 0.67192",
-            "sector": "Utilities",
+            "reason": "risk-adjusted score allocation from 0.64555",
+            "sector": "Real Estate",
             "sleeve": "dynamic_etf",
-            "symbol": "XLU",
-            "theme": "Utilities",
-            "weight": 0.036148
+            "symbol": "XLRE",
+            "theme": "Real Estate",
+            "weight": 0.037464
           },
           {
             "asset_type": "stock",
-            "reason": "risk-adjusted score allocation from 0.44191",
-            "sector": null,
-            "sleeve": "stock_alpha",
-            "symbol": "COST",
-            "theme": null,
-            "weight": 0.035529
-          },
-          {
-            "asset_type": "stock",
-            "reason": "risk-adjusted score allocation from 0.47286",
-            "sector": null,
-            "sleeve": "stock_alpha",
-            "symbol": "AAPL",
-            "theme": null,
-            "weight": 0.032071
-          },
-          {
-            "asset_type": "stock",
-            "reason": "risk-adjusted score allocation from 0.46017",
-            "sector": null,
-            "sleeve": "stock_alpha",
-            "symbol": "VRTX",
-            "theme": null,
-            "weight": 0.031535
-          },
-          {
-            "asset_type": "etf",
-            "reason": "risk-adjusted score allocation from 0.67996",
-            "sector": "Financials",
-            "sleeve": "dynamic_etf",
-            "symbol": "KRE",
-            "theme": "Regional Banks",
-            "weight": 0.031177
-          },
-          {
-            "asset_type": "stock",
-            "reason": "risk-adjusted score allocation from 0.43107",
+            "reason": "risk-adjusted score allocation from 0.46102",
             "sector": null,
             "sleeve": "stock_alpha",
             "symbol": "JPM",
             "theme": null,
-            "weight": 0.030839
+            "weight": 0.032108
           },
           {
             "asset_type": "stock",
-            "reason": "risk-adjusted score allocation from 0.46806",
+            "reason": "risk-adjusted score allocation from 0.48279",
             "sector": null,
             "sleeve": "stock_alpha",
-            "symbol": "AMZN",
+            "symbol": "AAPL",
             "theme": null,
-            "weight": 0.025332
+            "weight": 0.031803
+          },
+          {
+            "asset_type": "stock",
+            "reason": "risk-adjusted score allocation from 0.46467",
+            "sector": null,
+            "sleeve": "stock_alpha",
+            "symbol": "VRTX",
+            "theme": null,
+            "weight": 0.03099
+          },
+          {
+            "asset_type": "stock",
+            "reason": "risk-adjusted score allocation from 0.48202",
+            "sector": null,
+            "sleeve": "stock_alpha",
+            "symbol": "V",
+            "theme": null,
+            "weight": 0.030258
           },
           {
             "asset_type": "etf",
-            "reason": "risk-adjusted score allocation from 0.68587",
+            "reason": "risk-adjusted score allocation from 0.64953",
+            "sector": "Financials",
+            "sleeve": "dynamic_etf",
+            "symbol": "KRE",
+            "theme": "Regional Banks",
+            "weight": 0.03004
+          },
+          {
+            "asset_type": "etf",
+            "reason": "risk-adjusted score allocation from 0.68221",
             "sector": "Factor",
             "sleeve": "dynamic_etf",
             "symbol": "VLUE",
             "theme": "Value",
-            "weight": 0.024952
+            "weight": 0.024616
           },
           {
             "asset_type": "stock",
-            "reason": "risk-adjusted score allocation from 0.44242",
+            "reason": "risk-adjusted score allocation from 0.44773",
+            "sector": null,
+            "sleeve": "stock_alpha",
+            "symbol": "AMZN",
+            "theme": null,
+            "weight": 0.023667
+          },
+          {
+            "asset_type": "stock",
+            "reason": "risk-adjusted score allocation from 0.4703",
             "sector": null,
             "sleeve": "stock_alpha",
             "symbol": "LLY",
             "theme": null,
-            "weight": 0.018254
+            "weight": 0.01996
+          },
+          {
+            "asset_type": "stock",
+            "reason": "risk-adjusted score allocation from 0.44701",
+            "sector": null,
+            "sleeve": "stock_alpha",
+            "symbol": "GOOGL",
+            "theme": null,
+            "weight": 0.018974
           },
           {
             "asset_type": "etf",
-            "reason": "risk-adjusted score allocation from 0.67399",
+            "reason": "risk-adjusted score allocation from 0.6613",
             "sector": "Cybersecurity",
             "sleeve": "dynamic_etf",
             "symbol": "HACK",
             "theme": "Cybersecurity",
-            "weight": 0.017064
+            "weight": 0.016801
           },
           {
             "asset_type": "stock",
-            "reason": "risk-adjusted score allocation from 0.46135",
-            "sector": null,
-            "sleeve": "stock_alpha",
-            "symbol": "PANW",
-            "theme": null,
-            "weight": 0.013752
-          },
-          {
-            "asset_type": "stock",
-            "reason": "risk-adjusted score allocation from 0.44985",
+            "reason": "risk-adjusted score allocation from 0.44782",
             "sector": null,
             "sleeve": "stock_alpha",
             "symbol": "CRWD",
             "theme": null,
-            "weight": 0.012687
+            "weight": 0.01224
           }
         ]
       },
       "target_allocation": {
-        "AAPL": 0.032071,
-        "AMZN": 0.025332,
-        "COST": 0.035529,
-        "CRWD": 0.012687,
-        "HACK": 0.017064,
-        "JPM": 0.030839,
-        "KRE": 0.031177,
-        "LLY": 0.018254,
-        "PANW": 0.013752,
+        "AAPL": 0.031803,
+        "AMZN": 0.023667,
+        "CRWD": 0.01224,
+        "GOOGL": 0.018974,
+        "HACK": 0.016801,
+        "JPM": 0.032108,
+        "KRE": 0.03004,
+        "LLY": 0.01996,
         "QQQ": 0.2,
         "SGOV": 0.05,
         "SPY": 0.4,
-        "VLUE": 0.024952,
-        "VRTX": 0.031535,
-        "XLP": 0.04066,
-        "XLU": 0.036148
+        "V": 0.030258,
+        "VLUE": 0.024616,
+        "VRTX": 0.03099,
+        "XLP": 0.041079,
+        "XLRE": 0.037464
       },
       "top_stock_candidates": [
         {
@@ -18073,10 +18059,10 @@
           "explanations": [
             "leadership and relative-strength inputs are supportive"
           ],
-          "final_score": 0.47286,
+          "final_score": 0.48279,
           "information_score": 0.45,
           "investable_flag": true,
-          "leadership_score": 0.63467,
+          "leadership_score": 0.67146,
           "regime_fit_score": 0.0,
           "risk_penalty": 0.03,
           "symbol": "AAPL",
@@ -18092,52 +18078,13 @@
           "explanations": [
             "neutral composite score"
           ],
-          "final_score": 0.46806,
+          "final_score": 0.48202,
           "information_score": 0.45,
           "investable_flag": true,
-          "leadership_score": 0.56292,
+          "leadership_score": 0.50845,
           "regime_fit_score": 0.0,
-          "risk_penalty": 0.04858,
-          "symbol": "AMZN",
-          "timing_multiplier": 1.05,
-          "timing_score": 0.75,
-          "wait_flag": false
-        },
-        {
-          "as_of": "2026-06-16",
-          "asset_type": "stock",
-          "data_quality_multiplier": 0.9,
-          "diversification_score": 0.0,
-          "explanations": [
-            "leadership and relative-strength inputs are supportive",
-            "risk penalty reduced score"
-          ],
-          "final_score": 0.46135,
-          "information_score": 0.45,
-          "investable_flag": true,
-          "leadership_score": 0.91184,
-          "regime_fit_score": 0.0,
-          "risk_penalty": 0.12594,
-          "symbol": "PANW",
-          "timing_multiplier": 1.0,
-          "timing_score": 0.7,
-          "wait_flag": false
-        },
-        {
-          "as_of": "2026-06-16",
-          "asset_type": "stock",
-          "data_quality_multiplier": 0.9,
-          "diversification_score": 0.0,
-          "explanations": [
-            "neutral composite score"
-          ],
-          "final_score": 0.46017,
-          "information_score": 0.45,
-          "investable_flag": true,
-          "leadership_score": 0.4265,
-          "regime_fit_score": 0.0,
-          "risk_penalty": 0.03,
-          "symbol": "VRTX",
+          "risk_penalty": 0.03146,
+          "symbol": "V",
           "timing_multiplier": 1.05,
           "timing_score": 0.82,
           "wait_flag": false
@@ -18148,34 +18095,14 @@
           "data_quality_multiplier": 0.9,
           "diversification_score": 0.0,
           "explanations": [
-            "leadership and relative-strength inputs are supportive",
-            "risk penalty reduced score"
-          ],
-          "final_score": 0.44985,
-          "information_score": 0.45,
-          "investable_flag": true,
-          "leadership_score": 0.904,
-          "regime_fit_score": 0.0,
-          "risk_penalty": 0.13637,
-          "symbol": "CRWD",
-          "timing_multiplier": 1.0,
-          "timing_score": 0.7,
-          "wait_flag": false
-        },
-        {
-          "as_of": "2026-06-16",
-          "asset_type": "stock",
-          "data_quality_multiplier": 0.9,
-          "diversification_score": 0.0,
-          "explanations": [
             "leadership and relative-strength inputs are supportive"
           ],
-          "final_score": 0.44242,
+          "final_score": 0.4703,
           "information_score": 0.45,
           "investable_flag": true,
-          "leadership_score": 0.67198,
+          "leadership_score": 0.7512,
           "regime_fit_score": 0.0,
-          "risk_penalty": 0.07502,
+          "risk_penalty": 0.06781,
           "symbol": "LLY",
           "timing_multiplier": 1.0,
           "timing_score": 0.7,
@@ -18189,10 +18116,106 @@
           "explanations": [
             "neutral composite score"
           ],
-          "final_score": 0.44191,
+          "final_score": 0.46467,
           "information_score": 0.45,
           "investable_flag": true,
-          "leadership_score": 0.34211,
+          "leadership_score": 0.44238,
+          "regime_fit_score": 0.0,
+          "risk_penalty": 0.03,
+          "symbol": "VRTX",
+          "timing_multiplier": 1.05,
+          "timing_score": 0.82,
+          "wait_flag": false
+        },
+        {
+          "as_of": "2026-06-16",
+          "asset_type": "stock",
+          "data_quality_multiplier": 0.9,
+          "diversification_score": 0.0,
+          "explanations": [
+            "leadership and relative-strength inputs are supportive"
+          ],
+          "final_score": 0.46102,
+          "information_score": 0.45,
+          "investable_flag": true,
+          "leadership_score": 0.69618,
+          "regime_fit_score": 0.0,
+          "risk_penalty": 0.03,
+          "symbol": "JPM",
+          "timing_multiplier": 1.05,
+          "timing_score": 0.42,
+          "wait_flag": false
+        },
+        {
+          "as_of": "2026-06-16",
+          "asset_type": "stock",
+          "data_quality_multiplier": 0.9,
+          "diversification_score": 0.0,
+          "explanations": [
+            "leadership and relative-strength inputs are supportive",
+            "risk penalty reduced score"
+          ],
+          "final_score": 0.44782,
+          "information_score": 0.45,
+          "investable_flag": true,
+          "leadership_score": 0.89886,
+          "regime_fit_score": 0.0,
+          "risk_penalty": 0.13708,
+          "symbol": "CRWD",
+          "timing_multiplier": 1.0,
+          "timing_score": 0.7,
+          "wait_flag": false
+        },
+        {
+          "as_of": "2026-06-16",
+          "asset_type": "stock",
+          "data_quality_multiplier": 0.9,
+          "diversification_score": 0.0,
+          "explanations": [
+            "neutral composite score"
+          ],
+          "final_score": 0.44773,
+          "information_score": 0.45,
+          "investable_flag": true,
+          "leadership_score": 0.55645,
+          "regime_fit_score": 0.0,
+          "risk_penalty": 0.04815,
+          "symbol": "AMZN",
+          "timing_multiplier": 1.05,
+          "timing_score": 0.65,
+          "wait_flag": false
+        },
+        {
+          "as_of": "2026-06-16",
+          "asset_type": "stock",
+          "data_quality_multiplier": 0.9,
+          "diversification_score": 0.0,
+          "explanations": [
+            "leadership and relative-strength inputs are supportive"
+          ],
+          "final_score": 0.44701,
+          "information_score": 0.45,
+          "investable_flag": true,
+          "leadership_score": 0.66491,
+          "regime_fit_score": 0.0,
+          "risk_penalty": 0.0678,
+          "symbol": "GOOGL",
+          "timing_multiplier": 1.0,
+          "timing_score": 0.7,
+          "wait_flag": false
+        },
+        {
+          "as_of": "2026-06-16",
+          "asset_type": "stock",
+          "data_quality_multiplier": 0.9,
+          "diversification_score": 0.0,
+          "explanations": [
+            "neutral composite score"
+          ],
+          "final_score": 0.44451,
+          "information_score": 0.45,
+          "investable_flag": true,
+          "leadership_score": 0.35127,
           "regime_fit_score": 0.0,
           "risk_penalty": 0.03,
           "symbol": "COST",
@@ -18208,57 +18231,19 @@
           "explanations": [
             "leadership and relative-strength inputs are supportive"
           ],
-          "final_score": 0.43107,
+          "final_score": 0.42998,
           "information_score": 0.45,
           "investable_flag": true,
-          "leadership_score": 0.61321,
+          "leadership_score": 0.67589,
           "regime_fit_score": 0.0,
-          "risk_penalty": 0.03,
-          "symbol": "JPM",
+          "risk_penalty": 0.09001,
+          "symbol": "ETN",
           "timing_multiplier": 1.0,
-          "timing_score": 0.5,
-          "wait_flag": false
-        },
-        {
-          "as_of": "2026-06-16",
-          "asset_type": "stock",
-          "data_quality_multiplier": 0.9,
-          "diversification_score": 0.0,
-          "explanations": [
-            "leadership and relative-strength inputs are supportive"
-          ],
-          "final_score": 0.4228,
-          "information_score": 0.45,
-          "investable_flag": true,
-          "leadership_score": 0.64289,
-          "regime_fit_score": 0.0,
-          "risk_penalty": 0.06809,
-          "symbol": "GOOGL",
-          "timing_multiplier": 1.0,
-          "timing_score": 0.6,
-          "wait_flag": false
-        },
-        {
-          "as_of": "2026-06-16",
-          "asset_type": "stock",
-          "data_quality_multiplier": 0.9,
-          "diversification_score": 0.0,
-          "explanations": [
-            "neutral composite score"
-          ],
-          "final_score": 0.41758,
-          "information_score": 0.45,
-          "investable_flag": true,
-          "leadership_score": 0.25629,
-          "regime_fit_score": 0.0,
-          "risk_penalty": 0.03,
-          "symbol": "MA",
-          "timing_multiplier": 1.05,
-          "timing_score": 0.85,
+          "timing_score": 0.7,
           "wait_flag": false
         }
       ],
-      "universe_size": 109,
+      "universe_size": 108,
       "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
       "watermarks": [
         "SYSTEMATIC_TEMPLATE_OUTPUT",
