@@ -1,5 +1,5 @@
 {
-  "benchmark_equity": 5089.647376,
+  "benchmark_equity": 5129.350142,
   "cash": 0.01,
   "date": "2026-06-19",
   "last_rebalance_date": "2026-06-08",
@@ -153,7 +153,7 @@
     }
   },
   "realized_pnl": 0.0,
-  "relative_drawdown_pct": 0.010356,
+  "relative_drawdown_pct": 0.018296,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
     "AAPL": 0.03843627,
