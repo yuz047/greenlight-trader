@@ -1,89 +1,71 @@
 {
-  "benchmark_equity": 5129.350142,
-  "cash": 0.01,
-  "date": "2026-06-19",
-  "last_rebalance_date": "2026-06-08",
-  "nav": 5078.749618,
+  "benchmark_equity": 5113.208014,
+  "cash": 0.0,
+  "date": "2026-06-22",
+  "last_rebalance_date": "2026-06-22",
+  "nav": 5065.648845,
   "peak_nav": 5105.419846,
   "peak_relative_outperformance": 0.008176,
   "positions": {
     "AAPL": {
       "asset_type": "stock",
       "avg_price": 301.600308,
-      "market_price": 298.01,
-      "market_value": 195.208208,
+      "market_price": 297.01,
+      "market_value": 194.553169,
       "sector": null,
       "shares": 0.65503912,
       "theme": null
     },
-    "AMZN": {
+    "COST": {
       "asset_type": "stock",
-      "avg_price": 245.269044,
-      "market_price": 244.39,
-      "market_value": 147.624012,
+      "avg_price": 951.54027,
+      "market_price": 951.35,
+      "market_value": 174.082138,
       "sector": null,
-      "shares": 0.60405095,
+      "shares": 0.18298433,
       "theme": null
     },
-    "CRWD": {
+    "GE": {
       "asset_type": "stock",
-      "avg_price": 658.921758,
-      "market_price": 684.86,
-      "market_value": 75.094098,
+      "avg_price": 355.191024,
+      "market_price": 355.12,
+      "market_value": 84.247671,
       "sector": null,
-      "shares": 0.10964883,
-      "theme": null
-    },
-    "ETN": {
-      "asset_type": "stock",
-      "avg_price": 403.220628,
-      "market_price": 421.77,
-      "market_value": 103.099289,
-      "sector": null,
-      "shares": 0.24444434,
+      "shares": 0.23723719,
       "theme": null
     },
     "GOOGL": {
       "asset_type": "stock",
       "avg_price": 363.382662,
-      "market_price": 368.03,
-      "market_value": 101.430827,
+      "market_price": 349.68,
+      "market_value": 96.373479,
       "sector": null,
       "shares": 0.27560478,
       "theme": null
     },
-    "HACK": {
-      "asset_type": "etf",
-      "avg_price": 96.799356,
-      "market_price": 96.0,
-      "market_value": 105.68996,
-      "sector": "Cybersecurity",
-      "shares": 1.10093708,
-      "theme": "Cybersecurity"
-    },
-    "JPM": {
+    "LLY": {
       "asset_type": "stock",
-      "avg_price": 311.172222,
-      "market_price": 325.22,
-      "market_value": 192.175981,
+      "avg_price": 1102.300416,
+      "market_price": 1102.08,
+      "market_value": 104.533363,
       "sector": null,
-      "shares": 0.59091071,
+      "shares": 0.09485098,
       "theme": null
     },
-    "KRE": {
+    "MTUM": {
       "asset_type": "etf",
-      "avg_price": 70.374072,
-      "market_price": 71.72,
-      "market_value": 180.471811,
-      "sector": "Financials",
-      "shares": 2.51633869,
-      "theme": "Regional Banks"
+      "avg_price": 345.289044,
+      "market_price": 345.22,
+      "market_value": 123.188096,
+      "sector": "Factor",
+      "shares": 0.3568394,
+      "theme": "Momentum"
     },
     "PANW": {
       "asset_type": "stock",
       "avg_price": 266.383266,
-      "market_price": 287.78,
-      "market_value": 85.783057,
+      "market_price": 286.4,
+      "market_value": 85.371699,
       "sector": null,
       "shares": 0.29808554,
       "theme": null
@@ -91,8 +73,8 @@
     "QQQ": {
       "asset_type": "benchmark",
       "avg_price": 716.213214,
-      "market_price": 740.62,
-      "market_value": 1034.077544,
+      "market_price": 737.95,
+      "market_value": 1030.349604,
       "sector": "Broad Growth",
       "shares": 1.39623227,
       "theme": "Nasdaq 100"
@@ -100,8 +82,8 @@
     "SGOV": {
       "asset_type": "cash_proxy",
       "avg_price": 100.480092,
-      "market_price": 100.59,
-      "market_value": 250.273457,
+      "market_price": 100.6,
+      "market_value": 250.298338,
       "sector": "Cash",
       "shares": 2.48805505,
       "theme": "Treasury Bills"
@@ -109,69 +91,86 @@
     "SPY": {
       "asset_type": "benchmark",
       "avg_price": 739.367844,
-      "market_price": 746.74,
-      "market_value": 2019.941781,
+      "market_price": 744.39,
+      "market_value": 2013.584999,
       "sector": "Broad Market",
       "shares": 2.7050135,
       "theme": "S&P 500"
     },
-    "VRTX": {
+    "V": {
       "asset_type": "stock",
-      "avg_price": 443.048592,
-      "market_price": 451.63,
-      "market_value": 122.359958,
+      "avg_price": 326.66532,
+      "market_price": 326.6,
+      "market_value": 142.491161,
       "sector": null,
-      "shares": 0.27092965,
+      "shares": 0.43628647,
       "theme": null
     },
-    "XLE": {
+    "VLUE": {
       "asset_type": "etf",
-      "avg_price": 58.341666,
-      "market_price": 53.77,
-      "market_value": 132.858982,
-      "sector": "Energy",
-      "shares": 2.47087562,
-      "theme": "Energy"
+      "avg_price": 204.210834,
+      "market_price": 204.17,
+      "market_value": 159.692212,
+      "sector": "Factor",
+      "shares": 0.78215317,
+      "theme": "Value"
+    },
+    "VRTX": {
+      "asset_type": "stock",
+      "avg_price": 448.117673,
+      "market_price": 466.79,
+      "market_value": 160.629217,
+      "sector": null,
+      "shares": 0.34411452,
+      "theme": null
+    },
+    "XBI": {
+      "asset_type": "etf",
+      "avg_price": 145.889172,
+      "market_price": 145.86,
+      "market_value": 112.36906,
+      "sector": "Health Care",
+      "shares": 0.77038983,
+      "theme": "Biotech"
     },
     "XLK": {
       "asset_type": "etf",
       "avg_price": 184.216836,
-      "market_price": 191.44,
-      "market_value": 128.628232,
+      "market_price": 192.15,
+      "market_value": 129.105279,
       "sector": "Technology",
       "shares": 0.67189841,
       "theme": "Technology"
     },
-    "XLU": {
+    "XLP": {
       "asset_type": "etf",
-      "avg_price": 43.528704,
-      "market_price": 44.76,
-      "market_value": 204.022422,
-      "sector": "Utilities",
-      "shares": 4.55814168,
-      "theme": "Utilities"
+      "avg_price": 82.196436,
+      "market_price": 82.18,
+      "market_value": 204.77936,
+      "sector": "Consumer Staples",
+      "shares": 2.49183937,
+      "theme": "Consumer Staples"
     }
   },
-  "realized_pnl": 0.0,
-  "relative_drawdown_pct": 0.018296,
+  "realized_pnl": 10.697937,
+  "relative_drawdown_pct": 0.017688,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
-    "AAPL": 0.03843627,
-    "AMZN": 0.029067,
-    "CASH": 1.97e-06,
-    "CRWD": 0.01478594,
-    "ETN": 0.02030013,
-    "GOOGL": 0.01997161,
-    "HACK": 0.02081023,
-    "JPM": 0.03783923,
-    "KRE": 0.03553469,
-    "PANW": 0.01689059,
-    "QQQ": 0.20360869,
-    "SGOV": 0.04927856,
-    "SPY": 0.39772423,
-    "VRTX": 0.02409254,
-    "XLE": 0.02615978,
-    "XLK": 0.02532675,
-    "XLU": 0.04017178
+    "AAPL": 0.03840637,
+    "COST": 0.03436522,
+    "GE": 0.01663117,
+    "GOOGL": 0.0190249,
+    "LLY": 0.02063573,
+    "MTUM": 0.02431833,
+    "PANW": 0.01685306,
+    "QQQ": 0.20339933,
+    "SGOV": 0.04941091,
+    "SPY": 0.39749794,
+    "V": 0.02812891,
+    "VLUE": 0.03152453,
+    "VRTX": 0.0317095,
+    "XBI": 0.02218256,
+    "XLK": 0.02548643,
+    "XLP": 0.0404251
   }
 }
