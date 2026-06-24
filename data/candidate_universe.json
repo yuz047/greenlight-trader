@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-23",
+  "as_of": "2026-06-24",
   "candidates": [
     {
       "asset_type": "benchmark",
@@ -443,20 +443,6 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "AAAP",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
       "reason_included": "seed_quality_or_current_holding",
       "sector": null,
       "source": "config.stock_seed_pool",
@@ -471,38 +457,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
+      "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
       "symbol": "ADTX",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "AHTPD",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "AHTPF",
       "theme": null
     },
     {
@@ -527,20 +485,6 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "AMPGR",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
       "reason_included": "seed_quality_or_current_holding",
       "sector": null,
       "source": "config.stock_seed_pool",
@@ -555,35 +499,7 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "ARQQ",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "ASBPW",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
+      "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
       "symbol": "ATLN",
@@ -611,10 +527,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
+      "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "AXTL",
+      "symbol": "AZI",
       "theme": null
     },
     {
@@ -628,7 +544,7 @@
       "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "AXTU",
+      "symbol": "BGL",
       "theme": null
     },
     {
@@ -642,7 +558,35 @@
       "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "AXTX",
+      "symbol": "BNCWZ",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_losers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "CBRG",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_losers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "CBRX",
       "theme": null
     },
     {
@@ -656,7 +600,7 @@
       "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "BLZE",
+      "symbol": "CCIXW",
       "theme": null
     },
     {
@@ -670,21 +614,7 @@
       "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "BOLD",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "CAPNR",
+      "symbol": "CCXIW",
       "theme": null
     },
     {
@@ -709,10 +639,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
+      "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "CIIT",
+      "symbol": "CGTX",
       "theme": null
     },
     {
@@ -779,6 +709,34 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
+      "reason_included": "massive_market_mover_losers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "CSHRW",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_gainers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "CUPR",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
       "reason_included": "seed_quality_or_current_holding",
       "sector": null,
       "source": "config.stock_seed_pool",
@@ -793,24 +751,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
+      "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "DEVS",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "DSYWW",
+      "symbol": "ECHO",
       "theme": null
     },
     {
@@ -838,7 +782,21 @@
       "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "FCUV",
+      "symbol": "EVGOW",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_gainers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "FMFC",
       "theme": null
     },
     {
@@ -852,7 +810,7 @@
       "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "FGMCR",
+      "symbol": "FRTT",
       "theme": null
     },
     {
@@ -867,20 +825,6 @@
       "sector": null,
       "source": "config.stock_seed_pool",
       "symbol": "GE",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "GITS",
       "theme": null
     },
     {
@@ -919,24 +863,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
+      "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "HSCS",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "HUBCZ",
+      "symbol": "HTZ",
       "theme": null
     },
     {
@@ -950,7 +880,35 @@
       "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "ILLR",
+      "symbol": "HTZWW",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_losers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "HUMAW",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_gainers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "ICCM",
       "theme": null
     },
     {
@@ -993,48 +951,6 @@
       "sector": null,
       "source": "config.stock_seed_pool",
       "symbol": "JPM",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "KIDZ",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "KORU",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "LGLR",
       "theme": null
     },
     {
@@ -1101,10 +1017,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
+      "reason_included": "seed_quality_or_current_holding",
       "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "MGN",
+      "source": "config.stock_seed_pool",
+      "symbol": "MSFT",
       "theme": null
     },
     {
@@ -1115,10 +1031,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "seed_quality_or_current_holding",
+      "reason_included": "massive_market_mover_losers",
       "sector": null,
-      "source": "config.stock_seed_pool",
-      "symbol": "MSFT",
+      "source": "massive.market_movers",
+      "symbol": "MUZ",
       "theme": null
     },
     {
@@ -1157,10 +1073,52 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
+      "reason_included": "massive_market_mover_gainers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "NIXXW",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
       "reason_included": "seed_quality_or_current_holding",
       "sector": null,
       "source": "config.stock_seed_pool",
       "symbol": "NOW",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_losers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "NUWE",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_gainers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "NVCT",
       "theme": null
     },
     {
@@ -1188,35 +1146,7 @@
       "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "NXGLW",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "NXTS",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "ORGNW",
+      "symbol": "ONTX",
       "theme": null
     },
     {
@@ -1244,7 +1174,7 @@
       "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "PCTTW",
+      "symbol": "PLSM",
       "theme": null
     },
     {
@@ -1269,38 +1199,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "QH",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "QTEXW",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
       "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "RCKTW",
+      "symbol": "RAM",
       "theme": null
     },
     {
@@ -1325,10 +1227,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
+      "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "RQIR",
+      "symbol": "SCAG",
       "theme": null
     },
     {
@@ -1339,10 +1241,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
+      "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "SBFMW",
+      "symbol": "SDOT",
       "theme": null
     },
     {
@@ -1357,6 +1259,20 @@
       "sector": null,
       "source": "config.stock_seed_pool",
       "symbol": "SHOP",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_gainers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "SKYQ",
       "theme": null
     },
     {
@@ -1384,7 +1300,35 @@
       "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "THOR",
+      "symbol": "SPWRW",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_gainers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "STFS",
+      "theme": null
+    },
+    {
+      "asset_type": "stock",
+      "avg_dollar_volume": null,
+      "category": null,
+      "data_quality_flag": "pending_profile_and_price_validation",
+      "high_risk_symbol_flag": false,
+      "industry": null,
+      "market_cap": null,
+      "reason_included": "massive_market_mover_losers",
+      "sector": null,
+      "source": "massive.market_movers",
+      "symbol": "TBLAW",
       "theme": null
     },
     {
@@ -1412,7 +1356,7 @@
       "reason_included": "massive_market_mover_losers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "TRIB",
+      "symbol": "TOYO",
       "theme": null
     },
     {
@@ -1465,20 +1409,6 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_gainers",
-      "sector": null,
-      "source": "massive.market_movers",
-      "symbol": "VGASW",
-      "theme": null
-    },
-    {
-      "asset_type": "stock",
-      "avg_dollar_volume": null,
-      "category": null,
-      "data_quality_flag": "pending_profile_and_price_validation",
-      "high_risk_symbol_flag": false,
-      "industry": null,
-      "market_cap": null,
       "reason_included": "seed_quality_or_current_holding",
       "sector": null,
       "source": "config.stock_seed_pool",
@@ -1507,10 +1437,10 @@
       "high_risk_symbol_flag": false,
       "industry": null,
       "market_cap": null,
-      "reason_included": "massive_market_mover_losers",
+      "reason_included": "massive_market_mover_gainers",
       "sector": null,
       "source": "massive.market_movers",
-      "symbol": "WETO",
+      "symbol": "WAVE",
       "theme": null
     },
     {
@@ -1531,7 +1461,7 @@
   "endpoint_availability": {
     "/v2/snapshot/locale/us/markets/stocks/gainers": {
       "available": true,
-      "checked_at": "2026-06-23T23:34:06Z",
+      "checked_at": "2026-06-24T23:38:22Z",
       "endpoint": "/v2/snapshot/locale/us/markets/stocks/gainers",
       "plan_dependent": true,
       "point_in_time_safe": true,
@@ -1539,14 +1469,14 @@
     },
     "/v2/snapshot/locale/us/markets/stocks/losers": {
       "available": true,
-      "checked_at": "2026-06-23T23:34:06Z",
+      "checked_at": "2026-06-24T23:38:22Z",
       "endpoint": "/v2/snapshot/locale/us/markets/stocks/losers",
       "plan_dependent": true,
       "point_in_time_safe": true,
       "reason": "OK"
     }
   },
-  "generated_at": "2026-06-23T23:34:06Z",
+  "generated_at": "2026-06-24T23:38:22Z",
   "high_risk_symbol_count": 0,
   "mandate": {
     "benchmark": "SPY",

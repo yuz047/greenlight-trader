@@ -1,17 +1,17 @@
 {
-  "benchmark_equity": 5038.954224,
+  "benchmark_equity": 5036.618767,
   "cash": 0.0,
-  "date": "2026-06-23",
+  "date": "2026-06-24",
   "last_rebalance_date": "2026-06-22",
-  "nav": 4992.782081,
+  "nav": 4994.974936,
   "peak_nav": 5105.419846,
   "peak_relative_outperformance": 0.008176,
   "positions": {
     "AAPL": {
       "asset_type": "stock",
       "avg_price": 301.600308,
-      "market_price": 294.3,
-      "market_value": 192.778013,
+      "market_price": 293.08,
+      "market_value": 191.978865,
       "sector": null,
       "shares": 0.65503912,
       "theme": null
@@ -19,8 +19,8 @@
     "COST": {
       "asset_type": "stock",
       "avg_price": 951.54027,
-      "market_price": 957.68,
-      "market_value": 175.240433,
+      "market_price": 961.09,
+      "market_value": 175.86441,
       "sector": null,
       "shares": 0.18298433,
       "theme": null
@@ -28,8 +28,8 @@
     "GE": {
       "asset_type": "stock",
       "avg_price": 355.191024,
-      "market_price": 356.47,
-      "market_value": 84.567941,
+      "market_price": 365.88,
+      "market_value": 86.800343,
       "sector": null,
       "shares": 0.23723719,
       "theme": null
@@ -37,8 +37,8 @@
     "GOOGL": {
       "asset_type": "stock",
       "avg_price": 363.382662,
-      "market_price": 346.13,
-      "market_value": 95.395083,
+      "market_price": 345.29,
+      "market_value": 95.163574,
       "sector": null,
       "shares": 0.27560478,
       "theme": null
@@ -46,8 +46,8 @@
     "LLY": {
       "asset_type": "stock",
       "avg_price": 1102.300416,
-      "market_price": 1107.08,
-      "market_value": 105.007623,
+      "market_price": 1117.26,
+      "market_value": 105.973206,
       "sector": null,
       "shares": 0.09485098,
       "theme": null
@@ -55,8 +55,8 @@
     "MTUM": {
       "asset_type": "etf",
       "avg_price": 345.289044,
-      "market_price": 329.76,
-      "market_value": 117.671361,
+      "market_price": 328.41,
+      "market_value": 117.189627,
       "sector": "Factor",
       "shares": 0.3568394,
       "theme": "Momentum"
@@ -64,8 +64,8 @@
     "PANW": {
       "asset_type": "stock",
       "avg_price": 266.383266,
-      "market_price": 290.915,
-      "market_value": 86.717555,
+      "market_price": 285.26,
+      "market_value": 85.031881,
       "sector": null,
       "shares": 0.29808554,
       "theme": null
@@ -73,8 +73,8 @@
     "QQQ": {
       "asset_type": "benchmark",
       "avg_price": 716.213214,
-      "market_price": 713.65,
-      "market_value": 996.421159,
+      "market_price": 710.62,
+      "market_value": 992.190576,
       "sector": "Broad Growth",
       "shares": 1.39623227,
       "theme": "Nasdaq 100"
@@ -82,8 +82,8 @@
     "SGOV": {
       "asset_type": "cash_proxy",
       "avg_price": 100.480092,
-      "market_price": 100.61,
-      "market_value": 250.323219,
+      "market_price": 100.62,
+      "market_value": 250.348099,
       "sector": "Cash",
       "shares": 2.48805505,
       "theme": "Treasury Bills"
@@ -91,8 +91,8 @@
     "SPY": {
       "asset_type": "benchmark",
       "avg_price": 739.367844,
-      "market_price": 733.58,
-      "market_value": 1984.343803,
+      "market_price": 733.24,
+      "market_value": 1983.424099,
       "sector": "Broad Market",
       "shares": 2.7050135,
       "theme": "S&P 500"
@@ -100,8 +100,8 @@
     "V": {
       "asset_type": "stock",
       "avg_price": 326.66532,
-      "market_price": 328.48,
-      "market_value": 143.31138,
+      "market_price": 332.23,
+      "market_value": 144.947454,
       "sector": null,
       "shares": 0.43628647,
       "theme": null
@@ -109,8 +109,8 @@
     "VLUE": {
       "asset_type": "etf",
       "avg_price": 204.210834,
-      "market_price": 197.11,
-      "market_value": 154.170211,
+      "market_price": 196.64,
+      "market_value": 153.802599,
       "sector": "Factor",
       "shares": 0.78215317,
       "theme": "Value"
@@ -118,8 +118,8 @@
     "VRTX": {
       "asset_type": "stock",
       "avg_price": 448.117673,
-      "market_price": 468.42,
-      "market_value": 161.190123,
+      "market_price": 475.2,
+      "market_value": 163.52322,
       "sector": null,
       "shares": 0.34411452,
       "theme": null
@@ -127,8 +127,8 @@
     "XBI": {
       "asset_type": "etf",
       "avg_price": 145.889172,
-      "market_price": 147.03,
-      "market_value": 113.270417,
+      "market_price": 149.71,
+      "market_value": 115.335061,
       "sector": "Health Care",
       "shares": 0.77038983,
       "theme": "Biotech"
@@ -136,8 +136,8 @@
     "XLK": {
       "asset_type": "etf",
       "avg_price": 184.216836,
-      "market_price": 184.19,
-      "market_value": 123.756968,
+      "market_price": 183.05,
+      "market_value": 122.991004,
       "sector": "Technology",
       "shares": 0.67189841,
       "theme": "Technology"
@@ -145,32 +145,32 @@
     "XLP": {
       "asset_type": "etf",
       "avg_price": 82.196436,
-      "market_price": 83.72,
-      "market_value": 208.616792,
+      "market_price": 84.44,
+      "market_value": 210.410916,
       "sector": "Consumer Staples",
       "shares": 2.49183937,
       "theme": "Consumer Staples"
     }
   },
   "realized_pnl": 10.697937,
-  "relative_drawdown_pct": 0.01741,
+  "relative_drawdown_pct": 0.016505,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
-    "AAPL": 0.03861134,
-    "COST": 0.03509875,
-    "GE": 0.01693804,
-    "GOOGL": 0.0191066,
-    "LLY": 0.02103189,
-    "MTUM": 0.02356829,
-    "PANW": 0.01736858,
-    "QQQ": 0.19957233,
-    "SGOV": 0.05013702,
-    "SPY": 0.3974425,
-    "V": 0.02870371,
-    "VLUE": 0.03087862,
-    "VRTX": 0.03228463,
-    "XBI": 0.02268683,
-    "XLK": 0.02478718,
-    "XLP": 0.04178368
+    "AAPL": 0.0384344,
+    "COST": 0.03520827,
+    "GE": 0.01737753,
+    "GOOGL": 0.01905186,
+    "LLY": 0.02121596,
+    "MTUM": 0.0234615,
+    "PANW": 0.01702349,
+    "QQQ": 0.19863775,
+    "SGOV": 0.05011999,
+    "SPY": 0.39708389,
+    "V": 0.02901865,
+    "VLUE": 0.03079147,
+    "VRTX": 0.03273755,
+    "XBI": 0.02309022,
+    "XLK": 0.02462295,
+    "XLP": 0.04212452
   }
 }

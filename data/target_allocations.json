@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-06-23",
+  "as_of": "2026-06-24",
   "budgets": {
     "agent_experimental": 0.0,
     "defensive": 0.05,
@@ -14,26 +14,27 @@
       "Broad Growth": 0.2,
       "Broad Market": 0.4,
       "Cash": 0.05,
-      "Consumer Staples": 0.039829,
-      "Factor": 0.041370000000000004,
-      "Financials": 0.029342,
-      "Real Estate": 0.03946,
-      "Unknown": 0.199999
+      "Consumer Staples": 0.043518,
+      "Cybersecurity": 0.018371,
+      "Factor": 0.024276,
+      "Health Care": 0.02102,
+      "Real Estate": 0.042815,
+      "Unknown": 0.200001
     },
     "theme": {
-      "Consumer Staples": 0.039829,
-      "Momentum": 0.018567,
+      "Biotech": 0.02102,
+      "Consumer Staples": 0.043518,
+      "Cybersecurity": 0.018371,
       "Nasdaq 100": 0.2,
-      "Real Estate": 0.03946,
-      "Regional Banks": 0.029342,
+      "Real Estate": 0.042815,
       "S&P 500": 0.4,
       "Treasury Bills": 0.05,
-      "Unknown": 0.199999,
-      "Value": 0.022803
+      "Unknown": 0.200001,
+      "Value": 0.024276
     },
     "top3_weight": 0.65
   },
-  "generated_at": "2026-06-23T23:34:17Z",
+  "generated_at": "2026-06-24T23:38:43Z",
   "regime": "RISK_ON",
   "rules": [
     "Allocator outputs target weights, not raw buy/sell calls.",
@@ -71,120 +72,120 @@
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.65557",
+      "reason": "risk-adjusted score allocation from 0.66757",
       "sector": "Consumer Staples",
       "sleeve": "dynamic_etf",
       "symbol": "XLP",
       "theme": "Consumer Staples",
-      "weight": 0.039829
+      "weight": 0.043518
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.66063",
+      "reason": "risk-adjusted score allocation from 0.66023",
       "sector": "Real Estate",
       "sleeve": "dynamic_etf",
       "symbol": "XLRE",
       "theme": "Real Estate",
-      "weight": 0.03946
+      "weight": 0.042815
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.43185",
+      "reason": "risk-adjusted score allocation from 0.45313",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "COST",
       "theme": null,
-      "weight": 0.039251
+      "weight": 0.039341
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.45196",
+      "reason": "risk-adjusted score allocation from 0.4485",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "AAPL",
       "theme": null,
-      "weight": 0.035553
+      "weight": 0.033556
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.4382",
+      "reason": "risk-adjusted score allocation from 0.41324",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "V",
+      "symbol": "VRTX",
       "theme": null,
-      "weight": 0.031897
+      "weight": 0.030261
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.65157",
-      "sector": "Financials",
-      "sleeve": "dynamic_etf",
-      "symbol": "KRE",
-      "theme": "Regional Banks",
-      "weight": 0.029342
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.46307",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "GOOGL",
-      "theme": null,
-      "weight": 0.023339
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.4608",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "LLY",
-      "theme": null,
-      "weight": 0.023204
-    },
-    {
-      "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.6709",
+      "reason": "risk-adjusted score allocation from 0.66294",
       "sector": "Factor",
       "sleeve": "dynamic_etf",
       "symbol": "VLUE",
       "theme": "Value",
-      "weight": 0.022803
+      "weight": 0.024276
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.48809",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "GOOGL",
+      "theme": null,
+      "weight": 0.024013
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.46752",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "LLY",
+      "theme": null,
+      "weight": 0.022464
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.43404",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "UBER",
+      "theme": null,
+      "weight": 0.021096
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.64673",
-      "sector": "Factor",
+      "reason": "risk-adjusted score allocation from 0.66876",
+      "sector": "Health Care",
       "sleeve": "dynamic_etf",
-      "symbol": "MTUM",
-      "theme": "Momentum",
-      "weight": 0.018567
+      "symbol": "XBI",
+      "theme": "Biotech",
+      "weight": 0.02102
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.66024",
+      "sector": "Cybersecurity",
+      "sleeve": "dynamic_etf",
+      "symbol": "HACK",
+      "theme": "Cybersecurity",
+      "weight": 0.018371
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.41713",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "ETN",
-      "theme": null,
-      "weight": 0.016616
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.46503",
+      "reason": "risk-adjusted score allocation from 0.46731",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "PANW",
       "theme": null,
-      "weight": 0.016152
+      "weight": 0.015674
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.42374",
+      "reason": "risk-adjusted score allocation from 0.42373",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "CRWD",
       "theme": null,
-      "weight": 0.013987
+      "weight": 0.013596
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
