@@ -1,11 +1,11 @@
 Watermark: SYSTEMATIC_TEMPLATE_OUTPUT
-Generated-At: 2026-06-29T23:31:30Z
+Generated-At: 2026-06-30T23:42:24Z
 
 # Greenlight Trader Comparison Report
 
-Production Greenlight total return: 0.905151
+Production Greenlight total return: 0.935172
 
-SPY total return: 0.621829
+SPY total return: 0.648548
 
 Verdict vs SPY: beat SPY.
 
