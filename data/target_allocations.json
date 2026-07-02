@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-01",
+  "as_of": "2026-07-02",
   "budgets": {
     "agent_experimental": 0.0,
     "defensive": 1.0,
@@ -18,7 +18,7 @@
     },
     "top3_weight": 1.0
   },
-  "generated_at": "2026-07-01T23:49:14Z",
+  "generated_at": "2026-07-02T23:33:55Z",
   "regime": "DATA_FAILURE",
   "rules": [
     "Allocator outputs target weights, not raw buy/sell calls.",
