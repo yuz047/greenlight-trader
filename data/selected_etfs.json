@@ -1,36 +1,41 @@
 {
-  "as_of": "2026-07-06",
-  "generated_at": "2026-07-06T23:34:38Z",
+  "as_of": "2026-07-07",
+  "generated_at": "2026-07-07T23:27:03Z",
   "regime": "DATA_FAILURE",
   "rejected_etfs": [
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.57576,
+      "score": 0.57094,
       "symbol": "ARKK"
     },
     {
+      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
+      "score": 0.5599,
+      "symbol": "SMH"
+    },
+    {
       "reason": "score_below_threshold",
-      "score": 0.32546,
+      "score": 0.32623,
       "symbol": "XLP"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.31544,
+      "score": 0.31626,
       "symbol": "XLK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.30428,
+      "score": 0.3036,
       "symbol": "XBI"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.2933,
+      "score": 0.2953,
       "symbol": "MTUM"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.28883,
+      "score": 0.29002,
       "symbol": "VLUE"
     },
     {
@@ -77,11 +82,6 @@
       "reason": "not_investable",
       "score": 0.04688,
       "symbol": "QUAL"
-    },
-    {
-      "reason": "not_investable",
-      "score": 0.04688,
-      "symbol": "SMH"
     },
     {
       "reason": "not_investable",
