@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-07-10",
+  "as_of": "2026-07-13",
   "candidates": [
     {
       "asset_type": "benchmark",
@@ -943,7 +943,7 @@
   "endpoint_availability": {
     "/v2/snapshot/locale/us/markets/stocks/gainers": {
       "available": false,
-      "checked_at": "2026-07-10T23:26:18Z",
+      "checked_at": "2026-07-13T23:23:44Z",
       "endpoint": "/v2/snapshot/locale/us/markets/stocks/gainers",
       "plan_dependent": true,
       "point_in_time_safe": true,
@@ -951,14 +951,14 @@
     },
     "/v2/snapshot/locale/us/markets/stocks/losers": {
       "available": false,
-      "checked_at": "2026-07-10T23:26:18Z",
+      "checked_at": "2026-07-13T23:23:44Z",
       "endpoint": "/v2/snapshot/locale/us/markets/stocks/losers",
       "plan_dependent": true,
       "point_in_time_safe": true,
       "reason": "auth_or_plan_error_403"
     }
   },
-  "generated_at": "2026-07-10T23:26:18Z",
+  "generated_at": "2026-07-13T23:23:44Z",
   "high_risk_symbol_count": 0,
   "mandate": {
     "benchmark": "SPY",
