@@ -1,36 +1,46 @@
 {
-  "as_of": "2026-07-20",
-  "generated_at": "2026-07-20T23:28:22Z",
+  "as_of": "2026-07-21",
+  "generated_at": "2026-07-21T23:26:08Z",
   "regime": "DATA_FAILURE",
   "rejected_etfs": [
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.51011,
+      "score": 0.56436,
+      "symbol": "IWM"
+    },
+    {
+      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
+      "score": 0.54458,
+      "symbol": "IWC"
+    },
+    {
+      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
+      "score": 0.46631,
       "symbol": "ARKK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.32621,
+      "score": 0.32623,
       "symbol": "XLP"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.31578,
+      "score": 0.31472,
       "symbol": "XLK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.30168,
+      "score": 0.30279,
       "symbol": "XBI"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.29487,
+      "score": 0.29674,
       "symbol": "MTUM"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.28813,
+      "score": 0.28938,
       "symbol": "VLUE"
     },
     {
@@ -52,21 +62,6 @@
       "reason": "not_investable",
       "score": 0.04688,
       "symbol": "ICLN"
-    },
-    {
-      "reason": "not_investable",
-      "score": 0.04688,
-      "symbol": "IEF"
-    },
-    {
-      "reason": "not_investable",
-      "score": 0.04688,
-      "symbol": "IWC"
-    },
-    {
-      "reason": "not_investable",
-      "score": 0.04688,
-      "symbol": "IWM"
     },
     {
       "reason": "not_investable",
@@ -145,7 +140,19 @@
     "ETF is rejected if it duplicates SPY/QQQ without useful exposure.",
     "ETF allocation is capped by config."
   ],
-  "selected_etfs": [],
+  "selected_etfs": [
+    {
+      "category": "rates",
+      "reasons": [
+        "ETF adds diversification versus anchors/current book",
+        "earned dynamic ETF eligibility through score"
+      ],
+      "score": 0.48418,
+      "sector": "Rates",
+      "symbol": "IEF",
+      "theme": "Intermediate Treasuries"
+    }
+  ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
