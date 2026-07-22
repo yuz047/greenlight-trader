@@ -1,46 +1,51 @@
 {
-  "as_of": "2026-07-21",
-  "generated_at": "2026-07-21T23:26:08Z",
+  "as_of": "2026-07-22",
+  "generated_at": "2026-07-22T23:28:11Z",
   "regime": "DATA_FAILURE",
   "rejected_etfs": [
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.56436,
+      "score": 0.59891,
+      "symbol": "KRE"
+    },
+    {
+      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
+      "score": 0.57082,
       "symbol": "IWM"
     },
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.54458,
+      "score": 0.54827,
       "symbol": "IWC"
     },
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.46631,
+      "score": 0.46858,
       "symbol": "ARKK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.32623,
+      "score": 0.32519,
       "symbol": "XLP"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.31472,
+      "score": 0.31514,
       "symbol": "XLK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.30279,
+      "score": 0.30445,
       "symbol": "XBI"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.29674,
+      "score": 0.2952,
       "symbol": "MTUM"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.28938,
+      "score": 0.28838,
       "symbol": "VLUE"
     },
     {
@@ -66,7 +71,7 @@
     {
       "reason": "not_investable",
       "score": 0.04688,
-      "symbol": "KRE"
+      "symbol": "IEF"
     },
     {
       "reason": "not_investable",
@@ -140,19 +145,7 @@
     "ETF is rejected if it duplicates SPY/QQQ without useful exposure.",
     "ETF allocation is capped by config."
   ],
-  "selected_etfs": [
-    {
-      "category": "rates",
-      "reasons": [
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.48418,
-      "sector": "Rates",
-      "symbol": "IEF",
-      "theme": "Intermediate Treasuries"
-    }
-  ],
+  "selected_etfs": [],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
