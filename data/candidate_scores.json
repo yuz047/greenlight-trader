@@ -1,16 +1,16 @@
 {
-  "as_of": "2026-07-23",
+  "as_of": "2026-07-24",
   "etf_weights": {
     "diversification": 0.2,
     "leadership": 0.4,
     "regime_fit": 0.25,
     "timing": 0.15
   },
-  "generated_at": "2026-07-23T23:25:41Z",
+  "generated_at": "2026-07-24T23:30:07Z",
   "regime": "DATA_FAILURE",
   "scores": [
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "cash_proxy",
       "data_quality_multiplier": 0.55,
       "diversification_score": 0.0,
@@ -29,7 +29,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -48,7 +48,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "benchmark",
       "data_quality_multiplier": 0.55,
       "diversification_score": 0.0,
@@ -67,65 +67,64 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
-      "asset_type": "etf",
-      "data_quality_multiplier": 1.0,
-      "diversification_score": 0.96076,
-      "explanations": [
-        "ETF adds diversification versus anchors/current book"
-      ],
-      "final_score": 0.52654,
-      "information_score": 0.0,
-      "investable_flag": true,
-      "leadership_score": 0.50506,
-      "regime_fit_score": 0.1,
-      "risk_penalty": 0.03021,
-      "symbol": "ARKK",
-      "timing_multiplier": 1.05,
-      "timing_score": 0.75,
-      "wait_flag": false
-    },
-    {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.9,
       "diversification_score": 0.0,
       "explanations": [
         "leadership and relative-strength inputs are supportive"
       ],
-      "final_score": 0.50521,
+      "final_score": 0.49231,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.60641,
+      "leadership_score": 0.86873,
       "regime_fit_score": 0.0,
-      "risk_penalty": 0.04231,
+      "risk_penalty": 0.0386,
+      "symbol": "AAPL",
+      "timing_multiplier": 1.0,
+      "timing_score": 0.5,
+      "wait_flag": false
+    },
+    {
+      "as_of": "2026-07-24",
+      "asset_type": "etf",
+      "data_quality_multiplier": 1.0,
+      "diversification_score": 0.94316,
+      "explanations": [
+        "ETF adds diversification versus anchors/current book"
+      ],
+      "final_score": 0.47114,
+      "information_score": 0.0,
+      "investable_flag": true,
+      "leadership_score": 0.38259,
+      "regime_fit_score": 0.1,
+      "risk_penalty": 0.03046,
+      "symbol": "ARKK",
+      "timing_multiplier": 1.05,
+      "timing_score": 0.75,
+      "wait_flag": false
+    },
+    {
+      "as_of": "2026-07-24",
+      "asset_type": "stock",
+      "data_quality_multiplier": 0.9,
+      "diversification_score": 0.0,
+      "explanations": [
+        "neutral composite score"
+      ],
+      "final_score": 0.44825,
+      "information_score": 0.45,
+      "investable_flag": true,
+      "leadership_score": 0.41772,
+      "regime_fit_score": 0.0,
+      "risk_penalty": 0.04597,
       "symbol": "AMZN",
       "timing_multiplier": 1.05,
       "timing_score": 0.85,
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
-      "asset_type": "stock",
-      "data_quality_multiplier": 0.9,
-      "diversification_score": 0.0,
-      "explanations": [
-        "leadership and relative-strength inputs are supportive",
-        "timing is weak"
-      ],
-      "final_score": 0.45242,
-      "information_score": 0.45,
-      "investable_flag": true,
-      "leadership_score": 0.89004,
-      "regime_fit_score": 0.0,
-      "risk_penalty": 0.03932,
-      "symbol": "AAPL",
-      "timing_multiplier": 1.0,
-      "timing_score": 0.25,
-      "wait_flag": false
-    },
-    {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.9,
       "diversification_score": 0.0,
@@ -133,48 +132,47 @@
         "leadership and relative-strength inputs are supportive",
         "risk penalty reduced score"
       ],
-      "final_score": 0.38698,
+      "final_score": 0.34473,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.65119,
+      "leadership_score": 0.86183,
       "regime_fit_score": 0.0,
-      "risk_penalty": 0.13038,
-      "symbol": "AVGO",
-      "timing_multiplier": 1.0,
-      "timing_score": 0.7,
-      "wait_flag": false
-    },
-    {
-      "as_of": "2026-07-23",
-      "asset_type": "stock",
-      "data_quality_multiplier": 0.9,
-      "diversification_score": 0.0,
-      "explanations": [
-        "leadership and relative-strength inputs are supportive",
-        "risk penalty reduced score"
-      ],
-      "final_score": 0.3505,
-      "information_score": 0.45,
-      "investable_flag": true,
-      "leadership_score": 0.88839,
-      "regime_fit_score": 0.0,
-      "risk_penalty": 0.24207,
+      "risk_penalty": 0.24051,
       "symbol": "AMD",
       "timing_multiplier": 1.0,
       "timing_score": 0.7,
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
+      "asset_type": "stock",
+      "data_quality_multiplier": 0.9,
+      "diversification_score": 0.0,
+      "explanations": [
+        "risk penalty reduced score"
+      ],
+      "final_score": 0.3302,
+      "information_score": 0.45,
+      "investable_flag": true,
+      "leadership_score": 0.56332,
+      "regime_fit_score": 0.0,
+      "risk_penalty": 0.1271,
+      "symbol": "AVGO",
+      "timing_multiplier": 1.0,
+      "timing_score": 0.5,
+      "wait_flag": false
+    },
+    {
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.73225,
+      "diversification_score": 0.7343,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.32471,
+      "final_score": 0.32495,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.69581,
@@ -186,15 +184,15 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.94215,
+      "diversification_score": 0.9509,
       "explanations": [
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.31411,
+      "final_score": 0.31512,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.48873,
@@ -206,16 +204,16 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.86827,
+      "diversification_score": 0.87139,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.30313,
+      "final_score": 0.30347,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.61871,
@@ -227,17 +225,17 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.92023,
+      "diversification_score": 0.93614,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "timing is weak",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.2943,
+      "final_score": 0.29605,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.70263,
@@ -249,7 +247,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
@@ -269,15 +267,15 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.92041,
+      "diversification_score": 0.91959,
       "explanations": [
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.28915,
+      "final_score": 0.28906,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.51038,
@@ -289,7 +287,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
@@ -308,7 +306,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
@@ -327,7 +325,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
@@ -346,7 +344,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
@@ -366,7 +364,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
@@ -387,7 +385,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
@@ -408,7 +406,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -428,7 +426,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -448,7 +446,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -468,7 +466,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -488,7 +486,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -508,7 +506,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -528,7 +526,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -548,7 +546,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -568,7 +566,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -588,7 +586,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -608,7 +606,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -628,7 +626,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -648,7 +646,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -668,7 +666,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -688,7 +686,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -708,7 +706,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -728,7 +726,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -748,7 +746,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -768,7 +766,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -788,7 +786,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -808,7 +806,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -828,7 +826,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -848,7 +846,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -868,7 +866,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -888,7 +886,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -908,7 +906,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "benchmark",
       "data_quality_multiplier": 0.55,
       "diversification_score": 0.0,
@@ -927,7 +925,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -946,7 +944,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -965,7 +963,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -984,7 +982,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1003,7 +1001,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1022,7 +1020,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1041,7 +1039,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1060,7 +1058,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1079,7 +1077,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1098,7 +1096,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1117,7 +1115,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1136,7 +1134,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1155,7 +1153,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1174,7 +1172,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1193,7 +1191,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1212,7 +1210,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1231,7 +1229,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1250,7 +1248,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1269,7 +1267,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1288,7 +1286,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1307,7 +1305,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-07-23",
+      "as_of": "2026-07-24",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1338,11 +1336,11 @@
       "SGOV",
       "SHY",
       "SPY",
+      "AAPL",
       "ARKK",
       "AMZN",
-      "AAPL",
-      "AVGO",
       "AMD",
+      "AVGO",
       "XLP",
       "XLK"
     ]
