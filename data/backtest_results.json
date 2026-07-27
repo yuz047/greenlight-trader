@@ -61911,7 +61911,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9750.2585,
+        "nav": 9750.2584,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -62076,7 +62076,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9816.9882,
+        "nav": 9816.9881,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -67332,7 +67332,7 @@
     },
     {
       "date": "2026-06-30",
-      "equity": 9750.2585
+      "equity": 9750.2584
     },
     {
       "date": "2026-07-01",
@@ -67344,7 +67344,7 @@
     },
     {
       "date": "2026-07-06",
-      "equity": 9816.9882
+      "equity": 9816.9881
     },
     {
       "date": "2026-07-07",
@@ -67399,7 +67399,7 @@
       "equity": 9536.8079
     }
   ],
-  "generated_at": "2026-07-24T23:30:14Z",
+  "generated_at": "2026-07-27T23:31:49Z",
   "initial_train_end": "2021-12-31",
   "internal_variant_versions": {
     "ai_review": "2.0.1.b",
