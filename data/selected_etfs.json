@@ -1,36 +1,36 @@
 {
-  "as_of": "2026-07-27",
-  "generated_at": "2026-07-27T23:31:37Z",
+  "as_of": "2026-07-28",
+  "generated_at": "2026-07-28T23:27:53Z",
   "regime": "DATA_FAILURE",
   "rejected_etfs": [
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.43334,
+      "score": 0.45556,
       "symbol": "ARKK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.32457,
+      "score": 0.32523,
       "symbol": "XLP"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.31396,
+      "score": 0.31399,
       "symbol": "XLK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.3055,
+      "score": 0.30402,
       "symbol": "XBI"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.29445,
+      "score": 0.29461,
       "symbol": "MTUM"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.29022,
+      "score": 0.28923,
       "symbol": "VLUE"
     },
     {
