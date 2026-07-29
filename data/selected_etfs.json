@@ -1,37 +1,52 @@
 {
-  "as_of": "2026-07-28",
-  "generated_at": "2026-07-28T23:27:53Z",
+  "as_of": "2026-07-29",
+  "generated_at": "2026-07-29T23:28:05Z",
   "regime": "DATA_FAILURE",
   "rejected_etfs": [
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.45556,
+      "score": 0.58131,
+      "symbol": "IWM"
+    },
+    {
+      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
+      "score": 0.5533,
+      "symbol": "IWC"
+    },
+    {
+      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
+      "score": 0.46395,
       "symbol": "ARKK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.32523,
+      "score": 0.32628,
       "symbol": "XLP"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.31399,
+      "score": 0.31517,
       "symbol": "XLK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.30402,
+      "score": 0.30416,
       "symbol": "XBI"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.29461,
+      "score": 0.29679,
       "symbol": "MTUM"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.28923,
+      "score": 0.28963,
       "symbol": "VLUE"
+    },
+    {
+      "reason": "score_below_threshold",
+      "score": 0.27423,
+      "symbol": "ICLN"
     },
     {
       "reason": "not_investable",
@@ -47,26 +62,6 @@
       "reason": "not_investable",
       "score": 0.04688,
       "symbol": "HACK"
-    },
-    {
-      "reason": "not_investable",
-      "score": 0.04688,
-      "symbol": "ICLN"
-    },
-    {
-      "reason": "not_investable",
-      "score": 0.04688,
-      "symbol": "IEF"
-    },
-    {
-      "reason": "not_investable",
-      "score": 0.04688,
-      "symbol": "IWC"
-    },
-    {
-      "reason": "not_investable",
-      "score": 0.04688,
-      "symbol": "IWM"
     },
     {
       "reason": "not_investable",
@@ -145,7 +140,19 @@
     "ETF is rejected if it duplicates SPY/QQQ without useful exposure.",
     "ETF allocation is capped by config."
   ],
-  "selected_etfs": [],
+  "selected_etfs": [
+    {
+      "category": "rates",
+      "reasons": [
+        "ETF adds diversification versus anchors/current book",
+        "earned dynamic ETF eligibility through score"
+      ],
+      "score": 0.50749,
+      "sector": "Rates",
+      "symbol": "IEF",
+      "theme": "Intermediate Treasuries"
+    }
+  ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
