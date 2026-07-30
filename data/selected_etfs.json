@@ -1,51 +1,46 @@
 {
-  "as_of": "2026-07-29",
-  "generated_at": "2026-07-29T23:28:05Z",
+  "as_of": "2026-07-30",
+  "generated_at": "2026-07-30T23:30:04Z",
   "regime": "DATA_FAILURE",
   "rejected_etfs": [
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.58131,
-      "symbol": "IWM"
+      "score": 0.61408,
+      "symbol": "HACK"
     },
     {
-      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.5533,
-      "symbol": "IWC"
-    },
-    {
-      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.46395,
+      "reason": "score_below_threshold",
+      "score": 0.36638,
       "symbol": "ARKK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.32628,
+      "score": 0.32433,
       "symbol": "XLP"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.31517,
+      "score": 0.31355,
       "symbol": "XLK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.30416,
+      "score": 0.30363,
       "symbol": "XBI"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.29679,
+      "score": 0.29556,
       "symbol": "MTUM"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.28963,
+      "score": 0.29164,
       "symbol": "VLUE"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.27423,
+      "score": 0.23925,
       "symbol": "ICLN"
     },
     {
@@ -56,12 +51,17 @@
     {
       "reason": "not_investable",
       "score": 0.04688,
-      "symbol": "GLD"
+      "symbol": "IEF"
     },
     {
       "reason": "not_investable",
       "score": 0.04688,
-      "symbol": "HACK"
+      "symbol": "IWC"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "IWM"
     },
     {
       "reason": "not_investable",
@@ -142,15 +142,15 @@
   ],
   "selected_etfs": [
     {
-      "category": "rates",
+      "category": "defensive",
       "reasons": [
         "ETF adds diversification versus anchors/current book",
         "earned dynamic ETF eligibility through score"
       ],
-      "score": 0.50749,
-      "sector": "Rates",
-      "symbol": "IEF",
-      "theme": "Intermediate Treasuries"
+      "score": 0.42714,
+      "sector": "Commodities",
+      "symbol": "GLD",
+      "theme": "Gold"
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
