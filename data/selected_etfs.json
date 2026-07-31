@@ -1,47 +1,47 @@
 {
-  "as_of": "2026-07-30",
-  "generated_at": "2026-07-30T23:30:04Z",
+  "as_of": "2026-07-31",
+  "generated_at": "2026-07-31T23:28:12Z",
   "regime": "DATA_FAILURE",
   "rejected_etfs": [
     {
       "reason": "regime_DATA_FAILURE_blocks_risk_etf",
-      "score": 0.61408,
+      "score": 0.62502,
       "symbol": "HACK"
     },
     {
-      "reason": "score_below_threshold",
-      "score": 0.36638,
+      "reason": "regime_DATA_FAILURE_blocks_risk_etf",
+      "score": 0.49635,
       "symbol": "ARKK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.32433,
+      "score": 0.32522,
       "symbol": "XLP"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.31355,
+      "score": 0.31568,
       "symbol": "XLK"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.30363,
+      "score": 0.30731,
+      "symbol": "ICLN"
+    },
+    {
+      "reason": "score_below_threshold",
+      "score": 0.3035,
       "symbol": "XBI"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.29556,
+      "score": 0.29602,
       "symbol": "MTUM"
     },
     {
       "reason": "score_below_threshold",
-      "score": 0.29164,
+      "score": 0.28848,
       "symbol": "VLUE"
-    },
-    {
-      "reason": "score_below_threshold",
-      "score": 0.23925,
-      "symbol": "ICLN"
     },
     {
       "reason": "not_investable",
@@ -51,7 +51,7 @@
     {
       "reason": "not_investable",
       "score": 0.04688,
-      "symbol": "IEF"
+      "symbol": "GLD"
     },
     {
       "reason": "not_investable",
@@ -142,15 +142,15 @@
   ],
   "selected_etfs": [
     {
-      "category": "defensive",
+      "category": "rates",
       "reasons": [
         "ETF adds diversification versus anchors/current book",
         "earned dynamic ETF eligibility through score"
       ],
-      "score": 0.42714,
-      "sector": "Commodities",
-      "symbol": "GLD",
-      "theme": "Gold"
+      "score": 0.50787,
+      "sector": "Rates",
+      "symbol": "IEF",
+      "theme": "Intermediate Treasuries"
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
