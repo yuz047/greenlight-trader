@@ -1,5 +1,5 @@
 Watermark: SYSTEMATIC_TEMPLATE_OUTPUT
-Generated-At: 2026-08-07T01:35:40Z
+Generated-At: 2026-08-07T23:01:25Z
 
 # Greenlight Trader Comparison Report
 

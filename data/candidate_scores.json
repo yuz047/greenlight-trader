@@ -6,7 +6,7 @@
     "regime_fit": 0.25,
     "timing": 0.15
   },
-  "generated_at": "2026-08-07T01:35:31Z",
+  "generated_at": "2026-08-07T23:01:17Z",
   "regime": "DATA_FAILURE",
   "scores": [
     {
@@ -70,16 +70,16 @@
       "as_of": "2026-08-07",
       "asset_type": "etf",
       "data_quality_multiplier": 1.0,
-      "diversification_score": 0.91506,
+      "diversification_score": 0.91137,
       "explanations": [
         "ETF adds diversification versus anchors/current book"
       ],
-      "final_score": 0.52854,
+      "final_score": 0.50294,
       "information_score": 0.0,
       "investable_flag": true,
-      "leadership_score": 0.50311,
+      "leadership_score": 0.43869,
       "regime_fit_score": 0.1,
-      "risk_penalty": 0.03339,
+      "risk_penalty": 0.03126,
       "symbol": "ARKK",
       "timing_multiplier": 1.05,
       "timing_score": 0.85,
@@ -93,12 +93,12 @@
       "explanations": [
         "leadership and relative-strength inputs are supportive"
       ],
-      "final_score": 0.45266,
+      "final_score": 0.44832,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.7016,
+      "leadership_score": 0.68482,
       "regime_fit_score": 0.0,
-      "risk_penalty": 0.05253,
+      "risk_penalty": 0.05232,
       "symbol": "AAPL",
       "timing_multiplier": 1.0,
       "timing_score": 0.6,
@@ -112,15 +112,15 @@
       "explanations": [
         "leadership and relative-strength inputs are supportive"
       ],
-      "final_score": 0.42419,
+      "final_score": 0.38836,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.67552,
+      "leadership_score": 0.67602,
       "regime_fit_score": 0.0,
-      "risk_penalty": 0.09633,
+      "risk_penalty": 0.09629,
       "symbol": "AMZN",
       "timing_multiplier": 1.0,
-      "timing_score": 0.7,
+      "timing_score": 0.5,
       "wait_flag": false
     },
     {
@@ -132,15 +132,15 @@
         "leadership and relative-strength inputs are supportive",
         "risk penalty reduced score"
       ],
-      "final_score": 0.36363,
+      "final_score": 0.36717,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.7725,
+      "leadership_score": 0.72804,
       "regime_fit_score": 0.0,
-      "risk_penalty": 0.25195,
+      "risk_penalty": 0.22487,
       "symbol": "AMD",
       "timing_multiplier": 1.05,
-      "timing_score": 0.9,
+      "timing_score": 0.85,
       "wait_flag": false
     },
     {
@@ -152,10 +152,10 @@
         "leadership and relative-strength inputs are supportive",
         "risk penalty reduced score"
       ],
-      "final_score": 0.35778,
+      "final_score": 0.35428,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.68353,
+      "leadership_score": 0.6706,
       "regime_fit_score": 0.0,
       "risk_penalty": 0.13253,
       "symbol": "AVGO",
@@ -167,13 +167,13 @@
       "as_of": "2026-08-07",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.73824,
+      "diversification_score": 0.73849,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.32541,
+      "final_score": 0.32544,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.69581,
@@ -188,12 +188,12 @@
       "as_of": "2026-08-07",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.95647,
+      "diversification_score": 0.95784,
       "explanations": [
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.31577,
+      "final_score": 0.31593,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.48873,
@@ -208,13 +208,13 @@
       "as_of": "2026-08-07",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.86724,
+      "diversification_score": 0.86801,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.30301,
+      "final_score": 0.3031,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.61871,
@@ -229,14 +229,14 @@
       "as_of": "2026-08-07",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.9322,
+      "diversification_score": 0.9324,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "timing is weak",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.29562,
+      "final_score": 0.29564,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.70263,
@@ -271,12 +271,12 @@
       "as_of": "2026-08-07",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.91621,
+      "diversification_score": 0.91975,
       "explanations": [
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.28869,
+      "final_score": 0.28908,
       "information_score": 0.0,
       "investable_flag": true,
       "leadership_score": 0.51038,

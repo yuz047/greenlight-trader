@@ -4797,7 +4797,7 @@
       "endpoint_availability": {
         "/v2/aggs/ticker/AAPL/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:32Z",
+          "checked_at": "2026-08-07T23:01:18Z",
           "endpoint": "/v2/aggs/ticker/AAPL/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4805,7 +4805,7 @@
         },
         "/v2/aggs/ticker/COST/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:32Z",
+          "checked_at": "2026-08-07T23:01:18Z",
           "endpoint": "/v2/aggs/ticker/COST/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4813,7 +4813,7 @@
         },
         "/v2/aggs/ticker/ETN/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:32Z",
+          "checked_at": "2026-08-07T23:01:18Z",
           "endpoint": "/v2/aggs/ticker/ETN/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4821,7 +4821,7 @@
         },
         "/v2/aggs/ticker/GE/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:32Z",
+          "checked_at": "2026-08-07T23:01:19Z",
           "endpoint": "/v2/aggs/ticker/GE/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4829,7 +4829,7 @@
         },
         "/v2/aggs/ticker/GOOGL/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:32Z",
+          "checked_at": "2026-08-07T23:01:19Z",
           "endpoint": "/v2/aggs/ticker/GOOGL/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4837,7 +4837,7 @@
         },
         "/v2/aggs/ticker/OCS/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:33Z",
+          "checked_at": "2026-08-07T23:01:19Z",
           "endpoint": "/v2/aggs/ticker/OCS/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4845,7 +4845,7 @@
         },
         "/v2/aggs/ticker/QQQ/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:33Z",
+          "checked_at": "2026-08-07T23:01:19Z",
           "endpoint": "/v2/aggs/ticker/QQQ/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4853,7 +4853,7 @@
         },
         "/v2/aggs/ticker/REGN/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:33Z",
+          "checked_at": "2026-08-07T23:01:19Z",
           "endpoint": "/v2/aggs/ticker/REGN/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4861,7 +4861,7 @@
         },
         "/v2/aggs/ticker/SGOV/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:33Z",
+          "checked_at": "2026-08-07T23:01:19Z",
           "endpoint": "/v2/aggs/ticker/SGOV/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4869,7 +4869,7 @@
         },
         "/v2/aggs/ticker/SPY/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:33Z",
+          "checked_at": "2026-08-07T23:01:19Z",
           "endpoint": "/v2/aggs/ticker/SPY/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4877,7 +4877,7 @@
         },
         "/v2/aggs/ticker/VRTX/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:33Z",
+          "checked_at": "2026-08-07T23:01:20Z",
           "endpoint": "/v2/aggs/ticker/VRTX/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4885,7 +4885,7 @@
         },
         "/v2/aggs/ticker/XLC/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:33Z",
+          "checked_at": "2026-08-07T23:01:20Z",
           "endpoint": "/v2/aggs/ticker/XLC/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4893,7 +4893,7 @@
         },
         "/v2/aggs/ticker/XLF/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:33Z",
+          "checked_at": "2026-08-07T23:01:20Z",
           "endpoint": "/v2/aggs/ticker/XLF/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4901,7 +4901,7 @@
         },
         "/v2/aggs/ticker/XLU/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:34Z",
+          "checked_at": "2026-08-07T23:01:20Z",
           "endpoint": "/v2/aggs/ticker/XLU/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4909,7 +4909,7 @@
         },
         "/v2/aggs/ticker/XLV/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:34Z",
+          "checked_at": "2026-08-07T23:01:20Z",
           "endpoint": "/v2/aggs/ticker/XLV/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
@@ -4917,7 +4917,7 @@
         },
         "/v2/aggs/ticker/XLY/range/1/day/2026-06-02/2026-08-06": {
           "available": false,
-          "checked_at": "2026-08-07T01:35:34Z",
+          "checked_at": "2026-08-07T23:01:20Z",
           "endpoint": "/v2/aggs/ticker/XLY/range/1/day/2026-06-02/2026-08-06",
           "plan_dependent": false,
           "point_in_time_safe": true,
