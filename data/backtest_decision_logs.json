@@ -1,61 +1,6 @@
 {
-  "generated_at": "2026-08-12T23:08:05Z",
+  "generated_at": "2026-08-13T23:09:52Z",
   "logs": [
-    {
-      "benchmark_snapshot": {},
-      "candidate_score_summary": {},
-      "current_allocation": {},
-      "data_health": {
-        "identity_repair_symbols": [
-          "META:ticker_identity"
-        ],
-        "ok": true,
-        "source": "massive+secondary"
-      },
-      "date": "2022-08-16",
-      "execution_decision": "NO_TRADE",
-      "execution_reason": "Public production curve is a validated deterministic replay; no broker execution.",
-      "market_regime": "PRODUCTION",
-      "orders": [],
-      "portfolio_snapshot": {
-        "cash": null,
-        "last_rebalance_date": null,
-        "nav": 5048.6758,
-        "peak_nav": null,
-        "relative_drawdown_pct": 0.0
-      },
-      "rejected_etfs": [],
-      "risk_light": "GREEN",
-      "selected_etfs": [
-        {
-          "reasons": [
-            "production sleeve proxy"
-          ],
-          "score": null,
-          "symbol": "ETF_ROTATION"
-        }
-      ],
-      "systematic_decision": {
-        "decision": "VALIDATED_PRODUCTION_REPLAY",
-        "reason": "validated 40/20 production anchor replay"
-      },
-      "target_allocation": {
-        "DYNAMIC_ALLOCATOR": 0.35,
-        "QQQ": 0.2,
-        "SGOV": 0.05,
-        "SPY": 0.4
-      },
-      "top_stock_candidates": [
-        {
-          "final_score": null,
-          "symbol": "TOP_SCORE_BASKET"
-        }
-      ],
-      "universe_size": 0,
-      "watermarks": [
-        "SYSTEMATIC_TEMPLATE_OUTPUT"
-      ]
-    },
     {
       "benchmark_snapshot": {},
       "candidate_score_summary": {},
@@ -54140,7 +54085,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9690.7221,
+        "nav": 9689.8365,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54195,7 +54140,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9656.9383,
+        "nav": 9668.1099,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54580,7 +54525,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9656.1724,
+        "nav": 9636.317,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54965,7 +54910,62 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9952.7717,
+        "nav": 9951.2448,
+        "peak_nav": null,
+        "relative_drawdown_pct": 0.0
+      },
+      "rejected_etfs": [],
+      "risk_light": "GREEN",
+      "selected_etfs": [
+        {
+          "reasons": [
+            "production sleeve proxy"
+          ],
+          "score": null,
+          "symbol": "ETF_ROTATION"
+        }
+      ],
+      "systematic_decision": {
+        "decision": "VALIDATED_PRODUCTION_REPLAY",
+        "reason": "validated 40/20 production anchor replay"
+      },
+      "target_allocation": {
+        "DYNAMIC_ALLOCATOR": 0.35,
+        "QQQ": 0.2,
+        "SGOV": 0.05,
+        "SPY": 0.4
+      },
+      "top_stock_candidates": [
+        {
+          "final_score": null,
+          "symbol": "TOP_SCORE_BASKET"
+        }
+      ],
+      "universe_size": 0,
+      "watermarks": [
+        "SYSTEMATIC_TEMPLATE_OUTPUT"
+      ]
+    },
+    {
+      "benchmark_snapshot": {},
+      "candidate_score_summary": {},
+      "current_allocation": {},
+      "data_health": {
+        "identity_repair_symbols": [
+          "META:ticker_identity"
+        ],
+        "ok": true,
+        "source": "massive+secondary"
+      },
+      "date": "2026-08-12",
+      "execution_decision": "NO_TRADE",
+      "execution_reason": "Public production curve is a validated deterministic replay; no broker execution.",
+      "market_regime": "PRODUCTION",
+      "orders": [],
+      "portfolio_snapshot": {
+        "cash": null,
+        "last_rebalance_date": null,
+        "nav": 9970.9783,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
