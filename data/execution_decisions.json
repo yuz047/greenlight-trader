@@ -1,13 +1,13 @@
 {
   "execution_decision": {
-    "as_of": "2026-08-13",
+    "as_of": "2026-08-14",
     "decision": "DATA_HALT",
-    "drift": 0.87560472,
+    "drift": 0.87569435,
     "orders": [],
     "reason": "Risk light BLACK: no trading on failed/fallback data.",
-    "turnover": 0.875604725
+    "turnover": 0.8756943449999999
   },
-  "generated_at": "2026-08-13T23:09:38Z",
+  "generated_at": "2026-08-14T22:45:50Z",
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
