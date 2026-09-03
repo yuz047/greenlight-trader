@@ -61691,7 +61691,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9552.1597,
+        "nav": 9552.1596,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -62076,7 +62076,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9816.9882,
+        "nav": 9816.9881,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -62461,7 +62461,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9795.5786,
+        "nav": 9795.5785,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -62626,7 +62626,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9619.9515,
+        "nav": 9619.9514,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -63506,7 +63506,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9951.2448,
+        "nav": 9951.2447,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -64001,7 +64001,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9887.6304,
+        "nav": 9887.6303,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -64221,7 +64221,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9925.6566,
+        "nav": 9918.7631,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -64331,7 +64331,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9829.4908,
+        "nav": 9830.8909,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -68856,7 +68856,7 @@
     },
     {
       "date": "2026-06-24",
-      "equity": 9552.1597
+      "equity": 9552.1596
     },
     {
       "date": "2026-06-25",
@@ -68884,7 +68884,7 @@
     },
     {
       "date": "2026-07-06",
-      "equity": 9816.9882
+      "equity": 9816.9881
     },
     {
       "date": "2026-07-07",
@@ -68912,7 +68912,7 @@
     },
     {
       "date": "2026-07-15",
-      "equity": 9795.5786
+      "equity": 9795.5785
     },
     {
       "date": "2026-07-16",
@@ -68924,7 +68924,7 @@
     },
     {
       "date": "2026-07-20",
-      "equity": 9619.9515
+      "equity": 9619.9514
     },
     {
       "date": "2026-07-21",
@@ -68988,7 +68988,7 @@
     },
     {
       "date": "2026-08-11",
-      "equity": 9951.2448
+      "equity": 9951.2447
     },
     {
       "date": "2026-08-12",
@@ -69024,7 +69024,7 @@
     },
     {
       "date": "2026-08-24",
-      "equity": 9887.6304
+      "equity": 9887.6303
     },
     {
       "date": "2026-08-25",
@@ -69040,7 +69040,7 @@
     },
     {
       "date": "2026-08-28",
-      "equity": 9925.6566
+      "equity": 9918.7631
     },
     {
       "date": "2026-08-31",
@@ -69048,10 +69048,10 @@
     },
     {
       "date": "2026-09-01",
-      "equity": 9829.4908
+      "equity": 9830.8909
     }
   ],
-  "generated_at": "2026-09-02T00:21:14Z",
+  "generated_at": "2026-09-03T00:24:28Z",
   "initial_train_end": "2021-12-31",
   "internal_variant_versions": {
     "ai_review": "2.0.1.b",

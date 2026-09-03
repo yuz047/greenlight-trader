@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T00:21:14Z",
+  "generated_at": "2026-09-03T00:24:28Z",
   "logs": [
     {
       "benchmark_snapshot": {},
@@ -52325,7 +52325,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9552.1597,
+        "nav": 9552.1596,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52710,7 +52710,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9816.9882,
+        "nav": 9816.9881,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53095,7 +53095,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9795.5786,
+        "nav": 9795.5785,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53260,7 +53260,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9619.9515,
+        "nav": 9619.9514,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54140,7 +54140,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9951.2448,
+        "nav": 9951.2447,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54635,7 +54635,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9887.6304,
+        "nav": 9887.6303,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54855,7 +54855,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9925.6566,
+        "nav": 9918.7631,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54965,7 +54965,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9829.4908,
+        "nav": 9830.8909,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
