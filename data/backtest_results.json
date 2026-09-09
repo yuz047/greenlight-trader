@@ -61856,7 +61856,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9675.8604,
+        "nav": 9675.8605,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61911,7 +61911,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9750.2584,
+        "nav": 9750.2585,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -62846,7 +62846,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9542.0572,
+        "nav": 9542.0573,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -62901,7 +62901,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9563.7562,
+        "nav": 9563.7563,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -62956,7 +62956,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9593.7317,
+        "nav": 9593.7318,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -63011,7 +63011,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9458.6561,
+        "nav": 9458.6562,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -69033,11 +69033,11 @@
     },
     {
       "date": "2026-06-29",
-      "equity": 9675.8604
+      "equity": 9675.8605
     },
     {
       "date": "2026-06-30",
-      "equity": 9750.2584
+      "equity": 9750.2585
     },
     {
       "date": "2026-07-01",
@@ -69105,19 +69105,19 @@
     },
     {
       "date": "2026-07-24",
-      "equity": 9542.0572
+      "equity": 9542.0573
     },
     {
       "date": "2026-07-27",
-      "equity": 9563.7562
+      "equity": 9563.7563
     },
     {
       "date": "2026-07-28",
-      "equity": 9593.7317
+      "equity": 9593.7318
     },
     {
       "date": "2026-07-29",
-      "equity": 9458.6561
+      "equity": 9458.6562
     },
     {
       "date": "2026-07-30",
@@ -69228,7 +69228,7 @@
       "equity": 9923.7858
     }
   ],
-  "generated_at": "2026-09-08T00:33:00Z",
+  "generated_at": "2026-09-09T00:23:25Z",
   "initial_train_end": "2021-12-31",
   "internal_variant_versions": {
     "ai_review": "2.0.1.b",
