@@ -1,17 +1,17 @@
 {
-  "benchmark_equity": 3291.796267,
+  "benchmark_equity": 3264.882126,
   "cash": 0.0,
-  "date": "2026-09-23",
+  "date": "2026-09-24",
   "last_rebalance_date": "2026-06-22",
-  "nav": 2758.629869,
+  "nav": 2830.284487,
   "peak_nav": 5105.419846,
   "peak_relative_outperformance": 0.008176,
   "positions": {
     "AAPL": {
       "asset_type": "stock",
       "avg_price": 301.600308,
-      "market_price": 338.98,
-      "market_value": 222.045161,
+      "market_price": 339.75,
+      "market_value": 222.549541,
       "sector": null,
       "shares": 0.65503912,
       "theme": null
@@ -100,8 +100,8 @@
     "V": {
       "asset_type": "stock",
       "avg_price": 326.66532,
-      "market_price": 259.883855,
-      "market_value": 113.38381,
+      "market_price": 362.04,
+      "market_value": 157.953154,
       "sector": null,
       "shares": 0.43628647,
       "theme": null
@@ -109,8 +109,8 @@
     "VLUE": {
       "asset_type": "etf",
       "avg_price": 204.210834,
-      "market_price": 168.715743,
-      "market_value": 131.961553,
+      "market_price": 202.7,
+      "market_value": 158.542448,
       "sector": "Factor",
       "shares": 0.78215317,
       "theme": "Value"
@@ -153,24 +153,24 @@
     }
   },
   "realized_pnl": 10.697937,
-  "relative_drawdown_pct": 0.114809,
+  "relative_drawdown_pct": 0.095096,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
-    "AAPL": 0.0804911,
-    "COST": 0.00263425,
-    "GE": 0.0049518,
-    "GOOGL": 0.01587249,
-    "LLY": 0.00233393,
-    "MTUM": 0.03298009,
-    "PANW": 0.01772813,
-    "QQQ": 0.03272783,
-    "SGOV": 0.12331035,
-    "SPY": 0.2795187,
-    "V": 0.04110149,
-    "VLUE": 0.0478359,
-    "VRTX": 0.02288811,
-    "XBI": 0.06854318,
-    "XLK": 0.02053487,
-    "XLP": 0.20654777
+    "AAPL": 0.07863151,
+    "COST": 0.00256756,
+    "GE": 0.00482643,
+    "GOOGL": 0.01547064,
+    "LLY": 0.00227485,
+    "MTUM": 0.03214513,
+    "PANW": 0.01727931,
+    "QQQ": 0.03189925,
+    "SGOV": 0.12018849,
+    "SPY": 0.27244209,
+    "V": 0.05580823,
+    "VLUE": 0.05601644,
+    "VRTX": 0.02230864,
+    "XBI": 0.06680787,
+    "XLK": 0.02001499,
+    "XLP": 0.20131858
   }
 }
