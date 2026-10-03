@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-02T01:44:03Z",
+  "generated_at": "2026-10-03T01:15:29Z",
   "logs": [
     {
       "benchmark_snapshot": {},
@@ -50510,7 +50510,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9537.239,
+        "nav": 9537.2392,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50565,7 +50565,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9551.3646,
+        "nav": 9551.3645,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50620,7 +50620,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9521.0827,
+        "nav": 9521.0822,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50675,7 +50675,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9377.9525,
+        "nav": 9377.9526,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50730,7 +50730,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9554.022,
+        "nav": 9554.0219,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50785,7 +50785,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9592.6302,
+        "nav": 9592.6301,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50950,7 +50950,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9611.8002,
+        "nav": 9611.8,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51060,7 +51060,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9690.3027,
+        "nav": 9690.3026,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51115,7 +51115,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9550.0,
+        "nav": 9549.9999,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
