@@ -1,36 +1,28 @@
-name: Greenlight Backtest
+name: Private Research Backtest
 
 on:
   workflow_dispatch:
     inputs:
-      start_date:
-        description: "Backtest start date"
-        required: true
-        default: "2009-01-01"
-      end_date:
-        description: "Backtest end date; blank uses current date and clamps to latest available SPY bar"
-        required: false
-        default: ""
       train_start:
-        description: "Rolling learning source start date"
+        description: 'Training start; warmup needs another 430 days of complete histories'
         required: true
-        default: "2009-01-01"
+        default: '2023-06-01'
       train_end:
-        description: "Initial training cutoff"
+        description: 'Initial training cutoff'
         required: true
-        default: "2021-12-31"
+        default: '2026-08-31'
       invest_start:
-        description: "Investment replay start date"
+        description: 'Investment replay start'
         required: true
-        default: "2022-01-01"
-      rolling_train_years:
-        description: "Rolling learning window in years"
+        default: '2026-09-01'
+      end_date:
+        description: 'Completed trading session'
         required: true
-        default: "3"
+        default: '2026-10-05'
       max_symbols:
-        description: "Optional symbol cap for faster research runs"
-        required: false
-        default: ""
+        description: 'Explicit candidate cap'
+        required: true
+        default: '8'
 
 permissions:
   contents: read
@@ -38,61 +30,23 @@ permissions:
 jobs:
   backtest:
     runs-on: ubuntu-latest
-    concurrency:
-      group: greenlight-massive-api
-      cancel-in-progress: false
+    timeout-minutes: 45
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
-
-      - name: Install dependencies
-        run: pip install -r python/requirements.txt
-
-      - name: Run backtest
-        env:
-          MASSIVE_API_KEY: ${{ secrets.MASSIVE_API_KEY }}
-          POLYGON_API_KEY: ${{ secrets.POLYGON_API_KEY }}
-          MASSIVE_API_BASE_URL: ${{ secrets.MASSIVE_API_BASE_URL }}
-          MASSIVE_FORCE_REFRESH: "1"
-          PYTHONPATH: python
-        run: |
-          END_DATE="${{ inputs.end_date }}"
-          if [ -z "$END_DATE" ]; then
-            END_DATE="$(date -u +%F)"
-          fi
-          ARGS="--start-date ${{ inputs.start_date }} --end-date $END_DATE"
-          ARGS="$ARGS --train-start ${{ inputs.train_start }} --train-end ${{ inputs.train_end }}"
-          ARGS="$ARGS --invest-start ${{ inputs.invest_start }} --rolling-train-years ${{ inputs.rolling_train_years }}"
-          ARGS="$ARGS --ai-memo-mode off --ai-memo-frequency final --no-synthetic-fallback"
-          if [ -n "${{ inputs.max_symbols }}" ]; then
-            ARGS="$ARGS --max-symbols ${{ inputs.max_symbols }}"
-          fi
-          python python/backtest.py $ARGS
-          python python/update_production_replay_curve.py --end-date "$END_DATE"
-          python python/update_public_benchmarks.py --end-date "$END_DATE"
-          python python/build_production_public_data.py
-
-      - name: Validate reports
+          python-version: '3.12'
+      - run: pip install -r python/requirements.txt
+      - name: Strict research replay
         env:
           PYTHONPATH: python
+          GREENLIGHT_DATA_DIR: ${{ runner.temp }}/greenlight-backtest-data
+          GREENLIGHT_CACHE_DIR: ${{ runner.temp }}/greenlight-backtest-cache
+          TRAIN_START: ${{ inputs.train_start }}
+          TRAIN_END: ${{ inputs.train_end }}
+          INVEST_START: ${{ inputs.invest_start }}
+          END_DATE: ${{ inputs.end_date }}
+          MAX_SYMBOLS: ${{ inputs.max_symbols }}
         run: |
-          python python/validate_watermarks.py
-          test -f data/backtest_results.json
-          test -f data/comparison_report.md
-          test -f data/learning_report.md
-          test -f data/greenlight_plot_data.json
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: greenlight-backtest-artifacts
-          path: |
-            data/backtest_results.json
-            data/backtest_decision_logs.json
-            data/benchmark_metrics.json
-            data/benchmark_snapshots.json
-            data/greenlight_plot_data.json
-            data/comparison_report.md
-            data/learning_report.md
+          python python/backtest.py --start-date "$TRAIN_START" --train-start "$TRAIN_START" --train-end "$TRAIN_END" --invest-start "$INVEST_START" --end-date "$END_DATE" --max-symbols "$MAX_SYMBOLS" --rolling-train-years 3 --ai-memo-mode off --ai-memo-frequency final --no-synthetic-fallback --no-secondary-price-fallback
+      # Research output remains ephemeral; no public data artifacts.

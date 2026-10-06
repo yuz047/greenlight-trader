@@ -7,7 +7,7 @@ from typing import Any
 
 from config import CORE_ANCHORS, DATA_DIR, ETF_POOL, HIGH_RISK_SYMBOLS_PATH, MANDATE, STOCK_SEED_POOL
 from data_contracts import read_json, write_json
-from massive_client import MassiveClient
+from market_data import MarketDataClient
 from watermark import SYSTEMATIC_TEMPLATE_OUTPUT, add_watermark
 
 
@@ -35,12 +35,12 @@ def load_high_risk_symbol_set() -> set[str]:
 
 def build_universe(
     as_of: str | None = None,
-    client: MassiveClient | None = None,
+    client: MarketDataClient | None = None,
     current_holdings: list[str] | None = None,
     hydrate_profiles: bool = False,
 ) -> dict[str, Any]:
     as_of = as_of or date.today().isoformat()
-    client = client or MassiveClient()
+    client = client or MarketDataClient()
     current_holdings = [s.upper() for s in (current_holdings or [])]
     high_risk = load_high_risk_symbol_set()
 
@@ -127,8 +127,8 @@ def build_universe(
                 {
                     "symbol": symbol,
                     "asset_type": "stock",
-                    "reason_included": f"massive_market_mover_{direction}",
-                    "source": "massive.market_movers",
+                    "reason_included": f"optional_market_mover_{direction}",
+                    "source": "optional.market_movers",
                     "sector": None,
                     "industry": None,
                     "theme": None,
@@ -140,7 +140,7 @@ def build_universe(
                 },
             )
 
-    if hydrate_profiles and client.has_key:
+    if hydrate_profiles and client.is_configured:
         for row in rows.values():
             profile = client.get_ticker_profile(row["symbol"])
             if profile:

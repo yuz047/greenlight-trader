@@ -31,7 +31,7 @@
               <div class="eyebrow">Systematic replay and paper allocation</div>
               <h1>Greenlight Trader</h1>
               <p class="lede">
-                Massive-first market discovery, deterministic 40/20 anchor allocation,
+                yfinance daily prices, fixed candidate universe, deterministic 40/20 anchor allocation,
                 benchmark comparison, and static production reporting.
               </p>
             </div>
@@ -92,7 +92,7 @@
               <div>
                 <div class="eyebrow">Summary</div>
                 <h2>Production result</h2>
-                <p class="subtitle">Validated production replay with 40/20 anchors, measured daily from 2022 through the latest validated replay date.</p>
+                <p class="subtitle">Preserved legacy replay through June 2, 2026, extended with validated yfinance prices. The 2009 training history has not been rerun.</p>
               </div>
               <span class="tag">production 40/20</span>
             </div>
@@ -250,7 +250,7 @@
               <div>
                 <div class="eyebrow">Architecture</div>
                 <h2>Daily deterministic replay loop</h2>
-                <p class="subtitle">The replay path mirrors daily paper mode: each trading day rebuilds data, scores, allocations, execution decisions, logs, benchmarks, and watermarked review output.</p>
+                <p class="subtitle">Forward paper decisions validate current histories before valuing holdings. The research curve separately preserves its legacy prefix and extends its explicit June 2 allocation.</p>
               </div>
               <span class="tag">production path</span>
             </div>
@@ -258,7 +258,7 @@
               <article>
                 <span>01</span>
                 <h3>Market data and universe</h3>
-                <p>Massive/Polygon is the primary market feed; Yahoo is used only as a tagged fallback for VIX and secondary price gaps.</p>
+                <p>yfinance provides split-adjusted daily prices. The fixed universe is explicit; optional market-wide discovery is disabled and the legacy replay base is identified.</p>
               </article>
               <article>
                 <span>02</span>
@@ -334,7 +334,7 @@
     <footer class="site-footer">
       <div class="container row">
         <span>Paper trading only</span>
-        <span>Massive-first · Yahoo VIX fallback · Production 40/20</span>
+        <span>yfinance · Split-adjusted price returns · Fixed universe</span>
       </div>
     </footer>
 

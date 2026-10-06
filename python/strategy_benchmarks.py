@@ -84,7 +84,7 @@ def run_benchmarks(
 
 
 def write_benchmark_outputs(payload: dict[str, Any]) -> None:
-    write_json(DATA_DIR / "benchmark_metrics.json", add_watermark({"metrics": payload.get("metrics", {}), "verdict": payload.get("verdict", {})}, SYSTEMATIC_TEMPLATE_OUTPUT))
+    write_json(DATA_DIR / "benchmark_metrics.json", add_watermark({"metrics": payload.get("metrics", {}), "verdict": payload.get("verdict", {}), "data_health": payload.get("data_health", {})}, SYSTEMATIC_TEMPLATE_OUTPUT))
     write_json(DATA_DIR / "benchmark_snapshots.json", add_watermark({"snapshots": payload.get("snapshots", {})}, SYSTEMATIC_TEMPLATE_OUTPUT))
 
 

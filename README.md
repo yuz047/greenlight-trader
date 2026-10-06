@@ -1,214 +1,54 @@
-# Greenlight Trader
+# Greenlight Trader: private yfinance replacement
 
-Greenlight Trader is a Massive-first, systematic, sparse-execution paper trading allocator.
-It observes daily, discovers stocks and ETFs dynamically, scores candidates with
-information, leadership, timing, and risk features, then produces deterministic
-target weights subject to strict risk and execution gates.
+This branch replaces the active Massive/Polygon price path with `yfinance` daily histories. It runs independently of the original project and does not need a Massive API key. The original upstream version is pinned in [archives/README.md](archives/README.md).
 
-Paper trading only. No broker connection. Not investment advice.
+The supported migration flow is: restore the explicit trustworthy paper-portfolio baseline, validate every required price window, run today's allocator, extend the existing production replay, rebuild benchmarks and dashboard contracts, and validate the outputs. Runtime prices, caches, portfolio state, and generated dashboard data stay in gitignored `.runtime/`.
 
-## Design Principles
+## Local setup (PowerShell, Python 3.12)
 
-- Massive/Polygon is the primary data source.
-- SPY is the permanent benchmark/core anchor.
-- QQQ is a regime-dependent growth anchor, not a permanent winner.
-- Cash/SHY/SGOV are defensive proxies.
-- Sector, industry, factor, theme, rates, and defensive ETFs must earn allocation dynamically.
-- The production track is deterministic.
-- The public production result uses the fixed 40/20 anchor composite.
-- Internal variant labels are tracked separately: weighted allocation `2.0.1.a`; AI review `2.0.1.b`.
-- Every generated report, memo, decision, and validation output is watermarked.
-- Backtests must avoid lookahead. Unavailable historical point-in-time data is marked unavailable.
-
-## Layout
-
-```text
-greenlight-trader/
-├── python/
-│   ├── config.py
-│   ├── data_contracts.py
-│   ├── massive_client.py
-│   ├── universe.py
-│   ├── etf_selector.py
-│   ├── features.py
-│   ├── regime.py
-│   ├── scoring.py
-│   ├── allocator.py
-│   ├── exposure.py
-│   ├── risk.py
-│   ├── execution_policy.py
-│   ├── portfolio.py
-│   ├── backtest.py
-│   ├── run_daily.py
-│   ├── strategy_benchmarks.py
-│   ├── weight_learning.py
-│   ├── weight_registry.py
-│   ├── weight_review.py
-│   ├── agent_decision.py
-│   ├── watermark.py
-│   ├── decision_log.py
-│   ├── ai_review.py
-│   ├── comparison_report.py
-│   ├── validate_outputs.py
-│   ├── validate_watermarks.py
-│   ├── validate_dashboard_data.py
-│   └── tests/
-├── data/
-├── web/
-│   ├── index.html
-│   ├── styles.css
-│   └── app.js
-└── .github/workflows/
-```
-
-This repository contains the current Greenlight Trader production implementation.
-
-## Local Setup
-
-```bash
-cd "AI Trader/greenlight-trader"
+```powershell
 python -m venv .venv
-source .venv/bin/activate
-pip install -r python/requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r python/requirements.txt
+$env:PYTHONPATH = (Join-Path $PWD 'python')
+git fetch --depth=1 origin 164c8a307449d6ce63e7f70bb829515b4c5eae31
+.\.venv\Scripts\python.exe python/initialize_migration.py
+.\.venv\Scripts\python.exe python/run_pipeline.py
+.\.venv\Scripts\python.exe python/preview_server.py
 ```
 
-Live Massive/Polygon data requires one of:
+Open http://127.0.0.1:8765/web/ for the private dashboard. `initialize_migration.py` refuses to replace an existing runtime portfolio. A supplied local copy may already be initialized; skip initialization in that case. Do not serve committed `data/` as if it were the current migration output.
 
-```bash
-export MASSIVE_API_KEY="..."
-# or
-export POLYGON_API_KEY="..."
+On Linux/macOS, use `.venv/bin/python` and `export PYTHONPATH=python`. Set `GREENLIGHT_DATA_DIR` and `GREENLIGHT_CACHE_DIR` before starting Python to isolate another run. To reuse existing diagnostic CSVs without requests:
+
+```powershell
+.\.venv\Scripts\python.exe python/seed_diagnostic_cache.py PATH_TO_PRIVATE_EVIDENCE --start 2022-01-03 --end 2026-10-05
 ```
 
-You can also put these values in a local `.env` file. `.env` is gitignored.
+Each later session needs updated histories. Requests are sequential with at least five seconds between them. A 429 opens a persisted 60-second cooldown; a 401/403 stops further uncached requests in that invocation. There is no immediate retry or synthetic fallback. Yahoo availability is not guaranteed.
 
-Without a key, the engine writes deterministic synthetic fallback data, marks
-data health as fallback/synthetic, sets risk to `BLACK`, and refuses production
-execution. This keeps local validation and dashboard development runnable while
-making it impossible to mistake fallback output for live tradable data.
+## Price and accounting policy
 
-## Run Daily Mode
+- Call history with `auto_adjust=False`, daily bars, actions enabled, and repair disabled. Research uses Yahoo `Close`, which is split adjusted, and never substitutes the dividend-adjusted `Adj Close`. This preserves the original split-only price-return convention.
+- Actual paper holdings remain share based. Split events adjust quantity and average cost once. Dividend events are recorded with zero cash credit, explicitly preserving the original price-return convention. The ledger discloses the excluded amount. Changing to total return requires separate strategy validation.
+- Recovery starts from commit `164c8a3` (2026-06-26). It restores those positions and revalues them with real histories. It does not invent trades during the missing interval. Old June signals cannot satisfy October signal persistence.
+- The production replay preserves its existing historical prefix and recomputes the extension from its explicit 2026-06-02 allocation. That curve is a research replay, separate from forward paper holdings.
+- Session dates come from the NYSE calendar. VIX holiday rows with completely empty OHLC are discarded; missing actual market sessions halt validation. Zero VIX volume is permitted. VWAP is unavailable and stays null.
 
-```bash
-cd "AI Trader/greenlight-trader"
-PYTHONPATH=python python python/run_daily.py
-PYTHONPATH=python python python/validate_outputs.py
-PYTHONPATH=python python python/validate_watermarks.py
-PYTHONPATH=python python python/validate_dashboard_data.py
+## Data fault behavior and feature scope
+
+`run_pipeline.py` checks all forward, replay, and benchmark windows before the daily portfolio can change. Missing, partial, or stale bars cause `DATA_HALT`: portfolio state, NAV, snapshots, and replay curves remain unchanged. Only failure status and risk/execution notices are written. Successful same-session repetition does not repeat trades or rewrite the portfolio/replay curve.
+
+This version uses the configured stock/ETF universe plus existing holdings. Market-wide gainers/losers discovery and profile hydration are disabled and reported as such; a Yahoo screener is not represented as an equivalent Massive snapshot. No new news, fundamentals, or AI-provider integration is claimed.
+
+The full 2009-onward research retraining was not revalidated. Strict histories can halt before ETF inception; do not manufacture pre-inception SGOV/CEG data. A real-cache, eight-symbol research replay was checked separately; see [VALIDATION.md](VALIDATION.md).
+
+## Tests and automation
+
+```powershell
+$env:PYTHONPATH = (Join-Path $PWD 'python')
+.\.venv\Scripts\python.exe -m pytest -q python/tests
 ```
 
-Daily mode writes:
+The PR workflow runs offline regression tests with deterministic fixtures. Manual daily/backtest workflows use ephemeral runner storage, have read-only repository permissions, and do not commit prices, upload runtime artifacts, or deploy Pages. Automatic daily publication and the Pages publisher are removed from this experimental branch. Original `main` is unchanged until a separately reviewed merge.
 
-```text
-data/snapshots.json
-data/portfolio_state.json
-data/candidate_universe.json
-data/candidate_scores.json
-data/selected_etfs.json
-data/target_allocations.json
-data/execution_decisions.json
-data/decision_logs.json
-data/system_status.json
-data/benchmark_metrics.json
-data/benchmark_snapshots.json
-data/weight_reviews.json
-data/review_events.json
-data/learning_report.md
-data/comparison_report.md
-data/ai_reviews.json
-```
-
-## Run Backtest
-
-Full mandate window:
-
-```bash
-cd "AI Trader/greenlight-trader"
-PYTHONPATH=python python python/backtest.py \
-  --start-date 2009-01-01 \
-  --train-start 2009-01-01 \
-  --train-end 2021-12-31 \
-  --invest-start 2022-01-01 \
-  --end-date "$(date -u +%F)" \
-  --rolling-train-years 3 \
-  --ai-memo-mode deepseek \
-  --ai-memo-frequency monthly \
-  --no-synthetic-fallback
-```
-
-Research windows:
-
-- Train: `2009-01-01` to `2021-12-31`
-- Test: `2022-01-01` to latest available date
-- Walk-forward: daily replay with rolling retraining; published result uses a 3-year rolling window
-
-Fast smoke test:
-
-```bash
-PYTHONPATH=python python python/backtest.py --start-date 2024-01-01 --end-date 2024-04-30 --max-symbols 18
-```
-
-## Dashboard
-
-The dashboard is static and GitHub Pages compatible. It reads only committed
-`data/*.json` files and never calls Massive from the browser.
-
-Local preview:
-
-```bash
-cd "AI Trader/greenlight-trader"
-python -m http.server 8000
-```
-
-Open `http://localhost:8000/web/`.
-
-## GitHub Secrets
-
-Required for live daily runs:
-
-- `MASSIVE_API_KEY` or `POLYGON_API_KEY`
-
-Optional:
-
-- `MASSIVE_API_BASE_URL`
-- `DEEPSEEK_API_KEY`
-- `DEEPSEEK_BASE_URL`
-- `DEEPSEEK_MODEL`
-
-No frontend secret is required or allowed.
-
-## GitHub Actions
-
-- `.github/workflows/daily.yml`: scheduled daily after the US close, runs live mode when repository secrets are configured, validates outputs and watermarks, commits updated `data/*.json`.
-- `.github/workflows/backtest.yml`: manual backtest with `start_date` and optional `end_date` inputs, clamps to the latest available market bar, uploads artifacts.
-- `.github/workflows/publish-dashboard.yml`: deploys the static dashboard at the GitHub Pages root and keeps `/web/` available.
-
-## Massive Endpoints Used
-
-The client records endpoint availability under `data/system_status.json`.
-
-- `/v2/aggs/ticker/{symbol}/range/{multiplier}/{timespan}/{from}/{to}` for OHLCV aggregates.
-- `/v3/reference/tickers/{ticker}` for ticker metadata and company profile fields.
-- `/v3/reference/tickers` for reference ticker discovery when enabled.
-- `/v2/reference/news` for news metadata when available.
-- `/vX/reference/financials` for financial snapshots when available.
-- `/v2/snapshot/locale/us/markets/stocks/{direction}` for market movers when available.
-
-Plan-dependent or historically incomplete endpoints are explicitly marked
-unavailable instead of being forward-filled into historical backtests.
-
-If Massive/Polygon index bars are unavailable for VIX under the current plan,
-Greenlight fetches `^VIX` daily bars from Yahoo as a VIX-only secondary source.
-This is recorded in `data_health.secondary_source_symbols`; equities and ETFs
-remain Massive-first and do not use Yahoo fallback.
-
-## Known Limitations
-
-- The repository ships with deterministic synthetic fallback output for local
-  testing; live decisions require Massive/Polygon data.
-- Historical analyst, ratings, price target, and fundamentals are used only
-  when the API response confirms availability at the requested date.
-- ETF overlap is approximated through correlation; holdings-level ETF
-  overlap is left for a later data entitlement.
-- The agent-led track is a structured experimental mirror, not an autonomous
-  trading agent.
+Yahoo raw histories, derived outputs, anonymous cookies, `.env`, `.venv`, and runtime caches must not be added to Git. The yfinance code license does not grant rights to redistribute provider data; evaluate intended use separately before publishing generated market data.

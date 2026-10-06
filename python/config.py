@@ -11,8 +11,8 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parent.parent
-DATA_DIR = ROOT / "data"
-CACHE_DIR = DATA_DIR / "cache" / "massive"
+DATA_DIR = Path(os.getenv("GREENLIGHT_DATA_DIR", str(ROOT / ".runtime" / "data"))).resolve()
+CACHE_DIR = Path(os.getenv("GREENLIGHT_CACHE_DIR", str(ROOT / ".runtime" / "cache" / "yfinance"))).resolve()
 WEB_DIR = ROOT / "web"
 
 for path in (DATA_DIR, CACHE_DIR, WEB_DIR):

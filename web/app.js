@@ -229,7 +229,7 @@ async function main() {
     scores,
     etfs,
     targets,
-    execution,
+    executionPayload,
     benchmarkMetrics,
     benchmarkSnapshots,
     backtestResults,
@@ -255,9 +255,11 @@ async function main() {
   const qqq = metric(benchmarkMetrics, "QQQ_buy_hold");
   const finalEquity = (backtestResults.equity_curve || []).at(-1)?.equity || 0;
   const replayDate = latestReplayDate(log, backtestResults, status);
-  const light = log.risk_light || status.risk_light || "UNKNOWN";
+  const light = status.risk_light || log.risk_light || "UNKNOWN";
   const lightKey = riskClass(light);
-  const dataHealth = log.data_health || status.data_health || {};
+  const dataHealth = status.data_health || log.data_health || {};
+  const execution = executionPayload.execution_decision || {};
+  const currentRegime = status.market_regime || log.market_regime || "n/a";
   const targetRows = targetRowsFromLog(log, targets.target_allocations || []);
   const targetSum = targetRows.reduce((sum, row) => sum + Number(row.weight || 0), 0);
   const replayLogs = backtestLogs.logs || [];
@@ -265,8 +267,8 @@ async function main() {
   document.getElementById("heroNav").textContent = fmtUsd(finalEquity);
   document.getElementById("heroRisk").textContent = light;
   document.getElementById("heroRisk").className = `value ${lightKey === "green" ? "num-pos" : lightKey === "red" ? "num-neg" : ""}`;
-  document.getElementById("heroRegime").textContent = log.market_regime || status.market_regime || "n/a";
-  document.getElementById("heroExecution").textContent = log.execution_decision || "n/a";
+  document.getElementById("heroRegime").textContent = currentRegime;
+  document.getElementById("heroExecution").textContent = execution.decision || log.execution_decision || "n/a";
   document.getElementById("allocationDate").textContent = `replay ${replayDate}`;
   renderAllocationTrack(targetRows);
 
@@ -278,12 +280,12 @@ async function main() {
   dot.style.boxShadow = `0 0 12px ${lightKey === "green" ? "rgba(47, 106, 74, 0.45)" : lightKey === "yellow" ? "rgba(180, 83, 9, 0.45)" : lightKey === "red" ? "rgba(155, 44, 31, 0.45)" : "rgba(69, 73, 79, 0.35)"}`;
   document.getElementById("statusLabel").textContent = lightLabel(light);
   document.getElementById("statusLabel").className = `status-label ${lightKey}`;
-  document.getElementById("statusReason").textContent = statusReason(light, dataHealth, log);
-  document.getElementById("statusRegime").textContent = log.market_regime || status.market_regime || "n/a";
+  document.getElementById("statusReason").textContent = statusReason(light, dataHealth, {...log, execution_reason: execution.reason || log.execution_reason});
+  document.getElementById("statusRegime").textContent = currentRegime;
   document.getElementById("statusData").innerHTML = dataHealth.ok
     ? `<span class="num-pos">ok</span>${dataHealth.secondary_source_symbols?.length ? ` · ${escapeHtml(dataHealth.secondary_source_symbols.join(", "))}` : ""}`
     : `<span class="num-neg">stale</span>`;
-  document.getElementById("statusDate").textContent = `as of ${replayDate}`;
+  document.getElementById("statusDate").textContent = `as of ${status.latest_run_date || replayDate}`;
 
   document.getElementById("resultsKpis").innerHTML = [
     kpi("Final equity", fmtUsd(finalEquity), `${backtestResults.invest_start} ~ ${replayDate}`),
@@ -292,7 +294,7 @@ async function main() {
     kpi("Sharpe", fmtNum(green.Sharpe), "risk adjusted"),
     kpi("Max drawdown", fmtPct(green.max_drawdown), "absolute", "num-neg"),
     kpi("Alpha vs SPY", fmtPct(green.alpha_vs_SPY, 2, true), "test window", numberClass(green.alpha_vs_SPY)),
-    kpi("Initial train", `${backtestResults.train_start} ~ ${backtestResults.initial_train_end}`, "pre-replay"),
+    kpi("Legacy initial train", `${backtestResults.train_start} ~ ${backtestResults.initial_train_end}`, "preserved metadata; not retrained"),
     kpi("Replay start", backtestResults.invest_start || "n/a", "daily loop begins"),
     kpi("Production replay", "40 / 20 anchor", "validated public curve"),
   ].join("");
@@ -304,7 +306,7 @@ async function main() {
     kpi("Daily paper NAV", fmtUsd(portfolio.nav), `state file ${portfolio.date || "n/a"}`),
     kpi("Cash", fmtUsd(log.portfolio_snapshot?.cash ?? portfolio.cash), "latest replay cash"),
     kpi("Relative DD", fmtPct(log.portfolio_snapshot?.relative_drawdown_pct ?? portfolio.relative_drawdown_pct), "vs SPY mandate", Number(log.portfolio_snapshot?.relative_drawdown_pct || 0) > 0 ? "num-neg" : ""),
-    kpi("Data source", dataHealth.source || "n/a", dataHealth.synthetic ? "synthetic" : "Massive-first / tagged fallback"),
+    kpi("Data source", dataHealth.source || "n/a", dataHealth.synthetic ? "synthetic" : "split-only price returns / explicit provenance"),
   ].join("");
 
   document.getElementById("targetSum").textContent = `sum · ${fmtPct(targetSum, 1)}`;
@@ -318,15 +320,15 @@ async function main() {
 
   document.getElementById("executionTurnover").textContent = `latest · ${replayDate}`;
   document.getElementById("executionKpis").innerHTML = [
-    kpi("Decision", log.execution_decision || "n/a", log.execution_reason || ""),
-    kpi("Risk light", light, log.market_regime || "n/a", lightKey === "green" ? "num-pos" : lightKey === "red" ? "num-neg" : ""),
-    kpi("Orders", String((log.orders || []).length), "sparse execution"),
-    kpi("Last rebalance", log.portfolio_snapshot?.last_rebalance_date || portfolio.last_rebalance_date || "none", "paper portfolio"),
+    kpi("Decision", execution.decision || log.execution_decision || "n/a", execution.reason || log.execution_reason || ""),
+    kpi("Risk light", light, currentRegime, lightKey === "green" ? "num-pos" : lightKey === "red" ? "num-neg" : ""),
+    kpi("Orders", String((execution.orders || []).length), "forward paper decision"),
+    kpi("Last rebalance", portfolio.last_rebalance_date || "none", "paper portfolio"),
   ].join("");
   renderTable(
     "ordersTable",
     ["Symbol", "Side", "Shares", "Notional"],
-    (log.orders || []).map(
+    (execution.orders || []).map(
       (row) => `<tr><td class="symbol">${escapeHtml(row.symbol)}</td><td>${escapeHtml(row.side)}</td><td class="right">${fmtNum(row.shares, 4)}</td><td class="right">${fmtUsd(row.notional)}</td></tr>`
     )
   );
@@ -385,7 +387,7 @@ async function main() {
     [
       `<tr><td class="symbol">Production curve</td><td>public</td><td>fixed 40/20 anchor composite</td></tr>`,
       `<tr><td class="symbol">Execution</td><td>paper only</td><td>no broker connection</td></tr>`,
-      `<tr><td class="symbol">Data</td><td>tagged</td><td>Massive-first with documented Yahoo fallback</td></tr>`,
+      `<tr><td class="symbol">Data</td><td>tagged</td><td>yfinance primary; fixed universe; legacy replay base is identified</td></tr>`,
     ]
   );
 
@@ -395,7 +397,7 @@ async function main() {
 
 function statusReason(light, dataHealth, log) {
   const parts = [];
-  if (dataHealth.ok) parts.push("Massive-first data is healthy");
+  if (dataHealth.ok) parts.push(`${dataHealth.source || "Market"} data is healthy`);
   if (dataHealth.secondary_source_symbols?.length) parts.push(`${dataHealth.secondary_source_symbols.join(", ")} secondary source`);
   if (log.execution_reason) parts.push(log.execution_reason);
   if (!parts.length) parts.push(`${light} risk state`);

@@ -42,3 +42,10 @@ Thumbs.db
 !.env.example
 .env.local
 .env.*.local
+
+# Private market data, restored state and local validation evidence.
+.runtime/
+archives/*.zip
+archives/*.bundle
+archives/*.local.json
+yfinance_test/

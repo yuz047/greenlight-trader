@@ -17,7 +17,8 @@ from decision_log import build_decision_log
 from etf_selector import select_dynamic_etfs
 from execution_policy import decide_execution
 from features import compute_features
-from massive_client import MassiveClient
+from market_data import MarketDataClient
+from yfinance_client import expected_sessions
 from portfolio import PaperPortfolio
 from regime import determine_regime
 from risk import evaluate_risk
@@ -78,7 +79,9 @@ def run_backtest(
     train_start = train_start or start_date
     train_step_days = train_step_days or step_days
     budget_overrides = BUDGET_PRESETS.get(budget_preset)
-    client = MassiveClient()
+    if allow_synthetic_trading:
+        raise ValueError("Synthetic trading is disabled in the yfinance replacement")
+    client = MarketDataClient()
     universe_payload = build_universe(as_of=end_date, client=client)
     symbols = candidate_symbols(universe_payload)
     if max_symbols:
@@ -94,13 +97,11 @@ def run_backtest(
         end_date,
         allow_synthetic=allow_synthetic_fallback,
         allow_secondary_price_fallback=use_secondary_price_fallback,
-        optional_symbols=set(symbols) - CRITICAL_PRICE_SYMBOLS,
+        optional_symbols=set(),
     )
+    if not data_health["ok"]:
+        raise ValueError("DATA_HALT: missing/stale critical backtest prices")
     loop_health = dict(data_health)
-    if allow_synthetic_trading and loop_health.get("synthetic"):
-        loop_health["ok"] = True
-        loop_health["synthetic"] = False
-        loop_health["source"] = "fallback.synthetic_research_only"
 
     effective_end_date = _effective_end_date(end_date, price_history)
 
@@ -132,7 +133,7 @@ def run_backtest(
     latest_stock_learning = learn_weights([], "stock", as_of=train_end)
     latest_etf_learning = learn_weights([], "etf", as_of=train_end)
     latest_benchmarks: dict[str, Any] = {}
-    dates = pd.bdate_range(invest_start, effective_end_date)
+    dates = expected_sessions(invest_start, effective_end_date)
     dates = dates[:: max(1, step_days)]
     total_invest_dates = len(dates)
     print(f"Investment replay dates: {total_invest_dates}", flush=True)
@@ -395,7 +396,7 @@ def _collect_training_rows(
     step_days: int,
 ) -> list[dict[str, Any]]:
     learning_rows: list[dict[str, Any]] = []
-    dates = pd.bdate_range(train_start, train_end)
+    dates = expected_sessions(train_start, train_end)
     dates = dates[:: max(1, step_days)]
     total_dates = len(dates)
     print(f"Training scan dates: {total_dates}", flush=True)
@@ -561,8 +562,12 @@ def _update_relative_state(portfolio: PaperPortfolio, price_history: dict[str, p
     sliced = spy.loc[spy.index <= pd.Timestamp(as_of)]
     if len(sliced) < 2:
         return
-    daily_return = float(sliced["close"].iloc[-1] / sliced["close"].iloc[-2] - 1)
+    prior = sliced.loc[sliced.index <= pd.Timestamp(portfolio.valuation_date)] if portfolio.valuation_date else sliced.iloc[:-1]
+    if prior.empty:
+        raise ValueError('Missing prior benchmark valuation')
+    daily_return = float(sliced["close"].iloc[-1] / prior["close"].iloc[-1] - 1)
     portfolio.benchmark_equity *= 1 + daily_return
+    portfolio.valuation_date = as_of
     relative = portfolio.nav() / MANDATE.starting_capital - portfolio.benchmark_equity / MANDATE.starting_capital
     portfolio.peak_relative_outperformance = max(portfolio.peak_relative_outperformance, relative)
     portfolio.relative_drawdown_pct = max(0.0, portfolio.peak_relative_outperformance - relative)

@@ -13,7 +13,9 @@ from decision_log import append_decision_log, build_decision_log, load_decision_
 from etf_selector import select_dynamic_etfs, write_selected_etfs
 from execution_policy import decide_execution, write_execution_decision
 from features import compute_features, write_features
-from massive_client import MassiveClient
+from market_data import MarketDataClient
+from yfinance_client import latest_completed_market_date, expected_sessions
+import os
 from portfolio import PaperPortfolio
 from regime import determine_regime
 from risk import evaluate_risk, write_risk_status
@@ -23,27 +25,33 @@ from universe import build_universe, candidate_symbols, write_candidate_universe
 from watermark import SYSTEMATIC_TEMPLATE_OUTPUT, add_watermark
 
 
-def main() -> None:
-    as_of = date.today().isoformat()
-    client = MassiveClient()
+def main(as_of: str | None = None, client=None) -> None:
+    as_of = as_of or os.getenv("GREENLIGHT_AS_OF") or latest_completed_market_date()
+    client = client or MarketDataClient()
     portfolio = PaperPortfolio.load()
+    if portfolio.valuation_date and portfolio.valuation_date > as_of:
+        raise SystemExit("Portfolio is newer than requested session; use an isolated historical baseline")
+    status = read_json(DATA_DIR / "system_status.json", default={})
+    if portfolio.valuation_date == as_of and status.get("latest_run_date") == as_of and status.get("data_health", {}).get("source", "").startswith("yfinance") and status.get("data_health", {}).get("ok"):
+        print(f"daily already completed for {as_of}; no writes or repeated trades")
+        return
 
     universe_payload = build_universe(as_of=as_of, client=client, current_holdings=list(portfolio.positions))
     symbols = candidate_symbols(universe_payload)
-    start_date = (date.today() - timedelta(days=420)).isoformat()
-    critical_symbols = {
-        MANDATE.benchmark,
-        MANDATE.secondary_growth_anchor,
-        MANDATE.defensive_anchor,
-        *portfolio.positions,
-    }
+    start_date = (date.fromisoformat(as_of) - timedelta(days=420)).isoformat()
     price_history, data_health = client.load_price_history(
         symbols,
         start_date,
         as_of,
-        allow_synthetic=True,
-        optional_symbols=set(symbols) - critical_symbols,
+        allow_synthetic=False,
+        optional_symbols=set(),
     )
+    if not data_health["ok"] or len(price_history.get("SPY", [])) < 200:
+        halt_before_valuation(portfolio, data_health, as_of, client)
+        return
+    prior_date = portfolio.valuation_date
+    actions = {symbol: client.corporate_actions(symbol, portfolio.corporate_action_date or as_of, as_of) for symbol in portfolio.positions}
+    portfolio.apply_corporate_actions(actions, as_of)
     latest_prices = _latest_prices(price_history)
     portfolio.mark_to_market(latest_prices)
 
@@ -53,7 +61,7 @@ def main() -> None:
     etf_payload = select_dynamic_etfs(score_payload, feature_payload, regime_payload, as_of)
     target_payload = allocate_targets(score_payload, feature_payload, etf_payload, regime_payload, as_of)
     risk_payload = evaluate_risk(portfolio.snapshot(), target_payload, data_health, regime_payload, as_of)
-    execution_payload = decide_execution(portfolio.snapshot(), target_payload, risk_payload, load_decision_history(), as_of)
+    execution_payload = decide_execution(portfolio.snapshot(), target_payload, risk_payload, recent_signal_history(load_decision_history(), as_of), as_of)
 
     orders = portfolio.rebalance_to_targets(
         target_payload.get("target_allocations", []),
@@ -64,7 +72,8 @@ def main() -> None:
     if orders:
         execution_payload["execution_decision"]["orders"] = orders
     portfolio.mark_to_market(latest_prices)
-    _update_relative_benchmark_state(portfolio, price_history)
+    _update_relative_benchmark_state(portfolio, price_history, prior_date)
+    portfolio.valuation_date = as_of
     portfolio.save()
 
     strategy_equity = _strategy_equity_from_snapshots(portfolio.nav(), as_of)
@@ -104,6 +113,24 @@ def _latest_prices(price_history: dict[str, pd.DataFrame]) -> dict[str, float]:
         if frame is not None and not frame.empty:
             prices[symbol] = float(frame["close"].iloc[-1])
     return prices
+
+
+def halt_before_valuation(portfolio, data_health, as_of, client):
+    data_health = {**data_health, "ok": False}
+    risk_payload = evaluate_risk(portfolio.snapshot(), {}, data_health, {"regime": "DATA_FAILURE"}, as_of)
+    execution_payload = decide_execution(portfolio.snapshot(), {}, risk_payload, [], as_of)
+    write_risk_status(risk_payload)
+    write_execution_decision(execution_payload)
+    _write_system_status(as_of, data_health, risk_payload, {"regime": "DATA_FAILURE"}, client.availability_report(), {})
+    print(f"DATA_HALT {as_of}: portfolio, NAV, benchmark and snapshots unchanged")
+
+
+def recent_signal_history(history, as_of):
+    start = (date.fromisoformat(as_of) - timedelta(days=MANDATE.signal_persistence_days * 4 + 14)).isoformat()
+    prior = expected_sessions(start, as_of)
+    prior = [d.date().isoformat() for d in prior if d.date().isoformat() < as_of][-(MANDATE.signal_persistence_days - 1):]
+    by_date = {row.get("date"): row for row in history if row.get("date") in prior}
+    return [by_date[day] for day in prior if day in by_date]
 
 
 def _benchmark_snapshot(price_history: dict[str, pd.DataFrame], benchmark_payload: dict[str, Any]) -> dict[str, Any]:
@@ -182,11 +209,14 @@ def _strategy_equity_from_snapshots(current_nav: float, as_of: str) -> pd.Series
     return frame.set_index("date")["nav"].astype(float).sort_index()
 
 
-def _update_relative_benchmark_state(portfolio: PaperPortfolio, price_history: dict[str, pd.DataFrame]) -> None:
+def _update_relative_benchmark_state(portfolio: PaperPortfolio, price_history: dict[str, pd.DataFrame], prior_date: str | None = None) -> None:
     spy = price_history.get(MANDATE.benchmark)
     if spy is None or len(spy) < 2:
         return
-    daily_return = float(spy["close"].iloc[-1] / spy["close"].iloc[-2] - 1)
+    prior = spy.loc[spy.index <= pd.Timestamp(prior_date)] if prior_date else spy.iloc[:-1]
+    if prior.empty:
+        raise ValueError("Missing prior benchmark valuation; refusing partial benchmark recovery")
+    daily_return = float(spy["close"].iloc[-1] / prior["close"].iloc[-1] - 1)
     portfolio.benchmark_equity *= 1 + daily_return
     portfolio_return = portfolio.nav() / MANDATE.starting_capital - 1
     benchmark_return = portfolio.benchmark_equity / MANDATE.starting_capital - 1

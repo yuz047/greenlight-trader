@@ -10,7 +10,8 @@ import pandas as pd
 
 from config import DATA_DIR
 from data_contracts import write_json
-from massive_client import MassiveClient, yahoo_price_bars, bars_to_frame
+from market_data import MarketDataClient
+from yfinance_client import latest_completed_market_date
 from watermark import SYSTEMATIC_TEMPLATE_OUTPUT, add_watermark
 
 
@@ -28,21 +29,23 @@ def main() -> None:
     base_date = str(base.get("date") or replay.get("end_date"))
     base_nav = float(base.get("nav") or _equity_on(replay, base_date))
     end_date = args.end_date or latest_completed_market_date()
-    if end_date <= base_date:
-        print(f"production replay already current at {base_date}")
+    prior_health = replay.get("extension", {}).get("data_health", {})
+    if end_date <= base_date or (end_date <= replay.get("end_date", "") and prior_health.get("ok") and prior_health.get("source", "").startswith("yfinance")):
+        print(f"production replay already current at {replay.get('end_date', base_date)}; no writes")
         return
 
     symbols = sorted(symbol for symbol in allocation if symbol != "CASH")
-    client = MassiveClient()
+    client = MarketDataClient()
     price_history, data_health = client.load_price_history(
         symbols,
         base_date,
         end_date,
         allow_synthetic=False,
         allow_secondary_price_fallback=True,
-        optional_symbols=set(symbols),
+        optional_symbols=set(),
     )
-    _fill_missing_with_yahoo(price_history, symbols, base_date, end_date)
+    if not data_health["ok"]:
+        raise SystemExit("DATA_HALT: replay has missing/stale prices; no curve was written")
 
     spy = price_history.get("SPY")
     if spy is None or spy.empty:
@@ -104,16 +107,6 @@ def main() -> None:
     )
 
 
-def _fill_missing_with_yahoo(price_history: dict[str, pd.DataFrame], symbols: list[str], start_date: str, end_date: str) -> None:
-    for symbol in symbols:
-        frame = price_history.get(symbol)
-        if frame is not None and not frame.empty:
-            continue
-        bars = yahoo_price_bars(symbol, start_date, end_date)
-        if bars:
-            price_history[symbol] = bars_to_frame(bars)
-
-
 def _equity_on(replay: dict[str, Any], target_date: str) -> float:
     for row in replay.get("equity_curve", []):
         if row.get("date") == target_date:
@@ -130,11 +123,7 @@ def _price_as_of(series: pd.Series, target_date: str) -> float | None:
 
 
 def latest_completed_market_date() -> str:
-    today = date.today()
-    candidate = today - timedelta(days=1)
-    while candidate.weekday() >= 5:
-        candidate -= timedelta(days=1)
-    return candidate.isoformat()
+    return latest_completed_market_date()
 
 
 def parse_args() -> argparse.Namespace:

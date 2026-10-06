@@ -35,7 +35,15 @@ PUBLIC_SNAPSHOT_KEYS = [
 
 
 def main() -> None:
-    existing_snapshots = _read_json(DATA_DIR / "benchmark_snapshots.json").get("snapshots", {})
+    benchmark_payload = _read_json(DATA_DIR / "benchmark_snapshots.json")
+    existing_snapshots = benchmark_payload.get("snapshots", {})
+    replay = _read_json(PRODUCTION_REPLAY_PATH)
+    extension_health = replay.get("extension", {}).get("data_health", {})
+    status = _read_json(DATA_DIR / "system_status.json")
+    benchmark_health = _read_json(DATA_DIR / "benchmark_metrics.json").get("data_health", {})
+    if not all(h.get("ok") and not h.get("synthetic") and h.get("source", "").startswith("yfinance") for h in (extension_health, status.get("data_health", {}), benchmark_health)):
+        raise SystemExit("DATA_HALT: public builder requires validated daily/replay/benchmark provider health")
+    public_health = {**extension_health, "historical_base": "preserved_original_validated_replay;extension_only_verified_by_yfinance"}
     labels, production, replay_meta = _production_series(existing_snapshots)
     snapshots = {PRODUCTION_KEY: _series_to_rows(labels, production)}
     for key in PUBLIC_SNAPSHOT_KEYS:
@@ -57,7 +65,7 @@ def main() -> None:
     }
 
     write_json(DATA_DIR / "benchmark_snapshots.json", add_watermark({"snapshots": snapshots}, SYSTEMATIC_TEMPLATE_OUTPUT))
-    write_json(DATA_DIR / "benchmark_metrics.json", add_watermark({"metrics": metrics, "verdict": verdict}, SYSTEMATIC_TEMPLATE_OUTPUT))
+    write_json(DATA_DIR / "benchmark_metrics.json", add_watermark({"metrics": metrics, "verdict": verdict, "data_health": benchmark_health}, SYSTEMATIC_TEMPLATE_OUTPUT))
 
     equity_curve = snapshots[PRODUCTION_KEY]
     payload = add_watermark(
@@ -84,13 +92,7 @@ def main() -> None:
                 "investment_test": [labels[0], labels[-1]],
             },
             "budget_preset": "production_40_20_anchor",
-            "data_health": {
-                "ok": True,
-                "source": "massive+secondary",
-                "synthetic": False,
-                "identity_repair_symbols": ["META:ticker_identity"],
-                "validated_replay_meta_exposure": False,
-            },
+            "data_health": public_health,
             "equity_curve": equity_curve,
             "decision_logs": _decision_logs(equity_curve),
             "benchmark_verdict": verdict,
@@ -119,7 +121,7 @@ def main() -> None:
             "verdict": verdict,
             "data_sources": {
                 "public_curve": replay_meta.get("description", "validated actual production replay"),
-                "market_data_policy": "Massive/Polygon primary; Yahoo fallback is tagged for VIX and secondary price gaps.",
+                "market_data_policy": "yfinance primary; split-only price returns; historical validated replay base is preserved explicitly.",
                 "identity_repairs": ["META:ticker_identity"],
             },
         },
@@ -266,13 +268,16 @@ def _plot_series(label: str, values: list[float], color: str, width: float, dash
 
 def _decision_logs(equity_curve: list[dict[str, Any]]) -> list[dict[str, Any]]:
     logs = []
+    replay = _read_json(PRODUCTION_REPLAY_PATH)
+    extension = replay.get("extension", {})
     for row in equity_curve:
+        health = extension.get("data_health", {}) if row["date"] > extension.get("base_date", "9999") else {"source": "legacy_validated_replay_base", "historical_validation_preserved": True}
         logs.append(
             {
                 "date": row["date"],
                 "market_regime": "PRODUCTION",
                 "risk_light": "GREEN",
-                "data_health": {"ok": True, "source": "massive+secondary", "identity_repair_symbols": ["META:ticker_identity"]},
+                "data_health": health,
                 "universe_size": 0,
                 "selected_etfs": [{"symbol": "ETF_ROTATION", "score": None, "reasons": ["production sleeve proxy"]}],
                 "rejected_etfs": [],

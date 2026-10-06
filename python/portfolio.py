@@ -35,6 +35,10 @@ class PaperPortfolio:
     benchmark_equity: float = MANDATE.starting_capital
     peak_relative_outperformance: float = 0.0
     relative_drawdown_pct: float = 0.0
+    valuation_date: str | None = None
+    corporate_action_date: str | None = None
+    corporate_action_ledger: list[dict[str, Any]] = field(default_factory=list)
+    recovery_provenance: dict[str, Any] = field(default_factory=dict)
 
     @classmethod
     def path(cls) -> Path:
@@ -67,6 +71,10 @@ class PaperPortfolio:
             benchmark_equity=float(payload.get("benchmark_equity", MANDATE.starting_capital)),
             peak_relative_outperformance=float(payload.get("peak_relative_outperformance", 0.0)),
             relative_drawdown_pct=float(payload.get("relative_drawdown_pct", 0.0)),
+            valuation_date=payload.get("date"),
+            corporate_action_date=payload.get("corporate_action_date", payload.get("date")),
+            corporate_action_ledger=payload.get("corporate_action_ledger", []),
+            recovery_provenance=payload.get("recovery_provenance", {}),
         )
 
     def save(self, path: Path | None = None) -> None:
@@ -94,7 +102,11 @@ class PaperPortfolio:
         nav = self.nav()
         return {
             "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
-            "date": date.today().isoformat(),
+            "date": self.valuation_date or date.today().isoformat(),
+            "corporate_action_date": self.corporate_action_date,
+            "corporate_action_ledger": self.corporate_action_ledger,
+            "dividend_policy": "price_return_legacy;record_events_without_cash_credit",
+            "recovery_provenance": self.recovery_provenance,
             "cash": round(self.cash, 6),
             "nav": round(nav, 6),
             "peak_nav": round(max(self.peak_nav, nav), 6),
@@ -117,6 +129,38 @@ class PaperPortfolio:
                 for symbol, position in sorted(self.positions.items())
             },
         }
+
+    def apply_corporate_actions(self, actions_by_symbol: dict[str, Any], as_of: str) -> None:
+        """Adjust actual share quantities for splits; record legacy-excluded dividends.
+
+        Research Close is already split-adjusted. Never multiply actual holdings
+        by a dividend adjustment ratio or credit an adjusted price as cash.
+        """
+        known = {row["id"] for row in self.corporate_action_ledger}
+        for symbol, actions in sorted(actions_by_symbol.items()):
+            position = self.positions.get(symbol)
+            if position is None:
+                continue
+            for timestamp, row in actions.sort_index().iterrows():
+                day = timestamp.date().isoformat()
+                if day > as_of or (self.corporate_action_date and day <= self.corporate_action_date):
+                    continue
+                for event, amount in (("split", float(row.get("Stock Splits", 0))), ("dividend", float(row.get("Dividends", 0)))):
+                    identity = f"{symbol}:{day}:{event}"
+                    if not amount or identity in known:
+                        continue
+                    entry = {"id": identity, "symbol": symbol, "date": day, "type": event, "value": amount}
+                    if event == "split":
+                        position.shares *= amount
+                        position.avg_price /= amount
+                        position.market_price /= amount
+                        entry["shares_after"] = position.shares
+                    else:
+                        entry["cash_credit"] = 0.0
+                        entry["excluded_cash_amount"] = position.shares * amount
+                    self.corporate_action_ledger.append(entry)
+                    known.add(identity)
+        self.corporate_action_date = as_of
 
     def rebalance_to_targets(
         self,
