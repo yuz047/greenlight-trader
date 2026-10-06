@@ -206,7 +206,7 @@ class RiskStatus:
     light: str
     reasons: list[str]
     data_health: dict[str, Any]
-    absolute_drawdown_pct: float = 0.0
+    absolute_drawdown_pct: float | None = 0.0
     relative_drawdown_pct: float = 0.0
     concentration: dict[str, float] = field(default_factory=dict)
     allow_new_alpha_entries: bool = True

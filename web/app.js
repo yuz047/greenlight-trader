@@ -304,8 +304,9 @@ async function main() {
   document.getElementById("portfolioKpis").innerHTML = [
     kpi("Replay NAV", fmtUsd(finalEquity), `starting ${fmtUsd(5000, 0)}`),
     kpi("Daily paper NAV", fmtUsd(portfolio.nav), `state file ${portfolio.date || "n/a"}`),
-    kpi("Cash", fmtUsd(log.portfolio_snapshot?.cash ?? portfolio.cash), "latest replay cash"),
-    kpi("Relative DD", fmtPct(log.portfolio_snapshot?.relative_drawdown_pct ?? portfolio.relative_drawdown_pct), "vs SPY mandate", Number(log.portfolio_snapshot?.relative_drawdown_pct || 0) > 0 ? "num-neg" : ""),
+    kpi("Cash", fmtUsd(portfolio.cash), "forward paper account"),
+    kpi("Observed relative DD", fmtPct(portfolio.relative_drawdown_pct), "known snapshots vs SPY", Number(portfolio.relative_drawdown_pct || 0) > 0 ? "num-neg" : ""),
+    kpi("Full-period drawdown", portfolio.drawdown_history?.status === "incomplete_recovery_gap" ? "Unknown" : fmtPct(portfolio.absolute_drawdown_pct), portfolio.drawdown_history?.status === "incomplete_recovery_gap" ? "Recovery daily path is incomplete" : "recorded valuation history"),
     kpi("Data source", dataHealth.source || "n/a", dataHealth.synthetic ? "synthetic" : "split-only price returns / explicit provenance"),
   ].join("");
 

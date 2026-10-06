@@ -36,6 +36,8 @@ def evaluate_risk(
     nav = float(portfolio_state.get("nav") or MANDATE.starting_capital)
     peak_nav = max(float(portfolio_state.get("peak_nav") or nav), nav, 1.0)
     absolute_drawdown = nav / peak_nav - 1
+    history = portfolio_state.get("drawdown_history", {})
+    incomplete = history.get("status") == "incomplete_recovery_gap"
     if absolute_drawdown <= -MANDATE.max_absolute_drawdown_pct:
         light = _worse(light, "RED")
         reasons.append("absolute drawdown cap breached")
@@ -64,18 +66,28 @@ def evaluate_risk(
 
     if not reasons:
         reasons.append("risk checks passed")
+    if incomplete:
+        reasons.append("recovery drawdown history is incomplete; risk gates use observed snapshots only")
 
     status = RiskStatus(
         as_of=as_of,
         light=light,
         reasons=reasons,
         data_health=data_health,
-        absolute_drawdown_pct=round(absolute_drawdown, 6),
+        absolute_drawdown_pct=None if incomplete else round(absolute_drawdown, 6),
         relative_drawdown_pct=round(relative_drawdown, 6),
         concentration=concentration,
         allow_new_alpha_entries=light in ("GREEN", "YELLOW") and regime_payload.get("allow_new_alpha_entries", False),
     )
-    return add_watermark({"risk_status": asdict(status)}, SYSTEMATIC_TEMPLATE_OUTPUT)
+    result = asdict(status)
+    result.update({"observed_absolute_drawdown_pct": round(absolute_drawdown, 6),
+                   "drawdown_history": history,
+                   "drawdown_definition": portfolio_state.get("drawdown_definition", "recorded_valuation_history"),
+                   "valuation_basis": {"as_of": portfolio_state.get("date", as_of), "nav": nav,
+                       "benchmark_equity": portfolio_state.get("benchmark_equity"),
+                       "valuation_contract_version": portfolio_state.get("valuation_contract_version", 0),
+                       "price_policy": "split_only_price_return"}})
+    return add_watermark({"risk_status": result}, SYSTEMATIC_TEMPLATE_OUTPUT)
 
 
 def write_risk_status(payload: dict[str, Any]) -> None:

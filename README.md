@@ -34,6 +34,10 @@ Each later session needs updated histories. Requests are sequential with at leas
 - The production replay preserves its existing historical prefix and recomputes the extension from its explicit 2026-06-02 allocation. That curve is a research replay, separate from forward paper holdings.
 - Session dates come from the NYSE calendar. VIX holiday rows with completely empty OHLC are discarded; missing actual market sessions halt validation. Zero VIX volume is permitted. VWAP is unavailable and stays null.
 
+Historical split-adjusted prices depend on the download vintage. A later split changes Yahoo's earlier Close even with `auto_adjust=False`. Keep the action dates and source retrieval date when comparing old Massive snapshots. Do not split-adjust Yahoo Close a second time. Historical share-based accounting and absolute price thresholds need prices expressed in that decision date's share unit; the complete historical strategy has not been certified against a second vendor. Never apply dividend adjustment factors to Volume.
+
+Daily risk now advances SPY's price-return benchmark before the execution decision. The final report reevaluates risk after transaction costs, with a separate pre-execution basis retained in `execution_decisions.json`. Portfolio, risk, and system status use the same valuation date and benchmark. A missing recovery valuation path reports full-period absolute drawdown as null and records the missing sessions. The existing gates continue to use observed snapshots; a GREEN observation does not certify the unobserved interval. Relative drawdown also refers to the observed relative peak.
+
 ## Data fault behavior and feature scope
 
 `run_pipeline.py` checks all forward, replay, and benchmark windows before the daily portfolio can change. Missing, partial, or stale bars cause `DATA_HALT`: portfolio state, NAV, snapshots, and replay curves remain unchanged. Only failure status and risk/execution notices are written. Successful same-session repetition does not repeat trades or rewrite the portfolio/replay curve.

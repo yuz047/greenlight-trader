@@ -39,6 +39,8 @@ class PaperPortfolio:
     corporate_action_date: str | None = None
     corporate_action_ledger: list[dict[str, Any]] = field(default_factory=list)
     recovery_provenance: dict[str, Any] = field(default_factory=dict)
+    drawdown_history: dict[str, Any] = field(default_factory=dict)
+    valuation_contract_version: int = 0
 
     @classmethod
     def path(cls) -> Path:
@@ -75,6 +77,8 @@ class PaperPortfolio:
             corporate_action_date=payload.get("corporate_action_date", payload.get("date")),
             corporate_action_ledger=payload.get("corporate_action_ledger", []),
             recovery_provenance=payload.get("recovery_provenance", {}),
+            drawdown_history=payload.get("drawdown_history", {}),
+            valuation_contract_version=payload.get("valuation_contract_version", 0),
         )
 
     def save(self, path: Path | None = None) -> None:
@@ -107,6 +111,11 @@ class PaperPortfolio:
             "corporate_action_ledger": self.corporate_action_ledger,
             "dividend_policy": "price_return_legacy;record_events_without_cash_credit",
             "recovery_provenance": self.recovery_provenance,
+            "drawdown_history": self.drawdown_history,
+            "valuation_contract_version": self.valuation_contract_version,
+            "absolute_drawdown_pct": None if self.drawdown_history.get("status") == "incomplete_recovery_gap" else round(nav / max(self.peak_nav, nav, 1.0) - 1, 6),
+            "observed_absolute_drawdown_pct": round(nav / max(self.peak_nav, nav, 1.0) - 1, 6),
+            "drawdown_definition": "known_saved_snapshots_only" if self.drawdown_history.get("status") == "incomplete_recovery_gap" else "recorded_valuation_history",
             "cash": round(self.cash, 6),
             "nav": round(nav, 6),
             "peak_nav": round(max(self.peak_nav, nav), 6),

@@ -32,7 +32,7 @@ def main(as_of: str | None = None, client=None) -> None:
     if portfolio.valuation_date and portfolio.valuation_date > as_of:
         raise SystemExit("Portfolio is newer than requested session; use an isolated historical baseline")
     status = read_json(DATA_DIR / "system_status.json", default={})
-    if portfolio.valuation_date == as_of and status.get("latest_run_date") == as_of and status.get("data_health", {}).get("source", "").startswith("yfinance") and status.get("data_health", {}).get("ok"):
+    if portfolio.valuation_date == as_of and status.get("valuation_contract_version") == 2 and status.get("latest_run_date") == as_of and status.get("data_health", {}).get("source", "").startswith("yfinance") and status.get("data_health", {}).get("ok"):
         print(f"daily already completed for {as_of}; no writes or repeated trades")
         return
 
@@ -54,6 +54,11 @@ def main(as_of: str | None = None, client=None) -> None:
     portfolio.apply_corporate_actions(actions, as_of)
     latest_prices = _latest_prices(price_history)
     portfolio.mark_to_market(latest_prices)
+    # Advance the benchmark before evaluating risk or making any decision.
+    _update_relative_benchmark_state(portfolio, price_history, prior_date)
+    portfolio.valuation_date = as_of
+    portfolio.valuation_contract_version = 2
+    _mark_recovery_drawdown_gap(portfolio, as_of)
 
     feature_payload = compute_features(universe_payload, price_history, as_of, portfolio.weights())
     regime_payload = determine_regime(price_history, feature_payload, data_health, as_of)
@@ -61,7 +66,10 @@ def main(as_of: str | None = None, client=None) -> None:
     etf_payload = select_dynamic_etfs(score_payload, feature_payload, regime_payload, as_of)
     target_payload = allocate_targets(score_payload, feature_payload, etf_payload, regime_payload, as_of)
     risk_payload = evaluate_risk(portfolio.snapshot(), target_payload, data_health, regime_payload, as_of)
+    decision_risk_basis = {**risk_payload['risk_status']['valuation_basis'], "phase": "pre_execution",
+        "relative_drawdown_pct": risk_payload['risk_status']['relative_drawdown_pct']}
     execution_payload = decide_execution(portfolio.snapshot(), target_payload, risk_payload, recent_signal_history(load_decision_history(), as_of), as_of)
+    execution_payload['risk_basis'] = decision_risk_basis
 
     orders = portfolio.rebalance_to_targets(
         target_payload.get("target_allocations", []),
@@ -72,8 +80,11 @@ def main(as_of: str | None = None, client=None) -> None:
     if orders:
         execution_payload["execution_decision"]["orders"] = orders
     portfolio.mark_to_market(latest_prices)
-    _update_relative_benchmark_state(portfolio, price_history, prior_date)
-    portfolio.valuation_date = as_of
+    _refresh_relative_state(portfolio)
+    # Costs may change NAV after a trade. Report final risk at the final NAV;
+    # retain the decision's pre-execution basis separately.
+    risk_payload = evaluate_risk(portfolio.snapshot(), target_payload, data_health, regime_payload, as_of)
+    risk_payload['risk_status']['valuation_basis']['phase'] = 'post_execution'
     portfolio.save()
 
     strategy_equity = _strategy_equity_from_snapshots(portfolio.nav(), as_of)
@@ -168,6 +179,10 @@ def _append_snapshot(
             "risk_light": risk_payload.get("risk_status", {}).get("light"),
             "execution_decision": execution_payload.get("execution_decision", {}).get("decision"),
             "benchmark_snapshot": benchmark_snapshot,
+            "benchmark_equity": round(portfolio.benchmark_equity, 6),
+            "relative_drawdown_pct": round(portfolio.relative_drawdown_pct, 6),
+            "absolute_drawdown_pct": portfolio.snapshot()['absolute_drawdown_pct'],
+            "drawdown_history": portfolio.drawdown_history,
             "watermark": SYSTEMATIC_TEMPLATE_OUTPUT,
         }
     )
@@ -191,6 +206,10 @@ def _write_system_status(
             "endpoint_availability": endpoint_availability,
             "watermark_status": "present",
             "decision_log_count": len(decision_logs_payload.get("logs", [])),
+            "valuation_contract_version": risk_payload.get('risk_status', {}).get('valuation_basis', {}).get('valuation_contract_version', 0),
+            "drawdown_history": risk_payload.get('risk_status', {}).get('drawdown_history', {}),
+            "risk_summary": {k: risk_payload.get('risk_status', {}).get(k) for k in
+                ('absolute_drawdown_pct', 'observed_absolute_drawdown_pct', 'relative_drawdown_pct', 'drawdown_definition', 'valuation_basis')},
         },
         SYSTEMATIC_TEMPLATE_OUTPUT,
     )
@@ -218,11 +237,30 @@ def _update_relative_benchmark_state(portfolio: PaperPortfolio, price_history: d
         raise ValueError("Missing prior benchmark valuation; refusing partial benchmark recovery")
     daily_return = float(spy["close"].iloc[-1] / prior["close"].iloc[-1] - 1)
     portfolio.benchmark_equity *= 1 + daily_return
+    _refresh_relative_state(portfolio)
+
+
+def _refresh_relative_state(portfolio):
     portfolio_return = portfolio.nav() / MANDATE.starting_capital - 1
     benchmark_return = portfolio.benchmark_equity / MANDATE.starting_capital - 1
     relative = portfolio_return - benchmark_return
     portfolio.peak_relative_outperformance = max(portfolio.peak_relative_outperformance, relative)
     portfolio.relative_drawdown_pct = max(0.0, portfolio.peak_relative_outperformance - relative)
+
+
+def _mark_recovery_drawdown_gap(portfolio, as_of):
+    base = portfolio.recovery_provenance.get('date')
+    if not base or base >= as_of:
+        return
+    snapshots = read_json(DATA_DIR / 'snapshots.json', {'snapshots': []}).get('snapshots', [])
+    known = {row.get('date') for row in snapshots} | {base, as_of}
+    missing = [d.date().isoformat() for d in expected_sessions(base, as_of) if d.date().isoformat() not in known]
+    if missing:
+        portfolio.drawdown_history = {'status': 'incomplete_recovery_gap', 'baseline_date': base,
+            'first_missing_session': missing[0], 'last_missing_session': missing[-1],
+            'missing_session_count': len(missing), 'as_of': as_of,
+            'definition': 'known_saved_snapshots_only',
+            'note': 'Daily recovery path was not reconstructed; observed peak is not a full-period peak.'}
 
 
 if __name__ == "__main__":
