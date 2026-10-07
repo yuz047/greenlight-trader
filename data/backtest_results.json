@@ -61031,7 +61031,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9537.2391,
+        "nav": 9537.2392,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61086,7 +61086,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9551.3646,
+        "nav": 9551.3644,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61141,7 +61141,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9521.0824,
+        "nav": 9521.0822,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61251,7 +61251,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9554.0221,
+        "nav": 9554.0219,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61306,7 +61306,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9592.6303,
+        "nav": 9592.6301,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61471,7 +61471,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9611.8002,
+        "nav": 9611.8001,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61581,7 +61581,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9690.3027,
+        "nav": 9690.3026,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61636,7 +61636,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9550.0,
+        "nav": 9549.9999,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -61856,7 +61856,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9675.8605,
+        "nav": 9675.8604,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -64001,7 +64001,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9887.6303,
+        "nav": 9887.6304,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -65631,9 +65631,64 @@
       "watermarks": [
         "SYSTEMATIC_TEMPLATE_OUTPUT"
       ]
+    },
+    {
+      "benchmark_snapshot": {},
+      "candidate_score_summary": {},
+      "current_allocation": {},
+      "data_health": {
+        "identity_repair_symbols": [
+          "META:ticker_identity"
+        ],
+        "ok": true,
+        "source": "massive+secondary"
+      },
+      "date": "2026-10-06",
+      "execution_decision": "NO_TRADE",
+      "execution_reason": "Public production curve is a validated deterministic replay; no broker execution.",
+      "market_regime": "PRODUCTION",
+      "orders": [],
+      "portfolio_snapshot": {
+        "cash": null,
+        "last_rebalance_date": null,
+        "nav": 10030.352,
+        "peak_nav": null,
+        "relative_drawdown_pct": 0.0
+      },
+      "rejected_etfs": [],
+      "risk_light": "GREEN",
+      "selected_etfs": [
+        {
+          "reasons": [
+            "production sleeve proxy"
+          ],
+          "score": null,
+          "symbol": "ETF_ROTATION"
+        }
+      ],
+      "systematic_decision": {
+        "decision": "VALIDATED_PRODUCTION_REPLAY",
+        "reason": "validated 40/20 production anchor replay"
+      },
+      "target_allocation": {
+        "DYNAMIC_ALLOCATOR": 0.35,
+        "QQQ": 0.2,
+        "SGOV": 0.05,
+        "SPY": 0.4
+      },
+      "top_stock_candidates": [
+        {
+          "final_score": null,
+          "symbol": "TOP_SCORE_BASKET"
+        }
+      ],
+      "universe_size": 0,
+      "watermarks": [
+        "SYSTEMATIC_TEMPLATE_OUTPUT"
+      ]
     }
   ],
-  "end_date": "2026-10-05",
+  "end_date": "2026-10-06",
   "equity_curve": [
     {
       "date": "2022-01-03",
@@ -70073,15 +70128,15 @@
     },
     {
       "date": "2026-06-05",
-      "equity": 9537.2391
+      "equity": 9537.2392
     },
     {
       "date": "2026-06-08",
-      "equity": 9551.3646
+      "equity": 9551.3644
     },
     {
       "date": "2026-06-09",
-      "equity": 9521.0824
+      "equity": 9521.0822
     },
     {
       "date": "2026-06-10",
@@ -70089,11 +70144,11 @@
     },
     {
       "date": "2026-06-11",
-      "equity": 9554.0221
+      "equity": 9554.0219
     },
     {
       "date": "2026-06-12",
-      "equity": 9592.6303
+      "equity": 9592.6301
     },
     {
       "date": "2026-06-15",
@@ -70105,7 +70160,7 @@
     },
     {
       "date": "2026-06-17",
-      "equity": 9611.8002
+      "equity": 9611.8001
     },
     {
       "date": "2026-06-18",
@@ -70113,11 +70168,11 @@
     },
     {
       "date": "2026-06-22",
-      "equity": 9690.3027
+      "equity": 9690.3026
     },
     {
       "date": "2026-06-23",
-      "equity": 9550.0
+      "equity": 9549.9999
     },
     {
       "date": "2026-06-24",
@@ -70133,7 +70188,7 @@
     },
     {
       "date": "2026-06-29",
-      "equity": 9675.8605
+      "equity": 9675.8604
     },
     {
       "date": "2026-06-30",
@@ -70289,7 +70344,7 @@
     },
     {
       "date": "2026-08-24",
-      "equity": 9887.6303
+      "equity": 9887.6304
     },
     {
       "date": "2026-08-25",
@@ -70406,9 +70461,13 @@
     {
       "date": "2026-10-05",
       "equity": 9969.7959
+    },
+    {
+      "date": "2026-10-06",
+      "equity": 10030.352
     }
   ],
-  "generated_at": "2026-10-06T02:21:51Z",
+  "generated_at": "2026-10-07T01:41:21Z",
   "initial_train_end": "2021-12-31",
   "internal_variant_versions": {
     "ai_review": "2.0.1.b",
@@ -70443,7 +70502,7 @@
   },
   "public_curve": "production_Greenlight",
   "public_name": "Greenlight Trader",
-  "requested_end_date": "2026-10-05",
+  "requested_end_date": "2026-10-06",
   "research_windows": {
     "initial_train": [
       "2009-01-01",
@@ -70451,7 +70510,7 @@
     ],
     "investment_test": [
       "2022-01-03",
-      "2026-10-05"
+      "2026-10-06"
     ]
   },
   "rolling_training": {
