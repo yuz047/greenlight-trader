@@ -1,7 +1,7 @@
 {
   "upstream_commit": "85199fbf2d8e39b600880977185e4c7c87d7ce0b",
   "created_date_utc": "2026-10-06",
-  "scope": "source only; no generated data or original local filesystem paths",
+  "scope": "source only; no generated data or private archive metadata; unchanged personal-path text already present in upstream web/app.js is retained",
   "archives": [
     {
       "file": "massive-upstream-source-85199fb.zip",
@@ -257,7 +257,8 @@
   "audit": {
     "crc": "passed",
     "credential_pattern_matches": 0,
-    "personal_local_path_matches": 0,
+    "personal_local_path_matches": 2,
+    "personal_local_path_note": "One unchanged personal filesystem path occurs in web/app.js in each of the two source ZIPs. Both lines match the original public upstream source; no additional personal paths were introduced.",
     "raw_yahoo_files": 0
   }
 }

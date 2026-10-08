@@ -28,8 +28,12 @@ variant exactly; it is not replaced by the upstream copy.
 These publishable ZIPs contain code, tests, documentation, web source, workflow
 definitions and audited empty/example configuration. Generated `data/` outputs,
 raw Yahoo histories, private archive metadata, credentials, caches and execution
-environments are excluded. ZIP CRC verification and source credential/path
-scans passed before staging.
+environments are excluded. ZIP CRC verification and source credential scans
+passed. The path scan finds two occurrences: each ZIP retains the same personal
+filesystem-path line in `web/app.js` that was already present in the public
+upstream source. No additional personal paths were introduced. This is a source
+preservation archive, not a claim that the original source contains no personal
+paths.
 
 The two earlier full original ZIPs remain private local backups. They are
 gitignored and are not the two source-only ZIPs in this archive branch. Generated
