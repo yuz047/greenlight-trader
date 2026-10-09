@@ -1,11 +1,11 @@
 {
-  "benchmark_equity": 3161.630231,
+  "benchmark_equity": 3148.246937,
   "cash": 0.0,
   "date": "2026-10-09",
   "last_rebalance_date": "2026-06-22",
   "nav": 5244.276109,
   "peak_nav": 5244.276109,
-  "peak_relative_outperformance": 0.416529,
+  "peak_relative_outperformance": 0.419206,
   "positions": {
     "AAPL": {
       "asset_type": "stock",

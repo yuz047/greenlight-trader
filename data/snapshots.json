@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-10-09T00:18:07Z",
+  "generated_at": "2026-10-09T02:20:16Z",
   "snapshots": [
     {
       "benchmark_snapshot": {
@@ -4015,7 +4015,7 @@
       "execution_decision": "NO_TRADE",
       "market_regime": "RISK_ON",
       "nav": 5244.2761,
-      "risk_light": "YELLOW",
+      "risk_light": "GREEN",
       "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
       "weights": {
         "AAPL": 0.04252034,

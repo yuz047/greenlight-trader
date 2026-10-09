@@ -1531,7 +1531,7 @@
   "endpoint_availability": {
     "/v2/snapshot/locale/us/markets/stocks/gainers": {
       "available": true,
-      "checked_at": "2026-10-09T00:17:47Z",
+      "checked_at": "2026-10-09T02:20:03Z",
       "endpoint": "/v2/snapshot/locale/us/markets/stocks/gainers",
       "plan_dependent": true,
       "point_in_time_safe": true,
@@ -1539,14 +1539,14 @@
     },
     "/v2/snapshot/locale/us/markets/stocks/losers": {
       "available": true,
-      "checked_at": "2026-10-09T00:17:47Z",
+      "checked_at": "2026-10-09T02:20:03Z",
       "endpoint": "/v2/snapshot/locale/us/markets/stocks/losers",
       "plan_dependent": true,
       "point_in_time_safe": true,
       "reason": "OK"
     }
   },
-  "generated_at": "2026-10-09T00:17:47Z",
+  "generated_at": "2026-10-09T02:20:03Z",
   "high_risk_symbol_count": 0,
   "mandate": {
     "benchmark": "SPY",
