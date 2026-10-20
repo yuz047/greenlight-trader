@@ -1,13 +1,13 @@
 {
   "execution_decision": {
-    "as_of": "2026-10-17",
+    "as_of": "2026-10-20",
     "decision": "NO_TRADE",
-    "drift": 0.0524938,
+    "drift": 0.05235371,
     "orders": [],
-    "reason": "Only 1 days since last rebalance; minimum is 5.",
-    "turnover": 0.12908248500000002
+    "reason": "Only 4 days since last rebalance; minimum is 5.",
+    "turnover": 0.18358103500000006
   },
-  "generated_at": "2026-10-17T00:37:26Z",
+  "generated_at": "2026-10-20T01:07:56Z",
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
