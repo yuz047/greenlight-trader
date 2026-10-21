@@ -1,5 +1,5 @@
 {
-  "as_of": "2026-10-20",
+  "as_of": "2026-10-21",
   "budgets": {
     "agent_experimental": 0.0,
     "defensive": 0.05,
@@ -14,27 +14,26 @@
       "Broad Growth": 0.2,
       "Broad Market": 0.4,
       "Cash": 0.05,
-      "Communication Services": 0.029178,
-      "Consumer Staples": 0.037399,
-      "Cybersecurity": 0.014889,
-      "Energy": 0.028779,
-      "Health Care": 0.039756,
-      "Unknown": 0.19999900000000004
+      "Consumer Staples": 0.044129,
+      "Cybersecurity": 0.015704,
+      "Energy": 0.029745,
+      "Health Care": 0.060423000000000004,
+      "Unknown": 0.2
     },
     "theme": {
-      "Communication Services": 0.029178,
-      "Consumer Staples": 0.037399,
-      "Cybersecurity": 0.014889,
-      "Energy": 0.028779,
-      "Health Care": 0.039756,
+      "Biotech": 0.020847,
+      "Consumer Staples": 0.044129,
+      "Cybersecurity": 0.015704,
+      "Energy": 0.029745,
+      "Health Care": 0.039576,
       "Nasdaq 100": 0.2,
       "S&P 500": 0.4,
       "Treasury Bills": 0.05,
-      "Unknown": 0.19999900000000004
+      "Unknown": 0.2
     },
     "top3_weight": 0.65
   },
-  "generated_at": "2026-10-20T01:07:56Z",
+  "generated_at": "2026-10-21T00:42:42Z",
   "regime": "RISK_ON",
   "rules": [
     "Allocator outputs target weights, not raw buy/sell calls.",
@@ -71,121 +70,121 @@
       "weight": 0.05
     },
     {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.46448",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "JPM",
-      "theme": null,
-      "weight": 0.043562
-    },
-    {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.74615",
-      "sector": "Health Care",
-      "sleeve": "dynamic_etf",
-      "symbol": "XLV",
-      "theme": "Health Care",
-      "weight": 0.039756
-    },
-    {
-      "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.62222",
+      "reason": "risk-adjusted score allocation from 0.67972",
       "sector": "Consumer Staples",
       "sleeve": "dynamic_etf",
       "symbol": "XLP",
       "theme": "Consumer Staples",
-      "weight": 0.037399
+      "weight": 0.044129
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.62774",
-      "sector": "Communication Services",
+      "reason": "risk-adjusted score allocation from 0.7423",
+      "sector": "Health Care",
       "sleeve": "dynamic_etf",
-      "symbol": "XLC",
-      "theme": "Communication Services",
-      "weight": 0.029178
+      "symbol": "XLV",
+      "theme": "Health Care",
+      "weight": 0.039576
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.49",
+      "reason": "risk-adjusted score allocation from 0.53569",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "VRTX",
       "theme": null,
-      "weight": 0.028911
+      "weight": 0.032336
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.69254",
+      "reason": "risk-adjusted score allocation from 0.69183",
       "sector": "Energy",
       "sleeve": "dynamic_etf",
       "symbol": "XLE",
       "theme": "Energy",
-      "weight": 0.028779
+      "weight": 0.029745
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.51786",
+      "reason": "risk-adjusted score allocation from 0.4755",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "TMO",
+      "symbol": "AAPL",
       "theme": null,
-      "weight": 0.026168
+      "weight": 0.029662
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.48063",
+      "reason": "risk-adjusted score allocation from 0.50838",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "LLY",
       "theme": null,
-      "weight": 0.024645
+      "weight": 0.02751
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.48591",
+      "reason": "risk-adjusted score allocation from 0.52967",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "REGN",
+      "symbol": "TMO",
       "theme": null,
-      "weight": 0.023894
+      "weight": 0.027465
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.46214",
+      "reason": "risk-adjusted score allocation from 0.52499",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "ISRG",
       "theme": null,
-      "weight": 0.021298
+      "weight": 0.02654
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.4596",
+      "reason": "risk-adjusted score allocation from 0.46113",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "REGN",
+      "theme": null,
+      "weight": 0.023608
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.65046",
+      "sector": "Health Care",
+      "sleeve": "dynamic_etf",
+      "symbol": "XBI",
+      "theme": "Biotech",
+      "weight": 0.020847
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.46202",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "MSFT",
       "theme": null,
-      "weight": 0.017944
+      "weight": 0.018655
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.63469",
+      "reason": "risk-adjusted score allocation from 0.64634",
       "sector": "Cybersecurity",
       "sleeve": "dynamic_etf",
       "symbol": "HACK",
       "theme": "Cybersecurity",
-      "weight": 0.014889
+      "weight": 0.015704
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.46287",
+      "reason": "risk-adjusted score allocation from 0.47133",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "SNOW",
       "theme": null,
-      "weight": 0.013577
+      "weight": 0.014224
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
