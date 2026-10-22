@@ -1,17 +1,17 @@
 {
-  "benchmark_equity": 3128.39573,
+  "benchmark_equity": 3144.829926,
   "cash": 96.37246,
-  "date": "2026-10-21",
+  "date": "2026-10-22",
   "last_rebalance_date": "2026-10-21",
-  "nav": 5214.892965,
+  "nav": 5239.648341,
   "peak_nav": 5279.42036,
   "peak_relative_outperformance": 0.42246,
   "positions": {
     "AAPL": {
       "asset_type": "stock",
       "avg_price": 309.888526,
-      "market_price": 339.5,
-      "market_value": 154.686693,
+      "market_price": 343.99,
+      "market_value": 156.732477,
       "sector": null,
       "shares": 0.45563091,
       "theme": null
@@ -19,8 +19,8 @@
     "HACK": {
       "asset_type": "etf",
       "avg_price": 121.016981,
-      "market_price": 118.38,
-      "market_value": 81.894306,
+      "market_price": 122.21,
+      "market_value": 84.543869,
       "sector": "Cybersecurity",
       "shares": 0.69179174,
       "theme": "Cybersecurity"
@@ -28,8 +28,8 @@
     "ISRG": {
       "asset_type": "stock",
       "avg_price": 438.0876,
-      "market_price": 438.0,
-      "market_value": 138.383896,
+      "market_price": 428.12,
+      "market_value": 135.262361,
       "sector": null,
       "shares": 0.31594497,
       "theme": null
@@ -37,8 +37,8 @@
     "LLY": {
       "asset_type": "stock",
       "avg_price": 1102.300416,
-      "market_price": 1283.66,
-      "market_value": 121.756409,
+      "market_price": 1270.75,
+      "market_value": 120.531883,
       "sector": null,
       "shares": 0.09485098,
       "theme": null
@@ -46,8 +46,8 @@
     "MSFT": {
       "asset_type": "stock",
       "avg_price": 539.547888,
-      "market_price": 531.87,
-      "market_value": 77.766888,
+      "market_price": 532.95,
+      "market_value": 77.924799,
       "sector": null,
       "shares": 0.14621409,
       "theme": null
@@ -55,8 +55,8 @@
     "QQQ": {
       "asset_type": "benchmark",
       "avg_price": 716.53943,
-      "market_price": 717.63,
-      "market_value": 1030.1409,
+      "market_price": 725.2,
+      "market_value": 1041.007456,
       "sector": "Broad Growth",
       "shares": 1.43547636,
       "theme": "Nasdaq 100"
@@ -64,8 +64,8 @@
     "REGN": {
       "asset_type": "stock",
       "avg_price": 796.499268,
-      "market_price": 807.48,
-      "market_value": 106.770319,
+      "market_price": 805.67,
+      "market_value": 106.530989,
       "sector": null,
       "shares": 0.13222658,
       "theme": null
@@ -73,8 +73,8 @@
     "SGOV": {
       "asset_type": "cash_proxy",
       "avg_price": 100.480092,
-      "market_price": 100.61,
-      "market_value": 250.323219,
+      "market_price": 100.62,
+      "market_value": 250.348099,
       "sector": "Cash",
       "shares": 2.48805505,
       "theme": "Treasury Bills"
@@ -82,8 +82,8 @@
     "SNOW": {
       "asset_type": "stock",
       "avg_price": 319.673922,
-      "market_price": 319.61,
-      "market_value": 74.16626,
+      "market_price": 322.73,
+      "market_value": 74.890265,
       "sector": null,
       "shares": 0.23205238,
       "theme": null
@@ -91,8 +91,8 @@
     "SPY": {
       "asset_type": "benchmark",
       "avg_price": 739.367844,
-      "market_price": 769.05,
-      "market_value": 2080.290632,
+      "market_price": 773.09,
+      "market_value": 2091.218887,
       "sector": "Broad Market",
       "shares": 2.7050135,
       "theme": "S&P 500"
@@ -100,8 +100,8 @@
     "TMO": {
       "asset_type": "stock",
       "avg_price": 696.629298,
-      "market_price": 687.37,
-      "market_value": 133.409203,
+      "market_price": 694.02,
+      "market_value": 134.699878,
       "sector": null,
       "shares": 0.19408645,
       "theme": null
@@ -109,8 +109,8 @@
     "VRTX": {
       "asset_type": "stock",
       "avg_price": 461.288248,
-      "market_price": 514.65,
-      "market_value": 168.632242,
+      "market_price": 524.52,
+      "market_value": 171.866285,
       "sector": null,
       "shares": 0.32766393,
       "theme": null
@@ -118,8 +118,8 @@
     "XBI": {
       "asset_type": "etf",
       "avg_price": 153.270648,
-      "market_price": 153.24,
-      "market_value": 108.699664,
+      "market_price": 152.78,
+      "market_value": 108.373365,
       "sector": "Health Care",
       "shares": 0.70934262,
       "theme": "Biotech"
@@ -127,8 +127,8 @@
     "XLE": {
       "asset_type": "etf",
       "avg_price": 67.037403,
-      "market_price": 67.97,
-      "market_value": 155.1161,
+      "market_price": 68.16,
+      "market_value": 155.549703,
       "sector": "Energy",
       "shares": 2.28212593,
       "theme": "Energy"
@@ -136,8 +136,8 @@
     "XLP": {
       "asset_type": "etf",
       "avg_price": 87.76755,
-      "market_price": 87.75,
-      "market_value": 230.095815,
+      "market_price": 87.11,
+      "market_value": 228.417623,
       "sector": "Consumer Staples",
       "shares": 2.62217453,
       "theme": "Consumer Staples"
@@ -145,33 +145,33 @@
     "XLV": {
       "asset_type": "etf",
       "avg_price": 177.801557,
-      "market_price": 179.82,
-      "market_value": 206.38796,
+      "market_price": 178.94,
+      "market_value": 205.377943,
       "sector": "Health Care",
       "shares": 1.14774753,
       "theme": "Health Care"
     }
   },
   "realized_pnl": 83.492189,
-  "relative_drawdown_pct": 0.005161,
+  "relative_drawdown_pct": 0.003496,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
-    "AAPL": 0.02966249,
-    "CASH": 0.01848024,
-    "HACK": 0.01570393,
-    "ISRG": 0.02653629,
-    "LLY": 0.02334783,
-    "MSFT": 0.01491246,
-    "QQQ": 0.19753826,
-    "REGN": 0.02047412,
-    "SGOV": 0.0480016,
-    "SNOW": 0.01422201,
-    "SPY": 0.39891339,
-    "TMO": 0.02558235,
-    "VRTX": 0.03233666,
-    "XBI": 0.02084408,
-    "XLE": 0.02974483,
-    "XLP": 0.04412283,
-    "XLV": 0.03957664
+    "AAPL": 0.02991279,
+    "CASH": 0.01839293,
+    "HACK": 0.01613541,
+    "ISRG": 0.02581516,
+    "LLY": 0.02300381,
+    "MSFT": 0.01487214,
+    "QQQ": 0.19867888,
+    "REGN": 0.02033171,
+    "SGOV": 0.04777956,
+    "SNOW": 0.01429299,
+    "SPY": 0.39911436,
+    "TMO": 0.02570781,
+    "VRTX": 0.03280111,
+    "XBI": 0.02068333,
+    "XLE": 0.02968705,
+    "XLP": 0.04359408,
+    "XLV": 0.03919689
   }
 }
