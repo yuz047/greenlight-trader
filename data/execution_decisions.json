@@ -1,13 +1,13 @@
 {
   "execution_decision": {
-    "as_of": "2026-10-27",
+    "as_of": "2026-10-28",
     "decision": "NO_TRADE",
-    "drift": 0.0425,
+    "drift": 0.037046,
     "orders": [],
-    "reason": "Max drift 4.25% is below threshold 5.00%.",
-    "turnover": 0.10595109000000004
+    "reason": "Max drift 3.70% is below threshold 5.00%.",
+    "turnover": 0.138792235
   },
-  "generated_at": "2026-10-27T01:32:51Z",
+  "generated_at": "2026-10-28T01:30:06Z",
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
