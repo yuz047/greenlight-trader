@@ -1,116 +1,116 @@
 {
-  "as_of": "2026-10-28",
-  "generated_at": "2026-10-28T01:30:06Z",
+  "as_of": "2026-10-29",
+  "generated_at": "2026-10-29T01:53:20Z",
   "regime": "RISK_ON",
   "rejected_etfs": [
     {
       "reason": "not_selected_after_rank",
-      "score": 0.60974,
+      "score": 0.62455,
       "symbol": "XBI"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.60791,
-      "symbol": "XLU"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.60465,
-      "symbol": "ARKK"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.6019,
-      "symbol": "KRE"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.60185,
+      "score": 0.62173,
       "symbol": "XLF"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.60168,
-      "symbol": "USMV"
+      "score": 0.61328,
+      "symbol": "XLU"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.54664,
-      "symbol": "XLY"
+      "score": 0.60871,
+      "symbol": "KRE"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.54551,
-      "symbol": "XLB"
+      "score": 0.58161,
+      "symbol": "VLUE"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.54522,
-      "symbol": "XLK"
+      "score": 0.56526,
+      "symbol": "ARKK"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.54126,
+      "score": 0.56145,
       "symbol": "XLRE"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.54106,
-      "symbol": "MTUM"
+      "score": 0.55872,
+      "symbol": "XLB"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.53201,
+      "score": 0.54994,
+      "symbol": "XLY"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.54477,
       "symbol": "XLI"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.52917,
-      "symbol": "SMH"
+      "score": 0.53772,
+      "symbol": "XLK"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.5189,
+      "score": 0.53082,
       "symbol": "XLC"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.51232,
+      "score": 0.52641,
+      "symbol": "MTUM"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.51123,
       "symbol": "QUAL"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.50234,
-      "symbol": "GLD"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.48221,
-      "symbol": "IWM"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.47046,
+      "score": 0.51082,
       "symbol": "TLT"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.44774,
+      "score": 0.50724,
+      "symbol": "GLD"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.46769,
       "symbol": "IEF"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.44365,
+      "score": 0.46745,
+      "symbol": "SMH"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.45955,
       "symbol": "IWC"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.44201,
+      "score": 0.45472,
       "symbol": "BOTZ"
     },
     {
       "reason": "not_selected_after_rank",
-      "score": 0.29226,
+      "score": 0.44182,
+      "symbol": "IWM"
+    },
+    {
+      "reason": "not_selected_after_rank",
+      "score": 0.22472,
       "symbol": "ICLN"
     }
   ],
@@ -122,19 +122,6 @@
   ],
   "selected_etfs": [
     {
-      "category": "theme",
-      "reasons": [
-        "leadership and relative-strength inputs are supportive",
-        "ETF has favorable regime fit",
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.71287,
-      "sector": "Cybersecurity",
-      "symbol": "HACK",
-      "theme": "Cybersecurity"
-    },
-    {
       "category": "sector",
       "reasons": [
         "leadership and relative-strength inputs are supportive",
@@ -142,20 +129,7 @@
         "ETF adds diversification versus anchors/current book",
         "earned dynamic ETF eligibility through score"
       ],
-      "score": 0.71001,
-      "sector": "Energy",
-      "symbol": "XLE",
-      "theme": "Energy"
-    },
-    {
-      "category": "sector",
-      "reasons": [
-        "leadership and relative-strength inputs are supportive",
-        "ETF has favorable regime fit",
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.69181,
+      "score": 0.7177,
       "sector": "Health Care",
       "symbol": "XLV",
       "theme": "Health Care"
@@ -163,25 +137,53 @@
     {
       "category": "sector",
       "reasons": [
+        "leadership and relative-strength inputs are supportive",
         "ETF has favorable regime fit",
         "ETF adds diversification versus anchors/current book",
         "earned dynamic ETF eligibility through score"
       ],
-      "score": 0.61336,
-      "sector": "Consumer Staples",
-      "symbol": "XLP",
-      "theme": "Consumer Staples"
+      "score": 0.71365,
+      "sector": "Energy",
+      "symbol": "XLE",
+      "theme": "Energy"
+    },
+    {
+      "category": "theme",
+      "reasons": [
+        "leadership and relative-strength inputs are supportive",
+        "ETF has favorable regime fit",
+        "ETF adds diversification versus anchors/current book",
+        "earned dynamic ETF eligibility through score"
+      ],
+      "score": 0.7114,
+      "sector": "Cybersecurity",
+      "symbol": "HACK",
+      "theme": "Cybersecurity"
     },
     {
       "category": "factor",
       "reasons": [
+        "leadership and relative-strength inputs are supportive",
         "ETF has favorable regime fit",
+        "ETF adds diversification versus anchors/current book",
         "earned dynamic ETF eligibility through score"
       ],
-      "score": 0.61225,
+      "score": 0.65734,
       "sector": "Factor",
-      "symbol": "VLUE",
-      "theme": "Value"
+      "symbol": "USMV",
+      "theme": "Minimum Volatility"
+    },
+    {
+      "category": "sector",
+      "reasons": [
+        "ETF has favorable regime fit",
+        "ETF adds diversification versus anchors/current book",
+        "earned dynamic ETF eligibility through score"
+      ],
+      "score": 0.63491,
+      "sector": "Consumer Staples",
+      "symbol": "XLP",
+      "theme": "Consumer Staples"
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",

@@ -1,13 +1,122 @@
 {
   "execution_decision": {
-    "as_of": "2026-10-28",
-    "decision": "NO_TRADE",
-    "drift": 0.037046,
-    "orders": [],
-    "reason": "Max drift 3.70% is below threshold 5.00%.",
-    "turnover": 0.138792235
+    "as_of": "2026-10-29",
+    "decision": "EXECUTE",
+    "drift": 0.054751,
+    "orders": [
+      {
+        "notional": 30.406719,
+        "price": 444.091164,
+        "shares": 0.06846954,
+        "side": "SELL",
+        "slippage_bps": 2.0,
+        "symbol": "ISRG",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 107.514404,
+        "price": 813.107346,
+        "shares": 0.13222658,
+        "side": "SELL",
+        "slippage_bps": 2.0,
+        "symbol": "REGN",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 78.861149,
+        "price": 339.842018,
+        "shares": 0.23205238,
+        "side": "SELL",
+        "slippage_bps": 2.0,
+        "symbol": "SNOW",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 46.981111,
+        "price": 529.584062,
+        "shares": 0.08871323,
+        "side": "SELL",
+        "slippage_bps": 2.0,
+        "symbol": "VRTX",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 111.70621,
+        "price": 157.478498,
+        "shares": 0.70934262,
+        "side": "SELL",
+        "slippage_bps": 2.0,
+        "symbol": "XBI",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 34.585583,
+        "price": 68.43631,
+        "shares": 0.5053689,
+        "side": "SELL",
+        "slippage_bps": 2.0,
+        "symbol": "XLE",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 74.50075,
+        "price": 86.822632,
+        "shares": 0.85807984,
+        "side": "SELL",
+        "slippage_bps": 2.0,
+        "symbol": "XLP",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 46.56874,
+        "price": 179.684056,
+        "shares": 0.25917013,
+        "side": "SELL",
+        "slippage_bps": 2.0,
+        "symbol": "XLV",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 84.96367,
+        "price": 531.116202,
+        "shares": 0.1599719,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "MSFT",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 69.919386,
+        "price": 150.160026,
+        "shares": 0.46563248,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "NOW",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 288.199675,
+        "price": 102.930582,
+        "shares": 2.79994214,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "USMV",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      {
+        "notional": 183.475879,
+        "price": 400.68012,
+        "shares": 0.45791111,
+        "side": "BUY",
+        "slippage_bps": 2.0,
+        "symbol": "V",
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      }
+    ],
+    "reason": "Drift threshold, persistence, rebalance interval, turnover, and risk gates passed.",
+    "turnover": 0.12798281
   },
-  "generated_at": "2026-10-28T01:30:06Z",
+  "generated_at": "2026-10-29T01:53:21Z",
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
