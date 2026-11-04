@@ -1,13 +1,13 @@
 {
   "execution_decision": {
-    "as_of": "2026-11-03",
+    "as_of": "2026-11-04",
     "decision": "NO_TRADE",
-    "drift": 0.15136378,
+    "drift": 0.15141615000000003,
     "orders": [],
-    "reason": "Turnover 33.24% exceeds cap 30.00%.",
-    "turnover": 0.33238133
+    "reason": "Turnover 31.62% exceeds cap 30.00%.",
+    "turnover": 0.31616924499999993
   },
-  "generated_at": "2026-11-03T03:31:58Z",
+  "generated_at": "2026-11-04T02:29:32Z",
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
