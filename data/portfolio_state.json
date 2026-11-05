@@ -1,80 +1,80 @@
 {
-  "benchmark_equity": 3068.598034,
-  "cash": 0.938516,
-  "date": "2026-11-04",
-  "last_rebalance_date": "2026-10-29",
-  "nav": 5143.689638,
+  "benchmark_equity": 3119.283699,
+  "cash": 64.307609,
+  "date": "2026-11-05",
+  "last_rebalance_date": "2026-11-05",
+  "nav": 5238.994874,
   "peak_nav": 5279.42036,
   "peak_relative_outperformance": 0.424387,
   "positions": {
     "AAPL": {
       "asset_type": "stock",
       "avg_price": 309.888526,
-      "market_price": 331.9,
-      "market_value": 151.223899,
+      "market_price": 349.51,
+      "market_value": 159.247559,
       "sector": null,
       "shares": 0.45563091,
       "theme": null
     },
-    "HACK": {
-      "asset_type": "etf",
-      "avg_price": 121.016981,
-      "market_price": 119.83,
-      "market_value": 82.897404,
-      "sector": "Cybersecurity",
-      "shares": 0.69179174,
-      "theme": "Cybersecurity"
-    },
-    "ISRG": {
+    "AMZN": {
       "asset_type": "stock",
-      "avg_price": 438.0876,
-      "market_price": 440.75,
-      "market_value": 109.074796,
+      "avg_price": 266.083206,
+      "market_price": 266.03,
+      "market_value": 96.814501,
       "sector": null,
-      "shares": 0.24747543,
+      "shares": 0.36392324,
       "theme": null
     },
-    "LLY": {
+    "COST": {
       "asset_type": "stock",
-      "avg_price": 1102.300416,
-      "market_price": 1409.38,
-      "market_value": 133.681074,
+      "avg_price": 1046.679294,
+      "market_price": 1046.47,
+      "market_value": 164.378262,
       "sector": null,
-      "shares": 0.09485098,
+      "shares": 0.15707881,
+      "theme": null
+    },
+    "GE": {
+      "asset_type": "stock",
+      "avg_price": 329.51589,
+      "market_price": 329.45,
+      "market_value": 95.311105,
+      "sector": null,
+      "shares": 0.2893037,
+      "theme": null
+    },
+    "JPM": {
+      "asset_type": "stock",
+      "avg_price": 352.180422,
+      "market_price": 352.11,
+      "market_value": 168.678917,
+      "sector": null,
+      "shares": 0.47905176,
       "theme": null
     },
     "MSFT": {
       "asset_type": "stock",
       "avg_price": 535.142615,
-      "market_price": 520.99,
-      "market_value": 159.519839,
+      "market_price": 555.8,
+      "market_value": 139.297945,
       "sector": null,
-      "shares": 0.30618599,
-      "theme": null
-    },
-    "NOW": {
-      "asset_type": "stock",
-      "avg_price": 150.160026,
-      "market_price": 109.16,
-      "market_value": 50.828442,
-      "sector": null,
-      "shares": 0.46563248,
+      "shares": 0.25062603,
       "theme": null
     },
     "QQQ": {
       "asset_type": "benchmark",
-      "avg_price": 716.53943,
-      "market_price": 685.28,
-      "market_value": 983.70324,
+      "avg_price": 715.265769,
+      "market_price": 691.95,
+      "market_value": 1047.861215,
       "sector": "Broad Growth",
-      "shares": 1.43547636,
+      "shares": 1.51435973,
       "theme": "Nasdaq 100"
     },
     "SGOV": {
       "asset_type": "cash_proxy",
       "avg_price": 100.480092,
-      "market_price": 100.44,
-      "market_value": 249.900249,
+      "market_price": 100.45,
+      "market_value": 249.92513,
       "sector": "Cash",
       "shares": 2.48805505,
       "theme": "Treasury Bills"
@@ -82,8 +82,8 @@
     "SPY": {
       "asset_type": "benchmark",
       "avg_price": 739.367844,
-      "market_price": 754.35,
-      "market_value": 2040.526934,
+      "market_price": 766.81,
+      "market_value": 2074.231402,
       "sector": "Broad Market",
       "shares": 2.7050135,
       "theme": "S&P 500"
@@ -91,53 +91,53 @@
     "TMO": {
       "asset_type": "stock",
       "avg_price": 696.629298,
-      "market_price": 698.34,
-      "market_value": 135.538331,
+      "market_price": 706.16,
+      "market_value": 137.056088,
       "sector": null,
       "shares": 0.19408645,
-      "theme": null
-    },
-    "USMV": {
-      "asset_type": "etf",
-      "avg_price": 102.930582,
-      "market_price": 102.72,
-      "market_value": 287.610057,
-      "sector": "Factor",
-      "shares": 2.79994214,
-      "theme": "Minimum Volatility"
-    },
-    "V": {
-      "asset_type": "stock",
-      "avg_price": 400.68012,
-      "market_price": 420.42,
-      "market_value": 192.514989,
-      "sector": null,
-      "shares": 0.45791111,
       "theme": null
     },
     "VRTX": {
       "asset_type": "stock",
       "avg_price": 461.288248,
-      "market_price": 530.76,
-      "market_value": 126.825474,
+      "market_price": 549.04,
+      "market_value": 95.480205,
       "sector": null,
-      "shares": 0.2389507,
+      "shares": 0.17390391,
       "theme": null
+    },
+    "XBI": {
+      "asset_type": "etf",
+      "avg_price": 159.13182,
+      "market_price": 159.1,
+      "market_value": 95.960656,
+      "sector": "Health Care",
+      "shares": 0.6031468,
+      "theme": "Biotech"
     },
     "XLE": {
       "asset_type": "etf",
       "avg_price": 67.037403,
-      "market_price": 66.68,
-      "market_value": 118.474159,
+      "market_price": 63.52,
+      "market_value": 112.859607,
       "sector": "Energy",
       "shares": 1.77675703,
       "theme": "Energy"
     },
+    "XLF": {
+      "asset_type": "etf",
+      "avg_price": 59.21184,
+      "market_price": 59.2,
+      "market_value": 206.866219,
+      "sector": "Financials",
+      "shares": 3.4943618,
+      "theme": "Financials"
+    },
     "XLP": {
       "asset_type": "etf",
       "avg_price": 87.76755,
-      "market_price": 88.95,
-      "market_value": 156.916223,
+      "market_price": 91.94,
+      "market_value": 162.190866,
       "sector": "Consumer Staples",
       "shares": 1.76409469,
       "theme": "Consumer Staples"
@@ -145,33 +145,33 @@
     "XLV": {
       "asset_type": "etf",
       "avg_price": 177.801557,
-      "market_price": 184.02,
-      "market_value": 163.516013,
+      "market_price": 189.66,
+      "market_value": 168.52759,
       "sector": "Health Care",
       "shares": 0.8885774,
       "theme": "Health Care"
     }
   },
-  "realized_pnl": 100.20692,
-  "relative_drawdown_pct": 0.009369,
+  "realized_pnl": 148.324039,
+  "relative_drawdown_pct": 0.000445,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
-    "AAPL": 0.02939989,
-    "CASH": 0.00018246,
-    "HACK": 0.01611633,
-    "ISRG": 0.02120556,
-    "LLY": 0.02598934,
-    "MSFT": 0.03101273,
-    "NOW": 0.00988171,
-    "QQQ": 0.19124467,
-    "SGOV": 0.04858385,
-    "SPY": 0.39670491,
-    "TMO": 0.02635041,
-    "USMV": 0.05591513,
-    "V": 0.03742741,
-    "VRTX": 0.02465652,
-    "XLE": 0.02303291,
-    "XLP": 0.03050655,
-    "XLV": 0.03178963
+    "AAPL": 0.03039659,
+    "AMZN": 0.01847959,
+    "CASH": 0.0122748,
+    "COST": 0.03137592,
+    "GE": 0.01819263,
+    "JPM": 0.03219681,
+    "MSFT": 0.02658868,
+    "QQQ": 0.20001188,
+    "SGOV": 0.04770479,
+    "SPY": 0.39592163,
+    "TMO": 0.02616076,
+    "VRTX": 0.01822491,
+    "XBI": 0.01831662,
+    "XLE": 0.02154223,
+    "XLF": 0.03948586,
+    "XLP": 0.03095839,
+    "XLV": 0.03216792
   }
 }
