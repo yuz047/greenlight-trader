@@ -1,17 +1,17 @@
 {
-  "benchmark_equity": 3119.283699,
+  "benchmark_equity": 2981.749001,
   "cash": 64.307609,
-  "date": "2026-11-05",
+  "date": "2026-11-06",
   "last_rebalance_date": "2026-11-05",
-  "nav": 5238.994874,
+  "nav": 5033.68311,
   "peak_nav": 5279.42036,
   "peak_relative_outperformance": 0.424387,
   "positions": {
     "AAPL": {
       "asset_type": "stock",
       "avg_price": 309.888526,
-      "market_price": 349.51,
-      "market_value": 159.247559,
+      "market_price": 344.17,
+      "market_value": 156.81449,
       "sector": null,
       "shares": 0.45563091,
       "theme": null
@@ -19,8 +19,8 @@
     "AMZN": {
       "asset_type": "stock",
       "avg_price": 266.083206,
-      "market_price": 266.03,
-      "market_value": 96.814501,
+      "market_price": 260.21,
+      "market_value": 94.696466,
       "sector": null,
       "shares": 0.36392324,
       "theme": null
@@ -28,8 +28,8 @@
     "COST": {
       "asset_type": "stock",
       "avg_price": 1046.679294,
-      "market_price": 1046.47,
-      "market_value": 164.378262,
+      "market_price": 1065.59,
+      "market_value": 167.381609,
       "sector": null,
       "shares": 0.15707881,
       "theme": null
@@ -37,8 +37,8 @@
     "GE": {
       "asset_type": "stock",
       "avg_price": 329.51589,
-      "market_price": 329.45,
-      "market_value": 95.311105,
+      "market_price": 314.73,
+      "market_value": 91.052554,
       "sector": null,
       "shares": 0.2893037,
       "theme": null
@@ -46,8 +46,8 @@
     "JPM": {
       "asset_type": "stock",
       "avg_price": 352.180422,
-      "market_price": 352.11,
-      "market_value": 168.678917,
+      "market_price": 337.34,
+      "market_value": 161.603321,
       "sector": null,
       "shares": 0.47905176,
       "theme": null
@@ -55,8 +55,8 @@
     "MSFT": {
       "asset_type": "stock",
       "avg_price": 535.142615,
-      "market_price": 555.8,
-      "market_value": 139.297945,
+      "market_price": 535.93,
+      "market_value": 134.318008,
       "sector": null,
       "shares": 0.25062603,
       "theme": null
@@ -64,8 +64,8 @@
     "QQQ": {
       "asset_type": "benchmark",
       "avg_price": 715.265769,
-      "market_price": 691.95,
-      "market_value": 1047.861215,
+      "market_price": 647.05,
+      "market_value": 979.866463,
       "sector": "Broad Growth",
       "shares": 1.51435973,
       "theme": "Nasdaq 100"
@@ -82,8 +82,8 @@
     "SPY": {
       "asset_type": "benchmark",
       "avg_price": 739.367844,
-      "market_price": 766.81,
-      "market_value": 2074.231402,
+      "market_price": 733.0,
+      "market_value": 1982.774896,
       "sector": "Broad Market",
       "shares": 2.7050135,
       "theme": "S&P 500"
@@ -91,8 +91,8 @@
     "TMO": {
       "asset_type": "stock",
       "avg_price": 696.629298,
-      "market_price": 706.16,
-      "market_value": 137.056088,
+      "market_price": 676.94,
+      "market_value": 131.384881,
       "sector": null,
       "shares": 0.19408645,
       "theme": null
@@ -100,8 +100,8 @@
     "VRTX": {
       "asset_type": "stock",
       "avg_price": 461.288248,
-      "market_price": 549.04,
-      "market_value": 95.480205,
+      "market_price": 542.5,
+      "market_value": 94.342871,
       "sector": null,
       "shares": 0.17390391,
       "theme": null
@@ -109,8 +109,8 @@
     "XBI": {
       "asset_type": "etf",
       "avg_price": 159.13182,
-      "market_price": 159.1,
-      "market_value": 95.960656,
+      "market_price": 148.4,
+      "market_value": 89.506985,
       "sector": "Health Care",
       "shares": 0.6031468,
       "theme": "Biotech"
@@ -118,8 +118,8 @@
     "XLE": {
       "asset_type": "etf",
       "avg_price": 67.037403,
-      "market_price": 63.52,
-      "market_value": 112.859607,
+      "market_price": 61.63,
+      "market_value": 109.501536,
       "sector": "Energy",
       "shares": 1.77675703,
       "theme": "Energy"
@@ -127,8 +127,8 @@
     "XLF": {
       "asset_type": "etf",
       "avg_price": 59.21184,
-      "market_price": 59.2,
-      "market_value": 206.866219,
+      "market_price": 57.5,
+      "market_value": 200.925804,
       "sector": "Financials",
       "shares": 3.4943618,
       "theme": "Financials"
@@ -136,8 +136,8 @@
     "XLP": {
       "asset_type": "etf",
       "avg_price": 87.76755,
-      "market_price": 91.94,
-      "market_value": 162.190866,
+      "market_price": 91.25,
+      "market_value": 160.97364,
       "sector": "Consumer Staples",
       "shares": 1.76409469,
       "theme": "Consumer Staples"
@@ -145,33 +145,33 @@
     "XLV": {
       "asset_type": "etf",
       "avg_price": 177.801557,
-      "market_price": 189.66,
-      "market_value": 168.52759,
+      "market_price": 184.91,
+      "market_value": 164.306847,
       "sector": "Health Care",
       "shares": 0.8885774,
       "theme": "Health Care"
     }
   },
   "realized_pnl": 148.324039,
-  "relative_drawdown_pct": 0.000445,
+  "relative_drawdown_pct": 0.014,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
-    "AAPL": 0.03039659,
-    "AMZN": 0.01847959,
-    "CASH": 0.0122748,
-    "COST": 0.03137592,
-    "GE": 0.01819263,
-    "JPM": 0.03219681,
-    "MSFT": 0.02658868,
-    "QQQ": 0.20001188,
-    "SGOV": 0.04770479,
-    "SPY": 0.39592163,
-    "TMO": 0.02616076,
-    "VRTX": 0.01822491,
-    "XBI": 0.01831662,
-    "XLE": 0.02154223,
-    "XLF": 0.03948586,
-    "XLP": 0.03095839,
-    "XLV": 0.03216792
+    "AAPL": 0.03115303,
+    "AMZN": 0.01881256,
+    "CASH": 0.01277546,
+    "COST": 0.03325231,
+    "GE": 0.01808865,
+    "JPM": 0.03210439,
+    "MSFT": 0.02668384,
+    "QQQ": 0.19466193,
+    "SGOV": 0.04965055,
+    "SPY": 0.39390141,
+    "TMO": 0.02610114,
+    "VRTX": 0.01874231,
+    "XBI": 0.01778161,
+    "XLE": 0.02175376,
+    "XLF": 0.03991626,
+    "XLP": 0.0319793,
+    "XLV": 0.03264148
   }
 }

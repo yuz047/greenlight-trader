@@ -1,40 +1,40 @@
 {
-  "as_of": "2026-11-05",
+  "as_of": "2026-11-06",
   "budgets": {
     "agent_experimental": 0.0,
-    "defensive": 0.05,
-    "dynamic_etf": 0.15,
-    "qqq": 0.2,
-    "spy": 0.4,
-    "stock": 0.2
+    "defensive": 0.55,
+    "dynamic_etf": 0.05,
+    "qqq": 0.05,
+    "spy": 0.3,
+    "stock": 0.05
   },
   "cap_reasons": [],
   "exposure": {
     "sector": {
-      "Broad Growth": 0.2,
-      "Broad Market": 0.4,
-      "Cash": 0.05,
-      "Consumer Staples": 0.033605,
-      "Energy": 0.023861,
-      "Financials": 0.039491,
-      "Health Care": 0.05304299999999999,
-      "Unknown": 0.20000099999999998
+      "Broad Growth": 0.05,
+      "Broad Market": 0.3,
+      "Cash": 0.55,
+      "Commodities": 0.005298,
+      "Consumer Staples": 0.006826,
+      "Health Care": 0.00668,
+      "Rates": 0.031196,
+      "Unknown": 0.05
     },
     "theme": {
-      "Biotech": 0.018319,
-      "Consumer Staples": 0.033605,
-      "Energy": 0.023861,
-      "Financials": 0.039491,
-      "Health Care": 0.034724,
-      "Nasdaq 100": 0.2,
-      "S&P 500": 0.4,
-      "Treasury Bills": 0.05,
-      "Unknown": 0.20000099999999998
+      "Consumer Staples": 0.006826,
+      "Gold": 0.005298,
+      "Health Care": 0.00668,
+      "Intermediate Treasuries": 0.017806,
+      "Long Treasuries": 0.01339,
+      "Nasdaq 100": 0.05,
+      "S&P 500": 0.3,
+      "Treasury Bills": 0.55,
+      "Unknown": 0.05
     },
-    "top3_weight": 0.65
+    "top3_weight": 0.9
   },
-  "generated_at": "2026-11-05T02:37:08Z",
-  "regime": "RISK_ON",
+  "generated_at": "2026-11-06T02:37:48Z",
+  "regime": "FEAR",
   "rules": [
     "Allocator outputs target weights, not raw buy/sell calls.",
     "QQQ allocation is regime-dependent.",
@@ -43,13 +43,22 @@
   ],
   "target_allocations": [
     {
+      "asset_type": "cash_proxy",
+      "reason": "defensive/cash sleeve",
+      "sector": "Cash",
+      "sleeve": "defensive",
+      "symbol": "SGOV",
+      "theme": "Treasury Bills",
+      "weight": 0.55
+    },
+    {
       "asset_type": "benchmark",
       "reason": "SPY core anchor",
       "sector": "Broad Market",
       "sleeve": "core",
       "symbol": "SPY",
       "theme": "S&P 500",
-      "weight": 0.4
+      "weight": 0.3
     },
     {
       "asset_type": "benchmark",
@@ -58,133 +67,124 @@
       "sleeve": "core",
       "symbol": "QQQ",
       "theme": "Nasdaq 100",
-      "weight": 0.2
-    },
-    {
-      "asset_type": "cash_proxy",
-      "reason": "defensive/cash sleeve",
-      "sector": "Cash",
-      "sleeve": "defensive",
-      "symbol": "SGOV",
-      "theme": "Treasury Bills",
       "weight": 0.05
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.73754",
-      "sector": "Financials",
+      "reason": "risk-adjusted score allocation from 0.71506",
+      "sector": "Rates",
       "sleeve": "dynamic_etf",
-      "symbol": "XLF",
-      "theme": "Financials",
-      "weight": 0.039491
+      "symbol": "IEF",
+      "theme": "Intermediate Treasuries",
+      "weight": 0.017806
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.79629",
-      "sector": "Health Care",
+      "reason": "risk-adjusted score allocation from 0.73024",
+      "sector": "Rates",
       "sleeve": "dynamic_etf",
-      "symbol": "XLV",
-      "theme": "Health Care",
-      "weight": 0.034724
-    },
-    {
-      "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.76474",
-      "sector": "Consumer Staples",
-      "sleeve": "dynamic_etf",
-      "symbol": "XLP",
-      "theme": "Consumer Staples",
-      "weight": 0.033605
+      "symbol": "TLT",
+      "theme": "Long Treasuries",
+      "weight": 0.01339
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.48774",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "JPM",
-      "theme": null,
-      "weight": 0.032201
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.5227",
+      "reason": "risk-adjusted score allocation from 0.5431",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "COST",
       "theme": null,
-      "weight": 0.03138
+      "weight": 0.007837
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.57819",
+      "reason": "risk-adjusted score allocation from 0.51192",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "JPM",
+      "theme": null,
+      "weight": 0.007474
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.5503",
+      "sector": null,
+      "sleeve": "stock_alpha",
+      "symbol": "V",
+      "theme": null,
+      "weight": 0.006952
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.64585",
+      "sector": "Consumer Staples",
+      "sleeve": "dynamic_etf",
+      "symbol": "XLP",
+      "theme": "Consumer Staples",
+      "weight": 0.006826
+    },
+    {
+      "asset_type": "etf",
+      "reason": "risk-adjusted score allocation from 0.66099",
+      "sector": "Health Care",
+      "sleeve": "dynamic_etf",
+      "symbol": "XLV",
+      "theme": "Health Care",
+      "weight": 0.00668
+    },
+    {
+      "asset_type": "stock",
+      "reason": "risk-adjusted score allocation from 0.52211",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "AAPL",
       "theme": null,
-      "weight": 0.031296
+      "weight": 0.006479
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.57745",
+      "reason": "risk-adjusted score allocation from 0.51409",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "MSFT",
+      "symbol": "MA",
       "theme": null,
-      "weight": 0.026588
-    },
-    {
-      "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.75457",
-      "sector": "Energy",
-      "sleeve": "dynamic_etf",
-      "symbol": "XLE",
-      "theme": "Energy",
-      "weight": 0.023861
+      "weight": 0.006359
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.5377",
+      "reason": "risk-adjusted score allocation from 0.52229",
       "sector": null,
       "sleeve": "stock_alpha",
       "symbol": "TMO",
       "theme": null,
-      "weight": 0.023634
-    },
-    {
-      "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.48193",
-      "sector": null,
-      "sleeve": "stock_alpha",
-      "symbol": "AMZN",
-      "theme": null,
-      "weight": 0.018482
+      "weight": 0.005353
     },
     {
       "asset_type": "etf",
-      "reason": "risk-adjusted score allocation from 0.71753",
-      "sector": "Health Care",
+      "reason": "risk-adjusted score allocation from 0.63863",
+      "sector": "Commodities",
       "sleeve": "dynamic_etf",
-      "symbol": "XBI",
-      "theme": "Biotech",
-      "weight": 0.018319
+      "symbol": "GLD",
+      "theme": "Gold",
+      "weight": 0.005298
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.49008",
+      "reason": "risk-adjusted score allocation from 0.51572",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "VRTX",
+      "symbol": "MSFT",
       "theme": null,
-      "weight": 0.018225
+      "weight": 0.00529
     },
     {
       "asset_type": "stock",
-      "reason": "risk-adjusted score allocation from 0.46631",
+      "reason": "risk-adjusted score allocation from 0.48972",
       "sector": null,
       "sleeve": "stock_alpha",
-      "symbol": "GE",
+      "symbol": "LLY",
       "theme": null,
-      "weight": 0.018195
+      "weight": 0.004256
     }
   ],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
