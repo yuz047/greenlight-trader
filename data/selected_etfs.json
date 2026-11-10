@@ -1,117 +1,142 @@
 {
-  "as_of": "2026-11-07",
-  "generated_at": "2026-11-07T02:05:23Z",
-  "regime": "FEAR",
+  "as_of": "2026-11-10",
+  "generated_at": "2026-11-10T04:12:16Z",
+  "regime": "DATA_FAILURE",
   "rejected_etfs": [
     {
-      "reason": "not_selected_after_rank",
-      "score": 0.58877,
-      "symbol": "XLE"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.57248,
-      "symbol": "XLU"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.56149,
-      "symbol": "XLRE"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.55841,
-      "symbol": "XLF"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.53911,
-      "symbol": "XLB"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.53864,
-      "symbol": "USMV"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.52554,
-      "symbol": "KRE"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.52122,
-      "symbol": "XBI"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.48818,
-      "symbol": "XLY"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.47512,
-      "symbol": "XLC"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.47276,
-      "symbol": "HACK"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.42995,
-      "symbol": "QUAL"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.40219,
-      "symbol": "VLUE"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.4011,
-      "symbol": "IWM"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.3941,
-      "symbol": "XLI"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.34942,
-      "symbol": "IWC"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.30294,
-      "symbol": "ICLN"
-    },
-    {
-      "reason": "not_selected_after_rank",
-      "score": 0.26302,
+      "reason": "score_below_threshold",
+      "score": 0.40722,
       "symbol": "ARKK"
     },
     {
-      "reason": "not_selected_after_rank",
-      "score": 0.24627,
-      "symbol": "XLK"
+      "reason": "score_below_threshold",
+      "score": 0.34395,
+      "symbol": "XLF"
     },
     {
-      "reason": "not_selected_after_rank",
-      "score": 0.16432,
+      "reason": "score_below_threshold",
+      "score": 0.33412,
+      "symbol": "XLE"
+    },
+    {
+      "reason": "score_below_threshold",
+      "score": 0.32929,
+      "symbol": "XLP"
+    },
+    {
+      "reason": "score_below_threshold",
+      "score": 0.30639,
+      "symbol": "XBI"
+    },
+    {
+      "reason": "score_below_threshold",
+      "score": 0.24974,
+      "symbol": "XLV"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
       "symbol": "BOTZ"
     },
     {
-      "reason": "not_selected_after_rank",
-      "score": 0.12365,
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "GLD"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "HACK"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "ICLN"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "IEF"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "IWC"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "IWM"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "KRE"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
       "symbol": "MTUM"
     },
     {
-      "reason": "not_selected_after_rank",
-      "score": 0.08791,
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "QUAL"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
       "symbol": "SMH"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "TLT"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "USMV"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "VLUE"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "XLB"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "XLC"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "XLI"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "XLK"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "XLRE"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "XLU"
+    },
+    {
+      "reason": "not_investable",
+      "score": 0.04688,
+      "symbol": "XLY"
     }
   ],
   "rules": [
@@ -120,69 +145,7 @@
     "ETF is rejected if it duplicates SPY/QQQ without useful exposure.",
     "ETF allocation is capped by config."
   ],
-  "selected_etfs": [
-    {
-      "category": "rates",
-      "reasons": [
-        "leadership and relative-strength inputs are supportive",
-        "ETF has favorable regime fit",
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.68017,
-      "sector": "Rates",
-      "symbol": "TLT",
-      "theme": "Long Treasuries"
-    },
-    {
-      "category": "rates",
-      "reasons": [
-        "ETF has favorable regime fit",
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.66312,
-      "sector": "Rates",
-      "symbol": "IEF",
-      "theme": "Intermediate Treasuries"
-    },
-    {
-      "category": "sector",
-      "reasons": [
-        "leadership and relative-strength inputs are supportive",
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.65557,
-      "sector": "Health Care",
-      "symbol": "XLV",
-      "theme": "Health Care"
-    },
-    {
-      "category": "sector",
-      "reasons": [
-        "leadership and relative-strength inputs are supportive",
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.63703,
-      "sector": "Consumer Staples",
-      "symbol": "XLP",
-      "theme": "Consumer Staples"
-    },
-    {
-      "category": "defensive",
-      "reasons": [
-        "ETF has favorable regime fit",
-        "ETF adds diversification versus anchors/current book",
-        "earned dynamic ETF eligibility through score"
-      ],
-      "score": 0.61024,
-      "sector": "Commodities",
-      "symbol": "GLD",
-      "theme": "Gold"
-    }
-  ],
+  "selected_etfs": [],
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"

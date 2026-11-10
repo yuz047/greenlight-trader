@@ -1,13 +1,13 @@
 {
   "execution_decision": {
-    "as_of": "2026-11-07",
-    "decision": "NO_TRADE",
-    "drift": 0.50052536,
+    "as_of": "2026-11-10",
+    "decision": "DATA_HALT",
+    "drift": 0.88449877,
     "orders": [],
-    "reason": "Only 2 days since last rebalance; minimum is 5.",
-    "turnover": 0.559525855
+    "reason": "Risk light BLACK: no trading on failed/fallback data.",
+    "turnover": 0.8844987649999999
   },
-  "generated_at": "2026-11-07T02:05:23Z",
+  "generated_at": "2026-11-10T04:12:16Z",
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "watermarks": [
     "SYSTEMATIC_TEMPLATE_OUTPUT"
