@@ -1,61 +1,6 @@
 {
-  "generated_at": "2026-11-12T03:10:05Z",
+  "generated_at": "2026-11-13T02:43:25Z",
   "logs": [
-    {
-      "benchmark_snapshot": {},
-      "candidate_score_summary": {},
-      "current_allocation": {},
-      "data_health": {
-        "identity_repair_symbols": [
-          "META:ticker_identity"
-        ],
-        "ok": true,
-        "source": "massive+secondary"
-      },
-      "date": "2022-11-16",
-      "execution_decision": "NO_TRADE",
-      "execution_reason": "Public production curve is a validated deterministic replay; no broker execution.",
-      "market_regime": "PRODUCTION",
-      "orders": [],
-      "portfolio_snapshot": {
-        "cash": null,
-        "last_rebalance_date": null,
-        "nav": 4875.2785,
-        "peak_nav": null,
-        "relative_drawdown_pct": 0.0
-      },
-      "rejected_etfs": [],
-      "risk_light": "GREEN",
-      "selected_etfs": [
-        {
-          "reasons": [
-            "production sleeve proxy"
-          ],
-          "score": null,
-          "symbol": "ETF_ROTATION"
-        }
-      ],
-      "systematic_decision": {
-        "decision": "VALIDATED_PRODUCTION_REPLAY",
-        "reason": "validated 40/20 production anchor replay"
-      },
-      "target_allocation": {
-        "DYNAMIC_ALLOCATOR": 0.35,
-        "QQQ": 0.2,
-        "SGOV": 0.05,
-        "SPY": 0.4
-      },
-      "top_stock_candidates": [
-        {
-          "final_score": null,
-          "symbol": "TOP_SCORE_BASKET"
-        }
-      ],
-      "universe_size": 0,
-      "watermarks": [
-        "SYSTEMATIC_TEMPLATE_OUTPUT"
-      ]
-    },
     {
       "benchmark_snapshot": {},
       "candidate_score_summary": {},
@@ -48805,7 +48750,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9721.7879,
+        "nav": 9721.7878,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -48915,7 +48860,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9537.2392,
+        "nav": 9537.239,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -48970,7 +48915,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9551.3644,
+        "nav": 9551.3646,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49025,7 +48970,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9521.0821,
+        "nav": 9521.0823,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49080,7 +49025,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9377.9525,
+        "nav": 9377.9526,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49135,7 +49080,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9554.0218,
+        "nav": 9554.0221,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49190,7 +49135,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9592.63,
+        "nav": 9592.6302,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49355,7 +49300,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9611.8,
+        "nav": 9611.8002,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49465,7 +49410,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9686.9889,
+        "nav": 9690.3027,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49520,7 +49465,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9546.6615,
+        "nav": 9550.0,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49575,7 +49520,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9548.7892,
+        "nav": 9552.1597,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49630,7 +49575,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9557.0691,
+        "nav": 9560.4619,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49685,7 +49630,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9522.3097,
+        "nav": 9525.7571,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49740,7 +49685,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9672.4049,
+        "nav": 9675.8605,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49795,7 +49740,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9746.8438,
+        "nav": 9750.2586,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49850,7 +49795,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9718.0113,
+        "nav": 9721.4156,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49905,7 +49850,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9733.4018,
+        "nav": 9736.8716,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -49960,7 +49905,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9813.5458,
+        "nav": 9816.9883,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50015,7 +49960,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9746.48,
+        "nav": 9749.9543,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50070,7 +50015,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9703.0744,
+        "nav": 9706.5105,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50125,7 +50070,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9772.5106,
+        "nav": 9775.9438,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50180,7 +50125,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9793.3411,
+        "nav": 9796.7755,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50235,7 +50180,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9714.3237,
+        "nav": 9717.769,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50290,7 +50235,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9749.0225,
+        "nav": 9752.4413,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50345,7 +50290,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9792.1725,
+        "nav": 9795.5787,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50400,7 +50345,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9734.6388,
+        "nav": 9738.0835,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50455,7 +50400,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9642.8148,
+        "nav": 9646.2348,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50510,7 +50455,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9616.558,
+        "nav": 9619.9515,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50565,7 +50510,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9687.3204,
+        "nav": 9690.7223,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50620,7 +50565,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9653.5095,
+        "nav": 9656.9382,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50675,7 +50620,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9533.376,
+        "nav": 9536.8081,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50730,7 +50675,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9538.6098,
+        "nav": 9542.0573,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50785,7 +50730,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9560.3187,
+        "nav": 9563.7564,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50840,7 +50785,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9590.2624,
+        "nav": 9593.7319,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50895,7 +50840,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9455.2209,
+        "nav": 9458.6563,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -50950,7 +50895,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9589.8192,
+        "nav": 9593.2271,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51005,7 +50950,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9652.7683,
+        "nav": 9656.1727,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51060,7 +51005,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9783.4813,
+        "nav": 9786.8925,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51115,7 +51060,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9950.041,
+        "nav": 9953.4424,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51170,7 +51115,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9919.2344,
+        "nav": 9922.6371,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51225,7 +51170,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9901.7648,
+        "nav": 9905.1573,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51280,7 +51225,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9965.3054,
+        "nav": 9968.7234,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51335,7 +51280,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9977.5539,
+        "nav": 9980.9756,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51390,7 +51335,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9947.8102,
+        "nav": 9951.2449,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51445,7 +51390,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9967.5382,
+        "nav": 9970.9783,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51500,7 +51445,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 10031.8721,
+        "nav": 10035.3215,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51555,7 +51500,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 10019.1652,
+        "nav": 10022.6154,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51610,7 +51555,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9988.1007,
+        "nav": 9991.5374,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51665,7 +51610,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9933.0085,
+        "nav": 9936.459,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51720,7 +51665,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9967.4746,
+        "nav": 9970.9819,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51775,7 +51720,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9862.3116,
+        "nav": 9865.7755,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51830,7 +51775,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9907.3797,
+        "nav": 9910.8304,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51885,7 +51830,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9884.1613,
+        "nav": 9887.6304,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51940,7 +51885,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9916.2631,
+        "nav": 9919.7386,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -51995,7 +51940,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9912.4655,
+        "nav": 9915.9311,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52050,7 +51995,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9935.1503,
+        "nav": 9938.5828,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52105,7 +52050,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9915.345,
+        "nav": 9918.7634,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52160,7 +52105,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9882.565,
+        "nav": 9885.9574,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52215,7 +52160,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9827.4858,
+        "nav": 9830.8909,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52270,7 +52215,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9868.5263,
+        "nav": 9871.9468,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52325,7 +52270,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9959.9113,
+        "nav": 9963.354,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52380,7 +52325,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9920.3622,
+        "nav": 9923.7859,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52435,7 +52380,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9868.8457,
+        "nav": 9872.2448,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52490,7 +52435,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9807.5254,
+        "nav": 9810.895,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52545,7 +52490,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9757.6475,
+        "nav": 9760.9923,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52600,7 +52545,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9828.2262,
+        "nav": 9831.568,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52655,7 +52600,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9798.8093,
+        "nav": 9802.1488,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52710,7 +52655,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9727.5212,
+        "nav": 9730.8335,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52765,7 +52710,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9703.9096,
+        "nav": 9707.2197,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52820,7 +52765,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9811.1118,
+        "nav": 9814.4489,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52875,7 +52820,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9826.2009,
+        "nav": 9829.5114,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52930,7 +52875,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9986.1607,
+        "nav": 9992.8842,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -52985,7 +52930,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 10004.7757,
+        "nav": 10011.5029,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53040,7 +52985,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9926.064,
+        "nav": 9932.6985,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53095,7 +53040,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9923.3444,
+        "nav": 9929.9611,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53150,7 +53095,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9975.4713,
+        "nav": 9982.1143,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53205,7 +53150,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9885.4956,
+        "nav": 9892.1126,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53260,7 +53205,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9873.9199,
+        "nav": 9880.5666,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53315,7 +53260,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9858.6737,
+        "nav": 9865.2619,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53370,7 +53315,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9848.2937,
+        "nav": 9854.8677,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53425,7 +53370,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9911.8028,
+        "nav": 9918.3991,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53480,7 +53425,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9963.1674,
+        "nav": 9969.7959,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53535,7 +53480,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 10023.622,
+        "nav": 10030.352,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53590,7 +53535,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 10006.4827,
+        "nav": 10013.2343,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53645,7 +53590,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9962.9494,
+        "nav": 9969.6881,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53700,7 +53645,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 10011.7229,
+        "nav": 10018.5379,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53755,7 +53700,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 10009.1646,
+        "nav": 10016.0095,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53810,7 +53755,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9985.0968,
+        "nav": 9991.9267,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53865,7 +53810,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9903.4145,
+        "nav": 9910.2891,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53920,7 +53865,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9939.3713,
+        "nav": 9946.3052,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -53975,7 +53920,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9823.0922,
+        "nav": 9830.0549,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54030,7 +53975,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9862.0468,
+        "nav": 9868.9442,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54085,7 +54030,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9885.759,
+        "nav": 9892.7688,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54140,7 +54085,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9939.1949,
+        "nav": 9946.2014,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54195,7 +54140,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9834.5715,
+        "nav": 9841.6773,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54250,7 +54195,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9770.5189,
+        "nav": 9777.5531,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54305,7 +54250,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9817.801,
+        "nav": 9824.8447,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54360,7 +54305,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9887.4476,
+        "nav": 9894.5241,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54415,7 +54360,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9920.567,
+        "nav": 9927.6221,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54470,7 +54415,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9880.1526,
+        "nav": 9887.331,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54525,7 +54470,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9749.8099,
+        "nav": 9757.0164,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54580,7 +54525,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9725.7669,
+        "nav": 9734.5271,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54635,7 +54580,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9743.0231,
+        "nav": 9751.7476,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54690,7 +54635,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9883.6431,
+        "nav": 9892.5111,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54745,7 +54690,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9499.8713,
+        "nav": 9508.6025,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54800,7 +54745,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9551.9669,
+        "nav": 9560.6832,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54855,7 +54800,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9781.5163,
+        "nav": 9790.3677,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54910,7 +54855,7 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9749.3838,
+        "nav": 9758.2396,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
@@ -54965,7 +54910,62 @@
       "portfolio_snapshot": {
         "cash": null,
         "last_rebalance_date": null,
-        "nav": 9890.0806,
+        "nav": 9899.4592,
+        "peak_nav": null,
+        "relative_drawdown_pct": 0.0
+      },
+      "rejected_etfs": [],
+      "risk_light": "GREEN",
+      "selected_etfs": [
+        {
+          "reasons": [
+            "production sleeve proxy"
+          ],
+          "score": null,
+          "symbol": "ETF_ROTATION"
+        }
+      ],
+      "systematic_decision": {
+        "decision": "VALIDATED_PRODUCTION_REPLAY",
+        "reason": "validated 40/20 production anchor replay"
+      },
+      "target_allocation": {
+        "DYNAMIC_ALLOCATOR": 0.35,
+        "QQQ": 0.2,
+        "SGOV": 0.05,
+        "SPY": 0.4
+      },
+      "top_stock_candidates": [
+        {
+          "final_score": null,
+          "symbol": "TOP_SCORE_BASKET"
+        }
+      ],
+      "universe_size": 0,
+      "watermarks": [
+        "SYSTEMATIC_TEMPLATE_OUTPUT"
+      ]
+    },
+    {
+      "benchmark_snapshot": {},
+      "candidate_score_summary": {},
+      "current_allocation": {},
+      "data_health": {
+        "identity_repair_symbols": [
+          "META:ticker_identity"
+        ],
+        "ok": true,
+        "source": "massive+secondary"
+      },
+      "date": "2026-11-12",
+      "execution_decision": "NO_TRADE",
+      "execution_reason": "Public production curve is a validated deterministic replay; no broker execution.",
+      "market_regime": "PRODUCTION",
+      "orders": [],
+      "portfolio_snapshot": {
+        "cash": null,
+        "last_rebalance_date": null,
+        "nav": 9862.8658,
         "peak_nav": null,
         "relative_drawdown_pct": 0.0
       },
