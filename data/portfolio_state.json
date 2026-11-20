@@ -1,17 +1,17 @@
 {
-  "benchmark_equity": 2877.87793,
+  "benchmark_equity": 2854.348037,
   "cash": 64.307609,
-  "date": "2026-11-19",
+  "date": "2026-11-20",
   "last_rebalance_date": "2026-11-05",
-  "nav": 2952.807111,
+  "nav": 2947.556983,
   "peak_nav": 5279.42036,
   "peak_relative_outperformance": 0.424387,
   "positions": {
     "AAPL": {
       "asset_type": "stock",
       "avg_price": 309.888526,
-      "market_price": 352.45,
-      "market_value": 160.587114,
+      "market_price": 349.21,
+      "market_value": 159.11087,
       "sector": null,
       "shares": 0.45563091,
       "theme": null
@@ -19,8 +19,8 @@
     "AMZN": {
       "asset_type": "stock",
       "avg_price": 266.083206,
-      "market_price": 267.74,
-      "market_value": 97.436808,
+      "market_price": 257.37,
+      "market_value": 93.662924,
       "sector": null,
       "shares": 0.36392324,
       "theme": null
@@ -153,25 +153,25 @@
     }
   },
   "realized_pnl": 148.324039,
-  "relative_drawdown_pct": 0.409401,
+  "relative_drawdown_pct": 0.405745,
   "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
   "weights": {
-    "AAPL": 0.05438456,
-    "AMZN": 0.03299803,
-    "CASH": 0.02177847,
-    "COST": 0.00211261,
-    "GE": 0.00564147,
-    "JPM": 0.02253918,
-    "MSFT": 0.02347985,
-    "QQQ": 0.03316247,
-    "SGOV": 0.11520144,
-    "SPY": 0.26113749,
-    "TMO": 0.00325602,
-    "VRTX": 0.01080624,
-    "XBI": 0.05013432,
-    "XLE": 0.08236518,
-    "XLF": 0.08845458,
-    "XLP": 0.13660944,
-    "XLV": 0.05593867
+    "AAPL": 0.05398059,
+    "AMZN": 0.03177646,
+    "CASH": 0.02181726,
+    "COST": 0.00211637,
+    "GE": 0.00565152,
+    "JPM": 0.02257932,
+    "MSFT": 0.02352167,
+    "QQQ": 0.03322154,
+    "SGOV": 0.11540663,
+    "SPY": 0.26160262,
+    "TMO": 0.00326182,
+    "VRTX": 0.01082549,
+    "XBI": 0.05022362,
+    "XLE": 0.08251189,
+    "XLF": 0.08861213,
+    "XLP": 0.13685277,
+    "XLV": 0.0560383
   }
 }
