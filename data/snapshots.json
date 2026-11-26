@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-25T04:57:15Z",
+  "generated_at": "2026-11-26T04:13:42Z",
   "snapshots": [
     {
       "benchmark_snapshot": {
@@ -5614,6 +5614,54 @@
         "XLF": 0.08860114,
         "XLP": 0.13683579,
         "XLV": 0.05603135
+      }
+    },
+    {
+      "benchmark_snapshot": {
+        "QQQ": {
+          "close": 64.6626,
+          "daily_return": 0.006474
+        },
+        "SPY": {
+          "close": 285.0591,
+          "daily_return": -0.008176
+        },
+        "verdict": {
+          "agent_led_add_value": false,
+          "beat_200DMA": false,
+          "beat_QQQ": false,
+          "beat_SPY": false,
+          "beat_VIX_strategy": false,
+          "greenlight_failed_simple_benchmarks": true,
+          "learned_beat_fixed": false
+        },
+        "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT"
+      },
+      "cash": 64.3076,
+      "date": "2026-11-26",
+      "execution_decision": "DATA_HALT",
+      "market_regime": "DATA_FAILURE",
+      "nav": 2945.7502,
+      "risk_light": "BLACK",
+      "watermark": "SYSTEMATIC_TEMPLATE_OUTPUT",
+      "weights": {
+        "AAPL": 0.05499897,
+        "AMZN": 0.03019732,
+        "CASH": 0.02183064,
+        "COST": 0.00211767,
+        "GE": 0.00565498,
+        "JPM": 0.02259317,
+        "MSFT": 0.0235361,
+        "QQQ": 0.03324192,
+        "SGOV": 0.11547742,
+        "SPY": 0.26176308,
+        "TMO": 0.00326382,
+        "VRTX": 0.01083213,
+        "XBI": 0.05025442,
+        "XLE": 0.0825625,
+        "XLF": 0.08866648,
+        "XLP": 0.13693671,
+        "XLV": 0.05607268
       }
     }
   ],
