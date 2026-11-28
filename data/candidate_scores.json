@@ -1,16 +1,16 @@
 {
-  "as_of": "2026-11-27",
+  "as_of": "2026-11-28",
   "etf_weights": {
     "diversification": 0.2,
     "leadership": 0.4,
     "regime_fit": 0.25,
     "timing": 0.15
   },
-  "generated_at": "2026-11-27T04:21:04Z",
+  "generated_at": "2026-11-28T04:01:40Z",
   "regime": "DATA_FAILURE",
   "scores": [
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "cash_proxy",
       "data_quality_multiplier": 0.55,
       "diversification_score": 0.0,
@@ -29,7 +29,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -48,7 +48,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "benchmark",
       "data_quality_multiplier": 0.55,
       "diversification_score": 0.0,
@@ -67,57 +67,57 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.9,
       "diversification_score": 0.0,
       "explanations": [
         "leadership and relative-strength inputs are supportive"
       ],
-      "final_score": 0.50966,
+      "final_score": 0.46693,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.77097,
+      "leadership_score": 0.74604,
       "regime_fit_score": 0.0,
       "risk_penalty": 0.03,
       "symbol": "AAPL",
       "timing_multiplier": 1.0,
-      "timing_score": 0.7,
+      "timing_score": 0.5,
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.9,
       "diversification_score": 0.0,
       "explanations": [
         "neutral composite score"
       ],
-      "final_score": 0.41867,
+      "final_score": 0.41104,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.41147,
+      "leadership_score": 0.52371,
       "regime_fit_score": 0.0,
-      "risk_penalty": 0.06541,
+      "risk_penalty": 0.0654,
       "symbol": "AMZN",
-      "timing_multiplier": 1.05,
-      "timing_score": 0.8,
+      "timing_multiplier": 1.0,
+      "timing_score": 0.7,
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.8904,
+      "diversification_score": 0.89926,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.34324,
+      "final_score": 0.33874,
       "information_score": 0.0,
       "investable_flag": true,
-      "leadership_score": 0.78996,
+      "leadership_score": 0.76511,
       "regime_fit_score": 0.1,
       "risk_penalty": 0.0,
       "symbol": "XLF",
@@ -126,40 +126,19 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.88354,
+      "diversification_score": 0.76221,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.33557,
+      "final_score": 0.32663,
       "information_score": 0.0,
       "investable_flag": true,
-      "leadership_score": 0.79611,
-      "regime_fit_score": 0.1,
-      "risk_penalty": 0.01501,
-      "symbol": "XLE",
-      "timing_multiplier": 1.0,
-      "timing_score": 0.7,
-      "wait_flag": false
-    },
-    {
-      "as_of": "2026-11-27",
-      "asset_type": "etf",
-      "data_quality_multiplier": 0.55,
-      "diversification_score": 0.76742,
-      "explanations": [
-        "leadership and relative-strength inputs are supportive",
-        "ETF adds diversification versus anchors/current book",
-        "data quality flag: synthetic"
-      ],
-      "final_score": 0.32878,
-      "information_score": 0.0,
-      "investable_flag": true,
-      "leadership_score": 0.69581,
+      "leadership_score": 0.68913,
       "regime_fit_score": 0.1,
       "risk_penalty": 0.0,
       "symbol": "XLP",
@@ -168,19 +147,39 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.89582,
+      "diversification_score": 0.8661,
       "explanations": [
         "leadership and relative-strength inputs are supportive",
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.30616,
+      "final_score": 0.32613,
       "information_score": 0.0,
       "investable_flag": true,
-      "leadership_score": 0.61871,
+      "leadership_score": 0.83386,
+      "regime_fit_score": 0.1,
+      "risk_penalty": 0.0138,
+      "symbol": "XLE",
+      "timing_multiplier": 1.0,
+      "timing_score": 0.5,
+      "wait_flag": false
+    },
+    {
+      "as_of": "2026-11-28",
+      "asset_type": "etf",
+      "data_quality_multiplier": 0.55,
+      "diversification_score": 0.90789,
+      "explanations": [
+        "ETF adds diversification versus anchors/current book",
+        "data quality flag: synthetic"
+      ],
+      "final_score": 0.29858,
+      "information_score": 0.0,
+      "investable_flag": true,
+      "leadership_score": 0.57823,
       "regime_fit_score": 0.1,
       "risk_penalty": 0.0,
       "symbol": "XBI",
@@ -189,7 +188,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
@@ -197,69 +196,70 @@
         "leadership and relative-strength inputs are supportive",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.29262,
+      "final_score": 0.2914,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.85381,
+      "leadership_score": 0.8123,
       "regime_fit_score": 0.0,
       "risk_penalty": 0.03,
       "symbol": "GE",
+      "timing_multiplier": 1.0,
+      "timing_score": 0.75,
+      "wait_flag": false
+    },
+    {
+      "as_of": "2026-11-28",
+      "asset_type": "stock",
+      "data_quality_multiplier": 0.495,
+      "diversification_score": 0.0,
+      "explanations": [
+        "leadership and relative-strength inputs are supportive",
+        "data quality flag: synthetic"
+      ],
+      "final_score": 0.27011,
+      "information_score": 0.45,
+      "investable_flag": true,
+      "leadership_score": 0.75831,
+      "regime_fit_score": 0.0,
+      "risk_penalty": 0.04682,
+      "symbol": "JPM",
       "timing_multiplier": 1.0,
       "timing_score": 0.7,
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
-      "asset_type": "stock",
-      "data_quality_multiplier": 0.495,
-      "diversification_score": 0.0,
+      "as_of": "2026-11-28",
+      "asset_type": "etf",
+      "data_quality_multiplier": 1.0,
+      "diversification_score": 0.92874,
       "explanations": [
-        "leadership and relative-strength inputs are supportive",
-        "data quality flag: synthetic"
+        "risk penalty reduced score",
+        "ETF adds diversification versus anchors/current book"
       ],
-      "final_score": 0.27975,
-      "information_score": 0.45,
+      "final_score": 0.26897,
+      "information_score": 0.0,
       "investable_flag": true,
-      "leadership_score": 0.79654,
-      "regime_fit_score": 0.0,
-      "risk_penalty": 0.04881,
-      "symbol": "JPM",
+      "leadership_score": 0.18505,
+      "regime_fit_score": 0.1,
+      "risk_penalty": 0.1208,
+      "symbol": "ARKK",
       "timing_multiplier": 1.0,
-      "timing_score": 0.75,
+      "timing_score": 0.7,
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
-      "asset_type": "stock",
-      "data_quality_multiplier": 0.495,
-      "diversification_score": 0.0,
-      "explanations": [
-        "data quality flag: synthetic"
-      ],
-      "final_score": 0.25388,
-      "information_score": 0.45,
-      "investable_flag": true,
-      "leadership_score": 0.47822,
-      "regime_fit_score": 0.0,
-      "risk_penalty": 0.03,
-      "symbol": "TMO",
-      "timing_multiplier": 1.05,
-      "timing_score": 0.75,
-      "wait_flag": false
-    },
-    {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.55,
-      "diversification_score": 0.83913,
+      "diversification_score": 0.84322,
       "explanations": [
         "ETF adds diversification versus anchors/current book",
         "data quality flag: synthetic"
       ],
-      "final_score": 0.25149,
+      "final_score": 0.26733,
       "information_score": 0.0,
       "investable_flag": true,
-      "leadership_score": 0.28787,
+      "leadership_score": 0.35441,
       "regime_fit_score": 0.1,
       "risk_penalty": 0.0,
       "symbol": "XLV",
@@ -268,56 +268,36 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
-      "asset_type": "etf",
-      "data_quality_multiplier": 1.0,
-      "diversification_score": 0.91947,
-      "explanations": [
-        "risk penalty reduced score",
-        "ETF adds diversification versus anchors/current book"
-      ],
-      "final_score": 0.24548,
-      "information_score": 0.0,
-      "investable_flag": true,
-      "leadership_score": 0.14497,
-      "regime_fit_score": 0.1,
-      "risk_penalty": 0.1264,
-      "symbol": "ARKK",
-      "timing_multiplier": 1.0,
-      "timing_score": 0.7,
-      "wait_flag": false
-    },
-    {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
       "explanations": [
         "data quality flag: synthetic"
       ],
-      "final_score": 0.24511,
+      "final_score": 0.26678,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.50058,
+      "leadership_score": 0.46096,
       "regime_fit_score": 0.0,
       "risk_penalty": 0.03,
       "symbol": "VRTX",
-      "timing_multiplier": 1.0,
-      "timing_score": 0.75,
+      "timing_multiplier": 1.05,
+      "timing_score": 0.9,
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
       "explanations": [
         "data quality flag: synthetic"
       ],
-      "final_score": 0.24465,
+      "final_score": 0.24066,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.53083,
+      "leadership_score": 0.50396,
       "regime_fit_score": 0.0,
       "risk_penalty": 0.03,
       "symbol": "MSFT",
@@ -326,45 +306,83 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.495,
       "diversification_score": 0.0,
       "explanations": [
         "data quality flag: synthetic"
       ],
-      "final_score": 0.19724,
+      "final_score": 0.22567,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.30152,
+      "leadership_score": 0.36395,
       "regime_fit_score": 0.0,
-      "risk_penalty": 0.04596,
-      "symbol": "COST",
+      "risk_penalty": 0.03,
+      "symbol": "TMO",
       "timing_multiplier": 1.05,
-      "timing_score": 0.55,
+      "timing_score": 0.65,
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
+      "asset_type": "stock",
+      "data_quality_multiplier": 0.495,
+      "diversification_score": 0.0,
+      "explanations": [
+        "data quality flag: synthetic"
+      ],
+      "final_score": 0.19348,
+      "information_score": 0.45,
+      "investable_flag": true,
+      "leadership_score": 0.30577,
+      "regime_fit_score": 0.0,
+      "risk_penalty": 0.04586,
+      "symbol": "COST",
+      "timing_multiplier": 1.0,
+      "timing_score": 0.6,
+      "wait_flag": false
+    },
+    {
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.9,
       "diversification_score": 0.0,
       "explanations": [
         "risk penalty reduced score"
       ],
-      "final_score": 0.13037,
+      "final_score": 0.14367,
       "information_score": 0.45,
       "investable_flag": true,
-      "leadership_score": 0.14782,
+      "leadership_score": 0.17617,
       "regime_fit_score": 0.0,
-      "risk_penalty": 0.26449,
+      "risk_penalty": 0.25822,
       "symbol": "AVGO",
       "timing_multiplier": 1.0,
       "timing_score": 0.7,
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
+      "asset_type": "stock",
+      "data_quality_multiplier": 0.9,
+      "diversification_score": 0.0,
+      "explanations": [
+        "risk penalty reduced score"
+      ],
+      "final_score": 0.06972,
+      "information_score": 0.45,
+      "investable_flag": true,
+      "leadership_score": 0.28012,
+      "regime_fit_score": 0.0,
+      "risk_penalty": 0.37157,
+      "symbol": "AMD",
+      "timing_multiplier": 1.0,
+      "timing_score": 0.7,
+      "wait_flag": false
+    },
+    {
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -384,7 +402,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -404,7 +422,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -424,7 +442,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -444,7 +462,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -464,7 +482,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -484,7 +502,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -504,7 +522,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -524,7 +542,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -544,7 +562,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -564,7 +582,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -584,7 +602,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -604,7 +622,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -624,7 +642,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -644,7 +662,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -664,7 +682,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -684,7 +702,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -704,7 +722,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -724,7 +742,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -744,7 +762,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -764,7 +782,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -784,7 +802,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -804,7 +822,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -824,7 +842,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -844,7 +862,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -864,7 +882,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "stock",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.0,
@@ -884,7 +902,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "benchmark",
       "data_quality_multiplier": 0.55,
       "diversification_score": 0.0,
@@ -903,26 +921,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
-      "asset_type": "stock",
-      "data_quality_multiplier": 0.9,
-      "diversification_score": 0.0,
-      "explanations": [
-        "risk penalty reduced score"
-      ],
-      "final_score": 0.04887,
-      "information_score": 0.45,
-      "investable_flag": true,
-      "leadership_score": 0.19856,
-      "regime_fit_score": 0.0,
-      "risk_penalty": 0.38027,
-      "symbol": "AMD",
-      "timing_multiplier": 1.0,
-      "timing_score": 0.75,
-      "wait_flag": false
-    },
-    {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -941,7 +940,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -960,7 +959,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -979,7 +978,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -998,7 +997,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1017,7 +1016,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1036,7 +1035,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1055,7 +1054,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1074,7 +1073,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1093,7 +1092,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1112,7 +1111,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1131,7 +1130,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1150,7 +1149,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1169,7 +1168,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1188,7 +1187,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1207,7 +1206,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1226,7 +1225,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1245,7 +1244,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1264,7 +1263,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1283,7 +1282,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1302,7 +1301,7 @@
       "wait_flag": false
     },
     {
-      "as_of": "2026-11-27",
+      "as_of": "2026-11-28",
       "asset_type": "etf",
       "data_quality_multiplier": 0.25,
       "diversification_score": 0.5,
@@ -1336,8 +1335,8 @@
       "AAPL",
       "AMZN",
       "XLF",
-      "XLE",
       "XLP",
+      "XLE",
       "XBI",
       "GE"
     ]
